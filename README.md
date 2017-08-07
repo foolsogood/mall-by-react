@@ -1,14 +1,19 @@
 首先，这是一个react新手写的练手项目，有不对的地方请包涵。
 这是用react写的一个商城，比较简单。由于没有接口，所以数据是用mock的。脚手架采用create-react-app。ui采用antd。
-技术栈:react,react-router v4,mobx等。写这个过程中遇到的一些重难点(或者是踩过的坑比较贴切),只贴关键代码：
+技术栈:react,react-router v4,mobx等。
+写这个过程中遇到的一些重难点(或者是踩过的坑比较贴切),只贴关键代码：
 1.reacr-router v4。
 (1).路由传值
 在路由配置中注入 history,然后把参数写在Route组件中
- <Route path="/goodDetail/:cateId/:id" component={GoodDetail} />。在页面中用<Link>组件传值：
- <Link to={`/goodDetail/${good.cateId}/${good.goodId}`}> ;在事件中传值
- ①引入 import PropTypes from 'prop-types',②声明router类型 static contextTypes = {
+ <Route path="/goodDetail/:cateId/:id" component={GoodDetail} />。
+ 在页面中用<Link>组件传值：
+ <Link to={`/goodDetail/${good.cateId}/${good.goodId}`}> ;
+ 在事件中传值
+ ①引入 import PropTypes from 'prop-types',
+ ②声明router类型 static contextTypes = {
         router: PropTypes.object
-    };③ this.context.router.history.push({
+  };
+ ③ this.context.router.history.push({
             pathname: '/goodDetail',
             query:{
               cateId:xxx,
@@ -16,9 +21,11 @@
             }
         })
 (2)路由获取参数
-在componentWillMount函数中 let goodId = this.props.match.params.id
+在componentWillMount函数中
+ let goodId = this.props.match.params.id
 (3)获取当前路由路径
 window.location.pathname
+
 2.结合生命周期可以做的一些事
 如果在componentDidMount添加了一些事件监听或者定时器之类的,要在componentWillUnmount里面清掉它们。如果是有一些setState操作的还要格外注意,因为setState是异步的，离开当前组件时不一定能马上消除掉事件监听或者定时器的影响，可以添加一个变量为false,在componentWillUnmount里面把它改为true,每次setState之前都要判断该变量，为false才能操作之类(详细可看首页相关)
 3.循环渲染
@@ -33,7 +40,7 @@ Object.keys(goodList).map((item)=>{
 但对于mobx的学习使用还是足够的，由于create-react-app好像不支持@装饰器,就用
  extendObservable 模式
  在对应的页面中引入react-mobx连接react和mobx ，当然状态本身也要引入
- import { observer } from 'mobx-react'
+import { observer } from 'mobx-react'
 import store from '../../store'
 const cart = observer(class cartList extends Component {
   ......
