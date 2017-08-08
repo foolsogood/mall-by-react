@@ -5,9 +5,9 @@
 1.reacr-router v4。
 (1).路由传值
 在路由配置中注入 history,然后把参数写在Route组件中
- <Route path="/goodDetail/:cateId/:id" component={GoodDetail} />。
- 在页面中用<Link>组件传值：
- ```<Link to={`/goodDetail/${good.cateId}/${good.goodId}`}>``` ;
+ <Route path="/goodDetail/:cateId/:id" component={GoodDetail} />。<br/>
+ 在页面中用<Link>组件传值：<br/>
+ ```<Link to={`/goodDetail/${good.cateId}/${good.goodId}`}>``` ;<br/>
  在事件中传值<br/>
  ①引入 import PropTypes from 'prop-types',
  ②声明router类型 static contextTypes = {
@@ -29,12 +29,12 @@ window.location.pathname<br/>
 2.结合生命周期可以做的一些事
 如果在componentDidMount添加了一些事件监听或者定时器之类的,要在componentWillUnmount里面清掉它们。如果是有一些setState操作的还要格外注意,因为setState是异步的，离开当前组件时不一定能马上消除掉事件监听或者定时器的影响，可以添加一个变量为false,在componentWillUnmount里面把它改为true,每次setState之前都要判断该变量，为false才能操作之类(详细可看首页相关)<br/>
 3.循环渲染
-如果我要渲染的是一个集合goodList，可以这样 
-Object.keys(goodList).map((item)=>{
-  return (
+如果我要渲染的是一个集合goodList，可以这样 <br/>
+Object.keys(goodList).map((item)=>{<br/>
+  return (<br/>
     ```<div key={goodList[item].goodId}>.....</div>```
-  )
-})
+  )<br/>
+})<br/>
 而不是一定要拿到数组才能渲染,key的话最好不要用索引，而是用一些商品id,用户id之类<br/>
 4.状态管理我用的是mobx，这里面是用在购物车中，购物车还结合了localStorage,而结算是结合sessionStrage,还是有瑕疵。
 但对于mobx的学习使用还是足够的，由于create-react-app好像不支持@装饰器,就用
