@@ -10,7 +10,7 @@ export default class SendTime extends Component {
         super()
         this.state = {
            
-            ifBackShow: true,
+            
             value: '尽快'
         }
     };
@@ -36,7 +36,7 @@ export default class SendTime extends Component {
     render() {
         return (
             <div>
-                <TitleBar  ifBackShow={this.state.ifBackShow} titleText="送达时间" />
+                <TitleBar  titleText="送达时间" />
                 <div className="pd-h-20 h-80">送货时间</div>
                 <div className="pd-h-20 bg-fff">
                     <RadioGroup style={this.styleObj} onChange={this.onChange.bind(this)} value={this.state.value}>

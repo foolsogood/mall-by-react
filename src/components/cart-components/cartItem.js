@@ -13,9 +13,10 @@ const cartItem = observer(class cartItem extends Component {
         super()
         this.state = {
             ifChecked: true
-           
+
         }
     };
+    //切换是否选中该商品
     _toggleCheck(goodId, event) {
         if (this.state.ifChecked) {
             this.setState({
@@ -31,23 +32,23 @@ const cartItem = observer(class cartItem extends Component {
     };
 
     _changeNum(num, goodId, way, event) {
-      
+
         if (way > 0) {
             store.shopCart.changeNum(goodId, way)
             store.balance.changeBalanceNum(goodId, way)
         } else if (way < 0) {
-            if (num === 0) { return }
-            else {
+            if (num === 0) {
+                return
+            } else {
                 store.shopCart.changeNum(goodId, way)
                 store.balance.changeBalanceNum(goodId, way)
             }
-
         }
     };
-    //这里不是单纯的事件传递,而是使用了闭包？所以参数是这样传递？这里的用法是网上找的
+
     _removeThisGood(event, goodId) {
         store.shopCart.removeFromCart(goodId)
-        store.balance.popThisFromBalance(goodId,true)
+        store.balance.popThisFromBalance(goodId, true)
     };
     render() {
         const { cartItem } = this.props

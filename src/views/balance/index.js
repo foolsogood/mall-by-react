@@ -13,8 +13,6 @@ const Balance = observer(class Balance extends Component {
     constructor() {
         super()
         this.state = {
-
-            ifBackShow: true,
             sendTime: '尽快'
         }
 
@@ -37,7 +35,7 @@ const Balance = observer(class Balance extends Component {
     render() {
         return (
             <div className="balance">
-                <TitleBar ifBackShow={this.state.ifBackShow} titleText="结算" />
+                <TitleBar  titleText="结算" />
                 <div className="hr-40"></div>
                 <div className="flex-box flex-ju-c-bt h-100 bg-fff pd-h-20 ">
                     <span>请选择地址</span>

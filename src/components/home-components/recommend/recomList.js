@@ -6,22 +6,16 @@ export default class RecomList extends Component {
     constructor() {
         super()
         this.state = {
-            arr: []
+            obj: {}
         }
     };
     componentWillMount() {
         this._getRecomGoods()
-        
     };
     _getRecomGoods(){
         let recomendGoods=mockData.recomendGoods
-        //将集合转数组
-        let arr1 = []
-        for (let i in recomendGoods) {
-            arr1.push(recomendGoods[i])
-        }
         this.setState({
-            arr: arr1
+            obj: recomendGoods
         })
 	};
     render() {
@@ -30,9 +24,9 @@ export default class RecomList extends Component {
                 <div className="home-good-title">{this.props.titleText}</div>
                 <div>
                     {
-                        this.state.arr.map((item, idx) => {
+                        Object.keys(this.state.obj).map((item) => {
                             return (
-                                <RecomItem key={idx} good={item} />
+                                <RecomItem key={item} good={this.state.obj[item]} />
                             )
                         })
                     }

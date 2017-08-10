@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
-
+import PropTypes from 'prop-types'
 export default class RecomItem extends Component {
+    static propTypes={
+        good:PropTypes.object.isRequired
+    };
     render() {
         const good=this.props.good
         return (

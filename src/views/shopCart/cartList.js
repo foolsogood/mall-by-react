@@ -14,7 +14,7 @@ const cart = observer(class cartList extends Component {
             <div>
                 {/*用商品id而不是数组的索引来做key,会更好检测数据变更  */}
                 {
-                    Object.keys(store.shopCart.cart).map((item, idx) => {
+                    Object.keys(store.shopCart.cart).map((item) => {
                         return <CartItem key={store.shopCart.cart[item].id} cartItem={store.shopCart.cart[item]} />
                     })
                 }

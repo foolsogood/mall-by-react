@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Row, Col } from 'antd'
 import { createHistory } from 'history'
 const history = createHistory()
@@ -8,6 +9,13 @@ export default class titleBar extends Component {
 		this.state = {
 			backText: '<'
 		}
+	};
+	static defaultProps={
+		ifBackShow:true
+	};
+	static propTypes={
+		ifBackShow:PropTypes.bool,
+		titleText:PropTypes.string
 	};
 	goBack() {
 		history.goBack()

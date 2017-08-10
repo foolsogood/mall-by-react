@@ -4,13 +4,7 @@ import TitleBar from '../../components/common-components/titleBar.js'
 const { TextArea } = Input
 const FormItem = Form.Item
 export default class feedback extends React.Component {
-    constructor() {
-        super()
-        this.state = {
-           
-            ifBackShow: true
-        }
-    };
+   
     handleSubmit(e) {
         e.preventDefault()
         console.log(e)
@@ -26,7 +20,7 @@ export default class feedback extends React.Component {
     render() {
         return (
             <div>
-                <TitleBar  ifBackShow={this.state.ifBackShow} titleText="意见反馈" />
+                <TitleBar   titleText="意见反馈" />
                 <Form onSubmit={this.handleSubmit.bind(this)}>
                     <FormItem>
                         <TextArea rows={8} placeholder="有什么好的意见或建议?" />

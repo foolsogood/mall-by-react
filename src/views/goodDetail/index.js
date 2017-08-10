@@ -14,8 +14,6 @@ export default class GoodDetail extends Component {
     constructor() {
         super()
         this.state = {
-           
-            ifBackShow: true,
             imgList: [''],
             detailList:[''],
             goodId: '',
@@ -61,7 +59,7 @@ export default class GoodDetail extends Component {
         return (
             <div>
                 <div className="good-detail">
-                    <TitleBar  ifBackShow={this.state.ifBackShow} titleText="商品页" />
+                    <TitleBar   titleText="商品页" />
                     < Banner imgList={imgList} />
 
                     <div className="bg-fff detail-text">
