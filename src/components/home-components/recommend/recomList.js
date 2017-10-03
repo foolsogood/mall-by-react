@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import RecomItem from './recomItem'
-// 引入mock数据
-import { mockData } from '../../../mockData'
+import PropTypes from 'prop-types'
+import xhr from '../../../service/xhr'
 export default class RecomList extends Component {
     constructor() {
         super()
@@ -9,15 +9,21 @@ export default class RecomList extends Component {
             obj: {}
         }
     };
+    static propTypes = {
+        titleText: PropTypes.string
+    };
     componentWillMount() {
         this._getRecomGoods()
     };
-    _getRecomGoods(){
-        let recomendGoods=mockData.recomendGoods
-        this.setState({
-            obj: recomendGoods
-        })
-	};
+    _getRecomGoods() {
+        xhr.get('/api/getRecomendGoods',{}).then(res => {
+            if (res.code === 1) {
+                this.setState({
+                    obj: res.data
+                })
+            }
+        }).catch(err => { })
+    };
     render() {
         return (
             <div className="bg-fff home-good">
@@ -31,6 +37,7 @@ export default class RecomList extends Component {
                         })
                     }
                 </div>
+
             </div>
         )
     }

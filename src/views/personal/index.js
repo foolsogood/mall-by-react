@@ -26,7 +26,6 @@ export default class Personal extends Component {
 		}
 	};
 	componentWillMount() {
-	
 	};
 	render() {
 		return (

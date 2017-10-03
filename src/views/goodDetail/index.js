@@ -7,15 +7,14 @@ import Banner from '../../components/common-components/banner'
 // 组件
 import Comments from '../../components/good-components/comments'
 import GoodFooter from '../../components/good-components/goodFooter'
-// mockData
-import { mockData } from '../../mockData'
+import xhr from '../../service/xhr'
 const TabPane = Tabs.TabPane
 export default class GoodDetail extends Component {
     constructor() {
         super()
         this.state = {
             imgList: [''],
-            detailList:[''],
+            detailList: [''],
             goodId: '',
             cateId: '',
             goodInfo: {}
@@ -35,31 +34,27 @@ export default class GoodDetail extends Component {
 
     };
     _getGoodInfo() {
-        let goodList = mockData.goodList
-        for (let i in goodList) {
-            if (i === this.state.cateId) {
-                let obj = goodList[i].list
-                for (let j in obj) {
-                    if (j === this.state.goodId) {
-                        let goodInfo = obj[j]
-                        this.setState({
-                            goodInfo,
-                            // 在jsx找中直接传goodInfo.imgList在子组件中取不到
-                            imgList:goodInfo.imgList,
-                           detailList:goodInfo.detail
-                        })
-                    }
-                }
-            }
-
+        const query={
+           cateId: this.state.cateId,
+           goodId: this.state.goodId
         }
+        xhr.get('/api/getGoodList',{query}).then(res => {
+            if (res.code === 1) {
+                this.setState({
+                    goodInfo: res.data,
+                    // 在jsx找中直接传goodInfo.imgList在子组件中取不到
+                    imgList:  res.data.imgList,
+                    detailList:  res.data.detail
+                })
+            }
+        }).catch(err => { })
     };
     render() {
-        const {goodInfo,imgList,detailList} = this.state
+        const { goodInfo, imgList, detailList } = this.state
         return (
             <div>
                 <div className="good-detail">
-                    <TitleBar   titleText="商品页" />
+                    <TitleBar titleText="商品页" />
                     < Banner imgList={imgList} />
 
                     <div className="bg-fff detail-text">
@@ -71,21 +66,21 @@ export default class GoodDetail extends Component {
                     <div className="bg-fff">
                         <Tabs defaultActiveKey="1" >
                             <TabPane tab="商品详情" key="1">
-                               {
-                                   detailList.map((item,idx)=>{
-                                       return(
-                                           <img key={idx} className="detail-img" src={item} alt="" />
-                                       )
-                                   })
-                               }
-                                
+                                {
+                                    detailList.map((item, idx) => {
+                                        return (
+                                            <img key={idx} className="detail-img" src={item} alt="" />
+                                        )
+                                    })
+                                }
+
                             </TabPane>
                             <TabPane tab="商品评论" key="2">
                                 <Comments rateList={goodInfo.rate} />
                             </TabPane>
                         </Tabs>
                     </div>
-                    <GoodFooter goodInfo={goodInfo}/>
+                    <GoodFooter goodInfo={goodInfo} />
                 </div>
             </div>
         )

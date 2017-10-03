@@ -3,11 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "node-engine": "0.0.5",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-scripts": "1.0.10"
   },
   "devDependencies": {
+    "axios": "^0.16.2",
+    "qs": "^6.5.1",
     "antd": "^2.12.2",
     "history": "^3.3.0",
     "mitt": "^1.1.2",

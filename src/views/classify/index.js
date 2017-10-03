@@ -6,7 +6,7 @@ import ClassifyList from '../../components/classify-components/classifyList'
 
 import ClassifyTitle from '../../components/classify-components/classifyTitle'
 // mockData
-import { mockData } from '../../mockData'
+import xhr from '../../service/xhr'
 export default class cateify extends Component {
 	constructor() {
 		super()
@@ -21,21 +21,22 @@ export default class cateify extends Component {
 		this._getGoodsList()
 	};
 	_getGoodsList() {
-		let goodList = mockData.goodList
-		let arr = []
-
-		// console.log('goodList', goodList)
-		for (let i in goodList) {
-			let objItem = {}
-			objItem.text = goodList[i].cate
-			objItem.cateId = i
-			arr.push(objItem)
-		}
-		this.setState({
-			titleArr: arr,
-			list: goodList
-		})
-		
+		xhr.get('/api/getGoodList', {}).then(res => {
+			if (res.code === 1) {
+				let goodList = res.data
+				let arr = []
+				for (let i in goodList) {
+					let objItem = {}
+					objItem.text = goodList[i].cate
+					objItem.cateId = i
+					arr.push(objItem)
+				}
+				this.setState({
+					titleArr: arr,
+					list: goodList
+				})
+			}
+		}).catch(err => { })
 	};
 	render() {
 		return (
@@ -52,7 +53,7 @@ export default class cateify extends Component {
 								<ClassifyList key={item}
 									list={this.state.list[item]}
 									cateId={this.state.list[item].list[Object.keys(this.state.list[item].list)[0]].cateId}
-									 />
+								/>
 							)
 						})
 					}

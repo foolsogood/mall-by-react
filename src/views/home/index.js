@@ -7,19 +7,18 @@ import Banner from '../../components/common-components/banner'
 import Notice from '../../components/home-components/notice'
 import HostList from '../../components/home-components/hot/hotList'
 import RecomList from '../../components/home-components/recommend/recomList'
-// 引入mock数据
-import { mockData } from '../../mockData'
+import xhr from '../../service/xhr'
 export default class Home extends Component {
 	constructor() {
 		super()
 		this.state = {
-			imgList: [],
+			imgList: [''],
 			recomGoodList: {},
 			hotGoods: {},
 			searchStyle: {}
 		}
 		//虽然在componentWillUnmount中清除事件监听,但setState没有立刻停止，该变量可用于做每次setState的前提条件
-		this.lock=false
+		this.lock = false
 	};
 	styleObj1 = {
 		position: 'relative',
@@ -34,44 +33,51 @@ export default class Home extends Component {
 			this._changeSearchStyle(e)
 		})
 	};
-	
+
 	componentWillUnmount() {
-		this.lock=true
+		this.lock = true
 		window.removeEventListener('scroll', (e) => {
 			this._changeSearchStyle(e)
 		})
 	};
 	_getHomeImgList() {
-		let homeImgList = mockData.homeImgList
-		this.setState({
-			imgList: homeImgList
-		})
+		xhr.get('/api/homeImgList', {}).then(res => {
+			if (res.code === 1) {
+				let homeImgList = res.data
+				this.setState({
+					imgList: homeImgList
+				})
+			}
+		}).catch(err => { })
 	};
 	_changeSearchStyle(e) {
-		if(!this.lock){
+		if (!this.lock) {
 			let scroTop = document.body.scrollTop
-		if (scroTop > 20) {
-			this.setState({
-				searchStyle: {
-					background: 'rgba(72,173,252,' + 1 * scroTop / 200 + ')',
-					lineHeight: '1rem'
-				}
-			})
-		} else {
-			this.setState({
-				searchStyle: {
-					top: '.2rem',
-					background: 'transparent'
-				}
-			})
-		}
+			if (scroTop > 20) {
+				this.setState({
+					searchStyle: {
+						background: 'rgba(72,173,252,' + 1 * scroTop / 200 + ')',
+						lineHeight: '1rem'
+					}
+				})
+			} else {
+				this.setState({
+					searchStyle: {
+						top: '.2rem',
+						background: 'transparent'
+					}
+				})
+			}
 		}
 	};
 	_getHotGoods() {
-		let hotGoods = mockData.hotGoods
-		this.setState({
-			hotGoods
-		})
+		xhr.get('/api/getHotGoods', {}).then(res => {
+			if (res.code === 1) {
+				this.setState({
+					hotGoods: res.data
+				})
+			}
+		}).catch(err => { })
 	};
 	render() {
 		return (

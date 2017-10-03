@@ -1,5 +1,6 @@
+一.客户端
 首先，这是一个react新手写的练手项目，有不对的地方请包涵。
-这是用react写的一个商城，比较简单。由于没有接口，所以数据是用mock的。脚手架采用create-react-app。ui采用antd。
+这是用react写的一个商城，比较简单。脚手架采用create-react-app。ui采用antd。
 技术栈:react,react-router v4,mobx等。
 写这个过程中遇到的一些重难点(或者是踩过的坑比较贴切),只贴关键代码：<br/>
 1.reacr-router v4。
@@ -47,3 +48,7 @@ const cart = observer(class cartList extends Component {
 }<br/>
 export default cart<br/>
 然后在这个页面中直接获取store中的数据
+
+二.服务端
+mockServer文件夹，数据来源是用mock的。而server.js是用koa做的本地web服务</br>
+用法: 在mockServer路径下 node ./server.js 即可
