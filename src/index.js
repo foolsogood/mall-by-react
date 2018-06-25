@@ -1,7 +1,6 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import xhr from './service/xhr'
 // 组件
 import App from './App';
 // 样式
@@ -11,7 +10,6 @@ import './static/style/main.css';
 import './static/js/reset.js'
 // 
 import store from './store'
-React.__proto__.$http = xhr;
 ReactDOM.render(
     <App store={store}/>,
     document.getElementById('root'));

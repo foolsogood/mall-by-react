@@ -13,7 +13,6 @@ import FeedBack from './views/personal/feedback'
 // const history = createHistory()
 export default class App extends Component {
 	render() {
-		// console.log(this)
 		return (
 			<div>
 				<BrowserRouter >
