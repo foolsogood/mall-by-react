@@ -11,7 +11,7 @@ import './static/style/main.css';
 import './static/js/reset.js'
 // 
 import store from './store'
-React.$http = xhr;
+React.__proto__.$http = xhr;
 ReactDOM.render(
     <App store={store}/>,
     document.getElementById('root'));

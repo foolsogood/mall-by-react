@@ -9,13 +9,14 @@ import Balance from './views/balance'
 import SendTime from './views/balance/sendTime'
 import GoodDetail from './views/goodDetail'
 import FeedBack from './views/personal/feedback'
-import { createHistory } from 'history'
-const history = createHistory()
+// import { createHistory } from 'history'
+// const history = createHistory()
 export default class App extends Component {
 	render() {
+		// console.log(this)
 		return (
 			<div>
-				<BrowserRouter history={history}>
+				<BrowserRouter >
 					<Switch>
 						<Route exact path="/" component={Home} />
 						<Route path="/personal" component={Personal} />
