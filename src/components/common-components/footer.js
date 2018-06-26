@@ -35,7 +35,7 @@ export default class footer extends Component {
 							{
 								this._getPathname() === `/`
 									? <div className="flex-box flex-ver-box">
-										<img className="icon" src={home1} alt="" />
+										<img className="icon" src={home0} alt="" />
 										<span style={this.active}>主页</span>
 									</div>
 									:<div className="flex-box flex-ver-box">

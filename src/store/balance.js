@@ -1,4 +1,3 @@
-import tool from '../utils/tool'
 import shopCart from './shopCart'
 // 这里是結算的数据
 import { extendObservable } from 'mobx'
@@ -35,17 +34,15 @@ class Balance {
         this.addToBalance = (goodId, goodInfo) => {
             let balance = JSON.parse(sessionStorage.getItem('balance'))
             if (balance) {
-                for (let j in balance) {
-                    if (tool.checkIfHasThisKey(goodId, balance) && j === goodId) {
-                        // console.log('结算有该商品')
-                        balance[j].number += 1
-                        break;
-                    } else {
-                        // console.log('结算无该商品')
-                        balance[goodId] = goodInfo
-                        balance[goodId].number = 1
-                    }
+                if (Object.keys(balance).findIndex(item => item === goodId) !== -1) {
+                    // console.log('结算有该商品')
+                    balance[goodId].number += 1
+                } else {
+                    // console.log('结算无该商品')
+                    balance[goodId] = goodInfo
+                    balance[goodId].number = 1
                 }
+
                 sessionStorage.setItem('balance', JSON.stringify(balance))
             } else {
                 let obj = {}

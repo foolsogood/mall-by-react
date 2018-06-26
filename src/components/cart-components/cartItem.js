@@ -1,9 +1,5 @@
 import React, { Component } from 'react'
 import { Row, Col } from 'antd'
-// 图片
-import IconDel from 'static/img/ic-del.png'
-import Circle0 from 'static/img/circle-0.png'
-import Circle1 from 'static/img/circle-1.png'
 
 //引入mobx相关
 import { observer } from 'mobx-react'
@@ -58,8 +54,8 @@ const cartItem = observer(class cartItem extends Component {
                     <Col span={4} className="flex-box" onClick={this._toggleCheck.bind(this, cartItem.id)}>
                         {
                             this.state.ifChecked
-                                ? <img className="icon" src={Circle1} alt="" />
-                                : <img className="icon" src={Circle0} alt="" />
+                                ? <img className="icon" src={require('static/img/circle-1.png')} alt="" />
+                                : <img className="icon" src={require('static/img/circle-0.png')} alt="" />
                         }
                     </Col>
                     <Col span={16}>
@@ -79,7 +75,7 @@ const cartItem = observer(class cartItem extends Component {
                         </div>
                     </Col>
                     <Col span={4} className="flex-box">
-                        <img className="icon" src={IconDel} alt="" onClick={() => this._removeThisGood(this, cartItem.id)} />
+                        <img className="icon" src={require('static/img/ic-del.png')} alt="" onClick={() => this._removeThisGood(this, cartItem.id)} />
                     </Col>
                 </Row>
             </div>

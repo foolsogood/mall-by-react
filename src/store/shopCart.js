@@ -1,4 +1,3 @@
-import tool from '../utils/tool'
 import { extendObservable } from 'mobx'
 class ShopCart {
     constructor() {
@@ -35,17 +34,13 @@ class ShopCart {
 
             let cart = JSON.parse(localStorage.getItem('cart'))
             if (cart) {
-
-                for (let j in cart) {
-                    if (tool.checkIfHasThisKey(goodId, cart) && j === goodId) {
-                        // console.log('购物车有该商品')
-                        cart[j].number += 1
-                        break;
-                    } else {
-                        // console.log('购物车无该商品')
-                        cart[goodId] = goodInfoObj
-                        cart[goodId].number = 1
-                    }
+                if (Object.keys(cart).findIndex(item => item === goodId) !== -1) {
+                    // console.log('购物车有该商品')
+                    cart[goodId].number += 1
+                } else {
+                    // console.log('购物车无该商品')
+                    cart[goodId] = goodInfoObj
+                    cart[goodId].number = 1
                 }
                 localStorage.setItem('cart', JSON.stringify(cart))
             } else {
