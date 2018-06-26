@@ -2,14 +2,14 @@ import React, { Component } from 'react'
 import { Row, Col } from 'antd'
 import { Link } from 'react-router-dom'
 //引入图片
-import home0 from '../../static/img/home-0.png'
-import home1 from '../../static/img/home-1.png'
-import classify0 from '../../static/img/classify-0.png'
-import classify1 from '../../static/img/classify-1.png'
-import cart0 from '../../static/img/cart-0.png'
-import cart1 from '../../static/img/cart-1.png'
-import my0 from '../../static/img/my-0.png'
-import my1 from '../../static/img/my-1.png'
+import home0 from 'static/img/home-0.png'
+import home1 from 'static/img/home-1.png'
+import classify0 from 'static/img/classify-0.png'
+import classify1 from 'static/img/classify-1.png'
+import cart0 from 'static/img/cart-0.png'
+import cart1 from 'static/img/cart-1.png'
+import my0 from 'static/img/my-0.png'
+import my1 from 'static/img/my-1.png'
 
 export default class footer extends Component {
 	constructor() {

@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import { Row, Col } from 'antd'
 import { Link } from 'react-router-dom'
-import TitleBar from '../../components/common-components/titleBar.js'
+import TitleBar from 'components/common-components/titleBar.js'
 //图标
-import iconNext from '../../static/img/ic-next2.png'
-import iconWechat from '../../static/img/ic-wx-pay.png'
+import iconNext from 'static/img/ic-next2.png'
+import iconWechat from 'static/img/ic-wx-pay.png'
 //引入mobx相关
 import { observer } from 'mobx-react'
-import store from '../../store'
+import store from 'store'
 
 const Balance = observer(class Balance extends Component {
     constructor() {

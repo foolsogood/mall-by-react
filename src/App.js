@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 // 组件
-import Home from './views/home'
-import Personal from './views/personal'
-import Classify from './views/classify'
-import ShopCart from './views/shopCart'
-import Balance from './views/balance'
-import SendTime from './views/balance/sendTime'
-import GoodDetail from './views/goodDetail'
-import FeedBack from './views/personal/feedback'
+import Home from 'views/home'
+import Personal from 'views/personal'
+import Classify from 'views/classify'
+import ShopCart from 'views/shopCart'
+import Balance from 'views/balance'
+import SendTime from 'views/balance/sendTime'
+import GoodDetail from 'views/goodDetail'
+import FeedBack from 'views/personal/feedback'
 // import { createHistory } from 'history'
 // const history = createHistory()
 export default class App extends Component {

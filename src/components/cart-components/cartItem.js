@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { Row, Col } from 'antd'
 // 图片
-import IconDel from '../../static/img/ic-del.png'
-import Circle0 from '../../static/img/circle-0.png'
-import Circle1 from '../../static/img/circle-1.png'
+import IconDel from 'static/img/ic-del.png'
+import Circle0 from 'static/img/circle-0.png'
+import Circle1 from 'static/img/circle-1.png'
 
 //引入mobx相关
 import { observer } from 'mobx-react'

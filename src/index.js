@@ -8,7 +8,7 @@ import 'antd/dist/antd.css'
 import './static/style/public.css';
 import './static/style/main.css';
 import './static/js/reset.js'
-// 
+// // 
 import store from './store'
 ReactDOM.render(
     <App store={store}/>,

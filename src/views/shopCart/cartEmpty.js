@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 import Footer from '../../components/common-components/footer.js'
 import RecomList from '../../components/home-components/recommend/recomList'
-import cart0 from '../../static/img/cart-0.png'
+import cart0 from 'static/img/cart-0.png'
 export default class CartEmpty extends Component {
 
     render() {
