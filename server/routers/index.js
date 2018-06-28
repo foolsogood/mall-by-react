@@ -1,4 +1,4 @@
 module.exports={
-    book:require('./book'),
+    good:require('./good'),
     
 }
