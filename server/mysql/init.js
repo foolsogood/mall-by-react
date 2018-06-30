@@ -13,21 +13,7 @@ let _readFile = (filePath) => {
         })
     })
 }
-let readFile = async () => {
-    let res = await _readFile()
-    res.category.map(item => {
-        addCategory([...item])
-    })
-    res.goods.map(item => {
-        addGood([...item])
-    })
-    res.comments.map(item => {
-        addComment([...item])
-    })
-    res.banner.map(item => {
-        addBanner([...item])
-    })
-}
+
 let category = `create table if not exists category(
     id INT NOT NULL AUTO_INCREMENT,
     cate VARCHAR(100) NOT NULL,
@@ -38,12 +24,12 @@ let goods = `create table if not exists goods(
     id INT NOT NULL AUTO_INCREMENT,
     cate VARCHAR(40) NOT NULL,
     cateId VARCHAR(100) NOT NULL,
-    goodId VARCHAR(100) NOT NULL ,
-    goodName VARCHAR(40) NOT NULL,
-    desc VARCHAR(100) NOT NULL,
-    imgs VARCHAR(100) NOT NULL,
-    detailImg VARCHAR(100) NOT NULL,
-    price VARCHAR(40) NOT NULL ,
+    goodId VARCHAR(100) NOT NULL,
+    goodName VARCHAR(100) NOT NULL,
+    desction VARCHAR(100) NOT NULL,
+    imgs VARCHAR(5000) NOT NULL,
+    detailImg VARCHAR(5000) NOT NULL,
+    price VARCHAR(40) NOT NULL,
     PRIMARY KEY (id)
 );`
 let banner = `create table if not exists banner(
@@ -53,7 +39,7 @@ let banner = `create table if not exists banner(
     PRIMARY KEY (id)
 );`
 
-let comments = `create table if not exists rate(
+let comments = `create table if not exists comments(
     id INT NOT NULL AUTO_INCREMENT,
     goodId VARCHAR(100) NOT NULL,
     avatar VARCHAR(100) NOT NULL,
@@ -68,9 +54,28 @@ let _initTable = async () => {
     await createTable(goods)
     await createTable(banner)
     await createTable(comments)
-
+    let res = await _readFile(filePath)
+    res = res.toString()
+    res = JSON.parse(res)
+    res.category.map(item => {
+        const {cate,cateId}=item
+        addCategory([cate,cateId])
+    })
+    res.goods.map(item => {
+        let { cate, cateId, goodId, goodName, desction, imgs, detailImg, price } = item
+        imgs = imgs.join(',')
+        detailImg = detailImg.join(',')
+        addGood([cate, cateId, goodId, goodName, desction,imgs, detailImg, price])
+    })
+    res.comments.map(item => {
+        const {goodId,avatar,name,rateScore,comment,time}=item
+        addComment([goodId,avatar,name,rateScore,comment,time])
+    })
+    res.banner.map(item => {
+        const {imgId,url}=item
+        addBanner([imgId,url])
+    })
 }
-_initTable().then(() => {
-    readFile()
-})
+
+_initTable()
 

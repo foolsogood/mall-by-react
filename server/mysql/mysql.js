@@ -34,7 +34,7 @@ let addCategory = (value) => {
     return query(_sql, value)
 }
 let addGood = (value) => {
-    let _sql = `INSERT INTO goods(cate,cateId,goodId,goodName,desc,imgs,detailImg,price,) values(?,?,?,?,?,?,?,?);`
+    let _sql = `INSERT INTO goods(cate,cateId,goodId,goodName,desction,imgs,detailImg,price) values(?,?,?,?,?,?,?,?);`
     return query(_sql, value)
 }
 let addBanner = (value) => {
