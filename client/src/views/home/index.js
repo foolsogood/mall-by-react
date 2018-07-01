@@ -52,7 +52,7 @@ export default class Home extends Component {
 	};
 	_changeSearchStyle(e) {
 		if (!this.lock) {
-			let scroTop = document.body.scrollTop
+			let scroTop = document.documentElement.scrollTop
 			if (scroTop > 20) {
 				this.setState({
 					searchStyle: {
@@ -81,7 +81,7 @@ export default class Home extends Component {
 	};
 	render() {
 		return (
-			<div style={this.styleObj1} ref="home">
+			<div style={this.styleObj1} id="home" ref="home">
 				<div className="home-search-container" style={this.state.searchStyle}>
 					<SearchBar />
 				</div>

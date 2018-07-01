@@ -6,6 +6,8 @@ const api={
         getGoodById:'/api/good/getGoodById',
         getNewGoods:'/api/good/getNewGoods',
         getHotGoods:'/api/good/getHotGoods',
+        searchGood:'/api/good/searchGood',
+        
     },
     banner:{
         getHomeBanner:'/api/banner/getHomeBanner'
