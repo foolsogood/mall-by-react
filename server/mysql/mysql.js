@@ -46,6 +46,11 @@ const getAllGoods = () => {
     const _sql = `SELECT * FROM goods;`
     return query(_sql, [])
 }
+//获取商品分类
+const getCates=()=>{
+    const _sql=`SELECT * FROM category;`
+    return query(_sql,[])
+}
 //获取最新商品
 const getNewGoods = () => {
     const _sql = `SELECT * FROM goods where isNew=1;`
@@ -58,12 +63,12 @@ const getHotGoods = () => {
 }
 //根据分类获取
 const getGoodsByCate = (cateId) => {
-    const _sql = `SELECT * FROM goods where cateId="${cateId}"`
+    const _sql = `SELECT * FROM goods where cateId="${cateId}";`
     return query(_sql, [])
 }
 //根据id获取商品
 const getGoodById = (cateId, goodId) => {
-    const _sql = `SELECT * FROM goods where cateId="${cateId}" AND goodId="${goodId}"`
+    const _sql = `SELECT * FROM goods where cateId="${cateId}" AND goodId="${goodId}";`
     return query(_sql, [])
 }
 const searchGood=(keyword)=>{
@@ -91,6 +96,7 @@ const getComment = (goodId) => {
 module.exports = {
     createTable,
     addCategory,
+    getCates,
     addGood,
     getNewGoods,
     getHotGoods,

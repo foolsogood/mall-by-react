@@ -13,7 +13,7 @@ export default class classifyTitle extends Component {
                         this.props.titleArr.map((item,idx)=>{
                             return(
                                 <li key={idx} >
-                                    <a href={`#anchor-`+item.cateId}>{item.text}</a>
+                                    <a href={`#anchor-`+item[0].cateId}>{item[0].cate}</a>
                                 </li>
                             )
                         })

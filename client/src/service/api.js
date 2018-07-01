@@ -9,6 +9,9 @@ const api={
         searchGood:'/api/good/searchGood',
         
     },
+    category:{
+        getCates:'/api/category/getCates'
+    },
     banner:{
         getHomeBanner:'/api/banner/getHomeBanner'
     }

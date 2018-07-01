@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 //公共组件
-import TitleBar from '../../components/common-components/titleBar.js'
-import Footer from '../../components/common-components/footer.js'
-import ClassifyList from '../../components/classify-components/classifyList'
+import TitleBar from 'components/common-components/titleBar.js'
+import Footer from 'components/common-components/footer.js'
+import ClassifyList from 'components/classify-components/classifyList'
 
-import ClassifyTitle from '../../components/classify-components/classifyTitle'
+import ClassifyTitle from 'components/classify-components/classifyTitle'
 // mockData
-import xhr from '../../service/xhr'
+import xhr from 'service/xhr'
+import api from 'service/api'
 export default class cateify extends Component {
 	constructor() {
 		super()
@@ -18,41 +19,42 @@ export default class cateify extends Component {
 		}
 	};
 	componentWillMount() {
-		this._getGoodsList()
+		this._getCates()
 	};
-	_getGoodsList() {
-		xhr.get('/api/getGoodList', {}).then(res => {
-			if (res.code === 1) {
-				let goodList = res.data
-				let arr = []
-				for (let i in goodList) {
-					let objItem = {}
-					objItem.text = goodList[i].cate
-					objItem.cateId = i
-					arr.push(objItem)
-				}
+	_getCates() {
+		xhr.get(api.category.getCates, {}).then(res => {
+			let arr = []
+			res.data.map(item => {
+				arr.push(this._getGoodsList(item.cateId))
+			})
+			Promise.all(arr).then(rep => {
+				console.log(rep)
 				this.setState({
-					titleArr: arr,
-					list: goodList
+					list:rep
 				})
-			}
+			})
 		}).catch(err => { })
 	};
+	_getGoodsList(cateId) {
+		return xhr.get(api.good.getGoodsByCate, { query: { cateId } }).then(res => {
+			return res.data
+		})
+	}
 	render() {
 		return (
 			<div className="classify">
 				<TitleBar ifBackShow={this.state.ifBackShow} titleText="分类" />
-				<div style={{ position: 'fixed', top: '0.8rem', left: '0', right: '0', zIndex: '99' }}><ClassifyTitle titleArr={this.state.titleArr} /></div>
+				<div style={{ position: 'fixed', top: '0.8rem', left: '0', right: '0', zIndex: '99' }}><ClassifyTitle titleArr={this.state.list} /></div>
 				<div style={{
 					position: 'relative',
 					top: '.8rem'
 				}}>
 					{
-						Object.keys(this.state.list).map((item) => {
+						this.state.list.map((item,idx) => {
 							return (
-								<ClassifyList key={item}
-									list={this.state.list[item]}
-									cateId={this.state.list[item].list[Object.keys(this.state.list[item].list)[0]].cateId}
+								<ClassifyList key={item[0].cateId}
+									list={item}
+									cateId={item[0].cateId}
 								/>
 							)
 						})

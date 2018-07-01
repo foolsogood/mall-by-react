@@ -10,16 +10,16 @@ export default class classifyList extends Component {
             <div id={anchor}  >
                 <div className="bg-fff pd-h-20">
                     <div className="flex-box h-80 bg-fff title">
-                         {list.cate} 
+                         {list[0].cate} 
                     </div>
                     {
-                        Object.keys(list.list).map((item) => {
+                        list.map((item) => {
                             return (
-                                <div key={item} className="classify-block ">
-                                    <Link to={`/goodDetail/${list.list[item].cateId}/${list.list[item].id}`}>
+                                <div key={item.goodId} className="classify-block ">
+                                    <Link to={`/goodDetail/${item.cateId}/${item.goodId}`}>
                                         <div className="flex-box flex-ver-box">
-                                             <img className="classify-good-img" src={list.list[item].imgList[0]} alt="" /> 
-                                            <p>{list.list[item].name}</p>
+                                             <img className="classify-good-img" src={JSON.parse(item.imgs)[0]} alt="" /> 
+                                            <p>{item.goodName}</p>
                                         </div>
                                     </Link>
                                 </div>
