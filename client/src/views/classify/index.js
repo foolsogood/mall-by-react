@@ -5,7 +5,6 @@ import Footer from 'components/common-components/footer.js'
 import ClassifyList from 'components/classify-components/classifyList'
 
 import ClassifyTitle from 'components/classify-components/classifyTitle'
-// mockData
 import xhr from 'service/xhr'
 import api from 'service/api'
 export default class cateify extends Component {
@@ -28,7 +27,7 @@ export default class cateify extends Component {
 				arr.push(this._getGoodsList(item.cateId))
 			})
 			Promise.all(arr).then(rep => {
-				console.log(rep)
+				// console.log(rep)
 				this.setState({
 					list:rep
 				})

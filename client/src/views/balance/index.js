@@ -72,10 +72,10 @@ const Balance = observer(class Balance extends Component {
                                 <div key={idx} className="pd-20">
                                     <Row>
                                         <Col span={5}>
-                                            <img src={store.balance.balance[item].imgList[0]} alt="" />
+                                            <img src={JSON.parse(store.balance.balance[item].imgs)[0]} alt="" />
                                         </Col>
                                         <Col span={19} className="pd-lf-20">
-                                            <p>{store.balance.balance[item].name}</p>
+                                            <p>{store.balance.balance[item].goodName}</p>
                                             <div className="flex-box flex-ju-c-bt">
                                                 <span>售价：¥{store.balance.balance[item].price}元x{store.balance.balance[item].number}</span>
                                                 <span>{store.balance.balance[item].price * store.balance.balance[item].number}元</span>

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Row, Col } from 'antd'
 import {Link} from 'react-router-dom'
 //图标
-// import avatar from 'static/img/avatar.jpg'
+import avatar from 'static/img/avatar.jpg'
 import bg from 'static/img/people_bg.png'
 import iconPay from 'static/img/ic-paying.png'
 import iconDeliver from 'static/img/ic-delivering.png'
@@ -36,7 +36,7 @@ export default class Personal extends Component {
 					<div className="info ">
 						<Row className="flex-box">
 							<Col span={6} className="flex-box">
-								{/* <img className="avatar " src={avatar} alt="" /> */}
+								<img className="avatar " src={avatar} alt="" />
 							</Col>
 							<Col span={18}><span>tycho</span></Col>
 						</Row>
