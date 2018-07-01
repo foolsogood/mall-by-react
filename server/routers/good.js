@@ -1,13 +1,10 @@
 const router = require('koa-router')();
 const model = require('../mysql/mysql')
-const checkToken = require('../tools/checkToken')
+// const checkToken = require('../tools/checkToken')
 
-router.prefix('/api/book')
-router.get('/getAllBook', async (ctx) => {
-    if (!checkToken(ctx)) {
-        return
-    }
-    await model.getAllBook().then(res => {
+router.prefix('/api/good')
+router.get('/getAllGoods', async (ctx) => {
+    await model.getAllGoods().then(res => {
         ctx.body = {
             code: '1',
             data: res
@@ -19,42 +16,68 @@ router.get('/getAllBook', async (ctx) => {
         }
     })
 })
-router.get('/getBookDetail', async (ctx) => {
-    if (!checkToken(ctx)) {
-        return
-    }
-    
-    const { bookId } = ctx.request.query
-    await model.getBookDetail(bookId).then(res => {
+
+router.get('/getNewGoods', async (ctx) => {
+    await model.getNewGoods().then(res => {
         ctx.body = {
             code: '1',
             data: res
         }
     })
 })
-router.delete('/removeBook', async (ctx) => {
-    const { bookId } = ctx.request.body
-    await model.removeBook(bookId).then(res => {
+router.get('/getHotGoods', async (ctx) => {
+    await model.getHotGoods().then(res => {
         ctx.body = {
             code: '1',
-            msg: 'success'
-        }
-    }).catch(err=>{
-        ctx.body={code:0,msg:'fail'}
-    })
-})
-router.put('/addBook', async (ctx) => {
-    const { bookName, author, price } = ctx.request.body
-    await model.insertBook([bookName, author, price]).then(res => {
-        ctx.body = {
-            code: '1',
-            msg: 'success'
-        }
-    }).catch(err => {
-        ctx.body = {
-            code: '0',
-            msg: 'fail'
+            data: res
         }
     })
 })
+router.get('/getGoodsByCate', async (ctx) => {
+    const { cateId } = ctx.request.query
+    await model.getGoodsByCate(cateId).then(res => {
+        ctx.body = {
+            code: '1',
+            data: res
+        }
+    })
+})
+router.get('/getGoodById', async (ctx) => {
+    const { cateId ,goodId} = ctx.request.query
+    let comments
+    await model.getComment(goodId).then(res=>{
+         comments=res
+    })
+    await model.getGoodById(cateId,goodId).then(res => {
+        ctx.body = {
+            code: '1',
+            data:Object.assign({},res[0],{comments}) 
+        }
+    })
+})
+// router.delete('/removeBook', async (ctx) => {
+//     const { bookId } = ctx.request.body
+//     await model.removeBook(bookId).then(res => {
+//         ctx.body = {
+//             code: '1',
+//             msg: 'success'
+//         }
+//     }).catch(err=>{
+//         ctx.body={code:0,msg:'fail'}
+//     })
+// })
+// router.put('/addGood', async (ctx) => {
+//     const { bookName, author, price } = ctx.request.body
+//     await model.addGood([bookName, author, price]).then(res => {
+//         ctx.body = {
+//             code: '1',
+//             msg: 'success'
+//         }
+//     }).catch(err => {
+//         ctx.body = {
+//             code: '0',
+//             msg: 'fail'
+//         }
+//     })
+// })
 module.exports = router
