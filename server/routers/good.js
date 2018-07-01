@@ -33,6 +33,16 @@ router.get('/getHotGoods', async (ctx) => {
         }
     })
 })
+router.get('/searchGood', async (ctx) => {
+    const { keyword } = ctx.request.query
+    if(!keyword){return}
+    await model.searchGood(keyword).then(res => {
+        ctx.body = {
+            code: '1',
+            data: res
+        }
+    })
+})
 router.get('/getGoodsByCate', async (ctx) => {
     const { cateId } = ctx.request.query
     await model.getGoodsByCate(cateId).then(res => {

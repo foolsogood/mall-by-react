@@ -66,6 +66,10 @@ const getGoodById = (cateId, goodId) => {
     const _sql = `SELECT * FROM goods where cateId="${cateId}" AND goodId="${goodId}"`
     return query(_sql, [])
 }
+const searchGood=(keyword)=>{
+    const _sql=`SELECT * FROM goods where cate LIKE "%${keyword}%" OR goodName LIKE "%${keyword}%";`
+    return query(_sql, [])
+}
 //添加banner
 const addBanner = (value) => {
     const _sql = `INSERT INTO banner(imgId,url) values(?,?);`
@@ -92,6 +96,7 @@ module.exports = {
     getHotGoods,
     getGoodsByCate,
     getGoodById,
+    searchGood,
     getAllGoods,
     addBanner,
     getHomeBanner,
