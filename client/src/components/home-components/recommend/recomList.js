@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import RecomItem from './recomItem'
 import PropTypes from 'prop-types'
-import xhr from '../../../service/xhr'
+import xhr from 'service/xhr'
+import api from 'service/api'
+
 export default class RecomList extends Component {
     constructor() {
         super()
         this.state = {
-            obj: {}
+            obj: []
         }
     };
     static propTypes = {
@@ -16,8 +18,8 @@ export default class RecomList extends Component {
         this._getRecomGoods()
     };
     _getRecomGoods() {
-        xhr.get('/api/getRecomendGoods',{}).then(res => {
-            if (res.code === 1) {
+        xhr.get(api.good.getNewGoods,{}).then(res => {
+            if (res.code === '1') {
                 this.setState({
                     obj: res.data
                 })
@@ -30,9 +32,9 @@ export default class RecomList extends Component {
                 <div className="home-good-title">{this.props.titleText}</div>
                 <div>
                     {
-                        Object.keys(this.state.obj).map((item) => {
+                        this.state.obj.map((item) => {
                             return (
-                                <RecomItem key={item} good={this.state.obj[item]} />
+                                <RecomItem key={item.goodId} good={item} />
                             )
                         })
                     }

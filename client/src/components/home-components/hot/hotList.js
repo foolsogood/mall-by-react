@@ -3,7 +3,7 @@ import HotItem from './hotItem'
 import PropTypes from 'prop-types'
 export default class HotList extends Component{
   static propTypes={
-      hotGoods:PropTypes.object.isRequired
+      hotGoods:PropTypes.array.isRequired
   };
     render(){
         return (
@@ -11,9 +11,9 @@ export default class HotList extends Component{
                 <div className="home-good-title">热销商品</div>
                 <div >
                     {
-                        Object.keys(this.props.hotGoods).map((item)=>{
+                        this.props.hotGoods.map((item)=>{
                             return(
-                                <HotItem key={item} good={this.props.hotGoods[item]}/>
+                                <HotItem key={item.goodId} good={item}/>
                             )
                         })
                     }

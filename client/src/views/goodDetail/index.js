@@ -2,12 +2,14 @@
 import React, { Component } from 'react'
 import { Tabs } from 'antd'
 // 公共组件
-import TitleBar from '../../components/common-components/titleBar.js'
-import Banner from '../../components/common-components/banner'
+import TitleBar from 'components/common-components/titleBar.js'
+import Banner from 'components/common-components/banner'
 // 组件
-import Comments from '../../components/good-components/comments'
-import GoodFooter from '../../components/good-components/goodFooter'
-import xhr from '../../service/xhr'
+import Comments from 'components/good-components/comments'
+import GoodFooter from 'components/good-components/goodFooter'
+import xhr from 'service/xhr'
+import api from 'service/api'
+
 const TabPane = Tabs.TabPane
 export default class GoodDetail extends Component {
     constructor() {
@@ -38,13 +40,13 @@ export default class GoodDetail extends Component {
            cateId: this.state.cateId,
            goodId: this.state.goodId
         }
-        xhr.get('/api/getGoodList',{query}).then(res => {
-            if (res.code === 1) {
+        xhr.get(api.good.getGoodById,{query}).then(res => {
+            if (res.code === '1') {
                 this.setState({
                     goodInfo: res.data,
                     // 在jsx找中直接传goodInfo.imgList在子组件中取不到
-                    imgList:  res.data.imgList,
-                    detailList:  res.data.detail
+                    imgList:  JSON.parse(res.data.imgs),
+                    detailList: JSON.parse( res.data.detailImg)
                 })
             }
         }).catch(err => { })
@@ -58,8 +60,8 @@ export default class GoodDetail extends Component {
                     < Banner imgList={imgList} />
 
                     <div className="bg-fff detail-text">
-                        <p className="p-1">{goodInfo.name}}</p>
-                        <p>{goodInfo.desc}</p>
+                        <p className="p-1">{goodInfo.goodName}}</p>
+                        <p>{goodInfo.desction}</p>
                         <p className="p-2 price">¥{goodInfo.price}</p>
                     </div>
                     <div className="hr"></div>
@@ -76,7 +78,7 @@ export default class GoodDetail extends Component {
 
                             </TabPane>
                             <TabPane tab="商品评论" key="2">
-                                <Comments rateList={goodInfo.rate} />
+                                <Comments rateList={goodInfo.comments} />
                             </TabPane>
                         </Tabs>
                     </div>

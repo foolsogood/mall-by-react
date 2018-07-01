@@ -1,20 +1,20 @@
 import React, { Component } from 'react'
 //公共组件
-import Footer from '../../components/common-components/footer.js'
+import Footer from 'components/common-components/footer.js'
 // 首页组件
-import SearchBar from '../../components/home-components/searchBar'
-import Banner from '../../components/common-components/banner'
-import Notice from '../../components/home-components/notice'
-import HostList from '../../components/home-components/hot/hotList'
-import RecomList from '../../components/home-components/recommend/recomList'
-import xhr from '../../service/xhr'
+import SearchBar from 'components/home-components/searchBar'
+import Banner from 'components/common-components/banner'
+import Notice from 'components/home-components/notice'
+import HostList from 'components/home-components/hot/hotList'
+import RecomList from 'components/home-components/recommend/recomList'
+import xhr from 'service/xhr'
+import api from 'service/api'
 export default class Home extends Component {
 	constructor() {
 		super()
 		this.state = {
 			imgList: [''],
-			recomGoodList: {},
-			hotGoods: {},
+			hotGoods: [],
 			searchStyle: {}
 		}
 		//虽然在componentWillUnmount中清除事件监听,但setState没有立刻停止，该变量可用于做每次setState的前提条件
@@ -41,8 +41,8 @@ export default class Home extends Component {
 		})
 	};
 	_getHomeImgList() {
-		xhr.get('/api/homeImgList', {}).then(res => {
-			if (res.code === 1) {
+		xhr.get(api.banner.getHomeBanner, {}).then(res => {
+			if (res.code === '1') {
 				let homeImgList = res.data
 				this.setState({
 					imgList: homeImgList
@@ -71,8 +71,8 @@ export default class Home extends Component {
 		}
 	};
 	_getHotGoods() {
-		xhr.get('/api/getHotGoods', {}).then(res => {
-			if (res.code === 1) {
+		xhr.get(api.good.getHotGoods, {}).then(res => {
+			if (res.code === '1') {
 				this.setState({
 					hotGoods: res.data
 				})
@@ -90,7 +90,7 @@ export default class Home extends Component {
 				<div className="content">
 					<HostList hotGoods={this.state.hotGoods} />
 					<div className="hr"></div>
-					<RecomList titleText="热销商品" />
+					<RecomList titleText="最新商品" />
 				</div>
 				<Footer />
 			</div>

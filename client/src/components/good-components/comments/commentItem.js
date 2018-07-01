@@ -16,7 +16,7 @@ export default class CommentItem extends Component {
                             <Rate disabled defaultValue={parseFloat(rate.rateScore)} />
                         </div>
                         <p>{rate.time}</p>
-                        <p>{rate.text}</p>
+                        <p>{rate.comment}</p>
                     </Col>
                 </Row>
             </div>

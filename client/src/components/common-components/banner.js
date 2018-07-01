@@ -19,7 +19,7 @@ export default class Banner extends React.Component {
                         this.props.imgList.map((item, index) => {
                             return (
                                <div key={index}>
-                                    <img  style={this.imgStyle} src={item} alt="" />
+                                    <img  style={this.imgStyle} src={item.url?item.url:item} alt="" />
                                </div>
                             )
                         })

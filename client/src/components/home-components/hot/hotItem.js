@@ -11,13 +11,13 @@ export default class HotItem extends Component {
         const good = this.props.good
         return (
             <div className="home-good-item">
-                <Link to={`/goodDetail/${good.cateId}/${good.id}`}>
+                <Link to={`/goodDetail/${good.cateId}/${good.goodId}`}>
                     <div className="flex-box flex-ver-box ">
-                        <img className="good-item-img" src={good.img} alt="" />
+                        <img className="good-item-img" src={JSON.parse(good.imgs)} alt="" />
                         <div className="flex-box flex-ver-box flex-al-st good-item-text">
 
-                            <p className="good-itm-p-1  ">{good.name}</p>
-                            <p className="good-itm-p-2 ">{good.desc}</p>
+                            <p className="good-itm-p-1  ">{good.goodName}</p>
+                            <p className="good-itm-p-2 ">{good.desction}</p>
                             <p className="price">¥{good.price}</p>
                         </div>
 

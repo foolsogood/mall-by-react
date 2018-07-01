@@ -96,7 +96,8 @@ module.exports = {
       'components':path.resolve(__dirname,'..','src/components'),
       'utils':path.resolve(__dirname,'..','src/utils'),
       'store':path.resolve(__dirname,'..','src/store'),
-      'static':path.resolve(__dirname,'..','src/static')
+      'static':path.resolve(__dirname,'..','src/static'),
+      'service':path.resolve(__dirname,'..','src/service')
       
     },
     plugins: [
