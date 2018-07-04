@@ -93,6 +93,22 @@ const getComment = (goodId) => {
     const _sql = `SELECT * FROM comments where goodId="${goodId}";`
     return query(_sql, [])
 }
+const getOrders=(userid)=>{
+    const _sql=`SELECT * FROM orders where userid="${userid}";`
+    return query(_sql,[])
+}
+const addOrder=(value)=>{
+    const _sql = `INSERT INTO orders(userid,cateId,goodId,goodName,imgs,price,isHot,isNew) values(?,?,?,?,?,?,?,?);`
+    return query(_sql, value)
+}
+const signup=(value)=>{
+    const _sql=`INSERT INTO user(username,password,userid) values(?,?,?);`
+    return query(_sql, value)
+}
+const getUser=(username)=>{
+    const _sql=`SELECT * FROM user where username="${username}";`
+    return query(_sql, [])
+}
 module.exports = {
     createTable,
     addCategory,
@@ -107,5 +123,9 @@ module.exports = {
     addBanner,
     getHomeBanner,
     addComment,
-    getComment
+    getComment,
+    getOrders,
+    addOrder,
+    signup,
+    getUser
 }
