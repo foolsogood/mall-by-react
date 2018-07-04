@@ -24,12 +24,12 @@ export default class cateify extends Component {
 		xhr.get(api.category.getCates, {}).then(res => {
 			let arr = []
 			res.data.map(item => {
-				arr.push(this._getGoodsList(item.cateId))
+				return arr.push(this._getGoodsList(item.cateId))
 			})
 			Promise.all(arr).then(rep => {
 				// console.log(rep)
 				this.setState({
-					list:rep
+					list: rep
 				})
 			})
 		}).catch(err => { })
@@ -49,7 +49,7 @@ export default class cateify extends Component {
 					top: '.8rem'
 				}}>
 					{
-						this.state.list.map((item,idx) => {
+						this.state.list.map((item, idx) => {
 							return (
 								<ClassifyList key={item[0].cateId}
 									list={item}

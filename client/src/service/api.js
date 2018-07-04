@@ -14,6 +14,14 @@ const api={
     },
     banner:{
         getHomeBanner:'/api/banner/getHomeBanner'
+    },
+    user:{
+        login:'/api/user/login',
+        signup:'/api/user/signup',
+    },
+    order:{
+        getOrders:'/api/order/getOrders',
+        addOrder:'/api/order/addOrder',
     }
 }
 export default api

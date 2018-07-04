@@ -299,6 +299,30 @@ width: 80%;
         display:block;
         line-height:1rem
 }
+.login .mask{
+	position: fixed;
+	background-color: rgba(0,0,0,.7);
+	top: 0;
+	left:0;
+	bottom: 0;
+	right: 0;
+	z-index: 9;
+}
+.login .login-form{
+ position: fixed;
+ top:40%;
+ left:50%;
+ width:7.2rem;
+ height:6rem;
+ padding: .4rem;
+ margin:-3rem 0 0 -3.6rem;
+ z-index: 99;
+ background-color: #fff;
+ border:1px solid #ddd;
+}
+.login-form-button{
+ width: 6rem;
+}
 /*购物车页面  */
 .empty-cart{
 	width: 60%;

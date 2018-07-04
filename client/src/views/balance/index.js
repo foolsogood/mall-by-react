@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import { Row, Col } from 'antd'
 import { Link } from 'react-router-dom'
 import TitleBar from 'components/common-components/titleBar.js'
+import Login from 'components/common-components/login.js'
+import Signup from 'components/common-components/signup.js'
+
 //图标
 import iconNext from 'static/img/ic-next2.png'
 import iconWechat from 'static/img/ic-wx-pay.png'
@@ -13,7 +16,9 @@ const Balance = observer(class Balance extends Component {
     constructor() {
         super()
         this.state = {
-            sendTime: '尽快'
+            sendTime: '尽快',
+            ifLoginShow: false,
+            ifSignupShow: false
         }
 
     };
@@ -23,19 +28,26 @@ const Balance = observer(class Balance extends Component {
 
     };
     _onSendTime() {
-    //    console.log(emitter)
-    //     emitter.on('sendTime', () => {
-    //         console.log('on')
-    //         // this.setState({ sendTime: res })
-    //     })
+        //    console.log(emitter)
+        //     emitter.on('sendTime', () => {
+        //         console.log('on')
+        //         // this.setState({ sendTime: res })
+        //     })
     };
-    _test(){
+    _test() {
         // emitter.emit('sendTime')
     };
     render() {
+        const { ifLoginShow, ifSignupShow } = this.state
         return (
-            <div className="balance">
-                <TitleBar  titleText="结算" />
+            <div className="balance" style={{ position: 'relative' }}>
+                <TitleBar titleText="结算" />
+                {
+                    ifLoginShow ? <Login /> : null
+                }
+                {
+                    ifSignupShow ? <Signup /> : null
+                }
                 <div className="hr-40"></div>
                 <div className="flex-box flex-ju-c-bt h-100 bg-fff pd-h-20 ">
                     <span>请选择地址</span>
