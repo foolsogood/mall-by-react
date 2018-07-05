@@ -3,5 +3,6 @@ module.exports={
     good:require('./good'),
      order:require('./order'),
     banner:require('./banner'),
+    user:require('./user'),
     
 }

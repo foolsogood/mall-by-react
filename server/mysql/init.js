@@ -60,6 +60,7 @@ const order = `create table if not exists orders(
     goodName VARCHAR(100) NOT NULL,
     imgs VARCHAR(5000) NOT NULL,
     price VARCHAR(40) NOT NULL,
+    orderId VARCHAR(100) NOT NULL,
     isNew TINYINT NOT NULL,
     isHot TINYINT NOT NULL,
     PRIMARY KEY (id)
@@ -69,8 +70,8 @@ const user = `create table if not exists user(
     username VARCHAR(40) NOT NULL,
     userid VARCHAR(100) NOT NULL,
     password VARCHAR(100) NOT NULL,
-    avatar VARCHAR(200),
-    phone VARCHAR(10),
+    avatar VARCHAR(200) DEFAULT '',
+    phone VARCHAR(10) DEFAULT '',
     PRIMARY KEY (id)
 );`
 //init 数据库数据
