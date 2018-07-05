@@ -11,7 +11,7 @@ import iconWechat from 'static/img/ic-wx-pay.png'
 //引入mobx相关
 import { observer } from 'mobx-react'
 import store from 'store'
-
+import event from 'utils/event'
 const Balance = observer(class Balance extends Component {
     constructor() {
         super()
@@ -24,19 +24,15 @@ const Balance = observer(class Balance extends Component {
     };
 
     componentDidMount() {
-        // this._onSendTime()
-
+        event.on('showLogin',bool=>{
+            this.setState({ifLoginShow:bool})
+        })
+        event.on('showSignup',bool=>{
+            this.setState({ifSignupShow:bool})
+        })
     };
-    _onSendTime() {
-        //    console.log(emitter)
-        //     emitter.on('sendTime', () => {
-        //         console.log('on')
-        //         // this.setState({ sendTime: res })
-        //     })
-    };
-    _test() {
-        // emitter.emit('sendTime')
-    };
+   
+   
     render() {
         const { ifLoginShow, ifSignupShow } = this.state
         return (
@@ -63,7 +59,7 @@ const Balance = observer(class Balance extends Component {
                 <div className="flex-box flex-ju-c-bt h-100 bg-fff  pd-h-20 bd-top">
                     <span>发票类型</span>
                     <div className="flex-box">
-                        <span onClick={this._test.bind(this)}>不需要发票</span>
+                        <span >不需要发票</span>
                         <img className="icon-1" src={iconNext} alt="" />
                     </div>
                 </div>
@@ -103,7 +99,7 @@ const Balance = observer(class Balance extends Component {
                     <Col span={14} className="flex-box price">
                         共{store.balance.balanceNum}件,合计：{store.balance.balancePrice}元
                     </Col>
-                    <Col span={10} className="flex-box pay">去付款</Col>
+                    <Col onClick={()=>{this.setState({ifLoginShow:true})}} span={10} className="flex-box pay">去付款</Col>
                 </Row>
             </div>
         )

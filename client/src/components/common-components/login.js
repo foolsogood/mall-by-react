@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
-
+import event from 'utils/event'
+import xhr from 'service/xhr'
+import api from 'service/api'
 const FormItem = Form.Item;
 
 class NormalLoginForm extends Component {
@@ -9,6 +11,15 @@ class NormalLoginForm extends Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
+        const query = {
+            username: this.props.form.getFieldValue('username'),
+            password: this.props.form.getFieldValue('password'),
+        }
+        xhr.post(api.user.login, { query }).then(res => {
+            if(res.code==1){
+                event.emit('showLogin', false)
+            }
+        })
       }
     });
   }
@@ -20,17 +31,25 @@ class NormalLoginForm extends Component {
             <div className="mask"></div>
       <Form onSubmit={this.handleSubmit} className="login-form">
         <FormItem>
-          {getFieldDecorator('userName', {
+          {getFieldDecorator('username', {
             rules: [{ required: true, message: '请输入用户名!' }],
           })(
-            <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />
+            <Input onChange={e => {
+                this.props.form.setFieldsValue({
+                    username: e.target.value
+                })
+            }} prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />
           )}
         </FormItem>
         <FormItem>
           {getFieldDecorator('password', {
             rules: [{ required: true, message: '请输入密码!' }],
           })(
-            <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Password" />
+            <Input onChange={e => {
+                this.props.form.setFieldsValue({
+                    password: e.target.value
+                })
+            }} prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Password" />
           )}
         </FormItem>
         <FormItem>
@@ -41,7 +60,6 @@ class NormalLoginForm extends Component {
             <Checkbox>记住我</Checkbox>
           )}
           <div>
-          {/* <a className="login-form-forgot" href="">忘记密码</a> */}
 
           </div>
           <div className="flex-box">
@@ -50,7 +68,7 @@ class NormalLoginForm extends Component {
           </Button>
           </div>
          
-          或者 <a href="">去注册!</a>
+          或者 <span onClick={()=>{event.emit('showSignup',true);event.emit('showLogin',false)}}>去注册!</span>
         </FormItem>
       </Form>
       </div>
