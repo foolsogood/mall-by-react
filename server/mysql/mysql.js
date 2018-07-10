@@ -98,7 +98,7 @@ const getOrders=(userid)=>{
     return query(_sql,[])
 }
 const addOrder=(value)=>{
-    const _sql = `INSERT INTO orders(userid,cateId,goodId,goodName,imgs,price,isHot,isNew) values(?,?,?,?,?,?,?,?);`
+    const _sql = `INSERT INTO orders(userid,orderId,goodId,price,number) values(?,?,?,?,?);`
     return query(_sql, value)
 }
 const signup=(value)=>{

@@ -54,15 +54,11 @@ const comments = `create table if not exists comments(
 );`
 const order = `create table if not exists orders(
     id INT NOT NULL AUTO_INCREMENT,
-    cateId VARCHAR(100) NOT NULL,
     goodId VARCHAR(100) NOT NULL,
     userid VARCHAR(100) NOT NULL,
-    goodName VARCHAR(100) NOT NULL,
-    imgs VARCHAR(5000) NOT NULL,
     price VARCHAR(40) NOT NULL,
     orderId VARCHAR(100) NOT NULL,
-    isNew TINYINT NOT NULL,
-    isHot TINYINT NOT NULL,
+    number VARCHAR(40) NOT NULL,
     PRIMARY KEY (id)
 );`
 const user = `create table if not exists user(
