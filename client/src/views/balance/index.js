@@ -12,6 +12,8 @@ import iconWechat from 'static/img/ic-wx-pay.png'
 import { observer } from 'mobx-react'
 import store from 'store'
 import event from 'utils/event'
+import xhr from 'service/xhr'
+import api from 'service/api'
 const Balance = observer(class Balance extends Component {
     constructor() {
         super()
@@ -20,19 +22,51 @@ const Balance = observer(class Balance extends Component {
             ifLoginShow: false,
             ifSignupShow: false
         }
-
+        this._toPay = this._toPay.bind(this)
     };
 
     componentDidMount() {
-        event.on('showLogin',bool=>{
-            this.setState({ifLoginShow:bool})
+        event.on('sure-send-time', time => {
+            console.log(time)
+            this.setState({ sendTime: time })
         })
-        event.on('showSignup',bool=>{
-            this.setState({ifSignupShow:bool})
+        event.on('showLogin', bool => {
+            this.setState({ ifLoginShow: bool })
+        })
+        event.on('showSignup', bool => {
+            this.setState({ ifSignupShow: bool })
         })
     };
-   
-   
+    _toPay() {
+        if (!store.user.user) {
+            this.setState({ ifLoginShow: true })
+        } else {
+            // alert('您已支付')
+            this.addOrder()
+        }
+    }
+    addOrder() {
+        let cateId = [],
+            goodId = [],
+            price = [],
+            number = [];
+        Object.values(store.balance.balance).map(item => {
+            goodId.push(item.goodId)
+            price.push(item.price)
+            number.push(item.number)
+        })
+        const query = {
+            userid: store.user.user.userid,
+            goodId:JSON.stringify(goodId),
+            price:JSON.stringify(price),
+            number:JSON.stringify(number)
+        }
+        xhr.post(api.order.addOrder, { query }).then(res => {
+            if (res.code === '1') {
+
+            }
+        }).catch(err => { })
+    }
     render() {
         const { ifLoginShow, ifSignupShow } = this.state
         return (
@@ -99,7 +133,7 @@ const Balance = observer(class Balance extends Component {
                     <Col span={14} className="flex-box price">
                         共{store.balance.balanceNum}件,合计：{store.balance.balancePrice}元
                     </Col>
-                    <Col onClick={()=>{this.setState({ifLoginShow:true})}} span={10} className="flex-box pay">去付款</Col>
+                    <Col onClick={this._toPay} span={10} className="flex-box pay">去付款</Col>
                 </Row>
             </div>
         )

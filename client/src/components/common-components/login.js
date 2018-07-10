@@ -3,9 +3,12 @@ import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import event from 'utils/event'
 import xhr from 'service/xhr'
 import api from 'service/api'
+//引入mobx相关
+import { observer } from 'mobx-react'
+import store from 'store'
 const FormItem = Form.Item;
 
-class NormalLoginForm extends Component {
+const _login=observer(class NormalLoginForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
@@ -17,6 +20,7 @@ class NormalLoginForm extends Component {
         }
         xhr.post(api.user.login, { query }).then(res => {
             if(res.code==1){
+              store.user.getUser(res.data)
                 event.emit('showLogin', false)
             }
         })
@@ -74,8 +78,8 @@ class NormalLoginForm extends Component {
       </div>
     );
   }
-}
+})
 
-const login = Form.create()(NormalLoginForm);
+const login = Form.create()(_login);
 
 export default login

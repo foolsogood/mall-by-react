@@ -3,40 +3,39 @@ import React, { Component } from 'react'
 
 import TitleBar from '../../components/common-components/titleBar.js'
 import { Radio } from 'antd'
+import event from 'utils/event'
 const RadioGroup = Radio.Group
 
 export default class SendTime extends Component {
     constructor() {
         super()
         this.state = {
-           
-            
             value: '尽快'
         }
+        this._sure = this._sure.bind(this)
     };
     onChange(e) {
-        
-    //    emitter.emit('sendTime')
-        
         this.setState({
             value: e.target.value
         })
     };
-
+    _sure() {
+        event.emit('sure-send-time', '123')
+    }
     styleObj = {
         width: '100%',
     };
-    styleBtn={
-        position:'fixed',
-        bottom:'0',
-        left:'0',
-        right:'0',
-        background:'#1296db'
+    styleBtn = {
+        position: 'fixed',
+        bottom: '0',
+        left: '0',
+        right: '0',
+        background: '#1296db'
     };
     render() {
         return (
             <div>
-                <TitleBar  titleText="送达时间" />
+                <TitleBar titleText="送达时间" />
                 <div className="pd-h-20 h-80">送货时间</div>
                 <div className="pd-h-20 bg-fff">
                     <RadioGroup style={this.styleObj} onChange={this.onChange.bind(this)} value={this.state.value}>
@@ -48,7 +47,7 @@ export default class SendTime extends Component {
         </Radio>
                     </RadioGroup>
                 </div>
-                <div className="h-100 flex-box color-fff" style={this.styleBtn}>确定</div>
+                <div className="h-100 flex-box color-fff" onClick={this._sure} style={this.styleBtn}>确定</div>
             </div>
         )
     }
