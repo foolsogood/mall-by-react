@@ -98,7 +98,11 @@ const getOrders=(userid)=>{
     return query(_sql,[])
 }
 const addOrder=(value)=>{
-    const _sql = `INSERT INTO orders(userid,orderId,goodId,price,number) values(?,?,?,?,?);`
+    const _sql = `INSERT INTO orders(userid,orderId,status) values(?,?,?);`
+    return query(_sql, value)
+}
+const addOrderItem=(value)=>{
+    const _sql = `INSERT INTO order_item(orderId,goodId,price,number) values(?,?,?,?);`
     return query(_sql, value)
 }
 const signup=(value)=>{
@@ -126,6 +130,7 @@ module.exports = {
     getComment,
     getOrders,
     addOrder,
+    addOrderItem,
     signup,
     getUser
 }

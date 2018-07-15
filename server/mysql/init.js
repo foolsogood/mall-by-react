@@ -54,10 +54,16 @@ const comments = `create table if not exists comments(
 );`
 const order = `create table if not exists orders(
     id INT NOT NULL AUTO_INCREMENT,
-    goodId VARCHAR(100) NOT NULL,
-    userid VARCHAR(100) NOT NULL,
-    price VARCHAR(40) NOT NULL,
     orderId VARCHAR(100) NOT NULL,
+    userid VARCHAR(100) NOT NULL,
+    status VARCHAR(40) NOT NULL,
+    PRIMARY KEY (id)
+);`
+const order_item=`create table if not exists order_item(
+    id INT NOT NULL AUTO_INCREMENT,
+    orderId VARCHAR(100) NOT NULL,
+    goodId VARCHAR(100) NOT NULL,
+    price VARCHAR(40) NOT NULL,
     number VARCHAR(40) NOT NULL,
     PRIMARY KEY (id)
 );`
@@ -74,6 +80,7 @@ const user = `create table if not exists user(
 const _initTable = async () => {
     //这两个表不需要初始化数据ß
     createTable(order)
+    createTable(order_item)
     createTable(user)
     //这四个表要插入数据所以要保证先建成功
     await createTable(category)
@@ -91,7 +98,7 @@ const _initTable = async () => {
     })
     res.goods.map(item => {
         let { cate, cateId, goodId, goodName, desction, imgs, detailImg, price, isHot, isNew } = item
-        //将数组序列号化再存储
+        //将数组序列化再存储
         imgs = JSON.stringify(imgs)
         detailImg = JSON.stringify(detailImg)
         addGood([cate, cateId, goodId, goodName, desction, imgs, detailImg, price, isHot, isNew])

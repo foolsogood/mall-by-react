@@ -19,22 +19,25 @@ router.get('/getOrders', async (ctx) => {
 })
 router.post('/addOrder', async (ctx) => {
     let { userid, goodId, price, number } = ctx.request.body
-    const orderId = tools.guid
-    goodId = JSON.parse(goodId)
-    price = JSON.parse(price)
-    number = JSON.parse(number)
-    console.log(userid, goodId, price, number)
+    const orderId = tools.getOrderId()
+    const status = '0'
     let arr = []
-    for (let i = 0; i < goodId.length; i++) {
-        model.addOrder([userid, orderId, goodId[i], price[i], number[i]]).then(res=>{
-
-        }).catch(err=>console.error(err))
-    }
-    ctx.body = {
-        code: '1',
-        data: 'success'
-    }
-    // Promise.all(arr).then(res => {
+   await model.addOrder([userid,orderId, status]).then(res => {
+        goodId = JSON.parse(goodId)
+        price = JSON.parse(price)
+        number = JSON.parse(number)
+        for (let i = 0; i < goodId.length; i++) {
+            // arr.push(model.addOrderItem([orderId, goodId[i], price[i], number[i]]))
+            model.addOrderItem([orderId, goodId[i], price[i], number[i]])
+            
+        }
+        ctx.body = {
+            code: 1,
+            data: 'success'
+        }
+    }).catch(err => console.error(err))
+    // Promise.all(arr).then(rep => {
+    //     console.log(rep)
     //     ctx.body = {
     //         code: '1',
     //         data: 'success'
@@ -45,5 +48,6 @@ router.post('/addOrder', async (ctx) => {
     //         msg: err
     //     }
     // })
+
 })
 module.exports = router
