@@ -18,12 +18,12 @@ const cartItem = observer(class cartItem extends Component {
             this.setState({
                 ifChecked: false
             })
-            store.balance.popThisFromBalance(goodId, true)
+            store.shopCart.popThisFromBalance(goodId, true)
         } else {
             this.setState({
                 ifChecked: true
             })
-            store.balance.popThisFromBalance(goodId, false)
+            store.shopCart.popThisFromBalance(goodId, false)
         }
     };
 
@@ -31,27 +31,29 @@ const cartItem = observer(class cartItem extends Component {
 
         if (way > 0) {
             store.shopCart.changeNum(goodId, way)
-            store.balance.changeBalanceNum(goodId, way)
         } else if (way < 0) {
             if (num === 0) {
                 return
             } else {
                 store.shopCart.changeNum(goodId, way)
-                store.balance.changeBalanceNum(goodId, way)
             }
         }
     };
 
     _removeThisGood(event, goodId) {
         store.shopCart.removeFromCart(goodId)
-        store.balance.popThisFromBalance(goodId, true)
     };
+    componentDidMount(){
+        this.setState({
+            ifChecked:this.props.cartItem.isSelect
+        })
+    }
     render() {
         const { cartItem } = this.props
         return (
             <div className="cart-item bg-fff">
                 <Row className="flex-box">
-                    <Col span={4} className="flex-box" onClick={this._toggleCheck.bind(this, cartItem.id)}>
+                    <Col span={4} className="flex-box" onClick={this._toggleCheck.bind(this, cartItem.goodId)}>
                         {
                             this.state.ifChecked
                                 ? <img className="icon" src={require('static/img/circle-1.png')} alt="" />
@@ -66,16 +68,16 @@ const cartItem = observer(class cartItem extends Component {
                                     <p>{cartItem.name}</p>
                                     <p>售价:{cartItem.price}元 合计：{cartItem.price * cartItem.number}元</p>
                                     <div className="flex-box ">
-                                        <div className="desc t-tc" onClick={this._changeNum.bind(this, cartItem.number, cartItem.id, -1)} >-</div>
+                                        <div className="desc t-tc" onClick={this._changeNum.bind(this, cartItem.number, cartItem.goodId, -1)} >-</div>
                                         <div className="num t-tc"  >{cartItem.number}</div>
-                                        <div className="plus t-tc" onClick={this._changeNum.bind(this, cartItem.number, cartItem.id, 1)} >+</div>
+                                        <div className="plus t-tc" onClick={this._changeNum.bind(this, cartItem.number, cartItem.goodId, 1)} >+</div>
                                     </div>
                                 </Col>
                             </Row>
                         </div>
                     </Col>
                     <Col span={4} className="flex-box">
-                        <img className="icon" src={require('static/img/ic-del.png')} alt="" onClick={() => this._removeThisGood(this, cartItem.id)} />
+                        <img className="icon" src={require('static/img/ic-del.png')} alt="" onClick={() => this._removeThisGood(this, cartItem.goodId)} />
                     </Col>
                 </Row>
             </div>

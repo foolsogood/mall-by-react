@@ -19,7 +19,7 @@ const _login=observer(class NormalLoginForm extends Component {
             password: this.props.form.getFieldValue('password'),
         }
         xhr.post(api.user.login, { query }).then(res => {
-            if(res.code==1){
+            if(res.code===1){
               store.user.getUser(res.data)
                 event.emit('showLogin', false)
             }

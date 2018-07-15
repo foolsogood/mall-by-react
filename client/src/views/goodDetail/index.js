@@ -24,7 +24,7 @@ export default class GoodDetail extends Component {
     };
     componentWillMount() {
         //    获取上一个路由传参
-        let goodId = this.props.match.params.id
+        let goodId = this.props.match.params.goodId
         let cateId = this.props.match.params.cateId
         this.setState({
             goodId,

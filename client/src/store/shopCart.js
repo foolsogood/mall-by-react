@@ -7,13 +7,17 @@ class ShopCart {
             cart: localStorage.getItem('cart')
                 ? JSON.parse(localStorage.getItem('cart'))
                 : null,
-
             //*计算数据
             get cartTotalNum() {
                 let initNum = 0
-                for (let i in this.cart) {
-                    initNum = initNum + this.cart[i].number
+                if (this.cart && Object.values(this.cart).length) {
+                    for (let i in this.cart) {
+                        if (this.cart[i].isSelect) {
+                            initNum = initNum + this.cart[i].number
+                        }
+                    }
                 }
+
                 //购物车为空时清除缓存
                 if (initNum === 0) {
                     localStorage.removeItem('cart')
@@ -22,8 +26,12 @@ class ShopCart {
             },
             get cartTotalPrice() {
                 let initTotal = 0
-                for (let i in this.cart) {
-                    initTotal = initTotal + this.cart[i].number * this.cart[i].price
+                if (this.cart && Object.values(this.cart).length) {
+                    for (let i in this.cart) {
+                        if (this.cart[i].isSelect) {
+                            initTotal = initTotal + this.cart[i].number * this.cart[i].price
+                        }
+                    }
                 }
                 return initTotal
             }
@@ -39,13 +47,13 @@ class ShopCart {
                     cart[goodId].number += 1
                 } else {
                     // console.log('购物车无该商品')
-                    cart[goodId] = goodInfoObj
+                    cart[goodId] = Object.assign(goodInfoObj, { isSelect: true })
                     cart[goodId].number = 1
                 }
                 localStorage.setItem('cart', JSON.stringify(cart))
             } else {
                 let obj = {}
-                obj[goodId] = goodInfoObj
+                obj[goodId] = Object.assign(goodInfoObj, { isSelect: true })
                 obj[goodId].number = 1
                 localStorage.setItem('cart', JSON.stringify(obj))
             }
@@ -70,11 +78,20 @@ class ShopCart {
         };
         //移除商品
         this.removeFromCart = (goodId) => {
+            console.log(goodId)
             let cart = JSON.parse(localStorage.getItem('cart'))
             delete cart[goodId]
             localStorage.setItem('cart', JSON.stringify(cart))
             this.cart = JSON.parse(localStorage.getItem('cart'))
         }
+        // 是否将该商品移出结算外
+        this.popThisFromBalance = (goodId, bool) => {
+            let cart = JSON.parse(localStorage.getItem('cart'))
+            cart[goodId].isSelect = !bool
+            localStorage.setItem('cart', JSON.stringify(cart))
+            this.cart = JSON.parse(localStorage.getItem('cart'))
+
+        };
 
     }
 }

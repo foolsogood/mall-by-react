@@ -18,16 +18,14 @@ const GoodFooter = observer(class GoodFooter extends Component {
     // };
     _addToCart() {
         const { goodInfo } = this.props
-        store.shopCart.addToCart(goodInfo.id, goodInfo)
-        store.balance.addToBalance(goodInfo.id, goodInfo)
+        store.shopCart.addToCart(goodInfo.goodId, goodInfo)
         this.context.router.history.push({
             pathname: '/shopCart'
         })
     };
     _balanceThisGood() {
         const { goodInfo } = this.props
-        store.shopCart.addToCart(goodInfo.id, goodInfo)
-        store.balance.addToBalance(goodInfo.id, goodInfo)
+        store.shopCart.addToCart(goodInfo.goodId, goodInfo)
         this.context.router.history.push({
             pathname: '/balance'
         })

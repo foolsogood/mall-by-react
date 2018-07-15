@@ -50,25 +50,30 @@ const Balance = observer(class Balance extends Component {
             goodId = [],
             price = [],
             number = [];
-        Object.values(store.balance.balance).map(item => {
-            goodId.push(item.goodId)
-            price.push(item.price)
-            number.push(item.number)
+        Object.values(store.shopCart.cart).forEach(item => {
+            if (item.isSelect) {
+                goodId.push(item.goodId)
+                price.push(item.price)
+                number.push(item.number)
+            }
         })
         const query = {
             userid: store.user.user.userid,
-            goodId:JSON.stringify(goodId),
-            price:JSON.stringify(price),
-            number:JSON.stringify(number)
+            goodId: JSON.stringify(goodId),
+            price: JSON.stringify(price),
+            number: JSON.stringify(number)
         }
         xhr.post(api.order.addOrder, { query }).then(res => {
-            if (res.code === '1') {
-
+            if (res.code === 1) {
+                goodId.forEach(item => {
+                    store.shopCart.removeFromCart(item)
+                   })
             }
         }).catch(err => { })
     }
     render() {
         const { ifLoginShow, ifSignupShow } = this.state
+        const balance = store.shopCart.cart ? Object.values(store.shopCart.cart).filter(item => item.isSelect) : []
         return (
             <div className="balance" style={{ position: 'relative' }}>
                 <TitleBar titleText="结算" />
@@ -109,18 +114,18 @@ const Balance = observer(class Balance extends Component {
                 <div className="hr"></div>
                 <div className="bg-fff  ">
                     {
-                        Object.keys(store.balance.balance).map((item, idx) => {
+                        balance.map((item, idx) => {
                             return (
                                 <div key={idx} className="pd-20">
                                     <Row>
                                         <Col span={5}>
-                                            <img src={JSON.parse(store.balance.balance[item].imgs)[0]} alt="" />
+                                            <img src={JSON.parse(item.imgs)[0]} alt="" />
                                         </Col>
                                         <Col span={19} className="pd-lf-20">
-                                            <p>{store.balance.balance[item].goodName}</p>
+                                            <p>{item.goodName}</p>
                                             <div className="flex-box flex-ju-c-bt">
-                                                <span>售价：¥{store.balance.balance[item].price}元x{store.balance.balance[item].number}</span>
-                                                <span>{store.balance.balance[item].price * store.balance.balance[item].number}元</span>
+                                                <span>售价：¥{item.price}元x{item.number}</span>
+                                                <span>{item.price * item.number}元</span>
                                             </div>
                                         </Col>
                                     </Row>
@@ -131,7 +136,7 @@ const Balance = observer(class Balance extends Component {
                 </div>
                 <Row className="balance-footer bg-fff">
                     <Col span={14} className="flex-box price">
-                        共{store.balance.balanceNum}件,合计：{store.balance.balancePrice}元
+                        共{store.shopCart.cartTotalNum}件,合计：{store.shopCart.cartTotalPrice}元
                     </Col>
                     <Col onClick={this._toPay} span={10} className="flex-box pay">去付款</Col>
                 </Row>

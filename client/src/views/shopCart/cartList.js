@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { Row, Col } from 'antd'
-import CartItem from '../../components/cart-components/cartItem'
+import CartItem from 'components/cart-components/cartItem'
 import { Link } from 'react-router-dom'
 //引入mobx相关
 import { observer } from 'mobx-react'
-import store from '../../store'
+import store from 'store'
 //图标
 // import Circle0 from 'static/img/circle-0.png'
 // import Circle1 from 'static/img/circle-1.png'
@@ -14,8 +14,8 @@ const cart = observer(class cartList extends Component {
             <div>
                 {/*用商品id而不是数组的索引来做key,会更好检测数据变更  */}
                 {
-                    Object.keys(store.shopCart.cart).map((item) => {
-                        return <CartItem key={store.shopCart.cart[item].id} cartItem={store.shopCart.cart[item]} />
+                    Object.values(store.shopCart.cart).map((item) => {
+                        return <CartItem key={item.goodId} cartItem={item} />
                     })
                 }
                 <div className="tip bg-fff">
@@ -27,16 +27,12 @@ const cart = observer(class cartList extends Component {
                         <Col span={8} className="flex-box flex-ver-box">
                             <span>共
                                 {
-                                    store.shopCart.cartTotalNum === store.balance.balanceNum
-                                        ? store.shopCart.cartTotalNum
-                                        : store.balance.balanceNum
+                                    store.shopCart.cartTotalNum
                                 }
                                 件,金额:</span>
                             <span><span className="price">
                                 {
-                                    store.shopCart.cartTotalNum === store.balance.balanceNum
-                                        ? store.shopCart.cartTotalPrice
-                                        : store.balance.balancePrice
+                                    store.shopCart.cartTotalPrice
                                 }
                             </span>元</span>
                         </Col>

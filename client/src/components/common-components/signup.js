@@ -6,9 +6,7 @@ import api from 'service/api'
 const FormItem = Form.Item;
 
 class NormalLoginForm extends Component {
-    constructor() {
-        super()
-    }
+   
    
     handleSubmit = (e) => {
         e.preventDefault();
@@ -22,7 +20,7 @@ class NormalLoginForm extends Component {
                 repeatPwd: this.props.form.getFieldValue('repeatPwd')
             }
             xhr.put(api.user.signup, { query }).then(res => {
-                if(res.code==1){
+                if(res.code===1){
                     event.emit('showSignup', false);
                     event.emit('showLogin', true)
                 }
