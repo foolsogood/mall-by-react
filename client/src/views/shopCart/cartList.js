@@ -5,9 +5,6 @@ import { Link } from 'react-router-dom'
 //引入mobx相关
 import { observer } from 'mobx-react'
 import store from 'store'
-//图标
-// import Circle0 from 'static/img/circle-0.png'
-// import Circle1 from 'static/img/circle-1.png'
 const cart = observer(class cartList extends Component {
     render() {
         return (
