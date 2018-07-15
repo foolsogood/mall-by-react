@@ -1,16 +1,6 @@
 import React, { Component } from 'react'
 import { Row, Col } from 'antd'
 import { Link } from 'react-router-dom'
-//引入图片
-import home0 from 'static/img/home-0.png'
-import home1 from 'static/img/home-1.png'
-import classify0 from 'static/img/classify-0.png'
-import classify1 from 'static/img/classify-1.png'
-import cart0 from 'static/img/cart-0.png'
-import cart1 from 'static/img/cart-1.png'
-import my0 from 'static/img/my-0.png'
-import my1 from 'static/img/my-1.png'
-
 export default class footer extends Component {
 	constructor() {
 		super()
@@ -21,13 +11,14 @@ export default class footer extends Component {
 	_getPathname() {
 		return window.location.pathname
 	};
-	active = {
-		color: '#1296db'
-	};
+	
 
 	render() {
+		const iconStyle={fontSize:'.5rem'}
+		const active={color: '#1296db'}
+		const common={color:'#8a8a8a'}
 		return (
-			<footer className="footer t-tc">
+			<footer className="footer t-tc" >
 				<Row>
 					<Col span={6} >
 						<Link to={`/`} className="flex-box flex-ver-box" >
@@ -35,12 +26,12 @@ export default class footer extends Component {
 							{
 								this._getPathname() === `/`
 									? <div className="flex-box flex-ver-box">
-										<img className="icon" src={home0} alt="" />
-										<span style={this.active}>主页</span>
+									<span className="iconfont icon-weibiaoti1" style={{...iconStyle,...active}}></span>
+										<span style={active}>主页</span>
 									</div>
 									:<div className="flex-box flex-ver-box">
-										<img className="icon" src={home0} alt="" />
-										<span >主页</span>
+									<span className="iconfont icon-weibiaoti1" style={{...iconStyle,...common}}></span>
+										<span style={common}>主页</span>
 									</div>
 									
 							}
@@ -51,12 +42,12 @@ export default class footer extends Component {
 							{
 								this._getPathname() === `/classify`
 									? <div className="flex-box flex-ver-box">
-										<img className="icon" src={classify1} alt="" />
-										<span style={this.active}>分类</span>
+									<span className="iconfont icon-fenleitianchong" style={{...iconStyle,...active}}></span>
+										<span style={active}>分类</span>
 									</div>
 									:<div className="flex-box flex-ver-box">
-										<img className="icon" src={classify0} alt="" />
-										<span >分类</span>
+									<span className="iconfont icon-fenleitianchong" style={{...iconStyle,...common}}></span>
+										<span style={common}>分类</span>
 									</div>
 									
 							}
@@ -68,13 +59,13 @@ export default class footer extends Component {
 							{
 								this._getPathname() === `/shopCart`
 									? <div className="flex-box flex-ver-box">
-										<img className="icon" src={cart1} alt="" />
-										<span style={this.active}>购物车</span>
+									<span className="iconfont icon-gouwuche" style={{...iconStyle,...active}}></span>
+										<span style={active}>购物车</span>
 									</div>
 									:
 									<div className="flex-box flex-ver-box">
-										<img className="icon" src={cart0} alt="" />
-										<span >购物车</span>
+									<span className="iconfont icon-gouwuche" style={{...iconStyle,...common}}></span>
+										<span style={common}>购物车</span>
 									</div>
 							}
 						</Link>
@@ -84,13 +75,13 @@ export default class footer extends Component {
 							{
 								this._getPathname() === `/personal`
 									? <div className="flex-box flex-ver-box">
-										<img className="icon" src={my1} alt="" />
-										<span style={this.active}>我的</span>
+									<span className="iconfont icon-yonghu" style={{...iconStyle,...active}}></span>
+										<span style={active}>我的</span>
 									</div>
 									:
 									<div className="flex-box flex-ver-box">
-										<img className="icon" src={my0} alt="" />
-										<span >我的</span>
+									<span className="iconfont icon-yonghu" style={{...iconStyle,...common}}></span>
+										<span style={common}>我的</span>
 									</div>
 							}
 

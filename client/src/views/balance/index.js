@@ -24,8 +24,7 @@ const Balance = observer(class Balance extends Component {
         }
         this._toPay = this._toPay.bind(this)
     };
-
-    componentDidMount() {
+    componentWillMount() {
         event.on('sure-send-time', time => {
             console.log(time)
             this.setState({ sendTime: time })
@@ -36,7 +35,8 @@ const Balance = observer(class Balance extends Component {
         event.on('showSignup', bool => {
             this.setState({ ifSignupShow: bool })
         })
-    };
+    }
+   
     _toPay() {
         if (!store.user.user) {
             this.setState({ ifLoginShow: true })
@@ -67,7 +67,7 @@ const Balance = observer(class Balance extends Component {
             if (res.code === 1) {
                 goodId.forEach(item => {
                     store.shopCart.removeFromCart(item)
-                   })
+                })
             }
         }).catch(err => { })
     }

@@ -50,6 +50,7 @@ const cartItem = observer(class cartItem extends Component {
     }
     render() {
         const { cartItem } = this.props
+        const active={color:'#1afa29'}
         return (
             <div className="cart-item bg-fff">
                 <Row className="flex-box">

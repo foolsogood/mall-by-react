@@ -9,7 +9,7 @@ audio:not([controls]) { display: none; height: 0; }
 [hidden], template { display: none; }
 svg:not(:root) { overflow: hidden; }
 
-a { background: transparent; text-decoration: none; -webkit-tap-highlight-color: transparent; color: #000; }
+a { background: transparent; text-decoration: none; -webkit-tap-highlight-color: transparent; color: #000 !important; }
 a:active { outline: 0; }
 a:active { color: #006699; }
 a:hover { color: #f55858; }
