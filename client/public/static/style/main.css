@@ -38,6 +38,7 @@ top: .8rem;
 .pd-20{
 	padding: .2rem;
 }
+
 .pd-lf-20{
 	padding-left: .2rem;
 }
@@ -388,6 +389,9 @@ width: 80%;
 	border-bottom:1px solid #e5e6e7;
 	line-height: .6rem;
 	letter-spacing: 1px;
+}
+.order-item + .order-item{
+ border-top:1px solid #ddd;
 }
 /*antd样式修改  */
 .good-detail .ant-tabs-ink-bar{

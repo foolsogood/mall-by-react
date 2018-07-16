@@ -39,11 +39,13 @@ export default class Personal extends Component {
 				<div>
 					<div className="flex-box flex-ju-c-bt h-80 bg-fff pd-h-20">
 						<span>我的订单</span>
+						<Link to={`/orders`}>
 						<div className="flex-box">
 							<span>全部订单</span>
 							<span className="iconfont icon-you" style={{ ...common, ...iconStyle }}></span>
 
 						</div>
+						</Link>
 					</div>
 					<div className="flex-box bg-fff pd-v-20 bd-top">
 						<div className="flex-box flex-ver-box flex-1">

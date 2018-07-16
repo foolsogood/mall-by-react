@@ -10,7 +10,7 @@ import Balance from 'views/balance'
 import SendTime from 'views/balance/sendTime'
 import GoodDetail from 'views/goodDetail'
 import FeedBack from 'views/personal/feedback'
-import Orders from 'views/personal/orders'
+import Orders from 'views/orders'
 export default class App extends Component {
 	render() {
 		return (

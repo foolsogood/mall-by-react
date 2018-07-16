@@ -37,7 +37,6 @@ export default class GoodDetail extends Component {
     };
     _getGoodInfo() {
         const query={
-           cateId: this.state.cateId,
            goodId: this.state.goodId
         }
         xhr.get(api.good.getGoodById,{query}).then(res => {

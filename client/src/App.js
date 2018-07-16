@@ -2,16 +2,6 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 // 组件
 import Bundle from 'components/common-components/bundle'
-
-// import Home from 'views/home'
-// import Personal from 'views/personal'
-// import Classify from 'views/classify'
-// import ShopCart from 'views/shopCart'
-// import Balance from 'views/balance'
-// import SendTime from 'views/balance/sendTime'
-// import GoodDetail from 'views/goodDetail'
-// import FeedBack from 'views/personal/feedback'
-// import Orders from 'views/personal/orders'
 const Home = (props) => (
 	<Bundle load={() => import('views/home')}>
 		{(Home) => <Home {...props} />}
@@ -53,7 +43,7 @@ const FeedBack = (props) => (
 	</Bundle>
 )
 const Orders = (props) => (
-	<Bundle load={() => import('views/personal/orders')}>
+	<Bundle load={() => import('views/orders')}>
 		{(Orders) => <Orders {...props} />}
 	</Bundle>
 )
