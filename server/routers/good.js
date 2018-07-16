@@ -53,12 +53,12 @@ router.get('/getGoodsByCate', async (ctx) => {
     })
 })
 router.get('/getGoodById', async (ctx) => {
-    const { cateId ,goodId} = ctx.request.query
+    const { goodId} = ctx.request.query
     let comments
     await model.getComment(goodId).then(res=>{
          comments=res
     })
-    await model.getGoodById(cateId,goodId).then(res => {
+    await model.getGoodById(goodId).then(res => {
         ctx.body = {
             code: '1',
             data:Object.assign({},res[0],{comments}) 

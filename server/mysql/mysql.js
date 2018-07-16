@@ -67,8 +67,8 @@ const getGoodsByCate = (cateId) => {
     return query(_sql, [])
 }
 //根据id获取商品
-const getGoodById = (cateId, goodId) => {
-    const _sql = `SELECT * FROM goods where cateId="${cateId}" AND goodId="${goodId}";`
+const getGoodById = ( goodId) => {
+    const _sql = `SELECT * FROM goods where  goodId="${goodId}";`
     return query(_sql, [])
 }
 const searchGood=(keyword)=>{
@@ -96,6 +96,11 @@ const getComment = (goodId) => {
 const getOrders=(userid)=>{
     const _sql=`SELECT * FROM orders where userid="${userid}";`
     return query(_sql,[])
+}
+const getOrderItem=(orderId)=>{
+    const _sql=`SELECT * FROM order_item where orderId=${orderId};`
+    return query(_sql,[])
+    
 }
 const addOrder=(value)=>{
     const _sql = `INSERT INTO orders(userid,orderId,status) values(?,?,?);`
@@ -129,6 +134,7 @@ module.exports = {
     addComment,
     getComment,
     getOrders,
+    getOrderItem,
     addOrder,
     addOrderItem,
     signup,
