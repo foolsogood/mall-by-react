@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import { Row, Col } from 'antd'
-import home0 from 'static/img/home-0.png'
-import classify0 from 'static/img/classify-0.png'
 //引入mobx相关
 import { observer } from 'mobx-react'
 import store from 'store'
@@ -34,7 +32,7 @@ const GoodFooter = observer(class GoodFooter extends Component {
         // console.log( this.context)
     };
     render() {
-        const iconStyle = { fontSize: '.5rem' }
+        const iconStyle = { fontSize: '.4rem' }
         const common = { color: '#8a8a8a' }
         return (
             <div className="good-footer ">

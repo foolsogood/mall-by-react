@@ -6,8 +6,7 @@ import Login from 'components/common-components/login.js'
 import Signup from 'components/common-components/signup.js'
 
 //图标
-import iconNext from 'static/img/ic-next2.png'
-import iconWechat from 'static/img/ic-wx-pay.png'
+// import iconWechat from 'assets/img/ic-wx-pay.png'
 //引入mobx相关
 import { observer } from 'mobx-react'
 import store from 'store'
@@ -36,7 +35,7 @@ const Balance = observer(class Balance extends Component {
             this.setState({ ifSignupShow: bool })
         })
     }
-   
+
     _toPay() {
         if (!store.user.user) {
             this.setState({ ifLoginShow: true })
@@ -72,6 +71,8 @@ const Balance = observer(class Balance extends Component {
         }).catch(err => { })
     }
     render() {
+        const iconStyle = { fontSize: '.35rem' }
+        const common = { color: '#8a8a8a' }
         const { ifLoginShow, ifSignupShow } = this.state
         const balance = store.shopCart.cart ? Object.values(store.shopCart.cart).filter(item => item.isSelect) : []
         return (
@@ -86,12 +87,12 @@ const Balance = observer(class Balance extends Component {
                 <div className="hr-40"></div>
                 <div className="flex-box flex-ju-c-bt h-100 bg-fff pd-h-20 ">
                     <span>请选择地址</span>
-                    <img className="icon-1" src={iconNext} alt="" />
+                    <span className="iconfont icon-you" style={{ ...common, ...iconStyle }}></span>
                 </div>
 
                 <Row className=" h-100 bg-fff pd-h-20 bd-top">
                     <Col span={4} >
-                        <img className=" icon-2 " src={iconWechat} alt="" />
+                        <img className=" icon-2 " src={require('assets/img/ic-wx-pay.png')} alt="" />
                     </Col>
                     <Col span={20} ><span>微信支付</span></Col>
                 </Row>
@@ -99,7 +100,8 @@ const Balance = observer(class Balance extends Component {
                     <span>发票类型</span>
                     <div className="flex-box">
                         <span >不需要发票</span>
-                        <img className="icon-1" src={iconNext} alt="" />
+                        <span className="iconfont icon-you" style={{ ...common, ...iconStyle }}></span>
+
                     </div>
                 </div>
                 <Link to={`/sendTime`}>
@@ -107,7 +109,8 @@ const Balance = observer(class Balance extends Component {
                         <span>送货时间</span>
                         <div className="flex-box">
                             <span>{this.state.sendTime}</span>
-                            <img className="icon-1" src={iconNext} alt="" />
+                            <span className="iconfont icon-you" style={{ ...common, ...iconStyle }}></span>
+
                         </div>
                     </div>
                 </Link>
@@ -134,12 +137,20 @@ const Balance = observer(class Balance extends Component {
                         })
                     }
                 </div>
-                <Row className="balance-footer bg-fff">
-                    <Col span={14} className="flex-box price">
-                        共{store.shopCart.cartTotalNum}件,合计：{store.shopCart.cartTotalPrice}元
-                    </Col>
-                    <Col onClick={this._toPay} span={10} className="flex-box pay">去付款</Col>
-                </Row>
+                <div className="balance-footer bg-fff">
+                    <Row >
+                        <Col span={14} >
+                            <div className="flex-box price">
+                                共{store.shopCart.cartTotalNum}件,合计：{store.shopCart.cartTotalPrice}元
+                        </div>
+                        </Col>
+                        <Col onClick={this._toPay} span={10} >
+                            <div className="flex-box pay">
+                                去付款
+                    </div>
+                        </Col>
+                    </Row>
+                </div>
             </div>
         )
     }

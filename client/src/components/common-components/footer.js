@@ -14,7 +14,7 @@ export default class footer extends Component {
 	
 
 	render() {
-		const iconStyle={fontSize:'.5rem'}
+		const iconStyle={fontSize:'.4rem'}
 		const active={color: '#1296db'}
 		const common={color:'#8a8a8a'}
 		return (

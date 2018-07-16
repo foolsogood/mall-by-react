@@ -43,23 +43,32 @@ const cartItem = observer(class cartItem extends Component {
     _removeThisGood(event, goodId) {
         store.shopCart.removeFromCart(goodId)
     };
-    componentDidMount(){
+    componentDidMount() {
         this.setState({
-            ifChecked:this.props.cartItem.isSelect
+            ifChecked: this.props.cartItem.isSelect
         })
     }
     render() {
         const { cartItem } = this.props
-        const active={color:'#1afa29'}
+        const active = { color: '#1afa29' }
+        const iconStyle = { fontSize: '.5rem' }
+        const common = { color: '#8a8a8a' }
+        const flexBox = {
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center'
+        }
         return (
             <div className="cart-item bg-fff">
-                <Row className="flex-box">
-                    <Col span={4} className="flex-box" onClick={this._toggleCheck.bind(this, cartItem.goodId)}>
-                        {
-                            this.state.ifChecked
-                                ? <img className="icon" src={require('static/img/circle-1.png')} alt="" />
-                                : <img className="icon" src={require('static/img/circle-0.png')} alt="" />
-                        }
+                <Row style={flexBox}>
+                    <Col span={4} onClick={this._toggleCheck.bind(this, cartItem.goodId)}>
+                        <div className="flex-box">
+                            {
+                                this.state.ifChecked
+                                    ? <span className="iconfont icon-selected" style={{ ...iconStyle, ...active }}></span>
+                                    : <span className="iconfont icon-yuancircle46" style={{ ...iconStyle, ...common }}></span>
+                            }
+                        </div>
                     </Col>
                     <Col span={16}>
                         <div>
@@ -77,8 +86,10 @@ const cartItem = observer(class cartItem extends Component {
                             </Row>
                         </div>
                     </Col>
-                    <Col span={4} className="flex-box">
-                        <img className="icon" src={require('static/img/ic-del.png')} alt="" onClick={() => this._removeThisGood(this, cartItem.goodId)} />
+                    <Col span={4} >
+                        <div className="flex-box">
+                            <span className="iconfont icon-shanchu" style={{ ...iconStyle, ...common }} onClick={() => this._removeThisGood(this, cartItem.goodId)} ></span>
+                        </div>
                     </Col>
                 </Row>
             </div>

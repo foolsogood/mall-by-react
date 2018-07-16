@@ -1,42 +1,35 @@
 import React, { Component } from 'react'
 import { Row, Col } from 'antd'
-import {Link} from 'react-router-dom'
-//图标
-import avatar from 'static/img/avatar.jpg'
-import bg from 'static/img/people_bg.png'
-import iconPay from 'static/img/ic-paying.png'
-import iconDeliver from 'static/img/ic-delivering.png'
-import iconEval from 'static/img/ic-evaluate.png'
-import iconRefu from 'static/img/ic-refund.png'
-import iconRece from 'static/img/ic-receipting.png'
-import phone from 'static/img/phone.png'
-import help from 'static/img/help.png'
-import feedback from 'static/img/feedback.png'
-import iconNext from 'static/img/ic-next2.png'
+import { Link } from 'react-router-dom'
+
 //组件
-import Footer from '../../components/common-components/footer.js'
-import TitleBar from '../../components/common-components/titleBar.js'
+import Footer from 'components/common-components/footer.js'
+import TitleBar from 'components/common-components/titleBar.js'
 
 export default class Personal extends Component {
 	constructor() {
 		super()
 		this.state = {
-			
+
 			ifBackShow: false
 		}
 	};
 	componentWillMount() {
 	};
 	render() {
+		const iconStyle = { fontSize: '.35rem' }
+		const common = { color: '#8a8a8a' }
 		return (
 			<div className="personal">
-				<TitleBar  ifBackShow={this.state.ifBackShow} titleText="个人页" />
+				<TitleBar ifBackShow={this.state.ifBackShow} titleText="个人页" />
 				<div className="personal-header">
-					<img className="bg" src={bg} alt=""/>
+					<img className="bg" src={require('assets/img/people_bg.png')} alt="" />
 					<div className="info ">
 						<Row className="flex-box">
-							<Col span={6} className="flex-box">
-								<img className="avatar " src={avatar} alt="" />
+							<Col span={6} >
+								<div className="flex-box">
+									<img className="avatar " src={require('assets/img/avatar.jpg')} alt="" />
+								</div>
 							</Col>
 							<Col span={18}><span>tycho</span></Col>
 						</Row>
@@ -48,28 +41,29 @@ export default class Personal extends Component {
 						<span>我的订单</span>
 						<div className="flex-box">
 							<span>全部订单</span>
-							<img className="icon-2" src={iconNext} alt=""/>
+							<span className="iconfont icon-you" style={{ ...common, ...iconStyle }}></span>
+
 						</div>
 					</div>
 					<div className="flex-box bg-fff pd-v-20 bd-top">
 						<div className="flex-box flex-ver-box flex-1">
-							<img className="icon" src={iconPay} alt="" />
+							<img className="icon" src={require('assets/img/ic-paying.png')} alt="" />
 							<span>待付款</span>
 						</div>
 						<div className="flex-box flex-ver-box flex-1">
-							<img className="icon" src={iconDeliver} alt="" />
+							<img className="icon" src={require('assets/img/ic-delivering.png')} alt="" />
 							<span>待发货</span>
 						</div>
 						<div className="flex-box flex-ver-box flex-1">
-							<img className="icon" src={iconEval} alt="" />
+							<img className="icon" src={require('assets/img/ic-evaluate.png')} alt="" />
 							<span>待收货</span>
 						</div>
 						<div className="flex-box flex-ver-box flex-1">
-							<img className="icon" src={iconRefu} alt="" />
+							<img className="icon" src={require('assets/img/ic-refund.png')} alt="" />
 							<span>待评价</span>
 						</div>
 						<div className="flex-box flex-ver-box flex-1">
-							<img className="icon" src={iconRece} alt="" />
+							<img className="icon" src={require('assets/img/ic-receipting.png')} alt="" />
 							<span>退款</span>
 						</div>
 					</div>
@@ -77,27 +71,30 @@ export default class Personal extends Component {
 				<div className="hr"></div>
 				<div className="flex-box flex-ju-c-bt h-80 pd-h-20 bg-fff">
 					<div className="flex-box">
-						<img className="icon-1" src={phone} alt="" />
+						<img className="icon-1" src={require('assets/img/phone.png')} alt="" />
 						<span>绑定手机</span>
 					</div>
-					<img className="icon-2" src={iconNext} alt=""/>
+					<span className="iconfont icon-you" style={{ ...common, ...iconStyle }}></span>
+
 				</div>
 				<div className="hr"></div>
 				<div className="flex-box flex-ju-c-bt h-80 pd-h-20 bg-fff">
 					<div className="flex-box">
-						<img className="icon-1" src={help} alt="" />
+						<img className="icon-1" src={require('assets/img/help.png')} alt="" />
 						<span>购物帮助</span>
 					</div>
-					<img className="icon-2" src={iconNext} alt=""/>
+					<span className="iconfont icon-you" style={{ ...common, ...iconStyle }}></span>
+
 				</div>
 				<Link to={`/feedback`}>
-				<div className="flex-box flex-ju-c-bt h-80 pd-h-20 bg-fff bd-top">
-					<div className="flex-box">
-						<img className="icon-1" src={feedback} alt="" />
-						<span>意见反馈</span>
+					<div className="flex-box flex-ju-c-bt h-80 pd-h-20 bg-fff bd-top">
+						<div className="flex-box">
+							<img className="icon-1" src={require('assets/img/feedback.png')} alt="" />
+							<span>意见反馈</span>
+						</div>
+						<span className="iconfont icon-you" style={{ ...common, ...iconStyle }}></span>
+
 					</div>
-					<img className="icon-2" src={iconNext} alt=""/>
-				</div>
 				</Link>
 				<Footer />
 			</div>
