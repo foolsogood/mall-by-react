@@ -14,21 +14,24 @@ const _order = observer(class Orders extends Component {
     constructor() {
         super()
         this.state = {
-
+            orderList: []
         }
     };
     componentDidMount() {
         this._getHomeImgList()
     }
     _getHomeImgList() {
-        const query = { userid: store.user.user.userid}
+        const query = { userid: store.user.user.userid }
         xhr.get(api.order.getOrders, { query }).then(res => {
             if (res.code === '1') {
-
+                this.setState({
+                    orderList: res.data
+                })
             }
         }).catch(err => { })
     };
     render() {
+        const {orderList}=this.state
         return (
             <div>
                 <TitleBar titleText="我的订单" />
@@ -36,9 +39,9 @@ const _order = observer(class Orders extends Component {
                     <TabPane tab="未发货" key="1">
                         <div>
                             {
-                                [1, 2, 3, 4, 5].map((item, idx) => {
+                                orderList.map((item, idx) => {
                                     return (
-                                        <OrderItem key={idx} />
+                                        <OrderItem key={idx} order={item}/>
                                     )
                                 })
                             }
