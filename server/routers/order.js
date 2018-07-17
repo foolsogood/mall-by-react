@@ -1,24 +1,30 @@
 const router = require('koa-router')();
 const model = require('../mysql/mysql')
-// const checkToken = require('../tools/checkToken')
 const tools = require('../tools/tools')
 router.prefix('/api/order')
 router.get('/getOrders', async (ctx) => {
     const { userid } = ctx.request.query
+    //先通过userid查找该用户的订单id和状态等信息
     let orders = await model.getOrders(userid)
-
-    let res = await model.getOrderItem(orders[0].orderId)
-    res.map(async item => {
-       let good= (await model.getGoodById(item.goodId))[0]
-       item=Object.assign(item,good)
-    })
-    console.log(res)
-    
+    //通过订单id关联order_item表
+    let orderItemInfo = await model.getOrderItem(orders[0].orderId)
+    //通过商品id去商品表查询商品信息 合并到订单数据
+    let assGood = (orderItemInfo) => {
+        const promiseArray = orderItemInfo.map(async item => {
+            //查询到的商品信息
+            let good = (await model.getGoodById(item.goodId))[0]
+            //合并商品信息到对应的订单
+            item = Object.assign(item, good)
+            return item
+        })
+        //Promise.all等待所有的订单都合并完
+        return Promise.all(promiseArray)
+    }
+    let res = await assGood(orderItemInfo)
     ctx.body = {
         code: '1',
         data: res
     }
-
 })
 router.post('/addOrder', async (ctx) => {
     let { userid, goodId, price, number } = ctx.request.body
