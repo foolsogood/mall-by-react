@@ -11,26 +11,26 @@ export default class OrderItem extends Component {
     };
 
     render() {
-        const {order}=this.props
+        const { order } = this.props
         return (
             <div className="order-item pd-20">
-               <Row>
-                   <Col span={7}>
-                   <img style={{width:'1.5rem',height:'1.5rem'}} src={JSON.parse(order.imgs)[0]} alt="商品"/>
-                   </Col>
-                   <Col span={12} >
-                   <div >
-                   <p>{order.goodName}</p>
-                   <p className="good-itm-p-2">{order.desction}</p>
-                   </div>
-                   </Col>
-                   <Col span={5}>
-                   <div>
-                   <span>¥{order.price*order.number}</span>
-                   </div>
-                   </Col>
-                   
-               </Row>
+                <Row>
+                    <Col span={7}>
+                        <img style={{ width: '1.5rem', height: '1.5rem' }} src={JSON.parse(order.imgs)[0]} alt="商品" />
+                    </Col>
+                    <Col span={12} >
+                        <div >
+                            <p>{order.goodName}</p>
+                            <p className="good-itm-p-2">{order.desction}</p>
+                        </div>
+                    </Col>
+                    <Col span={5}>
+                        <div>
+                            <span>¥{order.price * order.number}</span>
+                        </div>
+                    </Col>
+
+                </Row>
             </div>
         )
     }
