@@ -16,7 +16,7 @@ export default class classifyList extends Component {
                         list.map((item) => {
                             return (
                                 <div key={item.goodId} className="classify-block ">
-                                    <Link to={`/goodDetail/${item.cateId}/${item.goodId}`}>
+                                    <Link to={`/goodDetail/${item.goodId}`}>
                                         <div className="flex-box flex-ver-box">
                                              <img className="classify-good-img" src={JSON.parse(item.imgs)[0]} alt="" /> 
                                             <p>{item.goodName}</p>

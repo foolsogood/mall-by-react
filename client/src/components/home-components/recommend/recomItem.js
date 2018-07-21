@@ -10,7 +10,7 @@ export default class RecomItem extends Component {
         const good=this.props.good
         return (
             <div className="home-good-item">
-               <Link to={`/goodDetail/${good.cateId}/${good.goodId}`}>
+               <Link to={`/goodDetail/${good.goodId}`}>
                 <div className="flex-box flex-ver-box ">
                     <img className="good-item-img" src={JSON.parse(good.imgs)} alt="" />
                     <div className="flex-box flex-ver-box flex-al-st good-item-text">

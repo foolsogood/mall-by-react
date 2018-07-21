@@ -46,7 +46,7 @@ export default class searchBar extends Component {
                     {
                         this.state.list.map((item, idx) => {
                             return (
-                                <Link key={idx} to={`/goodDetail/${item.cateId}/${item.goodId}`}>
+                                <Link key={idx} to={`/goodDetail/${item.goodId}`}>
 
                                     <div className="pd-h-20" style={{ lineHeight: '0.8rem' }}>
                                         <p>{item.goodName}</p>
