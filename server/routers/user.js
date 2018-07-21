@@ -56,4 +56,18 @@ router.put('/signup', async (ctx) => {
         }
     })
 })
+router.post('/bindPhone', async (ctx) => {
+    const { phone, userid } = ctx.request.body
+    await model.bindPhone(userid, phone).then(res => {
+        ctx.body = {
+            code: '1',
+            data: 'success'
+        }
+    }).catch(err => {
+        ctx.body = {
+            code: '0',
+            msg: JSON.stringify(err)
+        }
+    })
+})
 module.exports = router

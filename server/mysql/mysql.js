@@ -47,9 +47,9 @@ const getAllGoods = () => {
     return query(_sql, [])
 }
 //获取商品分类
-const getCates=()=>{
-    const _sql=`SELECT * FROM category;`
-    return query(_sql,[])
+const getCates = () => {
+    const _sql = `SELECT * FROM category;`
+    return query(_sql, [])
 }
 //获取最新商品
 const getNewGoods = () => {
@@ -67,12 +67,12 @@ const getGoodsByCate = (cateId) => {
     return query(_sql, [])
 }
 //根据id获取商品
-const getGoodById = ( goodId) => {
+const getGoodById = (goodId) => {
     const _sql = `SELECT * FROM goods where  goodId="${goodId}";`
     return query(_sql, [])
 }
-const searchGood=(keyword)=>{
-    const _sql=`SELECT * FROM goods where cate LIKE "%${keyword}%" OR goodName LIKE "%${keyword}%";`
+const searchGood = (keyword) => {
+    const _sql = `SELECT * FROM goods where cate LIKE "%${keyword}%" OR goodName LIKE "%${keyword}%";`
     return query(_sql, [])
 }
 //添加banner
@@ -93,30 +93,34 @@ const getComment = (goodId) => {
     const _sql = `SELECT * FROM comments where goodId="${goodId}";`
     return query(_sql, [])
 }
-const getOrders=(userid)=>{
-    const _sql=`SELECT * FROM orders where userid="${userid}";`
-    return query(_sql,[])
+const getOrders = (userid) => {
+    const _sql = `SELECT * FROM orders where userid="${userid}";`
+    return query(_sql, [])
 }
-const getOrderItem=(orderId)=>{
-    const _sql=`SELECT * FROM order_item where orderId=${orderId};`
-    return query(_sql,[])
-    
+const getOrderItem = (orderId) => {
+    const _sql = `SELECT * FROM order_item where orderId=${orderId};`
+    return query(_sql, [])
+
 }
-const addOrder=(value)=>{
+const addOrder = (value) => {
     const _sql = `INSERT INTO orders(userid,orderId,status) values(?,?,?);`
     return query(_sql, value)
 }
-const addOrderItem=(value)=>{
+const addOrderItem = (value) => {
     const _sql = `INSERT INTO order_item(orderId,goodId,price,number) values(?,?,?,?);`
     return query(_sql, value)
 }
-const signup=(value)=>{
-    const _sql=`INSERT INTO user(username,password,userid) values(?,?,?);`
+const signup = (value) => {
+    const _sql = `INSERT INTO user(username,password,userid) values(?,?,?);`
     return query(_sql, value)
 }
-const getUser=(username)=>{
-    const _sql=`SELECT * FROM user where username="${username}";`
+const getUser = (username) => {
+    const _sql = `SELECT * FROM user where username="${username}";`
     return query(_sql, [])
+}
+const bindPhone = (userid, phone) => {
+    const _sql = `UPDATE user SET phone="${phone}" where userid="${userid}";`
+    return query(_sql, [userid, phone])
 }
 module.exports = {
     createTable,
@@ -138,5 +142,6 @@ module.exports = {
     addOrder,
     addOrderItem,
     signup,
-    getUser
+    getUser,
+    bindPhone
 }

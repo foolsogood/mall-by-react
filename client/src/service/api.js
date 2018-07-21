@@ -18,6 +18,7 @@ const api={
     user:{
         login:'/api/user/login',
         signup:'/api/user/signup',
+        bindPhone:'/api/user/bindPhone'
     },
     order:{
         getOrders:'/api/order/getOrders',

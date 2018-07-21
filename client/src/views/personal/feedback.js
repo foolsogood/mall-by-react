@@ -1,6 +1,6 @@
 import React from 'react'
 import { Form, Input, Button } from 'antd'
-import TitleBar from '../../components/common-components/titleBar.js'
+import TitleBar from 'components/common-components/titleBar.js'
 const { TextArea } = Input
 const FormItem = Form.Item
 export default class feedback extends React.Component {

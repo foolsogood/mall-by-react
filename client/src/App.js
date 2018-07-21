@@ -56,6 +56,11 @@ const OrderDetail = (props) => (
 		{(OrderDetail) => <OrderDetail {...props} />}
 	</Bundle>
 )
+const BindPhone = (props) => (
+	<Bundle load={() => import('views/personal/bindPhone')}>
+		{(BindPhone) => <BindPhone {...props} />}
+	</Bundle>
+)
 export default class App extends Component {
 	render() {
 		return (
@@ -71,6 +76,7 @@ export default class App extends Component {
 						<Route path="/shopCart" component={ShopCart} />
 						<Route path="/orders" component={Orders} />
 						<Route path="/orderDetail/:goodId" component={OrderDetail} />
+						<Route path="/bindPhone" component={BindPhone} />
 
 						<Route path="/goodDetail/:goodId" component={GoodDetail} />
 					</Switch>

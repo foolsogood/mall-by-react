@@ -73,7 +73,7 @@ const user = `create table if not exists user(
     userid VARCHAR(100) NOT NULL,
     password VARCHAR(100) NOT NULL,
     avatar VARCHAR(200) DEFAULT '',
-    phone VARCHAR(10) DEFAULT '',
+    phone VARCHAR(40) DEFAULT '',
     PRIMARY KEY (id)
 );`
 //init 数据库数据

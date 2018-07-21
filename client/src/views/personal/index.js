@@ -71,6 +71,7 @@ export default class Personal extends Component {
 					</div>
 				</div>
 				<div className="hr"></div>
+				<Link to={`/bindPhone`}>
 				<div className="flex-box flex-ju-c-bt h-80 pd-h-20 bg-fff">
 					<div className="flex-box">
 						<img className="icon-1" src={require('assets/img/phone.png')} alt="" />
@@ -79,6 +80,7 @@ export default class Personal extends Component {
 					<span className="iconfont icon-you" style={{ ...common, ...iconStyle }}></span>
 
 				</div>
+				</Link>
 				<div className="hr"></div>
 				<div className="flex-box flex-ju-c-bt h-80 pd-h-20 bg-fff">
 					<div className="flex-box">
