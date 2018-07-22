@@ -3,6 +3,7 @@ const model = require('../mysql/mysql')
 const sha1 = require('sha1')
 const tools = require('../tools/tools')
 const createToken = require('../tools/createToken')
+const { uploadFile } = require('../tools/upload')
 
 router.prefix('/api/user')
 router.post('/login', async (ctx) => {
@@ -70,4 +71,7 @@ router.post('/bindPhone', async (ctx) => {
         }
     })
 })
+// router.post('/uploadAvatar',async (ctx)=>{
+
+// })
 module.exports = router

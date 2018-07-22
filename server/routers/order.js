@@ -1,8 +1,14 @@
 const router = require('koa-router')();
 const model = require('../mysql/mysql')
 const tools = require('../tools/tools')
+const checkToken = require('../tools/checkToken')
+
 router.prefix('/api/order')
 router.get('/getOrders', async (ctx) => {
+    let flag =  await checkToken(ctx)
+    if (flag.code === '1000') {
+        return ctx.body = flag
+    }
     const { userid } = ctx.request.query
     //先通过userid查找该用户的订单id和状态等信息
     let orders = await model.getOrders(userid)
@@ -36,27 +42,24 @@ router.post('/addOrder', async (ctx) => {
         price = JSON.parse(price)
         number = JSON.parse(number)
         for (let i = 0; i < goodId.length; i++) {
-            // arr.push(model.addOrderItem([orderId, goodId[i], price[i], number[i]]))
-            model.addOrderItem([orderId, goodId[i], price[i], number[i]])
-
+            arr.push(model.addOrderItem([orderId, goodId[i], price[i], number[i]]))
         }
+
+    }).catch(err => console.error(err))
+    let p = (arr) => {
+        return Promise.all(arr)
+    }
+    await p(arr).then(rep => {
         ctx.body = {
-            code: 1,
+            code: '1',
             data: 'success'
         }
-    }).catch(err => console.error(err))
-    // Promise.all(arr).then(rep => {
-    //     console.log(rep)
-    //     ctx.body = {
-    //         code: '1',
-    //         data: 'success'
-    //     }
-    // }).catch(err => {
-    //     ctx.body = {
-    //         code: '0',
-    //         msg: err
-    //     }
-    // })
+    }).catch(err => {
+        ctx.body = {
+            code: '0',
+            data: err
+        }
+    })
 
 })
 module.exports = router

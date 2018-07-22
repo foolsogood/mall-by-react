@@ -1,6 +1,5 @@
 const router = require('koa-router')();
 const model = require('../mysql/mysql')
-// const checkToken = require('../tools/checkToken')
 
 router.prefix('/api/good')
 router.get('/getAllGoods', async (ctx) => {

@@ -6,12 +6,13 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "supervisor --harmony ./index",
-    "init_db":"node ./mysql/init.js"
+    "init_db": "node ./mysql/init.js"
   },
   "keywords": [
     "api"
   ],
   "dependencies": {
+    "busboy": "^0.2.14",
     "config-lite": "^2.0.0",
     "ejs": "^2.5.6",
     "jsonwebtoken": "^8.3.0",
