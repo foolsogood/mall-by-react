@@ -21,7 +21,7 @@ const cart=observer( class shopCart extends Component {
             <div>
                 <TitleBar  ifBackShow={this.state.ifBackShow} titleText="购物车" />
                 {
-                   store.shopCart.cart
+                   Object.values(store.shopCart.cart).length
                     ?<CartList/>
                     :<CartEmpty/>
                 }
