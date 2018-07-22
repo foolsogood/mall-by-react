@@ -6,6 +6,7 @@ import api from 'service/api'
 //引入mobx相关
 import { observer } from 'mobx-react'
 import store from 'store'
+import Cookies from 'js-cookie'
 const FormItem = Form.Item;
 
 const _login=observer(class NormalLoginForm extends Component {
@@ -21,6 +22,7 @@ const _login=observer(class NormalLoginForm extends Component {
         xhr.post(api.user.login, { query }).then(res => {
             if(res.code===1){
               store.user.getUser(res.data)
+              Cookies.set('token',res.token)
                 event.emit('showLogin', false)
             }
         })

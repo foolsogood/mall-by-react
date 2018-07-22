@@ -18,10 +18,11 @@ const _order = observer(class Orders extends Component {
         }
     };
     componentDidMount() {
-        this._getHomeImgList()
+        this._getOrders()
     }
-    _getHomeImgList() {
-        const query = { userid: store.user.user.userid }
+    _getOrders() {
+        const userid=store.user.user?store.user.user.userid:undefined
+        const query = { userid}
         xhr.get(api.order.getOrders, { query }).then(res => {
             if (res.code === '1') {
                 this.setState({

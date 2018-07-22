@@ -5,8 +5,12 @@ import { Link } from 'react-router-dom'
 //组件
 import Footer from 'components/common-components/footer.js'
 import TitleBar from 'components/common-components/titleBar.js'
+//引入mobx相关
+import { observer } from 'mobx-react'
+import store from 'store'
+const _personal = observer(
 
-export default class Personal extends Component {
+ class Personal extends Component {
 	constructor() {
 		super()
 		this.state = {
@@ -31,7 +35,7 @@ export default class Personal extends Component {
 									<img className="avatar " src={require('assets/img/avatar.jpg')} alt="" />
 								</div>
 							</Col>
-							<Col span={18}><span>tycho</span></Col>
+							<Col span={18}><span>{store.user.user.username}</span></Col>
 						</Row>
 					</div>
 				</div>
@@ -105,4 +109,5 @@ export default class Personal extends Component {
 
 		)
 	}
-}
+})
+export default _personal

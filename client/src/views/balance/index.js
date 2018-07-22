@@ -63,7 +63,7 @@ const Balance = observer(class Balance extends Component {
             number: JSON.stringify(number)
         }
         xhr.post(api.order.addOrder, { query }).then(res => {
-            if (res.code === 1) {
+            if (res.code === '1') {
                 goodId.forEach(item => {
                     store.shopCart.removeFromCart(item)
                 })
