@@ -74,7 +74,7 @@ const Balance = observer(class Balance extends Component {
         const iconStyle = { fontSize: '.35rem' }
         const common = { color: '#8a8a8a' }
         const { ifLoginShow, ifSignupShow } = this.state
-        const balance = store.shopCart.cart ? Object.values(store.shopCart.cart).filter(item => item.isSelect) : []
+        const balance = Object.values(store.shopCart.cart).length ? Object.values(store.shopCart.cart).filter(item => item.isSelect) : []
         return (
             <div className="balance" style={{ position: 'relative' }}>
                 <TitleBar titleText="结算" />
