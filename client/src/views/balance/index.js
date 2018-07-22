@@ -18,8 +18,6 @@ const Balance = observer(class Balance extends Component {
         super()
         this.state = {
             sendTime: '尽快',
-            ifLoginShow: false,
-            ifSignupShow: false
         }
         this._toPay = this._toPay.bind(this)
     };
@@ -28,17 +26,11 @@ const Balance = observer(class Balance extends Component {
             console.log(time)
             this.setState({ sendTime: time })
         })
-        event.on('showLogin', bool => {
-            this.setState({ ifLoginShow: bool })
-        })
-        event.on('showSignup', bool => {
-            this.setState({ ifSignupShow: bool })
-        })
     }
 
     _toPay() {
         if (!store.user.user) {
-            this.setState({ ifLoginShow: true })
+            event.emit('showLogin',true)
         } else {
             // alert('您已支付')
             this.addOrder()
@@ -73,17 +65,11 @@ const Balance = observer(class Balance extends Component {
     render() {
         const iconStyle = { fontSize: '.35rem' }
         const common = { color: '#8a8a8a' }
-        const { ifLoginShow, ifSignupShow } = this.state
         const balance = Object.values(store.shopCart.cart).length ? Object.values(store.shopCart.cart).filter(item => item.isSelect) : []
         return (
             <div className="balance" style={{ position: 'relative' }}>
                 <TitleBar titleText="结算" />
-                {
-                    ifLoginShow ? <Login /> : null
-                }
-                {
-                    ifSignupShow ? <Signup /> : null
-                }
+               
                 <div className="hr-40"></div>
                 <div className="flex-box flex-ju-c-bt h-100 bg-fff pd-h-20 ">
                     <span>请选择地址</span>

@@ -1,15 +1,18 @@
 import React, { Component } from 'react'
-import { Row, Col, Tabs } from 'antd'
+import { Row, Col } from 'antd'
+import { Modal, Tabs } from 'antd-mobile'
 import { Link } from 'react-router-dom'
 import TitleBar from 'components/common-components/titleBar.js'
 import OrderItem from 'components/order-components/order-item'
 import xhr from 'service/xhr'
 import api from 'service/api'
+import event from 'utils/event'
+
 //引入mobx相关
 import { observer } from 'mobx-react'
 import store from 'store'
-const TabPane = Tabs.TabPane
-
+// const TabPane = Tabs.TabPane
+const alert = Modal.alert;
 const _order = observer(class Orders extends Component {
     constructor() {
         super()
@@ -21,42 +24,53 @@ const _order = observer(class Orders extends Component {
         this._getOrders()
     }
     _getOrders() {
-        const userid=store.user.user?store.user.user.userid:undefined
-        const query = { userid}
+        const userid = store.user.user ? store.user.user.userid : undefined
+        const query = { userid }
         xhr.get(api.order.getOrders, { query }).then(res => {
             if (res.code === '1') {
                 this.setState({
                     orderList: res.data
                 })
+            } else if (res.code === '1000') {
+                alert('提示', '请重新登录', [
+                    { text: '暂不', onPress: () => console.log('cancel') },
+                    { text: '好的', onPress: () => event.emit('showLogin', true) },
+                ])
+
             }
         }).catch(err => { })
     };
     render() {
-        const {orderList}=this.state
+        const { orderList } = this.state
+        const tabs = [
+            { title: '未发货' },
+            { title: '已发货' },
+            { title: '已评价' },
+        ];
         return (
             <div>
                 <TitleBar titleText="我的订单" />
-                <Tabs defaultActiveKey="1" >
-                    <TabPane tab="未发货" key="1">
-                        <div>
-                            {
-                                orderList.map((item, idx) => {
-                                    return (
-                                        <OrderItem key={idx} order={item}/>
-                                    )
-                                })
-                            }
-                        </div>
+                <Tabs tabs={tabs}
+                    initialPage={1}
+                    onChange={(tab, index) => { console.log('onChange', index, tab); }}
+                    onTabClick={(tab, index) => { console.log('onTabClick', index, tab); }}>
+                    <div>
+                        {
+                            orderList.map((item, idx) => {
+                                return (
+                                    <OrderItem key={idx} order={item} />
+                                )
+                            })
+                        }
+                    </div>
 
-                    </TabPane>
-                    <TabPane tab="已收货" key="2">
-                        <div>已收货</div>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '150px', backgroundColor: '#fff' }}>
+                        Content of second tab
+      </div>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '150px', backgroundColor: '#fff' }}>
+                        Content of third tab
+      </div>
 
-                    </TabPane>
-                    <TabPane tab="已评价" key="3">
-                        <div>已评价</div>
-
-                    </TabPane>
                 </Tabs>
             </div>
         )

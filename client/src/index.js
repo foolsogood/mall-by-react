@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 // 样式
 import 'antd/dist/antd.css'
+import 'antd-mobile/dist/antd-mobile.css'; 
 // // 
 import store from './store'
 ReactDOM.render(

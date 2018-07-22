@@ -26,6 +26,10 @@ import Home from 'views/home'
 import Personal from 'views/personal'
 import Classify from 'views/classify'
 import ShopCart from 'views/shopCart'
+import Login from 'components/common-components/login'
+import Signup from 'components/common-components/signup'
+import event from 'utils/event'
+
 const Balance = (props) => (
 	<Bundle load={() => import('views/balance')}>
 		{(Balance) => <Balance {...props} />}
@@ -62,9 +66,32 @@ const BindPhone = (props) => (
 	</Bundle>
 )
 export default class App extends Component {
+	constructor() {
+        super()
+        this.state = {
+            ifLoginShow: false,
+            ifSignupShow: false
+        }
+	};
+	componentWillMount() {
+        event.on('showLogin', bool => {
+            this.setState({ ifLoginShow: bool })
+        })
+        event.on('showSignup', bool => {
+            this.setState({ ifSignupShow: bool })
+        })
+    }
 	render() {
+        const { ifLoginShow, ifSignupShow } = this.state
+		
 		return (
 			<div>
+				 {
+                    ifLoginShow ? <Login /> : null
+                }
+                {
+                    ifSignupShow ? <Signup /> : null
+                }
 				<BrowserRouter >
 					<Switch>
 						<Route exact path="/" component={Home} />

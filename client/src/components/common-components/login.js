@@ -9,7 +9,7 @@ import store from 'store'
 import Cookies from 'js-cookie'
 const FormItem = Form.Item;
 
-const _login=observer(class NormalLoginForm extends Component {
+const _login=observer(class Login extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Icon } from 'antd'
+import { Icon } from 'antd-mobile'
 export default class Loading extends Component {
     render() {
         const style = {
@@ -12,7 +12,7 @@ export default class Loading extends Component {
             background: 'rgba(255,255,255,.5)'
         }
         return (
-            <div className="flex-box " style={style}>
+            <div className="flex-box flex-ver-box" style={style}>
                 <Icon type="loading" style={{fontSize:'.4rem',color:'#444'}}/>
                 <span>loading…… </span>
             </div>
