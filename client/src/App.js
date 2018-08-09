@@ -67,31 +67,31 @@ const BindPhone = (props) => (
 )
 export default class App extends Component {
 	constructor() {
-        super()
-        this.state = {
-            ifLoginShow: false,
-            ifSignupShow: false
-        }
+		super()
+		this.state = {
+			ifLoginShow: false,
+			ifSignupShow: false
+		}
 	};
 	componentWillMount() {
-        event.on('showLogin', bool => {
-            this.setState({ ifLoginShow: bool })
-        })
-        event.on('showSignup', bool => {
-            this.setState({ ifSignupShow: bool })
-        })
-    }
+		event.on('showLogin', bool => {
+			this.setState({ ifLoginShow: bool })
+		})
+		event.on('showSignup', bool => {
+			this.setState({ ifSignupShow: bool })
+		})
+	}
 	render() {
-        const { ifLoginShow, ifSignupShow } = this.state
-		
+		const { ifLoginShow, ifSignupShow } = this.state
+
 		return (
 			<div>
-				 {
-                    ifLoginShow ? <Login /> : null
-                }
-                {
-                    ifSignupShow ? <Signup /> : null
-                }
+				{
+					ifLoginShow ? <Login /> : null
+				}
+				{
+					ifSignupShow ? <Signup /> : null
+				}
 				<BrowserRouter >
 					<Switch>
 						<Route exact path="/" component={Home} />
