@@ -45,23 +45,25 @@ Object.keys(goodList).map((item)=>{<br/>
   )<br/>
 })
 ```
-<br/>
 而不是一定要拿到数组才能渲染,key的话最好不要用索引，而是用一些商品id,用户id之类<br/>
-- 4.状态管理我用的是mobx，这里面是用在购物车中，购物车还结合了localStorage,而结算是结合sessionStrage,还是有瑕疵。
-但对于mobx的学习使用还是足够的，由于create-react-app好像不支持@装饰器,就用
+- 4.状态管理
+ 我用的是mobx，这里面是用在购物车中，购物车还结合了localStorage,而结算是结合sessionStrage,还是有瑕疵。
+ 但对于mobx的学习使用还是足够的，由于create-react-app好像不支持@装饰器,就用
  extendObservable 模式
  在对应的页面中引入react-mobx连接react和mobx ，当然状态本身也要引入<br/>
-import { observer } from 'mobx-react'<br/>
-import store from '../../store'<br/>
-const cart = observer(class cartList extends Component {
-  ......
-}<br/>
-export default cart<br/>
-然后在这个页面中直接获取store中的数据
+ import { observer } from 'mobx-react'<br/>
+ import store from '../../store'<br/>
+ const cart = observer(class cartList extends Component {
+   ......
+ }<br/>
+ export default cart<br/>
+ 然后在这个页面中直接获取store中的数据
 - 5.路由按需加载
   将非首屏展示的路由组件用一个公共的bundle高阶组件包裹，当路由匹配时由bundle组件返回该组件，之后webpack自动缓存改组件，实现按需加载
 - 6.组件通信
   使用node 的event模块的EventEmitter类可满足一般的父子组件或兄弟组件通信
+
+
 ## 服务端
 使用koa2,mysql等实现用户端数据服务<br/>
 - 1.安装mysql 5.0 以上版本，创建一个数据库，自行修改config/config.js配置，两者一致即可
