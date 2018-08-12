@@ -1,16 +1,17 @@
 const router = require('koa-router')();
 const model = require('../mysql/mysql')
+const { success, fail, tokenInvalid } = require('../config/config').codeOption
 
 router.prefix('/api/good')
 router.get('/getAllGoods', async (ctx) => {
     await model.getAllGoods().then(res => {
         ctx.body = {
-            code: '1',
+            code: success,
             data: res
         }
     }).catch(err => {
         ctx.body = {
-            code: '0',
+            code: fail,
             msg: 'err'
         }
     })
@@ -19,7 +20,7 @@ router.get('/getAllGoods', async (ctx) => {
 router.get('/getNewGoods', async (ctx) => {
     await model.getNewGoods().then(res => {
         ctx.body = {
-            code: '1',
+            code: success,
             data: res
         }
     })
@@ -27,7 +28,7 @@ router.get('/getNewGoods', async (ctx) => {
 router.get('/getHotGoods', async (ctx) => {
     await model.getHotGoods().then(res => {
         ctx.body = {
-            code: '1',
+            code: success,
             data: res
         }
     })
@@ -37,7 +38,7 @@ router.get('/searchGood', async (ctx) => {
     if(!keyword){return}
     await model.searchGood(keyword).then(res => {
         ctx.body = {
-            code: '1',
+            code: success,
             data: res
         }
     })
@@ -46,7 +47,7 @@ router.get('/getGoodsByCate', async (ctx) => {
     const { cateId } = ctx.request.query
     await model.getGoodsByCate(cateId).then(res => {
         ctx.body = {
-            code: '1',
+            code: success,
             data: res
         }
     })
@@ -59,7 +60,7 @@ router.get('/getGoodById', async (ctx) => {
     })
     await model.getGoodById(goodId).then(res => {
         ctx.body = {
-            code: '1',
+            code: success,
             data:Object.assign({},res[0],{comments}) 
         }
     })
@@ -68,7 +69,7 @@ router.get('/getGoodById', async (ctx) => {
 //     const { bookId } = ctx.request.body
 //     await model.removeBook(bookId).then(res => {
 //         ctx.body = {
-//             code: '1',
+//             code: success,
 //             msg: 'success'
 //         }
 //     }).catch(err=>{
@@ -79,7 +80,7 @@ router.get('/getGoodById', async (ctx) => {
 //     const { bookName, author, price } = ctx.request.body
 //     await model.addGood([bookName, author, price]).then(res => {
 //         ctx.body = {
-//             code: '1',
+//             code: success,
 //             msg: 'success'
 //         }
 //     }).catch(err => {

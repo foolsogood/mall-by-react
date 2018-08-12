@@ -8,6 +8,12 @@ const config={
         PASSWORD:'FSG851024125',
         PORT:'3306',
         HOST:'localhost'
+    },
+    //状态码配置
+    codeOption:{
+        success:'1',
+        fail:'0',
+        tokenInvalid:'1000'
     }
 }
 module.exports=config
