@@ -2,6 +2,13 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 // 组件
 import Bundle from 'components/common-components/bundle'
+import Home from 'views/home'
+import Personal from 'views/personal'
+import Classify from 'views/classify'
+import ShopCart from 'views/shopCart'
+import Login from 'components/common-components/login'
+import Signup from 'components/common-components/signup'
+import event from 'utils/event'
 // const Home = (props) => (
 // 	<Bundle load={() => import('views/home')}>
 // 		{(Home) => <Home {...props} />}
@@ -22,13 +29,7 @@ import Bundle from 'components/common-components/bundle'
 // 		{(ShopCart) => <ShopCart {...props} />}
 // 	</Bundle>
 // )
-import Home from 'views/home'
-import Personal from 'views/personal'
-import Classify from 'views/classify'
-import ShopCart from 'views/shopCart'
-import Login from 'components/common-components/login'
-import Signup from 'components/common-components/signup'
-import event from 'utils/event'
+
 
 const Balance = (props) => (
 	<Bundle load={() => import('views/balance')}>

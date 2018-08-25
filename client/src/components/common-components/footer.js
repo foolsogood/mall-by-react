@@ -21,7 +21,7 @@ export default class footer extends Component {
 			<footer className="footer t-tc" >
 				<Row>
 					<Col span={6} >
-						<Link to={`/`} className="flex-box flex-ver-box" >
+						<Link to={`/`} className="flex-box flex-ver-box" style={{cursor:'pointer'}}>
 
 							{
 								this._getPathname() === `/`
@@ -38,7 +38,7 @@ export default class footer extends Component {
 						</Link>
 					</Col>
 					<Col span={6}>
-						<Link to={`/classify`} className="flex-box flex-ver-box"  >
+						<Link to={`/classify`} className="flex-box flex-ver-box" style={{cursor:'pointer'}}>
 							{
 								this._getPathname() === `/classify`
 									? <div className="flex-box flex-ver-box">
@@ -54,7 +54,7 @@ export default class footer extends Component {
 						</Link>
 					</Col>
 					<Col span={6}>
-						<Link to={`/shopCart`} className="flex-box flex-ver-box"  >
+						<Link to={`/shopCart`} className="flex-box flex-ver-box"  style={{cursor:'pointer'}}>
 
 							{
 								this._getPathname() === `/shopCart`
@@ -71,7 +71,7 @@ export default class footer extends Component {
 						</Link>
 					</Col>
 					<Col span={6}>
-						<Link to={`/personal`}   >
+						<Link to={`/personal`} className="flex-box flex-ver-box" style={{cursor:'pointer'}}>
 							{
 								this._getPathname() === `/personal`
 									? <div className="flex-box flex-ver-box">
