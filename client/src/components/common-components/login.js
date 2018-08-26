@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import event from 'utils/event'
-import xhr from 'service/xhr'
+import apiServer from 'service/apiServer'
 import api from 'service/api'
 //引入mobx相关
 import { observer } from 'mobx-react'
@@ -19,7 +19,7 @@ const _login=observer(class Login extends Component {
             username: this.props.form.getFieldValue('username'),
             password: this.props.form.getFieldValue('password'),
         }
-        xhr.post(api.user.login, { query }).then(res => {
+        apiServer.post(api.user.login, { query }).then(res => {
             if(res.code===1){
               store.user.getUser(res.data)
               Cookies.set('token',res.token)

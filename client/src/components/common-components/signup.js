@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import event from 'utils/event'
-import xhr from 'service/xhr'
+import apiServer from 'service/apiServer'
 import api from 'service/api'
 const FormItem = Form.Item;
 
@@ -19,7 +19,7 @@ class NormalLoginForm extends Component {
                 password: this.props.form.getFieldValue('password'),
                 repeatPwd: this.props.form.getFieldValue('repeatPwd')
             }
-            xhr.put(api.user.signup, { query }).then(res => {
+            apiServer.put(api.user.signup, { query }).then(res => {
                 if(res.code===1){
                     event.emit('showSignup', false);
                     event.emit('showLogin', true)

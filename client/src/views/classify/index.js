@@ -5,7 +5,7 @@ import Footer from 'components/common-components/footer.js'
 import ClassifyList from 'components/classify-components/classifyList'
 
 import ClassifyTitle from 'components/classify-components/classifyTitle'
-import xhr from 'service/xhr'
+import apiServer from 'service/apiServer'
 import api from 'service/api'
 export default class cateify extends Component {
 	constructor() {
@@ -21,7 +21,7 @@ export default class cateify extends Component {
 		this._getCates()
 	};
 	_getCates() {
-		xhr.get(api.category.getCates, {}).then(res => {
+		apiServer.get(api.category.getCates).then(res => {
 			let arr = []
 			res.data.map(item => {
 				return arr.push(this._getGoodsList(item.cateId))
@@ -35,7 +35,7 @@ export default class cateify extends Component {
 		}).catch(err => { })
 	};
 	_getGoodsList(cateId) {
-		return xhr.get(api.good.getGoodsByCate, { query: { cateId } }).then(res => {
+		return apiServer.get(api.good.getGoodsByCate, { query: { cateId } }).then(res => {
 			return res.data
 		})
 	}

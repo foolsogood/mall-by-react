@@ -4,7 +4,7 @@ import { Modal, Tabs } from 'antd-mobile'
 import { Link } from 'react-router-dom'
 import TitleBar from 'components/common-components/titleBar.js'
 import OrderItem from 'components/order-components/order-item'
-import xhr from 'service/xhr'
+import apiServer from 'service/apiServer'
 import api from 'service/api'
 import event from 'utils/event'
 
@@ -26,7 +26,7 @@ const _order = observer(class Orders extends Component {
     _getOrders() {
         const userid = store.user.user ? store.user.user.userid : undefined
         const query = { userid }
-        xhr.get(api.order.getOrders, { query }).then(res => {
+        apiServer.get(api.order.getOrders, { query }).then(res => {
             if (res.code === '1') {
                 this.setState({
                     orderList: res.data

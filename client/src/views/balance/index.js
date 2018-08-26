@@ -11,7 +11,7 @@ import Signup from 'components/common-components/signup.js'
 import { observer } from 'mobx-react'
 import store from 'store'
 import event from 'utils/event'
-import xhr from 'service/xhr'
+import apiServer from 'service/apiServer'
 import api from 'service/api'
 const Balance = observer(class Balance extends Component {
     constructor() {
@@ -54,7 +54,7 @@ const Balance = observer(class Balance extends Component {
             price: JSON.stringify(price),
             number: JSON.stringify(number)
         }
-        xhr.post(api.order.addOrder, { query }).then(res => {
+        apiServer.post(api.order.addOrder, { query }).then(res => {
             if (res.code === '1') {
                 goodId.forEach(item => {
                     store.shopCart.removeFromCart(item)

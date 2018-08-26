@@ -8,6 +8,8 @@ import Classify from 'views/classify'
 import ShopCart from 'views/shopCart'
 import Login from 'components/common-components/login'
 import Signup from 'components/common-components/signup'
+import SmallLoading from 'components/common-components/smallLoading'
+
 import event from 'utils/event'
 // const Home = (props) => (
 // 	<Bundle load={() => import('views/home')}>
@@ -71,7 +73,7 @@ export default class App extends Component {
 		super()
 		this.state = {
 			ifLoginShow: false,
-			ifSignupShow: false
+			ifSignupShow: false,
 		}
 	};
 	componentWillMount() {
@@ -81,6 +83,7 @@ export default class App extends Component {
 		event.on('showSignup', bool => {
 			this.setState({ ifSignupShow: bool })
 		})
+		
 	}
 	render() {
 		const { ifLoginShow, ifSignupShow } = this.state
@@ -93,6 +96,7 @@ export default class App extends Component {
 				{
 					ifSignupShow ? <Signup /> : null
 				}
+				<SmallLoading  />
 				<BrowserRouter >
 					<Switch>
 						<Route exact path="/" component={Home} />

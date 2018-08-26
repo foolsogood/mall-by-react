@@ -7,7 +7,7 @@ import Banner from 'components/common-components/banner'
 import Notice from 'components/home-components/notice'
 import HostList from 'components/home-components/hot/hotList'
 import RecomList from 'components/home-components/recommend/recomList'
-import xhr from 'service/xhr'
+import apiServer from 'service/apiServer'
 import api from 'service/api'
 export default class Home extends Component {
 	constructor() {
@@ -41,7 +41,7 @@ export default class Home extends Component {
 		})
 	};
 	_getHomeImgList() {
-		xhr.get(api.banner.getHomeBanner, {}).then(res => {
+		apiServer.get(api.banner.getHomeBanner).then(res => {
 			if (res.code === '1') {
 				let homeImgList = res.data
 				this.setState({
@@ -71,7 +71,7 @@ export default class Home extends Component {
 		}
 	};
 	_getHotGoods() {
-		xhr.get(api.good.getHotGoods, {}).then(res => {
+		apiServer.get(api.good.getHotGoods).then(res => {
 			if (res.code === '1') {
 				this.setState({
 					hotGoods: res.data

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Input } from 'antd'
 import { Link } from 'react-router-dom'
 
-import xhr from 'service/xhr'
+import apiServer from 'service/apiServer'
 import api from 'service/api'
 const Search = Input.Search
 export default class searchBar extends Component {
@@ -21,7 +21,7 @@ export default class searchBar extends Component {
 
     };
     _serachGood(keyword) {
-        xhr.get(api.good.searchGood, { query: { keyword } }).then(res => {
+        apiServer.get(api.good.searchGood, { query: { keyword } }).then(res => {
             if (res.code === '1') {
                 this.setState({
                     list: res.data

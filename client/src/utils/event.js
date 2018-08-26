@@ -1,2 +1,4 @@
 import {EventEmitter} from 'events';
-export default new EventEmitter()
+let ee=new EventEmitter()
+ee.setMaxListeners(50)
+export default ee

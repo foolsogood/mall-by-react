@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Row, Col } from 'antd'
 import { Link } from 'react-router-dom'
 import TitleBar from 'components/common-components/titleBar.js'
-// import xhr from 'service/xhr'
+// import apiServer from 'service/apiServer'
 // import api from 'service/api'
 
 export default class OrderDetail extends Component {
@@ -16,7 +16,7 @@ export default class OrderDetail extends Component {
     }
     _getHomeImgList() {
         const query = { userid: store.user.user.userid }
-        xhr.get(api.order.getOrders, { query }).then(res => {
+        apiServer.get(api.order.getOrders, { query }).then(res => {
             if (res.code === '1') {
                 this.setState({
                     orderList: res.data

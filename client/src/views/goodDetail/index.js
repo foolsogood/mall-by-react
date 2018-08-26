@@ -7,7 +7,7 @@ import Banner from 'components/common-components/banner'
 // 组件
 import Comments from 'components/good-components/comments'
 import GoodFooter from 'components/good-components/goodFooter'
-import xhr from 'service/xhr'
+import apiServer from 'service/apiServer'
 import api from 'service/api'
 
 const TabPane = Tabs.TabPane
@@ -36,7 +36,7 @@ export default class GoodDetail extends Component {
         const query={
            goodId: this.state.goodId
         }
-        xhr.get(api.good.getGoodById,{query}).then(res => {
+        apiServer.get(api.good.getGoodById,{query}).then(res => {
             if (res.code === '1') {
                 this.setState({
                     goodInfo: res.data,
@@ -56,7 +56,7 @@ export default class GoodDetail extends Component {
                     < Banner imgList={imgList} />
 
                     <div className="bg-fff detail-text">
-                        <p className="p-1">{goodInfo.goodName}}</p>
+                        <p className="p-1">{goodInfo.goodName}</p>
                         <p>{goodInfo.desction}</p>
                         <p className="p-2 price">¥{goodInfo.price}</p>
                     </div>

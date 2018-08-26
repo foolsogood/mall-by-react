@@ -2,7 +2,7 @@ import React from 'react'
 import { Form, Input, Button } from 'antd'
 
 import TitleBar from 'components/common-components/titleBar.js'
-import xhr from 'service/xhr'
+import apiServer from 'service/apiServer'
 import api from 'service/api'
 //引入mobx相关
 import { observer } from 'mobx-react'
@@ -18,7 +18,7 @@ const _bindPhone = observer(
                     console.log(e)
                 } else {
                     const query = { userid: store.user.user.userid, phone: this.props.form.getFieldValue('phone') }
-                    xhr.post(api.user.bindPhone, { query }).then(res => {
+                    apiServer.post(api.user.bindPhone, { query }).then(res => {
                         if (res.code === '1') {
 
                         }

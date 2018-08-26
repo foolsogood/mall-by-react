@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import RecomItem from './recomItem'
 import PropTypes from 'prop-types'
-import xhr from 'service/xhr'
+import apiServer from 'service/apiServer'
 import api from 'service/api'
 
 export default class RecomList extends Component {
@@ -18,7 +18,7 @@ export default class RecomList extends Component {
         this._getRecomGoods()
     };
     _getRecomGoods() {
-        xhr.get(api.good.getNewGoods,{}).then(res => {
+        apiServer.get(api.good.getNewGoods).then(res => {
             if (res.code === '1') {
                 this.setState({
                     obj: res.data

@@ -7,26 +7,25 @@ import TitleBar from 'components/common-components/titleBar.js'
 //引入mobx相关
 import { observer } from 'mobx-react'
 import store from 'store'
-const cart=observer( class shopCart extends Component {
+const cart = observer(class shopCart extends Component {
     constructor() {
         super()
         this.state = {
-          
             ifBackShow: false,
-           
         }
     };
     render() {
+        const _cart = store.shopCart.cart
         return (
             <div>
-                <TitleBar  ifBackShow={this.state.ifBackShow} titleText="购物车" />
+                <TitleBar ifBackShow={this.state.ifBackShow} titleText="购物车" />
                 {
-                   store.shopCart.cart&&Object.values(store.shopCart.cart).length
-                    ?<CartList/>
-                    :<CartEmpty/>
+                    _cart && Object.values(_cart).length
+                        ? <CartList />
+                        : <CartEmpty />
                 }
             </div>
         )
     }
 })
-export default  cart
+export default cart
