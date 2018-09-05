@@ -5,8 +5,8 @@ import Footer from 'components/common-components/footer.js'
 import ClassifyList from 'components/classify-components/classifyList'
 
 import ClassifyTitle from 'components/classify-components/classifyTitle'
-import apiServer from 'service/apiServer'
-import api from 'service/api'
+
+
 export default class cateify extends Component {
 	constructor() {
 		super()
@@ -21,21 +21,24 @@ export default class cateify extends Component {
 		this._getCates()
 	};
 	_getCates() {
-		apiServer.get(api.category.getCates).then(res => {
-			let arr = []
-			res.data.map(item => {
-				return arr.push(this._getGoodsList(item.cateId))
-			})
-			Promise.all(arr).then(rep => {
-				// console.log(rep)
-				this.setState({
-					list: rep
+		const url = $api.category.getCates
+		$apiServer.get(url)
+			.then($preAjaxHandler.call(this))
+			.then(res => {
+				let arr = res.data.map(item => {
+					return this._getGoodsList(item.cateId)
 				})
-			})
-		}).catch(err => { })
+				Promise.all(arr).then(rep => {
+					// console.log(rep)
+					this.setState({
+						list: rep
+					})
+				})
+			}).catch($commonErrorHandler.apply(this, [url]))
+
 	};
 	_getGoodsList(cateId) {
-		return apiServer.get(api.good.getGoodsByCate, { query: { cateId } }).then(res => {
+		return $apiServer.get($api.good.getGoodsByCate, { query: { cateId } }).then(res => {
 			return res.data
 		})
 	}

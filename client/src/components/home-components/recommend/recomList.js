@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import RecomItem from './recomItem'
 import PropTypes from 'prop-types'
-import apiServer from 'service/apiServer'
-import api from 'service/api'
+
+
 
 export default class RecomList extends Component {
     constructor() {
@@ -18,13 +18,15 @@ export default class RecomList extends Component {
         this._getRecomGoods()
     };
     _getRecomGoods() {
-        apiServer.get(api.good.getNewGoods).then(res => {
-            if (res.code === '1') {
+        const url = $api.good.getNewGoods
+        $apiServer.get(url)
+            .then($preAjaxHandler.call(this))
+            .then(res => {
                 this.setState({
                     obj: res.data
                 })
-            }
-        }).catch(err => { })
+            }).catch($commonErrorHandler.apply(this, [url]))
+
     };
     render() {
         return (

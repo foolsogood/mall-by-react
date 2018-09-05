@@ -4,7 +4,7 @@ class commonQuery {
         extendObservable(this, {
             // *观察数据
             loading: {
-                isLoadingShow: true,
+                isLoadingShow: false,
                 loadingTxt: '加载中……'
             }
 

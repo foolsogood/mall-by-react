@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { Input } from 'antd'
 import { Link } from 'react-router-dom'
 
-import apiServer from 'service/apiServer'
-import api from 'service/api'
+
+
 const Search = Input.Search
 export default class searchBar extends Component {
     constructor() {
@@ -21,13 +21,15 @@ export default class searchBar extends Component {
 
     };
     _serachGood(keyword) {
-        apiServer.get(api.good.searchGood, { query: { keyword } }).then(res => {
-            if (res.code === '1') {
+        const url = $api.good.searchGood
+        $apiServer.get(url, { query: { keyword } })
+            .then($preAjaxHandler.call(this))
+            .then(res => {
                 this.setState({
                     list: res.data
                 })
-            }
-        })
+            }).catch($commonErrorHandler.apply(this, [url]))
+
     }
     _keywordChange(ev) {
         console.log(ev)

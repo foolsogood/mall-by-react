@@ -7,8 +7,8 @@ import Banner from 'components/common-components/banner'
 import Notice from 'components/home-components/notice'
 import HostList from 'components/home-components/hot/hotList'
 import RecomList from 'components/home-components/recommend/recomList'
-import apiServer from 'service/apiServer'
-import api from 'service/api'
+
+
 export default class Home extends Component {
 	constructor() {
 		super()
@@ -41,14 +41,15 @@ export default class Home extends Component {
 		})
 	};
 	_getHomeImgList() {
-		apiServer.get(api.banner.getHomeBanner).then(res => {
-			if (res.code === '1') {
+		const url = $api.banner.getHomeBanner
+		$apiServer.get(url)
+			.then($preAjaxHandler.call(this))
+			.then(res => {
 				let homeImgList = res.data
 				this.setState({
 					imgList: homeImgList
 				})
-			}
-		}).catch(err => { })
+			}).catch($commonErrorHandler.apply(this, [url]))
 	};
 	_changeSearchStyle(e) {
 		if (!this.lock) {
@@ -71,13 +72,14 @@ export default class Home extends Component {
 		}
 	};
 	_getHotGoods() {
-		apiServer.get(api.good.getHotGoods).then(res => {
-			if (res.code === '1') {
+		const url = $api.good.getHotGoods
+		$apiServer.get(url)
+			.then($preAjaxHandler.call(this))
+			.then(res => {
 				this.setState({
 					hotGoods: res.data
 				})
-			}
-		}).catch(err => { })
+			}).catch($commonErrorHandler.apply(this, [url]))
 	};
 	render() {
 		return (

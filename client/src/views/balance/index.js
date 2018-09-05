@@ -11,8 +11,8 @@ import Signup from 'components/common-components/signup.js'
 import { observer } from 'mobx-react'
 import store from 'store'
 import event from 'utils/event'
-import apiServer from 'service/apiServer'
-import api from 'service/api'
+
+
 const Balance = observer(class Balance extends Component {
     constructor() {
         super()
@@ -30,7 +30,7 @@ const Balance = observer(class Balance extends Component {
 
     _toPay() {
         if (!store.user.user) {
-            event.emit('showLogin',true)
+            event.emit('showLogin', true)
         } else {
             // alert('您已支付')
             this.addOrder()
@@ -54,13 +54,15 @@ const Balance = observer(class Balance extends Component {
             price: JSON.stringify(price),
             number: JSON.stringify(number)
         }
-        apiServer.post(api.order.addOrder, { query }).then(res => {
-            if (res.code === '1') {
+        const url = $api.order.addOrder
+        $apiServer.post(url, { query })
+            .then($preAjaxHandler.call(this))
+            .then(res => {
                 goodId.forEach(item => {
                     store.shopCart.removeFromCart(item)
                 })
-            }
-        }).catch(err => { })
+            }).catch($commonErrorHandler.apply(this, [url]))
+
     }
     render() {
         const iconStyle = { fontSize: '.35rem' }
@@ -69,7 +71,7 @@ const Balance = observer(class Balance extends Component {
         return (
             <div className="balance" style={{ position: 'relative' }}>
                 <TitleBar titleText="结算" />
-               
+
                 <div className="hr-40"></div>
                 <div className="flex-box flex-ju-c-bt h-100 bg-fff pd-h-20 ">
                     <span>请选择地址</span>

@@ -7,8 +7,8 @@ import Banner from 'components/common-components/banner'
 // 组件
 import Comments from 'components/good-components/comments'
 import GoodFooter from 'components/good-components/goodFooter'
-import apiServer from 'service/apiServer'
-import api from 'service/api'
+
+
 
 const TabPane = Tabs.TabPane
 export default class GoodDetail extends Component {
@@ -33,19 +33,21 @@ export default class GoodDetail extends Component {
 
     };
     _getGoodInfo() {
-        const query={
-           goodId: this.state.goodId
+        const query = {
+            goodId: this.state.goodId
         }
-        apiServer.get(api.good.getGoodById,{query}).then(res => {
-            if (res.code === '1') {
+        const url = $api.good.getGoodById
+        $apiServer.get(url, { query })
+            .then($preAjaxHandler.call(this))
+            .then(res => {
                 this.setState({
                     goodInfo: res.data,
                     // 在jsx找中直接传goodInfo.imgList在子组件中取不到
-                    imgList:  JSON.parse(res.data.imgs),
-                    detailList: JSON.parse( res.data.detailImg)
+                    imgList: JSON.parse(res.data.imgs),
+                    detailList: JSON.parse(res.data.detailImg)
                 })
-            }
-        }).catch(err => { })
+            }).catch($commonErrorHandler.apply(this, [url]))
+
     };
     render() {
         const { goodInfo, imgList, detailList } = this.state

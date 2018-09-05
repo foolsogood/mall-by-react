@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { Row, Col } from 'antd'
 import { Link } from 'react-router-dom'
 import TitleBar from 'components/common-components/titleBar.js'
-// import apiServer from 'service/apiServer'
-// import api from 'service/api'
+// 
+// 
 
 export default class OrderDetail extends Component {
     constructor() {
@@ -16,19 +16,21 @@ export default class OrderDetail extends Component {
     }
     _getHomeImgList() {
         const query = { userid: store.user.user.userid }
-        apiServer.get(api.order.getOrders, { query }).then(res => {
-            if (res.code === '1') {
+        const url = $api.order.getOrders
+        $apiServer.get(url, { query })
+            .then($preAjaxHandler.call(this))
+            .then(res => {
                 this.setState({
                     orderList: res.data
                 })
-            }
-        }).catch(err => { })
+            }).catch($commonErrorHandler.apply(this, [url]))
+
     };
     render() {
         return (
             <div>
                 <TitleBar titleText="订单详情" />
-                
+
             </div>
         )
     }

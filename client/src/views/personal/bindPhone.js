@@ -2,8 +2,8 @@ import React from 'react'
 import { Form, Input, Button } from 'antd'
 
 import TitleBar from 'components/common-components/titleBar.js'
-import apiServer from 'service/apiServer'
-import api from 'service/api'
+
+
 //引入mobx相关
 import { observer } from 'mobx-react'
 import store from 'store'
@@ -18,11 +18,12 @@ const _bindPhone = observer(
                     console.log(e)
                 } else {
                     const query = { userid: store.user.user.userid, phone: this.props.form.getFieldValue('phone') }
-                    apiServer.post(api.user.bindPhone, { query }).then(res => {
-                        if (res.code === '1') {
+                    const url = $api.user.bindPhone
+                    $apiServer.post(url, { query })
+                        .then($preAjaxHandler.call(this))
 
-                        }
-                    }).catch(err => { })
+                        .then(res => {
+                        }).catch($commonErrorHandler.apply(this, [url]))
                 }
             })
         };

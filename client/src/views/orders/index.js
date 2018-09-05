@@ -4,8 +4,8 @@ import { Modal, Tabs } from 'antd-mobile'
 import { Link } from 'react-router-dom'
 import TitleBar from 'components/common-components/titleBar.js'
 import OrderItem from 'components/order-components/order-item'
-import apiServer from 'service/apiServer'
-import api from 'service/api'
+
+
 import event from 'utils/event'
 
 //引入mobx相关
@@ -26,19 +26,23 @@ const _order = observer(class Orders extends Component {
     _getOrders() {
         const userid = store.user.user ? store.user.user.userid : undefined
         const query = { userid }
-        apiServer.get(api.order.getOrders, { query }).then(res => {
-            if (res.code === '1') {
-                this.setState({
-                    orderList: res.data
-                })
-            } else if (res.code === '1000') {
-                alert('提示', '请重新登录', [
-                    { text: '暂不', onPress: () => console.log('cancel') },
-                    { text: '好的', onPress: () => event.emit('showLogin', true) },
-                ])
+        const url = $api.order.getOrders
+        $apiServer.get(url, { query })
+            .then($preAjaxHandler.call(this))
+            .then(res => {
+                if (res.code === '1') {
+                    this.setState({
+                        orderList: res.data
+                    })
+                } else if (res.code === '1000') {
+                    alert('提示', '请重新登录', [
+                        { text: '暂不', onPress: () => console.log('cancel') },
+                        { text: '好的', onPress: () => event.emit('showLogin', true) },
+                    ])
 
-            }
-        }).catch(err => { })
+                }
+            }).catch($commonErrorHandler.apply(this, [url]))
+
     };
     render() {
         const { orderList } = this.state
