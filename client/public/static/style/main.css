@@ -20,6 +20,10 @@ top: .8rem;
 .flex-ju-c-bt{
 	justify-content: space-between;
 } 
+.just-c-st{
+    justify-content: start;
+	
+}
 .flex-al-st{
 	align-items: flex-start;
 }

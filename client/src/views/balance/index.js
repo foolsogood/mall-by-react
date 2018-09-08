@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import { Row, Col } from 'antd'
 import { Link } from 'react-router-dom'
 import TitleBar from 'components/common-components/titleBar.js'
-import Login from 'components/common-components/login.js'
-import Signup from 'components/common-components/signup.js'
 
 //图标
 // import iconWechat from 'assets/img/ic-wx-pay.png'
@@ -30,7 +28,7 @@ const Balance = observer(class Balance extends Component {
 
     _toPay() {
         if (!store.user.user) {
-            event.emit('showLogin', true)
+            $event.emit('showLogin', true)
         } else {
             // alert('您已支付')
             this.addOrder()

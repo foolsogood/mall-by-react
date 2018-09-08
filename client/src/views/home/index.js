@@ -7,7 +7,7 @@ import Banner from 'components/common-components/banner'
 import Notice from 'components/home-components/notice'
 import HostList from 'components/home-components/hot/hotList'
 import RecomList from 'components/home-components/recommend/recomList'
-
+import tool from 'utils/tool'
 
 export default class Home extends Component {
 	constructor() {
@@ -45,31 +45,43 @@ export default class Home extends Component {
 		$apiServer.get(url)
 			.then($preAjaxHandler.call(this))
 			.then(res => {
-				let homeImgList = res.data
 				this.setState({
-					imgList: homeImgList
+					imgList: res.data
 				})
 			}).catch($commonErrorHandler.apply(this, [url]))
 	};
 	_changeSearchStyle(e) {
-		if (!this.lock) {
-			let scroTop = document.documentElement.scrollTop
-			if (scroTop > 20) {
-				this.setState({
-					searchStyle: {
-						background: 'rgba(72,173,252,' + 1 * scroTop / 200 + ')',
-						lineHeight: '1rem'
-					}
-				})
-			} else {
-				this.setState({
-					searchStyle: {
-						top: '.2rem',
+
+		let fn = () => {
+			if (!this.lock) {
+				let scroTop = document.documentElement.scrollTop
+				if (scroTop > 20) {
+					this.setState({
+						searchStyle: {
+							background: 'rgba(72,173,252,' + 1 * scroTop / 200 + ')',
+							lineHeight: '1rem'
+						}
+					})
+
+				} else {
+					const _c = {
+						top: '0',
 						background: 'transparent'
 					}
-				})
+					if (tool.checkIfEual(this.state.searchStyle, _c)) {
+						console.log('equal')
+						return
+					}
+					this.setState({
+						searchStyle: _c
+					})
+				}
 			}
+
 		}
+		//节流
+		tool.throttle(fn, 50)()
+
 	};
 	_getHotGoods() {
 		const url = $api.good.getHotGoods
