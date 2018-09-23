@@ -20,7 +20,7 @@ export default class ServerClinet {
         }
         if (obj.option.ifLoadingShow) {
             //显示loading
-            store.commonQuery.setLoading(true, obj.option.loadingText)
+            $showLoading.call(null)
         }
         if (!obj.query.token) {
             obj.query.token = Cookies.get('token')
@@ -35,7 +35,7 @@ export default class ServerClinet {
         }
         if (obj.option.ifLoadingShow) {
             //显示loading
-            store.commonQuery.setLoading(true, obj.option.loadingText)
+            $showLoading.call(null)
         }
         if (!obj.query.token) {
             obj.query.token = Cookies.get('token')
@@ -50,7 +50,7 @@ export default class ServerClinet {
         }
         if (obj.option.ifLoadingShow) {
             //显示loading
-            store.commonQuery.setLoading(true, obj.option.loadingText)
+            $showLoading.call(null)
         }
         if (!obj.query.token) {
             obj.query.token = Cookies.get('token')
