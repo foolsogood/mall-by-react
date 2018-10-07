@@ -69,7 +69,6 @@ export default class Home extends Component {
 						background: 'transparent'
 					}
 					if (tool.checkIfEual(this.state.searchStyle, _c)) {
-						console.log('equal')
 						return
 					}
 					this.setState({

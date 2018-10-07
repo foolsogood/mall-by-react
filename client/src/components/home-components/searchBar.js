@@ -49,7 +49,7 @@ export default class searchBar extends Component {
                     <Link key={item.goodId} to={`/goodDetail/${item.goodId}`}>
 
                         <div className="pd-h-20 flex-box just-c-st" style={{ width: '100%', lineHeight: '0.8rem' }}>
-                            <img src={item.imgs && JSON.parse(item.imgs)[0]} style={{ width: '.5rem', height: '.5rem' }} />
+                            <img alt="" src={item.imgs && JSON.parse(item.imgs)[0]} style={{ width: '.5rem', height: '.5rem' }} />
                             <span style={{ paddingRight: '.2rem' }}>{item.goodName}</span>
                         </div>
                     </Link>
