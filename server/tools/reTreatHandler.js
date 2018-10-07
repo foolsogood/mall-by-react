@@ -28,8 +28,9 @@ function tokenNeededpreTreatHandler(ctx, next) {
   return new Promise((resolve, reject) => {
     try {
       let flag = checkToken(ctx)
+      console.log(flag, tokenInvalid)
       if (flag.code === tokenInvalid) {
-        // console.log(flag)
+
         ctx.body = flag
         resolve(ctx.body)
       } else {

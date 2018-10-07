@@ -11,7 +11,7 @@ app.use(logger())
     .use(staticServer(path.join(__dirname, 'static')))
     .use(cors())
     .use(bodyParser())
-Object.values(model).map(item => {
+Object.values(model).forEach(item => {
     app.use(item.routes())
     app.use(item.allowedMethods())
 })

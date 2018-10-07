@@ -9,6 +9,7 @@ const checkToken = (ctx) => {
     }
     const { token } = _con[ctx.request.method]
     const decoded = jwt.decode(token)
+    console.log('decoded',decoded)
     // 监测 token 是否过期，decoded.exp为创建时时间 ➕ 增加设置的过期时间
     if (!token || !decoded || (token && decoded && decoded.exp <= new Date() / 1000)) {
         return {

@@ -1,14 +1,25 @@
 const router = require('koa-router')();
 const model = require('../mysql/mysql')
-// const checkToken = require('../tools/checkToken')
+const sha1 = require('sha1')
 const { success, fail, tokenInvalid } = require('../config/config').codeOption
 
 router.prefix('/api/banner')
 router.get('/getHomeBanner', async (ctx) => {
     await model.getHomeBanner().then(res => {
-        ctx.body = {
-            code: success,
-            data: res
+        const etag = ctx.get('if-none-match')
+        ctx.set({
+            'Cache-Control': 'max-age=30,no-cache',
+            'ETag': sha1(res)
+        })
+        if (etag == sha1(res)) {
+            ctx.status = 304
+            ctx.body = ''
+        } else {
+
+            ctx.body = {
+                code: success,
+                data: res
+            }
         }
     }).catch(err => {
         ctx.body = {
@@ -17,4 +28,4 @@ router.get('/getHomeBanner', async (ctx) => {
         }
     })
 })
-module.exports=router
+module.exports = router
