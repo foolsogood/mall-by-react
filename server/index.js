@@ -15,5 +15,8 @@ Object.values(model).forEach(item => {
     app.use(item.routes())
     app.use(item.allowedMethods())
 })
+app.on('error',(err,ctx)=>{
+    throw err
+})
 app.listen(port)
 console.log('server running at http://localhost:'+port)
