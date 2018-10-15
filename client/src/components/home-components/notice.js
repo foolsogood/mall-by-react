@@ -3,12 +3,6 @@ import { Row, Col } from 'antd'
 import Marquee from 'components/common-components/marquee'
 
 export default class Notice extends Component {
-    constructor() {
-        super()
-        this.state = {
-            text: "欢迎来到小米商城,5折优惠大酬宾,5折优惠大酬宾,5折优惠大酬宾p---[900000",
-        }
-    };
     render() {
        
         const content = (

@@ -11,6 +11,9 @@ export default class RecomItem extends Component {
     };
     render() {
         const {good}=this.props
+         /**
+         * 鼠标移动到商品时 预加载商品详情页
+         */
         const LoadableComponent = Loadable({
             loader: () => import('views/goodDetail'),
             loading: Loading,
