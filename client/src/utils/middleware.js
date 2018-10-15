@@ -18,7 +18,8 @@ const middleware = {
     //ajax错误处理
     commonErrorHandler(url) {
         return function (errorMsg) {
-            console.error(`url:${url},${errorMsg}`)
+            console.error(`url:${url}`)
+            throw errorMsg
         }
     },
     //显示loading

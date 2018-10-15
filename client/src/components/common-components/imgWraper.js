@@ -6,7 +6,7 @@ export default class ImgWrapper extends Component {
      * 该组件作用：图片onerror 替换成默认图片
      */
     static propTypes = {
-        'data-errorImgSrc': PropTypes.string.isRequired,
+        'data-errorimgsrc': PropTypes.string.isRequired,
         src: PropTypes.string.isRequired
     };
     constructor() {
@@ -18,7 +18,7 @@ export default class ImgWrapper extends Component {
     }
     imgErrorHandler() {
         this.setState({
-            imgSrc: this.props['data-errorImgSrc']
+            imgSrc: this.props['data-errorimgsrc']
         })
     }
     componentWillMount() {
