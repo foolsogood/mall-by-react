@@ -7,7 +7,7 @@
 - 1.路由传值<br/>
 在路由配置中注入 history,然后把参数写在Route组件中
 ```
- <Route path="/goodDetail/:cateId/:id" component={GoodDetail} />
+ <Route path="/goodDetail/:cateId/:goodId" component={GoodDetail} />
  ```
  在页面中用<Link>组件传值：<br/>
  ```
@@ -30,7 +30,7 @@
 <br/>
 - 2.路由获取参数<br/>
 在componentDidMount函数中
- let goodId = this.props.match.params.id<br/>
+ let {goodId} = this.props.match.params<br/>
 - 3.获取当前路由路径<br/>
 window.location.pathname<br/>
 
