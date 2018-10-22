@@ -14,7 +14,7 @@ export default class RecomList extends Component {
     static propTypes = {
         titleText: PropTypes.string
     };
-    componentWillMount() {
+    componentDidMount() {
         this._getRecomGoods()
     };
     _getRecomGoods() {

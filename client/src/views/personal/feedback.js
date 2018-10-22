@@ -5,7 +5,7 @@ const { TextArea } = Input
 const FormItem = Form.Item
 export default class feedback extends React.Component {
    
-    handleSubmit(e) {
+    handleSubmit=(e)=> {
         e.preventDefault()
         console.log(e)
     };
@@ -21,7 +21,7 @@ export default class feedback extends React.Component {
         return (
             <div>
                 <TitleBar   titleText="意见反馈" />
-                <Form onSubmit={this.handleSubmit.bind(this)}>
+                <Form onSubmit={this.handleSubmit}>
                     <FormItem>
                         <TextArea rows={8} placeholder="有什么好的意见或建议?" />
                     </FormItem>

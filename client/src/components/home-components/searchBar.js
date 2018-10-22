@@ -13,15 +13,13 @@ export default class searchBar extends Component {
             keyword: '',
             isSerachHasData:null,//搜索是否有对应商品
         }
-        this._serachGood = this._serachGood.bind(this)
-        this._keywordChange = this._keywordChange.bind(this)
 
     }
     inputStyle = {
         width: '90%'
 
     };
-    _serachGood(keyword) {
+    _serachGood=(keyword)=> {
         const url = $api.good.searchGood
         $apiServer.get(url, { query: { keyword } })
             .then($preAjaxHandler.call(this))
@@ -33,7 +31,7 @@ export default class searchBar extends Component {
             }).catch($commonErrorHandler.apply(this, [url]))
 
     }
-    _keywordChange(ev) {
+    _keywordChange=(ev)=> {
         console.log(ev)
         // if(!keyword){
         //     this.setState({

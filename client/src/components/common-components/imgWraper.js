@@ -14,14 +14,13 @@ export default class ImgWrapper extends Component {
         this.state = {
             imgSrc: ''
         }
-        this.imgErrorHandler = this.imgErrorHandler.bind(this)
     }
-    imgErrorHandler() {
+    imgErrorHandler=()=> {
         this.setState({
             imgSrc: this.props['data-errorimgsrc']
         })
     }
-    componentWillMount() {
+    componentDidMount() {
         this.setState({
             imgSrc: this.props.src ? this.props.src : ''
         })

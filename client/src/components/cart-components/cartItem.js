@@ -13,7 +13,7 @@ const cartItem = observer(class cartItem extends Component {
         }
     };
     //切换是否选中该商品
-    _toggleCheck(goodId, event) {
+    _toggleCheck=(goodId)=> {
         if (this.state.ifChecked) {
             this.setState({
                 ifChecked: false
@@ -27,7 +27,7 @@ const cartItem = observer(class cartItem extends Component {
         }
     };
 
-    _changeNum(num, goodId, way, event) {
+    _changeNum=(num, goodId, way)=> {
 
         if (way > 0) {
             store.shopCart.changeNum(goodId, way)
@@ -40,7 +40,7 @@ const cartItem = observer(class cartItem extends Component {
         }
     };
 
-    _removeThisGood(event, goodId) {
+    _removeThisGood=( goodId)=> {
         store.shopCart.removeFromCart(goodId)
     };
     componentDidMount() {
@@ -61,7 +61,7 @@ const cartItem = observer(class cartItem extends Component {
         return (
             <div className="cart-item bg-fff">
                 <Row style={flexBox}>
-                    <Col span={4} onClick={this._toggleCheck.bind(this, cartItem.goodId)}>
+                    <Col span={4} onClick={() => { this._toggleCheck(cartItem.goodId) }}>
                         <div className="flex-box">
                             {
                                 this.state.ifChecked
@@ -78,9 +78,9 @@ const cartItem = observer(class cartItem extends Component {
                                     <p>{cartItem.name}</p>
                                     <p>售价:{cartItem.price}元 合计：{cartItem.price * cartItem.number}元</p>
                                     <div className="flex-box ">
-                                        <div className="desc t-tc" onClick={this._changeNum.bind(this, cartItem.number, cartItem.goodId, -1)} >-</div>
+                                        <div className="desc t-tc" onClick={()=>this._changeNum( cartItem.number, cartItem.goodId, -1)} >-</div>
                                         <div className="num t-tc"  >{cartItem.number}</div>
-                                        <div className="plus t-tc" onClick={this._changeNum.bind(this, cartItem.number, cartItem.goodId, 1)} >+</div>
+                                        <div className="plus t-tc" onClick={()=>this._changeNum(cartItem.number, cartItem.goodId, 1)}>+</div>
                                     </div>
                                 </Col>
                             </Row>
@@ -88,7 +88,7 @@ const cartItem = observer(class cartItem extends Component {
                     </Col>
                     <Col span={4} >
                         <div className="flex-box">
-                            <span className="iconfont icon-shanchu" style={{ ...iconStyle, ...common }} onClick={() => this._removeThisGood(this, cartItem.goodId)} ></span>
+                            <span className="iconfont icon-shanchu" style={{ ...iconStyle, ...common }} onClick={() => this._removeThisGood( cartItem.goodId)} ></span>
                         </div>
                     </Col>
                 </Row>

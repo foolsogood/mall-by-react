@@ -4,12 +4,6 @@ import { Row, Col } from 'antd'
 import { createHistory } from 'history'
 const history = createHistory()
 export default class titleBar extends Component {
-	constructor() {
-		super()
-		this.state = {
-			backText: '<'
-		}
-	};
 	static defaultProps={
 		ifBackShow:true
 	};
@@ -17,11 +11,11 @@ export default class titleBar extends Component {
 		ifBackShow:PropTypes.bool,
 		titleText:PropTypes.string
 	};
-	goBack() {
+	goBack=()=> {
 		history.goBack()
 	};
 	render() {
-		const titleText = this.props.titleText
+		const {titleText} = this.props
 		return (
 			<div>
 
@@ -29,7 +23,7 @@ export default class titleBar extends Component {
 					<Row>
 						<Col span={2}>
 							{this.props.ifBackShow
-								? <span onClick={this.goBack}>{this.state.backText}</span>
+								? <span onClick={this.goBack}>&lt;</span>
 								: ''
 							}
 						</Col>

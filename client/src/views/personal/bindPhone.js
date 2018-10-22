@@ -11,7 +11,7 @@ const FormItem = Form.Item
 const _bindPhone = observer(
     class BindPhone extends React.Component {
 
-        handleSubmit(e) {
+        handleSubmit=(e)=> {
             e.preventDefault()
             this.props.form.validateFields((err, values) => {
                 if (err) {
@@ -41,7 +41,7 @@ const _bindPhone = observer(
             return (
                 <div className="pd-h-20">
                     <TitleBar titleText="绑定手机" />
-                    <Form onSubmit={this.handleSubmit.bind(this)}>
+                    <Form onSubmit={this.handleSubmit}>
                         <FormItem>
                             {getFieldDecorator('phone', {
                                 rules: [{ required: true, message: '请输入手机!' }],

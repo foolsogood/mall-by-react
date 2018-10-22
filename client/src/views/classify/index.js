@@ -17,7 +17,7 @@ export default class cateify extends Component {
 			list: []
 		}
 	};
-	componentWillMount() {
+	componentDidMount() {
 		this._getCates()
 	};
 	_getCates() {

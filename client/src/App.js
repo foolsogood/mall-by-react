@@ -76,7 +76,7 @@ export default class App extends Component {
 			ifSignupShow: false,
 		}
 	};
-	componentWillMount() {
+	componentDidMount() {
 		event.on('showLogin', bool => {
 			this.setState({ ifLoginShow: bool })
 		})

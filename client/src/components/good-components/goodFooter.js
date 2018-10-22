@@ -14,21 +14,21 @@ const GoodFooter = observer(class GoodFooter extends Component {
     // constructor(props, context) {
     //     super(props, context)
     // };
-    _addToCart() {
+    _addToCart=()=> {
         const { goodInfo } = this.props
         store.shopCart.addToCart(goodInfo.goodId, goodInfo)
         this.context.router.history.push({
             pathname: '/shopCart'
         })
     };
-    _balanceThisGood() {
+    _balanceThisGood=()=> {
         const { goodInfo } = this.props
         store.shopCart.addToCart(goodInfo.goodId, goodInfo)
         this.context.router.history.push({
             pathname: '/balance'
         })
     };
-    componentWillMount() {
+    componentDidMount() {
         // console.log( this.context)
     };
     render() {
@@ -51,12 +51,12 @@ const GoodFooter = observer(class GoodFooter extends Component {
                             <span>分类</span>
                         </Link>
                     </Col>
-                    <Col span={7} className=" btn-2" onClick={this._addToCart.bind(this)}>
+                    <Col span={7} className=" btn-2" onClick={this._addToCart}>
                         <div className="flex-box">
                             加入购物车
                         </div>
                     </Col>
-                    <Col span={7} className=" btn-3" onClick={this._balanceThisGood.bind(this)}>
+                    <Col span={7} className=" btn-3" onClick={this._balanceThisGood}>
                         <div className="flex-box">
                             <span className="color-fff">立即购买</span>
                         </div>

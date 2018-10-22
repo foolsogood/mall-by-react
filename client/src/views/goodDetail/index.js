@@ -7,9 +7,6 @@ import Banner from 'components/common-components/banner'
 // 组件
 import Comments from 'components/good-components/comments'
 import GoodFooter from 'components/good-components/goodFooter'
-
-
-
 const TabPane = Tabs.TabPane
 export default class GoodDetail extends Component {
     constructor() {
@@ -17,24 +14,17 @@ export default class GoodDetail extends Component {
         this.state = {
             imgList: [''],
             detailList: [''],
-            goodId: '',
             goodInfo: {}
         }
     };
-    componentWillMount() {
-        //    获取上一个路由传参
-        let goodId = this.props.match.params.goodId
-        this.setState({
-            goodId,
-        })
-    };
     componentDidMount() {
-        this._getGoodInfo()
-
+        //    获取上一个路由传参
+        let { goodId } = this.props.match.params
+        this._getGoodInfo(goodId)
     };
-    _getGoodInfo() {
+    _getGoodInfo(goodId) {
         const query = {
-            goodId: this.state.goodId
+            goodId
         }
         const url = $api.good.getGoodById
         $apiServer.get(url, { query })
@@ -42,7 +32,7 @@ export default class GoodDetail extends Component {
             .then(res => {
                 this.setState({
                     goodInfo: res.data,
-                    // 在jsx找中直接传goodInfo.imgList在子组件中取不到
+                    // 在jsx中直接传goodInfo.imgList在子组件中取不到
                     imgList: JSON.parse(res.data.imgs),
                     detailList: JSON.parse(res.data.detailImg)
                 })

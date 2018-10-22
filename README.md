@@ -29,7 +29,7 @@
 ```
 <br/>
 - 2.路由获取参数<br/>
-在componentWillMount函数中
+在componentDidMount函数中
  let goodId = this.props.match.params.id<br/>
 - 3.获取当前路由路径<br/>
 window.location.pathname<br/>

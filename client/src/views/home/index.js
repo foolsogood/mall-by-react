@@ -24,11 +24,9 @@ export default class Home extends Component {
 		position: 'relative',
 		top: '-.8rem'
 	};
-	componentWillMount() {
+	componentDidMount() {
 		this._getHomeImgList()
 		this._getHotGoods()
-	};
-	componentDidMount() {
 		window.addEventListener('scroll', (e) => {
 			this._changeSearchStyle(e)
 		})

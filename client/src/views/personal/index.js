@@ -18,7 +18,7 @@ const _personal = observer(
 			ifBackShow: false
 		}
 	};
-	componentWillMount() {
+	componentDidMount() {
 	};
 	render() {
 		const iconStyle = { fontSize: '.35rem' }

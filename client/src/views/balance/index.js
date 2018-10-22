@@ -17,16 +17,15 @@ const Balance = observer(class Balance extends Component {
         this.state = {
             sendTime: '尽快',
         }
-        this._toPay = this._toPay.bind(this)
     };
-    componentWillMount() {
+    componentDidMount() {
         event.on('sure-send-time', time => {
             console.log(time)
             this.setState({ sendTime: time })
         })
     }
 
-    _toPay() {
+    _toPay=()=> {
         if (!store.user.user) {
             $event.emit('showLogin', true)
         } else {
@@ -65,7 +64,7 @@ const Balance = observer(class Balance extends Component {
     render() {
         const iconStyle = { fontSize: '.35rem' }
         const common = { color: '#8a8a8a' }
-        const balance = Object.values(store.shopCart.cart).length ? Object.values(store.shopCart.cart).filter(item => item.isSelect) : []
+        const balance =store.shopCart.cart&& Object.values(store.shopCart.cart).length ? Object.values(store.shopCart.cart).filter(item => item.isSelect) : []
         return (
             <div className="balance" style={{ position: 'relative' }}>
                 <TitleBar titleText="结算" />

@@ -12,14 +12,13 @@ export default class SendTime extends Component {
         this.state = {
             value: '尽快'
         }
-        this._sure = this._sure.bind(this)
     };
-    onChange(e) {
+    onChange=(e)=> {
         this.setState({
             value: e.target.value
         })
     };
-    _sure() {
+    _sure=()=> {
         event.emit('sure-send-time', '123')
     }
     styleObj = {
@@ -38,7 +37,7 @@ export default class SendTime extends Component {
                 <TitleBar titleText="送达时间" />
                 <div className="pd-h-20 h-80">送货时间</div>
                 <div className="pd-h-20 bg-fff">
-                    <RadioGroup style={this.styleObj} onChange={this.onChange.bind(this)} value={this.state.value}>
+                    <RadioGroup style={this.styleObj} onChange={this.onChange} value={this.state.value}>
                         <Radio className="radio-1" value={'尽快'}>尽快</Radio>
                         <Radio className="radio-1" value={'不限送货时间'}>不限送货时间</Radio>
                         <Radio className="radio-1" value={'工作日送货'}>工作日送货</Radio>
