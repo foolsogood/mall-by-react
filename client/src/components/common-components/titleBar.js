@@ -3,6 +3,9 @@ import PropTypes from 'prop-types'
 import { Row, Col } from 'antd'
 import { createHistory } from 'history'
 const history = createHistory()
+/**
+ * 导航栏
+ */
 export default class titleBar extends Component {
 	static defaultProps={
 		ifBackShow:true

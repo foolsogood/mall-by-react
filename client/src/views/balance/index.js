@@ -1,17 +1,18 @@
 import React, { Component } from 'react'
 import { Row, Col } from 'antd'
 import { Link } from 'react-router-dom'
-import TitleBar from 'components/common-components/titleBar.js'
+import WithHeader from 'components/common-components/withHeader.js'
 
-//图标
-// import iconWechat from 'assets/img/ic-wx-pay.png'
 //引入mobx相关
 import { observer } from 'mobx-react'
 import store from 'store'
 import event from 'utils/event'
 
 
-const Balance = observer(class Balance extends Component {
+const Balance = observer(
+@WithHeader({ titleText: '结算' })
+
+class Balance extends Component {
     constructor() {
         super()
         this.state = {
@@ -25,7 +26,7 @@ const Balance = observer(class Balance extends Component {
         })
     }
 
-    _toPay=()=> {
+    _toPay = () => {
         if (!store.user.user) {
             $event.emit('showLogin', true)
         } else {
@@ -64,10 +65,9 @@ const Balance = observer(class Balance extends Component {
     render() {
         const iconStyle = { fontSize: '.35rem' }
         const common = { color: '#8a8a8a' }
-        const balance =store.shopCart.cart&& Object.values(store.shopCart.cart).length ? Object.values(store.shopCart.cart).filter(item => item.isSelect) : []
+        const balance = store.shopCart.cart && Object.values(store.shopCart.cart).length ? Object.values(store.shopCart.cart).filter(item => item.isSelect) : []
         return (
             <div className="balance" style={{ position: 'relative' }}>
-                <TitleBar titleText="结算" />
 
                 <div className="hr-40"></div>
                 <div className="flex-box flex-ju-c-bt h-100 bg-fff pd-h-20 ">

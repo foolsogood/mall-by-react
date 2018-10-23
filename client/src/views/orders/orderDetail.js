@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { Row, Col } from 'antd'
 import { Link } from 'react-router-dom'
-import TitleBar from 'components/common-components/titleBar.js'
-// 
-// 
+import WithHeader from 'components/common-components/withHeader'
 
-export default class OrderDetail extends Component {
+// 
+@WithHeader({ titleText: '订单详情' })
+
+ class OrderDetail extends Component {
     constructor() {
         super()
         this.state = {
@@ -29,10 +30,10 @@ export default class OrderDetail extends Component {
     render() {
         return (
             <div>
-                <TitleBar titleText="订单详情" />
 
             </div>
         )
     }
 }
+export default OrderDetail
 

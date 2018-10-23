@@ -1,18 +1,20 @@
 import React, { Component } from 'react'
 //公共组件
-import TitleBar from 'components/common-components/titleBar.js'
+import WithHeader from 'components/common-components/withHeader'
+import WithFooter from 'components/common-components/withFooter'
+
 import Footer from 'components/common-components/footer.js'
 import ClassifyList from 'components/classify-components/classifyList'
 
 import ClassifyTitle from 'components/classify-components/classifyTitle'
 
-
-export default class cateify extends Component {
+@WithHeader({ifBackShow:false, titleText: '分类' })
+@WithFooter
+ class cateify extends Component {
 	constructor() {
 		super()
 		this.state = {
 
-			ifBackShow: false,
 			titleArr: [],
 			list: []
 		}
@@ -45,7 +47,6 @@ export default class cateify extends Component {
 	render() {
 		return (
 			<div className="classify">
-				<TitleBar ifBackShow={this.state.ifBackShow} titleText="分类" />
 				<div style={{ position: 'fixed', top: '0.8rem', left: '0', right: '0', zIndex: '99' }}><ClassifyTitle titleArr={this.state.list} /></div>
 				<div style={{
 					position: 'relative',
@@ -64,8 +65,8 @@ export default class cateify extends Component {
 
 
 				</div>
-				<Footer />
 			</div>
 		)
 	}
 }
+export default cateify

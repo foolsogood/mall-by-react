@@ -1,11 +1,13 @@
 import React from 'react'
 import { Form, Input, Button } from 'antd'
-import TitleBar from 'components/common-components/titleBar.js'
+import WithHeader from 'components/common-components/withHeader'
+
 const { TextArea } = Input
 const FormItem = Form.Item
-export default class feedback extends React.Component {
-   
-    handleSubmit=(e)=> {
+@WithHeader({ titleText: '意见反馈' })
+class feedback extends React.Component {
+
+    handleSubmit = (e) => {
         e.preventDefault()
         console.log(e)
     };
@@ -20,7 +22,6 @@ export default class feedback extends React.Component {
     render() {
         return (
             <div>
-                <TitleBar   titleText="意见反馈" />
                 <Form onSubmit={this.handleSubmit}>
                     <FormItem>
                         <TextArea rows={8} placeholder="有什么好的意见或建议?" />
@@ -33,3 +34,4 @@ export default class feedback extends React.Component {
         )
     }
 }
+export default feedback

@@ -2,13 +2,16 @@
 import React, { Component } from 'react'
 import { Tabs } from 'antd'
 // 公共组件
-import TitleBar from 'components/common-components/titleBar.js'
+import WithHeader from 'components/common-components/withHeader.js'
+
 import Banner from 'components/common-components/banner'
 // 组件
 import Comments from 'components/good-components/comments'
 import GoodFooter from 'components/good-components/goodFooter'
 const TabPane = Tabs.TabPane
-export default class GoodDetail extends Component {
+@WithHeader({ titleText: '商品页' })
+
+ class GoodDetail extends Component {
     constructor() {
         super()
         this.state = {
@@ -44,7 +47,6 @@ export default class GoodDetail extends Component {
         return (
             <div>
                 <div className="good-detail">
-                    <TitleBar titleText="商品页" />
                     < Banner imgList={imgList} />
 
                     <div className="bg-fff detail-text">
@@ -76,3 +78,4 @@ export default class GoodDetail extends Component {
         )
     }
 }
+export default GoodDetail

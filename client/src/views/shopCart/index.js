@@ -3,22 +3,19 @@ import React, { Component } from 'react'
 import CartEmpty from './cartEmpty'
 import CartList from './cartList'
 //公共组件
-import TitleBar from 'components/common-components/titleBar.js'
+import WithHeader from 'components/common-components/withHeader'
+
 //引入mobx相关
 import { observer } from 'mobx-react'
 import store from 'store'
-const cart = observer(class shopCart extends Component {
-    constructor() {
-        super()
-        this.state = {
-            ifBackShow: false,
-        }
-    };
+const cart = observer(
+@WithHeader({ ifBackShow: false, titleText: '购物车' })
+
+class shopCart extends Component {
     render() {
         const _cart = store.shopCart.cart
         return (
             <div>
-                <TitleBar ifBackShow={this.state.ifBackShow} titleText="购物车" />
                 {
                     _cart && Object.values(_cart).length
                         ? <CartList />

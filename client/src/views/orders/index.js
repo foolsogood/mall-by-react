@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { Row, Col } from 'antd'
 import { Modal, Tabs } from 'antd-mobile'
 import { Link } from 'react-router-dom'
-import TitleBar from 'components/common-components/titleBar.js'
+import WithHeader from 'components/common-components/withHeader'
+
 import OrderItem from 'components/order-components/order-item'
 
 
@@ -13,7 +14,10 @@ import { observer } from 'mobx-react'
 import store from 'store'
 // const TabPane = Tabs.TabPane
 const alert = Modal.alert;
-const _order = observer(class Orders extends Component {
+const _order = observer(
+@WithHeader({ titleText: '我的订单' })
+
+class Orders extends Component {
     constructor() {
         super()
         this.state = {
@@ -53,7 +57,6 @@ const _order = observer(class Orders extends Component {
         ];
         return (
             <div>
-                <TitleBar titleText="我的订单" />
                 <Tabs tabs={tabs}
                     initialPage={1}
                 >

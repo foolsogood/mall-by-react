@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 //公共组件
-import Footer from 'components/common-components/footer.js'
+import WithFooter from 'components/common-components/withFooter'
+
 // 首页组件
 import SearchBar from 'components/home-components/searchBar'
 import Banner from 'components/common-components/banner'
@@ -8,8 +9,8 @@ import Notice from 'components/home-components/notice'
 import HostList from 'components/home-components/hot/hotList'
 import RecomList from 'components/home-components/recommend/recomList'
 import tool from 'utils/tool'
-
-export default class Home extends Component {
+@WithFooter
+ class Home extends Component {
 	constructor() {
 		super()
 		this.state = {
@@ -103,10 +104,10 @@ export default class Home extends Component {
 					<div className="hr"></div>
 					<RecomList titleText="最新商品" />
 				</div>
-				<Footer />
 			</div>
 
 		)
 	}
 }
+export default Home
 

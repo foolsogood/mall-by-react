@@ -1,24 +1,23 @@
 import React, { Component } from 'react'
-//引入event
-
-import TitleBar from '../../components/common-components/titleBar.js'
+import WithHeader from 'components/common-components/withHeader.js'
 import { Radio } from 'antd'
+//引入event
 import event from 'utils/event'
 const RadioGroup = Radio.Group
-
-export default class SendTime extends Component {
+@WithHeader({ titleText: '送达时间' })
+class SendTime extends Component {
     constructor() {
         super()
         this.state = {
             value: '尽快'
         }
     };
-    onChange=(e)=> {
+    onChange = (e) => {
         this.setState({
             value: e.target.value
         })
     };
-    _sure=()=> {
+    _sure = () => {
         event.emit('sure-send-time', '123')
     }
     styleObj = {
@@ -34,7 +33,6 @@ export default class SendTime extends Component {
     render() {
         return (
             <div>
-                <TitleBar titleText="送达时间" />
                 <div className="pd-h-20 h-80">送货时间</div>
                 <div className="pd-h-20 bg-fff">
                     <RadioGroup style={this.styleObj} onChange={this.onChange} value={this.state.value}>
@@ -51,3 +49,4 @@ export default class SendTime extends Component {
         )
     }
 }
+export default SendTime

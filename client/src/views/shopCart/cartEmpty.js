@@ -2,10 +2,11 @@ import React, { Component } from 'react'
 import { Row, Col } from 'antd'
 import { Link } from 'react-router-dom'
 //公共组件
+import WithFooter from 'components/common-components/withFooter'
 
-import Footer from 'components/common-components/footer.js'
 import RecomList from 'components/home-components/recommend/recomList'
-export default class CartEmpty extends Component {
+@WithFooter
+ class CartEmpty extends Component {
 
     render() {
         return (
@@ -33,8 +34,8 @@ export default class CartEmpty extends Component {
                     </div>
                 </div>
                 <RecomList titleText="为你推荐" />
-                <Footer />
             </div>
         )
     }
 }
+export default CartEmpty

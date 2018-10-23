@@ -1,7 +1,7 @@
 import React from 'react'
 import { Form, Input, Button } from 'antd'
 
-import TitleBar from 'components/common-components/titleBar.js'
+import WithHeader from 'components/common-components/withHeader'
 
 
 //引入mobx相关
@@ -9,6 +9,8 @@ import { observer } from 'mobx-react'
 import store from 'store'
 const FormItem = Form.Item
 const _bindPhone = observer(
+@WithHeader({ titleText: '绑定手机' })
+
     class BindPhone extends React.Component {
 
         handleSubmit=(e)=> {
@@ -40,7 +42,6 @@ const _bindPhone = observer(
             const { getFieldDecorator } = this.props.form;
             return (
                 <div className="pd-h-20">
-                    <TitleBar titleText="绑定手机" />
                     <Form onSubmit={this.handleSubmit}>
                         <FormItem>
                             {getFieldDecorator('phone', {

@@ -3,29 +3,22 @@ import { Row, Col } from 'antd'
 import { Link } from 'react-router-dom'
 
 //组件
-import Footer from 'components/common-components/footer.js'
-import TitleBar from 'components/common-components/titleBar.js'
+import WithHeader from 'components/common-components/withHeader.js'
+import WithFooter from 'components/common-components/withFooter'
+
 //引入mobx相关
 import { observer } from 'mobx-react'
 import store from 'store'
 const _personal = observer(
+@WithHeader({ifBackShow:false,titleText:'个人主页'})
+@WithFooter
 
  class Personal extends Component {
-	constructor() {
-		super()
-		this.state = {
-
-			ifBackShow: false
-		}
-	};
-	componentDidMount() {
-	};
 	render() {
 		const iconStyle = { fontSize: '.35rem' }
 		const common = { color: '#8a8a8a' }
 		return (
 			<div className="personal">
-				<TitleBar ifBackShow={this.state.ifBackShow} titleText="个人页" />
 				<div className="personal-header">
 					<img className="bg" src={require('assets/img/people_bg.png')} alt="" />
 					<div className="info ">
@@ -104,7 +97,6 @@ const _personal = observer(
 
 					</div>
 				</Link>
-				<Footer />
 			</div>
 
 		)
