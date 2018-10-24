@@ -9,7 +9,8 @@ import store from 'store'
 import Cookies from 'js-cookie'
 const FormItem = Form.Item;
 
-const _login = observer(class Login extends Component {
+@observer
+  class Login extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
@@ -81,8 +82,8 @@ const _login = observer(class Login extends Component {
       </div>
     );
   }
-})
+}
 
-const login = Form.create()(_login);
+const login = Form.create()(Login);
 
 export default login

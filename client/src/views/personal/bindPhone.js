@@ -8,7 +8,7 @@ import WithHeader from 'components/common-components/withHeader'
 import { observer } from 'mobx-react'
 import store from 'store'
 const FormItem = Form.Item
-const _bindPhone = observer(
+@observer
 @WithHeader({ titleText: '绑定手机' })
 
 class BindPhone extends React.Component {
@@ -62,7 +62,7 @@ class BindPhone extends React.Component {
             </div>
         )
     }
-})
-const bind_phone = Form.create()(_bindPhone);
+}
+const bind_phone = Form.create()(BindPhone);
 
 export default bind_phone

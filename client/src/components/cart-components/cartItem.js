@@ -4,7 +4,8 @@ import { Row, Col } from 'antd'
 //引入mobx相关
 import { observer } from 'mobx-react'
 import store from '../../store'
-const cartItem = observer(class cartItem extends Component {
+@observer
+class cartItem extends Component {
     constructor() {
         super()
         this.state = {
@@ -13,7 +14,7 @@ const cartItem = observer(class cartItem extends Component {
         }
     };
     //切换是否选中该商品
-    toggleCheck=(goodId)=> {
+    toggleCheck = (goodId) => {
         if (this.state.ifChecked) {
             this.setState({
                 ifChecked: false
@@ -27,7 +28,7 @@ const cartItem = observer(class cartItem extends Component {
         }
     };
 
-    changeNum=(num, goodId, way)=> {
+    changeNum = (num, goodId, way) => {
 
         if (way > 0) {
             store.shopCart.changeNum(goodId, way)
@@ -40,7 +41,7 @@ const cartItem = observer(class cartItem extends Component {
         }
     };
 
-    removeThisGood=( goodId)=> {
+    removeThisGood = (goodId) => {
         store.shopCart.removeFromCart(goodId)
     };
     componentDidMount() {
@@ -78,9 +79,9 @@ const cartItem = observer(class cartItem extends Component {
                                     <p>{cartItem.name}</p>
                                     <p>售价:{cartItem.price}元 合计：{cartItem.price * cartItem.number}元</p>
                                     <div className="flex-box ">
-                                        <div className="desc t-tc" onClick={()=>this.changeNum( cartItem.number, cartItem.goodId, -1)} >-</div>
+                                        <div className="desc t-tc" onClick={() => this.changeNum(cartItem.number, cartItem.goodId, -1)} >-</div>
                                         <div className="num t-tc"  >{cartItem.number}</div>
-                                        <div className="plus t-tc" onClick={()=>this.changeNum(cartItem.number, cartItem.goodId, 1)}>+</div>
+                                        <div className="plus t-tc" onClick={() => this.changeNum(cartItem.number, cartItem.goodId, 1)}>+</div>
                                     </div>
                                 </Col>
                             </Row>
@@ -88,12 +89,12 @@ const cartItem = observer(class cartItem extends Component {
                     </Col>
                     <Col span={4} >
                         <div className="flex-box">
-                            <span className="iconfont icon-shanchu" style={{ ...iconStyle, ...common }} onClick={() => this.removeThisGood( cartItem.goodId)} ></span>
+                            <span className="iconfont icon-shanchu" style={{ ...iconStyle, ...common }} onClick={() => this.removeThisGood(cartItem.goodId)} ></span>
                         </div>
                     </Col>
                 </Row>
             </div>
         )
     }
-})
+}
 export default cartItem

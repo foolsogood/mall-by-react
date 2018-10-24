@@ -5,7 +5,8 @@ import { Link } from 'react-router-dom'
 //引入mobx相关
 import { observer } from 'mobx-react'
 import store from 'store'
-const cart = observer(class cartList extends Component {
+@observer
+class cartList extends Component {
     render() {
         return (
             <div>
@@ -23,16 +24,16 @@ const cart = observer(class cartList extends Component {
 
                         <Col span={8} >
                             <div className="flex-box flex-ver-box">
-                                    <span >共
+                                <span >共
                                 {
-                                            store.shopCart.cartTotalNum
-                                        }
-                                        件,金额:</span>
-                                    <span><span className="price">
-                                        {
-                                            store.shopCart.cartTotalPrice
-                                        }
-                                    </span>元</span>
+                                        store.shopCart.cartTotalNum
+                                    }
+                                    件,金额:</span>
+                                <span><span className="price">
+                                    {
+                                        store.shopCart.cartTotalPrice
+                                    }
+                                </span>元</span>
                             </div>
                         </Col>
                         <Col span={8} className=" btn-1">
@@ -52,5 +53,5 @@ const cart = observer(class cartList extends Component {
             </div>
         )
     }
-})
-export default cart
+}
+export default cartList

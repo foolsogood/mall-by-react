@@ -9,7 +9,7 @@ import WithFooter from 'components/common-components/withFooter'
 //引入mobx相关
 import { observer } from 'mobx-react'
 import store from 'store'
-const _personal = observer(
+@observer
 @WithHeader({ifBackShow:false,titleText:'个人主页'})
 @WithFooter
 
@@ -101,5 +101,5 @@ const _personal = observer(
 
 		)
 	}
-})
-export default _personal
+}
+export default Personal

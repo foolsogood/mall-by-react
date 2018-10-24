@@ -8,7 +8,7 @@ import WithHeader from 'components/common-components/withHeader'
 //引入mobx相关
 import { observer } from 'mobx-react'
 import store from 'store'
-const cart = observer(
+@observer
 @WithHeader({ ifBackShow: false, titleText: '购物车' })
 
 class shopCart extends Component {
@@ -24,5 +24,5 @@ class shopCart extends Component {
             </div>
         )
     }
-})
-export default cart
+}
+export default shopCart

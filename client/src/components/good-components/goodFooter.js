@@ -7,7 +7,8 @@ import store from 'store'
 import { Link } from 'react-router-dom'
 // 
 import PropTypes from 'prop-types'
-const GoodFooter = observer(class GoodFooter extends Component {
+@observer
+    class GoodFooter extends Component {
     static contextTypes = {
         router: PropTypes.object
     };
@@ -65,5 +66,5 @@ const GoodFooter = observer(class GoodFooter extends Component {
             </div>
         )
     }
-})
+}
 export default GoodFooter

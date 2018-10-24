@@ -14,7 +14,7 @@ import { observer } from 'mobx-react'
 import store from 'store'
 // const TabPane = Tabs.TabPane
 const alert = Modal.alert;
-const _order = observer(
+@observer
 @WithHeader({ titleText: '我的订单' })
 
 class Orders extends Component {
@@ -82,5 +82,5 @@ class Orders extends Component {
             </div>
         )
     }
-})
-export default _order
+}
+export default Orders

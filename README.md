@@ -51,12 +51,15 @@ Object.keys(goodList).map((item)=>{<br/>
  但对于mobx的学习使用还是足够的，由于create-react-app好像不支持@装饰器,就用
  extendObservable 模式
  在对应的页面中引入react-mobx连接react和mobx ，当然状态本身也要引入<br/>
- import { observer } from 'mobx-react'<br/>
- import store from '../../store'<br/>
- const cart = observer(class cartList extends Component {
+ ```
+ import { observer } from 'mobx-react'
+ import store from '../../store'
+ @observer
+   class cartList extends Component {
    ......
- }<br/>
- export default cart<br/>
+ }
+ export default cartList
+ ```
  然后在这个页面中直接获取store中的数据
 ### 路由按需加载
   将非首屏展示的路由组件用一个公共的bundle高阶组件包裹，当路由匹配时由bundle组件返回该组件，之后webpack自动缓存改组件，实现按需加载

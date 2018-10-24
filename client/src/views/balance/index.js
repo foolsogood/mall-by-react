@@ -9,7 +9,7 @@ import store from 'store'
 import event from 'utils/event'
 
 
-const Balance = observer(
+@observer
 @WithHeader({ titleText: '结算' })
 
 class Balance extends Component {
@@ -139,5 +139,5 @@ class Balance extends Component {
             </div>
         )
     }
-})
+}
 export default Balance
