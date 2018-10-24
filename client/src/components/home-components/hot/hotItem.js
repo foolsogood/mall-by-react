@@ -11,21 +11,23 @@ export default class HotItem extends Component {
         good: PropTypes.object.isRequired
     };
     render() {
-        const {good} = this.props
+        const { good } = this.props
         /**
          * 鼠标移动到商品时 预加载商品详情页
          */
         const LoadableComponent = Loadable({
             loader: () => import('views/goodDetail'),
             loading: Loading,
-          });
+        });
         return (
-            <div className="home-good-item" onMouseOver={()=>{
+            <div className="home-good-item"  onTouchStart={() =>{
                 LoadableComponent.preload()
             }}>
                 <Link to={`/goodDetail/${good.goodId}`}>
-                    <div className="flex-box flex-ver-box ">
-                    <ImgWraper className="good-item-img" data-errorimgsrc={require('assets/img/default-good.jpg')} src={JSON.parse(good.imgs)[0]}/>
+                    <div className="flex-box flex-ver-box">
+                        
+                    
+                        <ImgWraper className="good-item-img" data-errorimgsrc={require('assets/img/default-good.jpg')} src={JSON.parse(good.imgs)[0]} />
                         <div className="flex-box flex-ver-box flex-al-st good-item-text">
 
                             <p className="good-itm-p-1  ">{good.goodName}</p>

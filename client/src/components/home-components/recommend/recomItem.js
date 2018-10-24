@@ -19,7 +19,7 @@ export default class RecomItem extends Component {
             loading: Loading,
           });
         return (
-            <div className="home-good-item" onMouseOver={()=>{
+            <div className="home-good-item" onTouchStart={()=>{
                 LoadableComponent.preload()
             }}>
                <Link to={`/goodDetail/${good.goodId}`}>

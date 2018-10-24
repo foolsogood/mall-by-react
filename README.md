@@ -62,7 +62,20 @@ Object.keys(goodList).map((item)=>{<br/>
  ```
  然后在这个页面中直接获取store中的数据
 ### 路由按需加载
-  将非首屏展示的路由组件用一个公共的bundle高阶组件包裹，当路由匹配时由bundle组件返回该组件，之后webpack自动缓存改组件，实现按需加载
+  使用react-loadable
+  ```
+  import Loadable from 'react-loadable';
+  const Home=Loadable({
+	  loader:()=>import('views/home'),
+	  loading: Loading,
+  })
+  ```
+  
+  ```
+           …
+						<Route exact path="/" component={Home} />
+            …
+  ```
 ### 组件通信
   使用node 的event模块的EventEmitter类可满足一般的父子组件或兄弟组件通信
 
