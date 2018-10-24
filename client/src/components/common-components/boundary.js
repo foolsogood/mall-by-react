@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-export default class ErrorBoundary extends Component {
+import React, { PureComponent } from 'react'
+export default class ErrorBoundary extends PureComponent {
     constructor(props) {
         super(props)
         this.state = {

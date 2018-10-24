@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { Input } from 'antd'
 import { Link } from 'react-router-dom'
 
 
 
 const Search = Input.Search
-export default class searchBar extends Component {
+export default class searchBar extends PureComponent {
     constructor() {
         super()
         this.state = {

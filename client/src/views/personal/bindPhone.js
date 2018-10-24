@@ -11,7 +11,7 @@ const FormItem = Form.Item
 const _bindPhone = observer(
 @WithHeader({ titleText: '绑定手机' })
 
-    class BindPhone extends React.Component {
+    class BindPhone extends React.PureComponent {
 
         handleSubmit=(e)=> {
             e.preventDefault()

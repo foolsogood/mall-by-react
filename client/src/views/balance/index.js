@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { Row, Col } from 'antd'
 import { Link } from 'react-router-dom'
-import WithHeader from 'components/common-components/withHeader.js'
+import WithHeader from 'components/common-components/withHeader'
 
 //引入mobx相关
 import { observer } from 'mobx-react'
@@ -12,7 +12,7 @@ import event from 'utils/event'
 const Balance = observer(
 @WithHeader({ titleText: '结算' })
 
-class Balance extends Component {
+class Balance extends PureComponent {
     constructor() {
         super()
         this.state = {

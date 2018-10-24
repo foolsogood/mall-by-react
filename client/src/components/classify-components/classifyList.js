@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 
 import { Link } from 'react-router-dom'
-export default class classifyList extends Component {
+export default class classifyList extends PureComponent {
    
     render() {
         const { list,cateId } = this.props

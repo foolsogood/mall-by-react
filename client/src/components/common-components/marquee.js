@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types'
 
-class Marquee extends Component {
+class Marquee extends PureComponent {
   static propTypes = {
     content: PropTypes.node.isRequired,
     gap: PropTypes.number,

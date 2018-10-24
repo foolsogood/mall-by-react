@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { Row, Col } from 'antd'
 import { Link } from 'react-router-dom'
 
-export default class OrderItem extends Component {
+export default class OrderItem extends PureComponent {
     constructor() {
         super()
         this.state = {

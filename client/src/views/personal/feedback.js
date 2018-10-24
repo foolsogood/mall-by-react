@@ -5,7 +5,7 @@ import WithHeader from 'components/common-components/withHeader'
 const { TextArea } = Input
 const FormItem = Form.Item
 @WithHeader({ titleText: '意见反馈' })
-class feedback extends React.Component {
+class feedback extends React.PureComponent {
 
     handleSubmit = (e) => {
         e.preventDefault()

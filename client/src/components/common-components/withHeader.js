@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import TitleBar from './titleBar'
 const getDisplayName=component=>(
     component.displayName||component.name||'component'
@@ -6,17 +6,17 @@ const getDisplayName=component=>(
 /**
  * 该组件用于返回具有导航栏的页面
  */
-export default (titleProp)=> (WrapedComponent) => {
-    return class WithHeader extends Component {
+export default (titleProp)=> (WrapedPureComponent) => {
+    return class WithHeader extends PureComponent {
 
-        static displayName=`WithHeaderHOC(${getDisplayName(WrapedComponent)})`
+        static displayName=`WithHeaderHOC(${getDisplayName(WrapedPureComponent)})`
 
         render() {
             return (
                 <div>
                     <TitleBar {...titleProp}/>
 
-                    <WrapedComponent {...this.props}/>
+                    <WrapedPureComponent {...this.props}/>
                 </div>
             )
         }

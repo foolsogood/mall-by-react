@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { Row, Col } from 'antd'
 import { Link } from 'react-router-dom'
 
 //组件
-import WithHeader from 'components/common-components/withHeader.js'
+import WithHeader from 'components/common-components/withHeader'
 import WithFooter from 'components/common-components/withFooter'
 
 //引入mobx相关
@@ -13,7 +13,7 @@ const _personal = observer(
 @WithHeader({ifBackShow:false,titleText:'个人主页'})
 @WithFooter
 
- class Personal extends Component {
+ class Personal extends PureComponent {
 	render() {
 		const iconStyle = { fontSize: '.35rem' }
 		const common = { color: '#8a8a8a' }

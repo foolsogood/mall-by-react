@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { Icon } from 'antd-mobile'
-export default class Loading extends Component {
+export default class Loading extends PureComponent {
     render() {
         const style = {
             position: 'fixed',

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 
 import CartEmpty from './cartEmpty'
 import CartList from './cartList'
@@ -11,7 +11,7 @@ import store from 'store'
 const cart = observer(
 @WithHeader({ ifBackShow: false, titleText: '购物车' })
 
-class shopCart extends Component {
+class shopCart extends PureComponent {
     render() {
         const _cart = store.shopCart.cart
         return (

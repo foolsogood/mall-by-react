@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
-import WithHeader from 'components/common-components/withHeader.js'
+import React, { PureComponent } from 'react'
+import WithHeader from 'components/common-components/withHeader'
 import { Radio } from 'antd'
 //引入event
 import event from 'utils/event'
 const RadioGroup = Radio.Group
 @WithHeader({ titleText: '送达时间' })
-class SendTime extends Component {
+class SendTime extends PureComponent {
     constructor() {
         super()
         this.state = {

@@ -53,7 +53,7 @@ Object.keys(goodList).map((item)=>{<br/>
  在对应的页面中引入react-mobx连接react和mobx ，当然状态本身也要引入<br/>
  import { observer } from 'mobx-react'<br/>
  import store from '../../store'<br/>
- const cart = observer(class cartList extends Component {
+ const cart = observer(class cartList extends PureComponent {
    ......
  }<br/>
  export default cart<br/>

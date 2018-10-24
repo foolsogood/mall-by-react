@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { Icon } from 'antd-mobile'
 import { observer } from 'mobx-react'
 import store from 'store'
-const _sLoading= observer(class SmallLoading extends Component {
+const _sLoading= observer(class SmallLoading extends PureComponent {
     render() {
         const {isLoadingShow,loadingTxt}=store.commonQuery.loading
         const style = {

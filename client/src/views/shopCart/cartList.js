@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { Row, Col } from 'antd'
 import CartItem from 'components/cart-components/cartItem'
 import { Link } from 'react-router-dom'
 //引入mobx相关
 import { observer } from 'mobx-react'
 import store from 'store'
-const cart = observer(class cartList extends Component {
+const cart = observer(class cartList extends PureComponent {
     render() {
         return (
             <div>

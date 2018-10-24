@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 //公共组件
 import WithFooter from 'components/common-components/withFooter'
 
@@ -10,7 +10,7 @@ import HostList from 'components/home-components/hot/hotList'
 import RecomList from 'components/home-components/recommend/recomList'
 import tool from 'utils/tool'
 @WithFooter
- class Home extends Component {
+ class Home extends PureComponent {
 	constructor() {
 		super()
 		this.state = {

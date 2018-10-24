@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { Row, Col } from 'antd'
 import { Link } from 'react-router-dom'
 //公共组件
@@ -6,7 +6,7 @@ import WithFooter from 'components/common-components/withFooter'
 
 import RecomList from 'components/home-components/recommend/recomList'
 @WithFooter
- class CartEmpty extends Component {
+ class CartEmpty extends PureComponent {
 
     render() {
         return (

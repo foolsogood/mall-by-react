@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { Row, Col } from 'antd'
 import { Modal, Tabs } from 'antd-mobile'
 import { Link } from 'react-router-dom'
@@ -17,7 +17,7 @@ const alert = Modal.alert;
 const _order = observer(
 @WithHeader({ titleText: '我的订单' })
 
-class Orders extends Component {
+class Orders extends PureComponent {
     constructor() {
         super()
         this.state = {

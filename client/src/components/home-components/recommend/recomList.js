@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import RecomItem from './recomItem'
 import PropTypes from 'prop-types'
 
 
 
-export default class RecomList extends Component {
+export default class RecomList extends PureComponent {
     constructor() {
         super()
         this.state = {
