@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import event from 'utils/event'
 
@@ -9,7 +9,7 @@ import store from 'store'
 import Cookies from 'js-cookie'
 const FormItem = Form.Item;
 
-const _login = observer(class Login extends PureComponent {
+const _login = observer(class Login extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {

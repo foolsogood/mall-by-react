@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 // 组件
 
@@ -11,7 +11,7 @@ import SendTime from 'views/balance/sendTime'
 import GoodDetail from 'views/goodDetail'
 import FeedBack from 'views/personal/feedback'
 import Orders from 'views/orders'
-export default class App extends PureComponent {
+export default class App extends Component {
 	render() {
 		return (
 			<div>

@@ -1,6 +1,6 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import Loading from './loading'
-export default class Bundle extends PureComponent {
+export default class Bundle extends Component {
     constructor(props) {
         super(props);
         this.state = {

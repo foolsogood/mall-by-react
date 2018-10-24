@@ -1,9 +1,9 @@
 
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import { Row, Col, Rate } from 'antd'
 import ImgWraper from 'components/common-components/imgWraper'
 
-export default class CommentItem extends PureComponent {
+export default class CommentItem extends Component {
     render() {
         const rate = this.props.rate
         return (

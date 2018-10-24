@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 //公共组件
 import WithHeader from 'components/common-components/withHeader'
 import WithFooter from 'components/common-components/withFooter'
@@ -10,7 +10,7 @@ import ClassifyTitle from 'components/classify-components/classifyTitle'
 
 @WithHeader({ifBackShow:false, titleText: '分类' })
 @WithFooter
- class cateify extends PureComponent {
+ class cateify extends Component {
 	constructor() {
 		super()
 		this.state = {

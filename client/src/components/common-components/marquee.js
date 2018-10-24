@@ -1,7 +1,7 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 
-class Marquee extends PureComponent {
+class Marquee extends Component {
   static propTypes = {
     content: PropTypes.node.isRequired,
     gap: PropTypes.number,
@@ -39,13 +39,14 @@ class Marquee extends PureComponent {
 
   render() {
     const { content } = this.props;
+    const hidden={overflow:'hidden'}
     return (
       <div>
-        <div ref="wrap" style={{overflow:'hidden'}}>
-          <div ref="content1" style={{overflow:'hidden'}}>
+        <div ref="wrap" style={hidden}>
+          <div ref="content1" style={hidden}>
             {this.props.content}
           </div>
-          <div ref="content2" style={{overflow:'hidden'}}>
+          <div ref="content2" style={hidden}>
             {this.props.content}
           </div>
         </div>

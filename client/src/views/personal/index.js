@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import { Row, Col } from 'antd'
 import { Link } from 'react-router-dom'
 
@@ -13,7 +13,7 @@ const _personal = observer(
 @WithHeader({ifBackShow:false,titleText:'个人主页'})
 @WithFooter
 
- class Personal extends PureComponent {
+ class Personal extends Component {
 	render() {
 		const iconStyle = { fontSize: '.35rem' }
 		const common = { color: '#8a8a8a' }

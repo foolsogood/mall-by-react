@@ -1,6 +1,6 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 
-export default class classifyTitle extends PureComponent {
+export default class classifyTitle extends Component {
     _goAchor(cateId,e){
        console.log(`点击了${cateId}`)
     };

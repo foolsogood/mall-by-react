@@ -1,12 +1,12 @@
 
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import ImgWraper from 'components/common-components/imgWraper'
 import Loading from 'components/common-components/loading'
 
 import PropTypes from 'prop-types'
 import Loadable from 'react-loadable';
-export default class HotItem extends PureComponent {
+export default class HotItem extends Component {
     static propTypes = {
         good: PropTypes.object.isRequired
     };
@@ -15,13 +15,13 @@ export default class HotItem extends PureComponent {
         /**
          * 鼠标移动到商品时 预加载商品详情页
          */
-        const LoadablePureComponent = Loadable({
+        const LoadableComponent = Loadable({
             loader: () => import('views/goodDetail'),
             loading: Loading,
           });
         return (
             <div className="home-good-item" onMouseOver={()=>{
-                LoadablePureComponent.preload()
+                LoadableComponent.preload()
             }}>
                 <Link to={`/goodDetail/${good.goodId}`}>
                     <div className="flex-box flex-ver-box ">

@@ -1,7 +1,7 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import { Row, Col } from 'antd'
 import { Link } from 'react-router-dom'
-export default class footer extends PureComponent {
+export default class footer extends Component {
 	constructor() {
 		super()
 		this.state = {

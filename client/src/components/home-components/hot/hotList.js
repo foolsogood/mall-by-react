@@ -1,7 +1,7 @@
-import React,{PureComponent} from 'react'
+import React,{Component} from 'react'
 import HotItem from './hotItem'
 import PropTypes from 'prop-types'
-export default class HotList extends PureComponent{
+export default class HotList extends Component{
   static propTypes={
       hotGoods:PropTypes.array.isRequired
   };

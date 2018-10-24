@@ -1,8 +1,8 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import { Row, Col } from 'antd'
 import Marquee from 'components/common-components/marquee'
 
-export default class Notice extends PureComponent {
+export default class Notice extends Component {
     render() {
        
         const content = (

@@ -1,16 +1,16 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 const getDisplayName=component=>(
     component.displayName||component.name||'component'
 )
-const ErrorBoundary = WrapedPureComponent => {
-    return class ErrorBoundaryHOC extends PureComponent {
+const ErrorBoundary = WrapedComponent => {
+    return class ErrorBoundaryHOC extends Component {
         constructor(props) {
             super(props)
             this.state = {
                 hasError: false
             }
         }
-        static displayName=`ErrorBoundaryHOC(${getDisplayName(WrapedPureComponent)})`
+        static displayName=`ErrorBoundaryHOC(${getDisplayName(WrapedComponent)})`
         componentDidCatch(err, info) {
             console.error(err)
             this.setState({
@@ -26,7 +26,7 @@ const ErrorBoundary = WrapedPureComponent => {
                     </div>
                 )
             }
-            return <WrapedPureComponent {...this.props}/>
+            return <WrapedComponent {...this.props}/>
         }
     }
 }

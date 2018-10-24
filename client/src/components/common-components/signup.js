@@ -1,11 +1,11 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import event from 'utils/event'
 
 
 const FormItem = Form.Item;
 
-class NormalLoginForm extends PureComponent {
+class NormalLoginForm extends Component {
 
 
     handleSubmit = (e) => {

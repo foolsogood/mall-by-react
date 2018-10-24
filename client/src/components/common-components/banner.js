@@ -1,7 +1,7 @@
 import React from 'react'
 import { Carousel } from 'antd'
 
-export default class Banner extends React.PureComponent {
+export default class Banner extends React.Component {
     
     imgStyle = {
         width: '100%',

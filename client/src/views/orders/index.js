@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import { Row, Col } from 'antd'
 import { Modal, Tabs } from 'antd-mobile'
 import { Link } from 'react-router-dom'
@@ -17,7 +17,7 @@ const alert = Modal.alert;
 const _order = observer(
 @WithHeader({ titleText: '我的订单' })
 
-class Orders extends PureComponent {
+class Orders extends Component {
     constructor() {
         super()
         this.state = {
@@ -55,6 +55,7 @@ class Orders extends PureComponent {
             { title: '已发货' },
             { title: '已评价' },
         ];
+        const divStyle = { display: 'flex', alignItems: 'center', justifyContent: 'center', height: '150px', backgroundColor: '#fff' }
         return (
             <div>
                 <Tabs tabs={tabs}
@@ -70,10 +71,10 @@ class Orders extends PureComponent {
                         }
                     </div>
 
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '150px', backgroundColor: '#fff' }}>
+                    <div style={divStyle}>
                         Content of second tab
       </div>
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '150px', backgroundColor: '#fff' }}>
+                    <div style={divStyle}>
                         Content of third tab
       </div>
 

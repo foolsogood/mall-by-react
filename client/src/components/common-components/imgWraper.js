@@ -1,7 +1,7 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-export default class ImgWrapper extends PureComponent {
+export default class ImgWrapper extends Component {
     /**
      * 该组件作用：图片onerror 替换成默认图片
      */

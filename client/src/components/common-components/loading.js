@@ -1,8 +1,8 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import { Icon } from 'antd-mobile'
-export default class Loading extends PureComponent {
+export default class Loading extends Component {
     render() {
-        const style = {
+        const divStyle = {
             position: 'fixed',
             left: 0,
             top: 0,
@@ -11,9 +11,10 @@ export default class Loading extends PureComponent {
             zIndex: 999,
             background: 'rgba(255,255,255,.5)'
         }
+        const iconstyle={fontSize:'.4rem',color:'#444'}
         return (
-            <div className="flex-box flex-ver-box" style={style}>
-                <Icon type="loading" style={{fontSize:'.4rem',color:'#444'}}/>
+            <div className="flex-box flex-ver-box" style={divStyle}>
+                <Icon type="loading" style={iconstyle}/>
                 <span>loading…… </span>
             </div>
         )

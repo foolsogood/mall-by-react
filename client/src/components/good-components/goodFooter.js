@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import { Row, Col } from 'antd'
 //引入mobx相关
 import { observer } from 'mobx-react'
@@ -7,7 +7,7 @@ import store from 'store'
 import { Link } from 'react-router-dom'
 // 
 import PropTypes from 'prop-types'
-const GoodFooter = observer(class GoodFooter extends PureComponent {
+const GoodFooter = observer(class GoodFooter extends Component {
     static contextTypes = {
         router: PropTypes.object
     };

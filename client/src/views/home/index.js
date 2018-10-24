@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 //公共组件
 import WithFooter from 'components/common-components/withFooter'
 
@@ -10,7 +10,7 @@ import HostList from 'components/home-components/hot/hotList'
 import RecomList from 'components/home-components/recommend/recomList'
 import tool from 'utils/tool'
 @WithFooter
- class Home extends PureComponent {
+class Home extends Component {
 	constructor() {
 		super()
 		this.state = {
@@ -21,10 +21,7 @@ import tool from 'utils/tool'
 		//虽然在componentWillUnmount中清除事件监听,但setState没有立刻停止，该变量可用于做每次setState的前提条件
 		this.lock = false
 	};
-	styleObj1 = {
-		position: 'relative',
-		top: '-.8rem'
-	};
+
 	componentDidMount() {
 		this._getHomeImgList()
 		this._getHotGoods()
@@ -92,15 +89,20 @@ import tool from 'utils/tool'
 			}).catch($commonErrorHandler.apply(this, [url]))
 	};
 	render() {
+		const styleObj1 = {
+			position: 'relative',
+			top: '-.8rem'
+		};
+		const { searchStyle, imgList, hotGoods } = this.state
 		return (
-			<div style={this.styleObj1} id="home" ref="home">
-				<div className="home-search-container" style={this.state.searchStyle}>
+			<div style={styleObj1} id="home" ref="home">
+				<div className="home-search-container" style={searchStyle}>
 					<SearchBar />
 				</div>
-				< Banner imgList={this.state.imgList} />
+				< Banner imgList={imgList} />
 				<Notice />
 				<div className="content">
-					<HostList hotGoods={this.state.hotGoods} />
+					<HostList hotGoods={hotGoods} />
 					<div className="hr"></div>
 					<RecomList titleText="最新商品" />
 				</div>

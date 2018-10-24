@@ -1,6 +1,6 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import CommentItem from './commentItem'
-export default class Comments extends PureComponent {
+export default class Comments extends Component {
     render() {
         return (
             <div>

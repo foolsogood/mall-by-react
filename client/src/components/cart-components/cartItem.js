@@ -1,10 +1,10 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import { Row, Col } from 'antd'
 
 //引入mobx相关
 import { observer } from 'mobx-react'
 import store from '../../store'
-const cartItem = observer(class cartItem extends PureComponent {
+const cartItem = observer(class cartItem extends Component {
     constructor() {
         super()
         this.state = {

@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 // 组件
 import Bundle from 'components/common-components/bundle'
@@ -68,7 +68,7 @@ const BindPhone = (props) => (
 		{(BindPhone) => <BindPhone {...props} />}
 	</Bundle>
 )
-export default class App extends PureComponent {
+export default class App extends Component {
 	constructor() {
 		super()
 		this.state = {

@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import { Row, Col } from 'antd'
 import { Link } from 'react-router-dom'
 import WithHeader from 'components/common-components/withHeader'
@@ -12,7 +12,7 @@ import event from 'utils/event'
 const Balance = observer(
 @WithHeader({ titleText: '结算' })
 
-class Balance extends PureComponent {
+class Balance extends Component {
     constructor() {
         super()
         this.state = {
