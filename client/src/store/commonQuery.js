@@ -1,24 +1,15 @@
-import { extendObservable } from 'mobx'
+import { observable, action } from 'mobx'
 class commonQuery {
-    constructor() {
-        extendObservable(this, {
-            // *观察数据
-            loading: {
-                isLoadingShow: false,
-                loadingTxt: '加载中……'
-            }
-
-
-        });
-        //*action
-        this.setLoading = (isLoadingShow, loadingTxt) => {
-            this.loading = {
-                isLoadingShow, loadingTxt
-            }
-        };
-
-
+    @observable loading = {
+        isLoadingShow: false,
+        loadingTxt: '加载中……'
     }
+    @action setLoading = (isLoadingShow, loadingTxt) => {
+        this.loading = {
+            isLoadingShow, loadingTxt
+        }
+    }
+
 }
 
 export default new commonQuery()
