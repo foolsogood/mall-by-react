@@ -13,9 +13,9 @@ import WithHeader from 'components/common-components/withHeader'
         }
     };
     componentDidMount() {
-        // this._getHomeImgList()
+        // this.getHomeImgList()
     }
-    _getHomeImgList() {
+    getHomeImgList() {
         const query = { userid: store.user.user.userid }
         const url = $api.order.getOrders
         $apiServer.get(url, { query })

@@ -23,9 +23,9 @@ const TabPane = Tabs.TabPane
     componentDidMount() {
         //    获取上一个路由传参
         let { goodId } = this.props.match.params
-        this._getGoodInfo(goodId)
+        this.getGoodInfo(goodId)
     };
-    _getGoodInfo(goodId) {
+    getGoodInfo(goodId) {
         const query = {
             goodId
         }

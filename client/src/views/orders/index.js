@@ -25,9 +25,9 @@ class Orders extends Component {
         }
     };
     componentDidMount() {
-        this._getOrders()
+        this.getOrders()
     }
-    _getOrders() {
+    getOrders() {
         const userid = store.user.user ? store.user.user.userid : undefined
         const query = { userid }
         const url = $api.order.getOrders

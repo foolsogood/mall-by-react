@@ -17,7 +17,7 @@ class SendTime extends Component {
             value: e.target.value
         })
     };
-    _sure = () => {
+    sure = () => {
         event.emit('sure-send-time', '123')
     }
 
@@ -45,7 +45,7 @@ class SendTime extends Component {
         </Radio>
                     </RadioGroup>
                 </div>
-                <div className="h-100 flex-box color-fff" onClick={this._sure} style={styleBtn}>确定</div>
+                <div className="h-100 flex-box color-fff" onClick={this.sure} style={styleBtn}>确定</div>
             </div>
         )
     }

@@ -15,9 +15,9 @@ export default class RecomList extends Component {
         titleText: PropTypes.string
     };
     componentDidMount() {
-        this._getRecomGoods()
+        this.getRecomGoods()
     };
-    _getRecomGoods() {
+    getRecomGoods() {
         const url = $api.good.getNewGoods
         $apiServer.get(url)
             .then($preAjaxHandler.call(this))

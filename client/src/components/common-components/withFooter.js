@@ -8,7 +8,7 @@ const getDisplayName=component=>(
  */
 export default  (WrapedComponent) => {
     return class WithFooter extends Component {
-        static displayName=`WithHeaderHOC(${getDisplayName(WrapedComponent)})`
+        static displayName=`WithFooterHOC(${getDisplayName(WrapedComponent)})`
         render() {
             return (
                 <div>

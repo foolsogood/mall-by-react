@@ -23,20 +23,20 @@ class Home extends Component {
 	};
 
 	componentDidMount() {
-		this._getHomeImgList()
-		this._getHotGoods()
+		this.getHomeImgList()
+		this.getHotGoods()
 		window.addEventListener('scroll', (e) => {
-			this._changeSearchStyle(e)
+			this.changeSearchStyle(e)
 		})
 	};
 
 	componentWillUnmount() {
 		this.lock = true
 		window.removeEventListener('scroll', (e) => {
-			this._changeSearchStyle(e)
+			this.changeSearchStyle(e)
 		})
 	};
-	_getHomeImgList() {
+	getHomeImgList() {
 		const url = $api.banner.getHomeBanner
 		$apiServer.get(url)
 			.then($preAjaxHandler.call(this))
@@ -46,7 +46,7 @@ class Home extends Component {
 				})
 			}).catch($commonErrorHandler.apply(this, [url]))
 	};
-	_changeSearchStyle(e) {
+	changeSearchStyle(e) {
 
 		let fn = () => {
 			if (!this.lock) {
@@ -78,7 +78,7 @@ class Home extends Component {
 		tool.throttle(fn, 50)()
 
 	};
-	_getHotGoods() {
+	getHotGoods() {
 		const url = $api.good.getHotGoods
 		$apiServer.get(url)
 			.then($preAjaxHandler.call(this))

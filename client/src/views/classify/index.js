@@ -20,15 +20,15 @@ import ClassifyTitle from 'components/classify-components/classifyTitle'
 		}
 	};
 	componentDidMount() {
-		this._getCates()
+		this.getCates()
 	};
-	_getCates() {
+	getCates() {
 		const url = $api.category.getCates
 		$apiServer.get(url)
 			.then($preAjaxHandler.call(this))
 			.then(res => {
 				let arr = res.data.map(item => {
-					return this._getGoodsList(item.cateId)
+					return this.getGoodsList(item.cateId)
 				})
 				Promise.all(arr).then(rep => {
 					// console.log(rep)
@@ -39,7 +39,7 @@ import ClassifyTitle from 'components/classify-components/classifyTitle'
 			}).catch($commonErrorHandler.apply(this, [url]))
 
 	};
-	_getGoodsList(cateId) {
+	getGoodsList(cateId) {
 		return $apiServer.get($api.good.getGoodsByCate, { query: { cateId } }).then(res => {
 			return res.data
 		})

@@ -19,7 +19,7 @@ export default class searchBar extends Component {
         width: '90%'
 
     };
-    _serachGood=(keyword)=> {
+    serachGood=(keyword)=> {
         const url = $api.good.searchGood
         $apiServer.get(url, { query: { keyword } })
             .then($preAjaxHandler.call(this))
@@ -31,7 +31,7 @@ export default class searchBar extends Component {
             }).catch($commonErrorHandler.apply(this, [url]))
 
     }
-    _keywordChange=(ev)=> {
+    keywordChange=(ev)=> {
         console.log(ev)
         // if(!keyword){
         //     this.setState({
@@ -61,7 +61,7 @@ export default class searchBar extends Component {
         })
         return (
             <div className="flex-box flex-ver-box search-bar " style={{ padding: '.1rem 0' }}>
-                <Search placeholder="搜索商品" onSearch={keyword => this._serachGood(keyword)} style={this.inputStyle} />
+                <Search placeholder="搜索商品" onSearch={keyword => this.serachGood(keyword)} style={this.inputStyle} />
                 <div className="bg-fff" style={this.inputStyle}>
 
                     {

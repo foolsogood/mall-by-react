@@ -18,14 +18,14 @@ export default class titleBar extends Component {
 		history.goBack()
 	};
 	render() {
-		const {titleText} = this.props
+		const {ifBackShow,titleText} = this.props
 		return (
 			<div>
 
 				<div className="title-bar h-80 t-tc color-fff">
 					<Row>
 						<Col span={2}>
-							{this.props.ifBackShow
+							{ifBackShow
 								? <span onClick={this.goBack}>&lt;</span>
 								: ''
 							}

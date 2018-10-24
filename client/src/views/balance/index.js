@@ -26,7 +26,7 @@ class Balance extends Component {
         })
     }
 
-    _toPay = () => {
+    toPay = () => {
         if (!store.user.user) {
             $event.emit('showLogin', true)
         } else {
@@ -129,7 +129,7 @@ class Balance extends Component {
                                 共{store.shopCart.cartTotalNum}件,合计：{store.shopCart.cartTotalPrice}元
                         </div>
                         </Col>
-                        <Col onClick={this._toPay} span={10} >
+                        <Col onClick={this.toPay} span={10} >
                             <div className="flex-box pay">
                                 去付款
                     </div>

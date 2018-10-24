@@ -8,7 +8,7 @@ export default class footer extends Component {
 			pathname: ''
 		}
 	};
-	_getPathname() {
+	getPathname() {
 		return window.location.pathname
 	};
 	
@@ -24,7 +24,7 @@ export default class footer extends Component {
 						<Link to={`/`} className="flex-box flex-ver-box" style={{cursor:'pointer'}}>
 
 							{
-								this._getPathname() === `/`
+								this.getPathname() === `/`
 									? <div className="flex-box flex-ver-box">
 									<span className="iconfont icon-weibiaoti1" style={{...iconStyle,...active}}></span>
 										<span style={active}>主页</span>
@@ -40,7 +40,7 @@ export default class footer extends Component {
 					<Col span={6}>
 						<Link to={`/classify`} className="flex-box flex-ver-box" style={{cursor:'pointer'}}>
 							{
-								this._getPathname() === `/classify`
+								this.getPathname() === `/classify`
 									? <div className="flex-box flex-ver-box">
 									<span className="iconfont icon-fenleitianchong" style={{...iconStyle,...active}}></span>
 										<span style={active}>分类</span>
@@ -57,7 +57,7 @@ export default class footer extends Component {
 						<Link to={`/shopCart`} className="flex-box flex-ver-box"  style={{cursor:'pointer'}}>
 
 							{
-								this._getPathname() === `/shopCart`
+								this.getPathname() === `/shopCart`
 									? <div className="flex-box flex-ver-box">
 									<span className="iconfont icon-gouwuche" style={{...iconStyle,...active}}></span>
 										<span style={active}>购物车</span>
@@ -73,7 +73,7 @@ export default class footer extends Component {
 					<Col span={6}>
 						<Link to={`/personal`} className="flex-box flex-ver-box" style={{cursor:'pointer'}}>
 							{
-								this._getPathname() === `/personal`
+								this.getPathname() === `/personal`
 									? <div className="flex-box flex-ver-box">
 									<span className="iconfont icon-yonghu" style={{...iconStyle,...active}}></span>
 										<span style={active}>我的</span>
