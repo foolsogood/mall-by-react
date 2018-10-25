@@ -1,5 +1,5 @@
 
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { Tabs } from 'antd'
 // 公共组件
 import WithHeader from 'components/common-components/withHeader'
@@ -11,7 +11,7 @@ import GoodFooter from 'components/good-components/goodFooter'
 const TabPane = Tabs.TabPane
 @WithHeader({ titleText: '商品页' })
 
- class GoodDetail extends Component {
+ class GoodDetail extends PureComponent {
     constructor() {
         super()
         this.state = {

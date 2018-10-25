@@ -72,9 +72,7 @@ Object.keys(goodList).map((item)=>{<br/>
   ```
   
   ```
-           …
-						<Route exact path="/" component={Home} />
-            …
+			<Route exact path="/" component={Home} />
   ```
 ### 组件通信
   使用node 的event模块的EventEmitter类可满足一般的父子组件或兄弟组件通信

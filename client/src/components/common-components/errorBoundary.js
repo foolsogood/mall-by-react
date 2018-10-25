@@ -7,22 +7,24 @@ const ErrorBoundary = WrapedComponent => {
         constructor(props) {
             super(props)
             this.state = {
-                hasError: false
+                hasError: false,
+                errorInfo:''
             }
         }
         static displayName=`ErrorBoundaryHOC(${getDisplayName(WrapedComponent)})`
         componentDidCatch(err, info) {
             console.error(err)
             this.setState({
-                hasError: true
+                hasError: true,
+                errorInfo:JSON.stringify(info)
             })
-            throw err
         }
         render() {
-            if (this.state.hasError) {
+            const {hasError,errorInfo}=this.state
+            if (hasError) {
                 return (
                     <div className="page">
-                        something is wrong
+                        {errorInfo}
                     </div>
                 )
             }
