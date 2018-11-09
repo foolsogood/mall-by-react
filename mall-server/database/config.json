@@ -1,0 +1,16 @@
+{
+  "development": {
+    "username": "root",
+    "password": "FSG851024125",
+    "database": "mall-server",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "define-your-own-databse-for-unittest",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}
