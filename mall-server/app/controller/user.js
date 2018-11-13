@@ -1,13 +1,13 @@
 "use strict";
-const Controller = require("egg").Controller;
-class UserController extends Controller {
+const BaseController = require("./BaseController");
+
+class UserController extends BaseController {
   async register() {
-    const user = {
-        username: "jack",
-        password: "123"
-    }
-    // console.log(this.service.user)
-    const res = await this.service.user.register(user);
+    const res = await this.service.user.register();
+    this.ctx.body = res;
+  }
+  async login(){
+    const res = await this.service.user.login();
     this.ctx.body = res;
   }
 }

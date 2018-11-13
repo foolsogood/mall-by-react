@@ -3,11 +3,16 @@
   "version": "1.0.0",
   "description": "",
   "dependencies": {
+    "circular-json": "^0.5.9",
     "egg": "2.10.0",
+    "egg-cors": "^2.1.1",
     "egg-mysql": "^3.0.0",
     "egg-scripts": "^2.5.0",
     "egg-sequelize": "^4.0.2",
-    "mysql2": "^1.6.4"
+    "etag": "^1.8.1",
+    "js-sha512": "^0.8.0",
+    "mysql2": "^1.6.4",
+    "sha1": "^1.1.1"
   },
   "devDependencies": {
     "autod": "^3.0.1",

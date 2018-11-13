@@ -1,36 +1,29 @@
 'use strict';
+const mock = require("../../database/mock");
 module.exports = app => {
   const { INTEGER, STRING,  UUID, UUIDV4 } = app.Sequelize;
-  const userModel = app.model.define("user", {
+  const _category=  app.model.define("category", {
     id: {
       type: INTEGER,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
     },
-    username: {
-      type: STRING(50),
-      allowNull: false
-    },
-    userid: {
+    cateId: {
       type: UUID,
       defaultValue:UUIDV4,
       allowNull: false
     },
-    password: {
-      type: STRING,
+    cate: {
+      type: STRING(100),
       allowNull: false
     },
-    avatar: {
-      type: STRING(100),
-      allowNull: true
-    },
-    phone: {
-      type: STRING(20),
-      allowNull: true
-    }
   },{
     freezeTableName:true
   });
-  return userModel
+   //初始化时候插入mock数据
+   mock.category.forEach(item => {
+    _category.sync({ force: true }).then(() => _category.create(item));
+  });
+  return _category
 };
