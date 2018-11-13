@@ -28,7 +28,7 @@ import store from 'store'
 									<img className="avatar " src={require('assets/img/avatar.jpg')} alt="" />
 								</div>
 							</Col>
-							<Col span={18}><span>{store.user.user.username}</span></Col>
+							<Col span={18}><span>{store.user.user&&store.user.user.username}</span></Col>
 						</Row>
 					</div>
 				</div>

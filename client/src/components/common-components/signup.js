@@ -9,6 +9,7 @@ class NormalLoginForm extends Component {
 
 
     handleSubmit = (e) => {
+        console.log(111)
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {

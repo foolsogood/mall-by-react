@@ -26,11 +26,9 @@ const TabPane = Tabs.TabPane
         this.getGoodInfo(goodId)
     };
     getGoodInfo(goodId) {
-        const query = {
-            goodId
-        }
+        const params=[goodId]
         const url = $api.good.getGoodById
-        $apiServer.get(url, { query })
+        $apiServer.get(url, { params })
             .then($preAjaxHandler.call(this))
             .then(res => {
                 this.setState({
@@ -61,7 +59,7 @@ const TabPane = Tabs.TabPane
                                 {
                                     detailList.map((item, idx) => {
                                         return (
-                                            <img key={idx} className="detail-img" src={item} alt="" />
+                                            <img key={idx}  style={{width:'100%',height:'auto'}} src={item} alt="" />
                                         )
                                     })
                                 }

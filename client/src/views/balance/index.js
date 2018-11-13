@@ -28,7 +28,7 @@ class Balance extends PureComponent {
 
     toPay = () => {
         if (!store.user.user) {
-            $event.emit('showLogin', true)
+            event.emit('showLogin', true)
         } else {
             // alert('您已支付')
             this.addOrder()
