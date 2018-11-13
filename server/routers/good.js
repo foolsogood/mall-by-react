@@ -52,8 +52,8 @@ router.get('/getGoodsByCate', async (ctx) => {
         }
     })
 })
-router.get('/getGoodById', async (ctx) => {
-    const { goodId} = ctx.request.query
+router.get('/getGoodById/:goodId', async (ctx) => {
+    const { goodId} = ctx.params
     let comments
     await model.getComment(goodId).then(res=>{
          comments=res
