@@ -20,6 +20,20 @@ module.exports = appInfo => {
     origin: "*",
     credentials: true
   };
+  config.redis={
+    client:{
+      port:6379,
+      host:'127.0.0.1',
+      password:'',
+      db:0
+    }
+  }
+  config.sessionRedis={
+    key:'EGG_SESSION',
+    maxAge:1000*3600*24,
+    httpOnly:true,
+    encrypt:false
+  }
   // change to your own sequelize configurations
   config.sequelize = {
     dialect: "mysql",

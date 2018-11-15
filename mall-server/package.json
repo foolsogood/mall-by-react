@@ -7,10 +7,13 @@
     "egg": "2.10.0",
     "egg-cors": "^2.1.1",
     "egg-mysql": "^3.0.0",
+    "egg-redis": "^2.0.0",
     "egg-scripts": "^2.5.0",
     "egg-sequelize": "^4.0.2",
+    "egg-session-redis": "^2.1.0",
     "etag": "^1.8.1",
     "js-sha512": "^0.8.0",
+    "jsonwebtoken": "^8.3.0",
     "mysql2": "^1.6.4",
     "sha1": "^1.1.1"
   },

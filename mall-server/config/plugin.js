@@ -8,3 +8,11 @@ exports.cors={
   enable:true,
   package:'egg-cors'
 }
+exports.sessionRedis = {
+  enable: true,
+  package: 'egg-session-redis',
+};
+exports.redis={
+  enable:true,
+  package:'egg-redis'
+}

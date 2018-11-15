@@ -51,10 +51,14 @@ class UserService extends Service {
       }
     }else{
       const user=isExistUser.dataValues
+      //登录成功
       if(sha1(password)===user.password){
+        const token=await ctx.service.token.genToken({userid:user.userid},60)
+        // ctx.session.user
         return {
           code:1,
-          data:user
+          data:user,
+          token
         }
       }else{
         return {
