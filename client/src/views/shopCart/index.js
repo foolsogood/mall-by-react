@@ -14,10 +14,12 @@ import store from 'store'
 class shopCart extends Component {
     render() {
         const _cart = store.shopCart.cart
+        const flag=_cart && Object.values(_cart).length
+        // console.log(Boolean(flag),flag)
         return (
             <div>
                 {
-                    _cart && Object.values(_cart).length
+                    flag
                         ? <CartList />
                         : <CartEmpty />
                 }

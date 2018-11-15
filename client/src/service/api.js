@@ -49,8 +49,8 @@ if (process.env.NODE_ENV === "server_use_koa") {
           bindPhone: ""
         },
         order: {
-          getOrders: "",
-          addOrder: ""
+          getOrders: "/order/getOrder",
+          addOrder: "/order/addOrder"
         }
       };
 }

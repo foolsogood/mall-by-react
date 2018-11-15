@@ -34,17 +34,17 @@ class Orders extends Component {
         $apiServer.get(url, { query })
             .then($preAjaxHandler.call(this))
             .then(res => {
-                if (res.code === '1') {
+                // if (res.code === '1') {
                     this.setState({
                         orderList: res.data
                     })
-                } else if (res.code === '1000') {
-                    alert('提示', '请重新登录', [
-                        { text: '暂不', onPress: () => console.log('cancel') },
-                        { text: '好的', onPress: () => event.emit('showLogin', true) },
-                    ])
+                // } else if (res.code === '1000') {
+                //     alert('提示', '请重新登录', [
+                //         { text: '暂不', onPress: () => console.log('cancel') },
+                //         { text: '好的', onPress: () => event.emit('showLogin', true) },
+                //     ])
 
-                }
+                // }
             }).catch($commonErrorHandler.apply(this, [url]))
 
     };
