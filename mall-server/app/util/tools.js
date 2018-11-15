@@ -1,12 +1,21 @@
-const jwt=require('jsonwebtoken');
-const {secret}=require('../public/private_key')
-console.log(secret)
-function createToken(data,time){
-    let created=Math.floor(Date.now()/1000);
-    let token=jwt.sign({
-        data,
-        exp:created+time
-    },secret,{algorithm:'RS256'});
-    return token
+class tools {
+    //订单号
+  getTradeNo() {
+    let outTradeNo = "";
+    for (let i = 0; i < 6; i++) {
+      outTradeNo += Math.floor(Math.random() * 10);
+    }
+    return new Date().getTime() + outTradeNo;
+  }
 }
-console.log(createToken('tycho',10))
+//tool实例单例
+let toolSingleTon = (function() {
+  let _tool;
+  return function() {
+    if (!_tool) {
+      _tool = new tools();
+    }
+    return _tool;
+  };
+})();
+module.exports = toolSingleTon();

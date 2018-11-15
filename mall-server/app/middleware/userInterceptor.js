@@ -6,7 +6,7 @@ module.exports = (options, app) => {
       POST: "body",
       PUT: "body"
     };
-    let { token } = ctx[op[ctx.method]];
+    let { token } = ctx.request[op[ctx.method]];
     //判空
 
     if (token) {
@@ -28,7 +28,7 @@ module.exports = (options, app) => {
           });
         }
       } else {
-        ctx.status = 403;
+        // ctx.status = 403;
         return (ctx.body = {
           code: -2,
           ...result

@@ -1,6 +1,6 @@
 "use strict";
 module.exports = app => {
-  const { INTEGER, STRING, UUID, UUIDV4 } = app.Sequelize;
+  const { INTEGER, STRING, UUID, UUIDV4 ,BIGINT} = app.Sequelize;
   return app.model.define(
     "order",
     {
@@ -11,8 +11,7 @@ module.exports = app => {
         autoIncrement: true
       },
       orderId: {
-        type: UUID,
-        defaultValue:UUIDV4,
+        type: BIGINT,
         allowNull: false
       },
       userid: {
@@ -22,6 +21,7 @@ module.exports = app => {
      
       status: {
         type: INTEGER,
+        defaultValue:0,
         allowNull: false
       },
       
