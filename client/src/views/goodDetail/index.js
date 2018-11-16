@@ -8,7 +8,10 @@ import Banner from "components/common-components/banner";
 // 组件
 import Comments from "components/good-components/comments";
 import GoodFooter from "components/good-components/goodFooter";
+import { observer } from "mobx-react";
+import store from "store";
 const TabPane = Tabs.TabPane;
+@observer
 @WithHeader({ titleText: "商品页" })
 class GoodDetail extends PureComponent {
   constructor() {
@@ -17,7 +20,7 @@ class GoodDetail extends PureComponent {
       imgList: [""],
       detailList: [""],
       goodInfo: {},
-      isLike: false
+      isCollect: false
     };
   }
   componentDidMount() {
@@ -36,19 +39,34 @@ class GoodDetail extends PureComponent {
           goodInfo: res.data,
           // 在jsx中直接传goodInfo.imgList在子组件中取不到
           imgList: JSON.parse(res.data.imgs),
-          detailList: JSON.parse(res.data.detailImg)
+          detailList: JSON.parse(res.data.detailImg),
+          isCollect:res.data.isCollect
         });
       })
       .catch($commonErrorHandler.apply(this, [url]));
   }
   //是否收藏商品
-  toggleLike=async()=> {
-      //TODO 数据提交
-     await this.setState({isLike:!this.state.isLike})
-      Toast.success(this.state.isLike?'收藏成功!':'取消收藏!')
+  toggleLike=()=> {
+    const url = $api.good.collectGood;
+    const { goodId } = this.props.match.params;
+    const userid = store.user.user ? store.user.user.userid : undefined;
+    const params=[goodId]
+    const query={
+      userid,
+      isCollect: !this.state.isCollect
+    }
+    $apiServer
+      .post(url, { params,query })
+      .then($preAjaxHandler.call(this))
+      .then(async res => {
+        //TODO 数据提交
+       await this.setState({isCollect:!this.state.isCollect})
+        Toast.success(this.state.isCollect?'收藏成功!':'取消收藏!')
+      })
+      .catch($commonErrorHandler.apply(this, [url]));
   }
   render() {
-    const { goodInfo, imgList, detailList, isLike } = this.state;
+    const { goodInfo, imgList, detailList, isCollect } = this.state;
     return (
       <div>
         <div className="good-detail">
@@ -60,7 +78,7 @@ class GoodDetail extends PureComponent {
             <p className="flex-box flex-ju-c-bt ">
               <span className="p-2 price">¥{goodInfo.price}</span>
               <span onClick={this.toggleLike}>
-                {isLike ? (
+                {isCollect ? (
                   <span className="iconfont icon-aixin" style={{color:'#ff0000'}}/>
                 ) : (
                   <span className="iconfont icon-aixin1" />

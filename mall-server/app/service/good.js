@@ -19,11 +19,57 @@ class HomeService extends Service {
   async getGoodDetail() {
     const { ctx } = this;
     const { goodId } = ctx.params;
-    return ctx.model.Good.findOne({
+    const { token } = ctx.query;
+    let good = await ctx.model.Good.findOne({
+      raw: true,
       where: {
         goodId: goodId
       }
     });
+    let result = await ctx.service.token.verifyToken(token);
+    if (result) {
+      let { userid } = result;
+      let res = await ctx.model.Collect.findOne({
+        raw: true,
+        where: { userid, goodId }
+      });
+      console.log("res", res);
+      if (res) {
+        let { isCollect } = res;
+        return Promise.resolve(Object.assign(good, { isCollect }));
+      } else {
+        return Promise.resolve(good);
+      }
+    } else {
+      return Promise.resolve(good);
+    }
+  }
+  async collectGood() {
+    const { ctx } = this;
+    const { goodId } = ctx.params;
+    const { isCollect, userid } = ctx.request.body;
+    let flag = await ctx.model.Collect.findOne({
+      where: {
+        goodId,
+        userid
+      }
+    });
+    if (flag) {
+      return ctx.model.Collect.update(
+        {
+          isCollect
+        },
+        {
+          where: { goodId, userid }
+        }
+      );
+    } else {
+      return ctx.model.Collect.create({
+        goodId,
+        userid,
+        isCollect
+      });
+    }
   }
   async getGoodComment() {
     const { ctx } = this;

@@ -26,33 +26,34 @@ if (process.env.NODE_ENV === "server_use_koa") {
       addOrder: "/api/order/addOrder"
     }
   };
-}else{
-    api = {
-        good: {
-          addGood: "",
-          getAllGoods: "",
-          getGoodsByCate: "/good/getGoodByCateId",
-          getGoodById: "/good/getGoodDetail",
-          getNewGoods: "/good/getNewGoods",
-          getHotGoods: "/good/getHotGoods",
-          searchGood: "/good/searchGood"
-        },
-        category: {
-          getCates: "/category/getAllCategory"
-        },
-        banner: {
-          getHomeBanner: "/home/getBanner"
-        },
-        user: {
-          login: "/user/login",
-          signup: "/user/register",
-          bindPhone: ""
-        },
-        order: {
-          getOrders: "/order/getOrder",
-          addOrder: "/order/addOrder"
-        }
-      };
+} else {
+  api = {
+    good: {
+      addGood: "",
+      getAllGoods: "",
+      getGoodsByCate: "/good/getGoodByCateId",
+      getGoodById: "/good/getGoodDetail",
+      getNewGoods: "/good/getNewGoods",
+      getHotGoods: "/good/getHotGoods",
+      searchGood: "/good/searchGood",
+      collectGood: "/good/collectGood"
+    },
+    category: {
+      getCates: "/category/getAllCategory"
+    },
+    banner: {
+      getHomeBanner: "/home/getBanner"
+    },
+    user: {
+      login: "/user/login",
+      signup: "/user/register",
+      bindPhone: ""
+    },
+    order: {
+      getOrders: "/order/getOrder",
+      addOrder: "/order/addOrder"
+    }
+  };
 }
 
 export default api;

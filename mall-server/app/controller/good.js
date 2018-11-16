@@ -17,11 +17,19 @@ class GoodController extends BaseController {
       this.fail(err);
     }
   }
+  async collectGood() {
+    try {
+      const res = await this.ctx.service.good.collectGood();
+      this.success(res);
+    } catch (err) {
+      this.fail(err);
+    }
+  }
   async getGoodDetail() {
     try {
       const goodDetail = await this.ctx.service.good.getGoodDetail();
       const goodComment = await this.ctx.service.good.getGoodComment();
-      this.success({ ...goodDetail.dataValues, comments: goodComment });
+      this.success({ ...goodDetail, comments: goodComment });
     } catch (err) {
       this.fail(err);
     }
