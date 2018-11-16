@@ -13,7 +13,7 @@ export default class OrderItem extends Component {
     render() {
         const { order } = this.props
         return (
-            <div className="order-item pd-20">
+            <div className="order-item bg-fff pd-20">
                 <Link to={`/orderDetail/${order.goodId}`}>
                     <Row>
                         <Col span={7}>

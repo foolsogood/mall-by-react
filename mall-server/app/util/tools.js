@@ -1,6 +1,6 @@
 class tools {
     //订单号
-  getTradeNo() {
+  createTradeNo() {
     let outTradeNo = "";
     for (let i = 0; i < 6; i++) {
       outTradeNo += Math.floor(Math.random() * 10);

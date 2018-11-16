@@ -16,35 +16,36 @@ class OrderService extends Service {
           raw: true,
           where: { orderId: order.orderId }
         });
-        return _order_goodList;
+        return _order_goodList
+          
       });
       return Promise.all(arr);
     };
-    let _p = getList()
-      .then(goods => {
-        let resArr = [];
-        goods.forEach(goodList => {
-          goodList.forEach(good => {
-            let targetGood = ctx.model.Good.findOne({
-              raw: true,
-              where: { goodId: good.goodId }
-            });
-            console.log("good", good);
-            resArr.push(targetGood);
-          });
+    //合并商品基本信息与订单中的商品购买信息
+    const assGood = async goodList => {
+      let result = [];
+      for (let good of goodList) {
+        let targetGood = await ctx.model.Good.findOne({
+          raw: true,
+          where: { goodId: good.goodId }
         });
-        return Promise.all(resArr);
-      })
-      .then(res => {
-        return res;
+        targetGood = Object.assign({}, targetGood, good);
+        result.push(targetGood);
+      }
+      return result;
+    };
+    let _p = getList().then(goods => {
+      let resArr = goods.map(goodList => {
+        return assGood(goodList);
       });
-
+      return Promise.all(resArr);
+    });
     return _p;
   }
   async addOrder() {
     const { ctx } = this;
     let { userid, goodList } = ctx.request.body;
-    const orderId = tools.getTradeNo();
+    const orderId = tools.createTradeNo();
     await ctx.model.Order.create({
       userid,
       orderId
