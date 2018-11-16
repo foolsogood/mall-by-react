@@ -4,29 +4,42 @@ class OrderService extends Service {
   async getOrder() {
     const { ctx } = this;
     const { userid } = ctx.request.query;
-    const orderIds = await ctx.model.Order.findAll({ userid });
-    // console.log("orderIds",orderIds)
-    let goodList = [];
-    orderIds.forEach(async item => {
-      //每一个订单号对应的所有商品
-      let _order_goodList = await ctx.model.OrderItem.findAll({
-        orderid: item.dataValues.orderid
-      });
-      // console.log("_order_goodList",_order_goodList)
-
-      _order_goodList.forEach(async good => {
-        let ossGood = await ctx.model.Good.findOne({
-          goodId: good.dataValues.goodId
-        });
-
-        ossGood = Object.assign(ossGood.dataValues, good.dataValues);
-        console.log("ossGood",ossGood.valueOf())
-        goodList.push(ossGood);
-      });
+    //该用户所有订单 TODO：分页处理 @fsg 2018.11.16
+    const allOrders = await ctx.model.Order.findAll({
+      raw: true,
+      where: { userid }
     });
-    console.log("goodList", goodList);
+    const getList = () => {
+      let arr = allOrders.map(order => {
+        //每个订单里面的所有商品的列表
+        let _order_goodList = ctx.model.OrderItem.findAll({
+          raw: true,
+          where: { orderId: order.orderId }
+        });
+        return _order_goodList;
+      });
+      return Promise.all(arr);
+    };
+    let _p = getList()
+      .then(goods => {
+        let resArr = [];
+        goods.forEach(goodList => {
+          goodList.forEach(good => {
+            let targetGood = ctx.model.Good.findOne({
+              raw: true,
+              where: { goodId: good.goodId }
+            });
+            console.log("good", good);
+            resArr.push(targetGood);
+          });
+        });
+        return Promise.all(resArr);
+      })
+      .then(res => {
+        return res;
+      });
 
-    return goodList;
+    return _p;
   }
   async addOrder() {
     const { ctx } = this;
