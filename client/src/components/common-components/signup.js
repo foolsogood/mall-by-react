@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
+import { List, Button, WhiteSpace, WingBlank, InputItem } from "antd-mobile";
+import { createForm } from "rc-form";
+
 import event from 'utils/event'
 
 
-const FormItem = Form.Item;
 
 class NormalLoginForm extends Component {
 
@@ -31,58 +32,54 @@ class NormalLoginForm extends Component {
     }
 
     render() {
-        const { getFieldDecorator } = this.props.form;
+        const { getFieldProps } = this.props.form;
 
         return (
             <div className="login">
                 <div className="mask"></div>
-                <Form onSubmit={this.handleSubmit} className="login-form">
-                    <FormItem>
-                        {getFieldDecorator('username', {
-                            rules: [{ required: true, message: '请输入用户名!' }],
-                        })(
-                            <Input onChange={e => {
-                                this.props.form.setFieldsValue({
-                                    username: e.target.value
-                                })
-                            }} prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="用户名" />
-                        )}
-                    </FormItem>
-                    <FormItem>
-                        {getFieldDecorator('password', {
-                            rules: [{ required: true, message: '请输入密码!' }],
-                        })(
-                            <Input onChange={e => {
-                                this.props.form.setFieldsValue({
-                                    password: e.target.value
-                                })
-                            }} prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="输入密码" />
-                        )}
-                    </FormItem>
-                    <FormItem>
-                        {getFieldDecorator('repeatPwd', {
-                            rules: [{ required: true, message: '确认密码!' }],
-                        })(
-                            <Input onChange={e => {
-                                this.props.form.setFieldsValue({
-                                    repeatPwd: e.target.value
-                                })
-                            }} prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="确认密码" />
-                        )}
-                    </FormItem>
-                    <FormItem>
-                        <div className="flex-box">
-                            <Button type="primary" htmlType="submit" className="login-form-button">
-                                提交
-          </Button>
-                        </div>
+                <div className="login-form">
+          <WingBlank>
+            <p className="flex-box">注册</p>
+            <List>
+              <InputItem
+                {...getFieldProps("username")}
+                type="text"
+                placeholder="用户名"
+                clear
+                moneyKeyboardAlign="left"
+              />
+            </List>
 
-                    </FormItem>
-                </Form>
+            <WhiteSpace />
+            <List>
+              <InputItem
+                {...getFieldProps("password")}
+                type="password"
+                placeholder="密码"
+                clear
+                moneyKeyboardAlign="left"
+              />
+            </List>
+            <WhiteSpace />
+            <List>
+              <InputItem
+                {...getFieldProps("repeatPwd")}
+                type="password"
+                placeholder="确认密码"
+                clear
+                moneyKeyboardAlign="left"
+              />
+            </List>
+            <WhiteSpace />
+            <List>
+              <Button onClick={this.handleSubmit} type="primary" style={{color:'#fff'}}>注册</Button>
+            </List>
+          </WingBlank>
+        </div>
             </div>
         );
     }
 }
 
-const signup = Form.create()(NormalLoginForm);
+const signup = createForm()(NormalLoginForm);
 export default signup

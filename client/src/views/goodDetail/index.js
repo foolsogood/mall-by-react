@@ -46,7 +46,7 @@ class GoodDetail extends PureComponent {
       .catch($commonErrorHandler.apply(this, [url]));
   }
   //是否收藏商品
-  toggleLike=()=> {
+  toggleLike= ()=> {
     const url = $api.good.collectGood;
     const { goodId } = this.props.match.params;
     const userid = store.user.user ? store.user.user.userid : undefined;
