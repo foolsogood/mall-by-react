@@ -23,7 +23,7 @@ class NormalLoginForm extends Component {
             }
             const url = $api.user.signup
             $apiServer.put(url, { query })
-                .then($preAjaxHandler.call(this))
+                
                 .then(res => {
                     event.emit('showSignup', false);
                     event.emit('showLogin', true)

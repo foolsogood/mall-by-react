@@ -20,7 +20,7 @@ export default class RecomList extends Component {
     getRecomGoods() {
         const url = $api.good.getNewGoods
         $apiServer.get(url)
-            .then($preAjaxHandler.call(this))
+            
             .then(res => {
                 this.setState({
                     obj: res.data

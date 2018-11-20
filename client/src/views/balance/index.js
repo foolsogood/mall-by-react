@@ -25,12 +25,8 @@ class Balance extends PureComponent {
   }
 
   toPay = () => {
-    if (!store.user.user) {
-      event.emit("showLogin", true);
-    } else {
-      // alert('您已支付')
+    
       this.addOrder();
-    }
   };
   addOrder() {
     let goodList = Object.values(store.shopCart.cart)
@@ -44,13 +40,12 @@ class Balance extends PureComponent {
         };
       });
     const query = {
-      userid: store.user.user.userid,
       goodList
     };
     const url = $api.order.addOrder;
     $apiServer
       .post(url, { query })
-      .then($preAjaxHandler.call(this))
+      
       .then(res => {
         goodList.forEach(item => {
           store.shopCart.removeFromCart(item.goodId);

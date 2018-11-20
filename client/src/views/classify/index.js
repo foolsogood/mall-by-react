@@ -25,7 +25,7 @@ import ClassifyTitle from 'components/classify-components/classifyTitle'
 	getCates() {
 		const url = $api.category.getCates
 		$apiServer.get(url)
-			.then($preAjaxHandler.call(this))
+			
 			.then(res => {
 				let arr = res.data.map(item => {
 					return this.getGoodsList(item.cateId)

@@ -47,7 +47,7 @@ if (process.env.NODE_ENV === "server_use_koa") {
     user: {
       login: "/user/login",
       signup: "/user/register",
-      bindPhone: ""
+      bindPhone: "/user/bindPhone"
     },
     order: {
       getOrders: "/order/getOrder",

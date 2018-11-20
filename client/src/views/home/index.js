@@ -40,7 +40,7 @@ class Home extends PureComponent {
 	getHomeImgList() {
 		const url = $api.banner.getHomeBanner
 		$apiServer.get(url)
-			.then($preAjaxHandler.call(this))
+			
 			.then(res => {
 				this.setState({
 					imgList: res.data
@@ -88,7 +88,7 @@ class Home extends PureComponent {
 	getHotGoods() {
 		const url = $api.good.getHotGoods
 		$apiServer.get(url)
-			.then($preAjaxHandler.call(this))
+			
 			.then(res => {
 				this.setState({
 					hotGoods: res.data

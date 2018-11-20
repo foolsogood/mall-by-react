@@ -13,20 +13,8 @@ import WithHeader from 'components/common-components/withHeader'
         }
     };
     componentDidMount() {
-        // this.getHomeImgList()
     }
-    getHomeImgList() {
-        const query = { userid: store.user.user.userid }
-        const url = $api.order.getOrders
-        $apiServer.get(url, { query })
-            .then($preAjaxHandler.call(this))
-            .then(res => {
-                this.setState({
-                    orderList: res.data
-                })
-            }).catch($commonErrorHandler.apply(this, [url]))
-
-    };
+   
     render() {
         return (
             <div>

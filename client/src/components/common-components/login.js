@@ -19,10 +19,11 @@ class Login extends Component {
           username: this.props.form.getFieldValue("username"),
           password: this.props.form.getFieldValue("password")
         };
+        const option={loadingTxt:'登录中……'}
         const url = $api.user.login;
         $apiServer
-          .post(url, { query })
-          .then($preAjaxHandler.call(this))
+          .post(url, { query,option })
+          
           .then(res => {
             store.user.getUser(res.data);
             Cookies.set("token", res.token);

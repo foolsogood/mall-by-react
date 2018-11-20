@@ -33,7 +33,7 @@ class GoodDetail extends PureComponent {
     const url = $api.good.getGoodById;
     $apiServer
       .get(url, { params })
-      .then($preAjaxHandler.call(this))
+      
       .then(res => {
         this.setState({
           goodInfo: res.data,
@@ -49,17 +49,13 @@ class GoodDetail extends PureComponent {
   toggleLike= ()=> {
     const url = $api.good.collectGood;
     const { goodId } = this.props.match.params;
-    const userid = store.user.user ? store.user.user.userid : undefined;
     const params=[goodId]
     const query={
-      userid,
       isCollect: !this.state.isCollect
     }
     $apiServer
       .post(url, { params,query })
-      .then($preAjaxHandler.call(this))
       .then(async res => {
-        //TODO 数据提交
        await this.setState({isCollect:!this.state.isCollect})
         Toast.success(this.state.isCollect?'收藏成功!':'取消收藏!')
       })

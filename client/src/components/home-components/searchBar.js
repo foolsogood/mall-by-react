@@ -22,7 +22,7 @@ export default class searchBar extends Component {
     serachGood=(keyword)=> {
         const url = $api.good.searchGood
         $apiServer.get(url, { query: { keyword } })
-            .then($preAjaxHandler.call(this))
+            
             .then(res => {
                 this.setState({
                     list: res.data,

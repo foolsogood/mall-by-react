@@ -7,13 +7,7 @@ import WithHeader from "components/common-components/withHeader";
 import OrderItem from "components/order-components/order-item";
 
 import event from "utils/event";
-
-//引入mobx相关
-import { observer } from "mobx-react";
-import store from "store";
-// const TabPane = Tabs.TabPane
 const alert = Modal.alert;
-@observer
 @WithHeader({ titleText: "我的订单" })
 class Orders extends Component {
   constructor() {
@@ -26,12 +20,9 @@ class Orders extends Component {
     this.getOrders();
   }
   getOrders() {
-    const userid = store.user.user ? store.user.user.userid : undefined;
-    const query = { userid };
     const url = $api.order.getOrders;
     $apiServer
-      .get(url, { query })
-      .then($preAjaxHandler.call(this))
+      .get(url)
       .then(res => {
         this.setState({
           orderList: res.data
