@@ -68,27 +68,7 @@ class UserService extends Service {
       }
     }
   }
-  async bindPhone(){
-    const {ctx}=this
-    const {phone,token}=ctx.request.body
-    const data=await ctx.service.token.verifyToken(token)
-    const {userid}=data
-    const res=await ctx.model.User.update({
-      phone
-    },{
-      where:{userid}
-    })
-    if(res){
-      return {
-        code:1,
-        msg:'成功'
-      }
-    }else{
-      return {
-        code:-1,
-        msg:'失败'
-      }
-    }
-  }
+  
+  
 }
 module.exports = UserService;

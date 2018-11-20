@@ -14,7 +14,7 @@ export default class OrderItem extends Component {
         const { order } = this.props
         return (
             <div className="order-item bg-fff pd-20">
-                <Link to={`/orderDetail/${order.goodId}`}>
+                <Link to={`/orderDetail/${order.orderId}`}>
                     <Row>
                         <Col span={7}>
                             <img style={{ width: '1.5rem', height: '1.5rem' }} src={JSON.parse(order.imgs)[0]} alt="商品" />

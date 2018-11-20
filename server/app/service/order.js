@@ -43,6 +43,15 @@ class OrderService extends Service {
     });
     return _p;
   }
+  async getOrderDetail(){
+    const {ctx}=this
+    const {orderId}=ctx.params
+    const res=await ctx.model.OrderItem.findAll({
+      raw:true,
+      where:{orderId}
+    })
+    return res
+  }
   async addOrder() {
     const { ctx } = this;
     let { token, goodList } = ctx.request.body;

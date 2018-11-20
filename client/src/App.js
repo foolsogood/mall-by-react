@@ -93,7 +93,7 @@ export default class App extends Component {
 						<Route path="/sendTime" component={SendTime} />
 						<Route path="/shopCart" component={ShopCart} />
 						<Route path="/orders" component={Orders} />
-						<Route path="/orderDetail/:goodId" component={OrderDetail} />
+						<Route path="/orderDetail/:orderId" component={OrderDetail} />
 						<Route path="/bindPhone" component={BindPhone} />
 
 						<Route path="/goodDetail/:goodId" component={GoodDetail} />

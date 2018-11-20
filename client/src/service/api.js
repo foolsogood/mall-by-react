@@ -1,33 +1,5 @@
-let api = {};
-if (process.env.NODE_ENV === "server_use_koa") {
-  api = {
-    good: {
-      addGood: "/api/good/addGood",
-      getAllGoods: "/api/good/getAllGoods",
-      getGoodsByCate: "/api/good/getGoodsByCate",
-      getGoodById: "/api/good/getGoodById",
-      getNewGoods: "/api/good/getNewGoods",
-      getHotGoods: "/api/good/getHotGoods",
-      searchGood: "/api/good/searchGood"
-    },
-    category: {
-      getCates: "/api/category/getCates"
-    },
-    banner: {
-      getHomeBanner: "/api/banner/getHomeBanner"
-    },
-    user: {
-      login: "/api/user/login",
-      signup: "/api/user/signup",
-      bindPhone: "/api/user/bindPhone"
-    },
-    order: {
-      getOrders: "/api/order/getOrders",
-      addOrder: "/api/order/addOrder"
-    }
-  };
-} else {
-  api = {
+
+ const api = {
     good: {
       addGood: "",
       getAllGoods: "",
@@ -47,13 +19,17 @@ if (process.env.NODE_ENV === "server_use_koa") {
     user: {
       login: "/user/login",
       signup: "/user/register",
-      bindPhone: "/user/bindPhone"
+    },
+    phone:{
+      bindPhone: "/phone/bindPhone",
+      sendSms: "/phone/sendSms",
     },
     order: {
       getOrders: "/order/getOrder",
-      addOrder: "/order/addOrder"
+      addOrder: "/order/addOrder",
+      getOrderDetail: "/order/getOrderDetail"
     }
   };
-}
+
 
 export default api;

@@ -13,8 +13,20 @@ import WithHeader from 'components/common-components/withHeader'
         }
     };
     componentDidMount() {
+        this.getOrderDetail()
     }
-   
+    getOrderDetail() {
+        const url = $api.order.getOrderDetail
+        const {orderId}=this.props.match.params;
+        const params=[orderId]
+            
+		$apiServer.get(url,{params})
+			
+			.then(res => {
+				// this.setState({
+				// })
+			}).catch($commonErrorHandler.apply(this, [url]))
+	};
     render() {
         return (
             <div>

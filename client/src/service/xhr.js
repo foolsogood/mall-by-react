@@ -31,10 +31,7 @@ axios.interceptors.response.use(
 function finalUrl(url, params) {
   return [url].concat(params).join("/");
 }
-//
-function handelResponse(res) {
-  return Promise.resolve(res);
-}
+
 //默认地址获取
 function get(url, { params = [], query = {} }) {
   return axios.get(finalUrl(url, params), { params: query });
