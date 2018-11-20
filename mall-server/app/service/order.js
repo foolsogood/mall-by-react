@@ -3,7 +3,9 @@ const tools = require("../util/tools");
 class OrderService extends Service {
   async getOrder() {
     const { ctx } = this;
-    const { userid } = ctx.request.query;
+    const { token } = ctx.request.query;
+    let data = await ctx.service.token.verifyToken(token);
+    const { userid } = data;
     //该用户所有订单 TODO：分页处理 @fsg 2018.11.16
     const allOrders = await ctx.model.Order.findAll({
       raw: true,
@@ -16,8 +18,7 @@ class OrderService extends Service {
           raw: true,
           where: { orderId: order.orderId }
         });
-        return _order_goodList
-          
+        return _order_goodList;
       });
       return Promise.all(arr);
     };
@@ -44,7 +45,9 @@ class OrderService extends Service {
   }
   async addOrder() {
     const { ctx } = this;
-    let { userid, goodList } = ctx.request.body;
+    let { token, goodList } = ctx.request.body;
+    const data=await ctx.service.token.verifyToken(token)
+    const {userid}=data
     const orderId = tools.createTradeNo();
     await ctx.model.Order.create({
       userid,

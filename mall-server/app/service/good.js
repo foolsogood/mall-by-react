@@ -33,7 +33,6 @@ class HomeService extends Service {
         raw: true,
         where: { userid, goodId }
       });
-      console.log("res", res);
       if (res) {
         let { isCollect } = res;
         return Promise.resolve(Object.assign(good, { isCollect }));
@@ -47,7 +46,9 @@ class HomeService extends Service {
   async collectGood() {
     const { ctx } = this;
     const { goodId } = ctx.params;
-    const { isCollect, userid } = ctx.request.body;
+    const { isCollect, token } = ctx.request.body;
+    const data = await ctx.service.token.verifyToken(token);
+    const { userid } = data;
     let flag = await ctx.model.Collect.findOne({
       where: {
         goodId,

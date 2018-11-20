@@ -28,7 +28,7 @@ module.exports = (options, app) => {
           });
         }
       } else {
-        // ctx.status = 403;
+        ctx.status = 403;
         return (ctx.body = {
           code: -2,
           ...result

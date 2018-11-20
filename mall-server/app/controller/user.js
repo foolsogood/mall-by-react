@@ -10,5 +10,9 @@ class UserController extends BaseController {
     const res = await this.service.user.login();
     this.ctx.body = res;
   }
+  async bindPhone(){
+    const res = await this.service.user.bindPhone();
+    this.ctx.body = res;
+  }
 }
 module.exports=UserController

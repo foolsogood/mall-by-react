@@ -10,13 +10,15 @@ module.exports = app => {
     app.router.get('/good/getGoodDetail/:goodId',good.getGoodDetail)
     app.router.get('/good/getGoodByCateId',good.getGoodByCateId)
     app.router.get('/good/searchGood',good.searchGood)
-    app.router.post('/good/collectGood/:goodId',good.collectGood)
+    app.router.post('/good/collectGood/:goodId',userInterceptor,good.collectGood)
     app.router.get('/category/getAllCategory',category.getAllCategory)
     app.router.put('/user/register',user.register)
     app.router.post('/user/login',user.login)
+    app.router.post('/user/bindPhone',userInterceptor,user.bindPhone)
+
     app.router.post('/order/addOrder',userInterceptor,order.addOrder)
 
-    app.router.get('/order/getOrder',order.getOrder)
+    app.router.get('/order/getOrder',userInterceptor,order.getOrder)
 
 
 
