@@ -80,7 +80,4 @@ Object.keys(goodList).map((item)=>{<br/>
 ***
 
 # 服务端
-使用koa2,mysql等实现用户端数据服务<br/>
-- 1.安装mysql 5.0 以上版本，创建一个数据库，自行修改config/config.js配置，两者一致即可
-- 2.全局安装supervisor 修改服务器后不需重启
-- 3.首次运行先执行yarn init_db 或 npm init_db 导入数据到数据库
+### egg mysql Sequelize redis
