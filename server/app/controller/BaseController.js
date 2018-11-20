@@ -1,4 +1,7 @@
 "use strict";
+/**
+ * controller基类，其他路由都继承此类
+ */
 const Controller = require("egg").Controller;
 class BaseController extends Controller {
   success(data) {

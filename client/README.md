@@ -47,10 +47,8 @@ Object.keys(goodList).map((item)=>{<br/>
 ```
 而不是一定要拿到数组才能渲染,key的话最好不要用索引，而是用一些商品id,用户id之类<br/>
 ### 状态管理
- 我用的是mobx，这里面是用在购物车中，购物车还结合了localStorage,而结算是结合sessionStrage,还是有瑕疵。
- 但对于mobx的学习使用还是足够的，由于create-react-app好像不支持@装饰器,就用
- extendObservable 模式
- 在对应的页面中引入react-mobx连接react和mobx ，当然状态本身也要引入<br/>
+ 我用的是mobx，这里面是用在购物车中，购物车还结合了localStorage,而结算是结合sessionStrage。<br/>
+ 在对应的页面中引入react-mobx连接react和mobx ,当然状态本身也要引入,用装饰器@修饰observer即可观测数据变化<br/>
  ```
  import { observer } from 'mobx-react'
  import store from '../../store'
@@ -72,7 +70,7 @@ Object.keys(goodList).map((item)=>{<br/>
   ```
   
   ```
-			<Route exact path="/" component={Home} />
+	<Route exact path="/" component={Home} />
   ```
 ### 组件通信
   使用node 的event模块的EventEmitter类可满足一般的父子组件或兄弟组件通信
