@@ -8,7 +8,9 @@
       getNewGoods: "/good/getNewGoods",
       getHotGoods: "/good/getHotGoods",
       searchGood: "/good/searchGood",
-      collectGood: "/good/collectGood"
+      collectGood: "/good/collectGood",
+      getCollectGood: "/good/getCollectGood"
+
     },
     category: {
       getCates: "/category/getAllCategory"

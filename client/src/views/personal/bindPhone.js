@@ -5,7 +5,8 @@ import {
   Flex,
   WhiteSpace,
   WingBlank,
-  InputItem
+  InputItem,
+  Toast
 } from "antd-mobile";
 import { createForm } from "rc-form";
 
@@ -34,16 +35,20 @@ class BindPhone extends React.Component {
           code: this.props.form.getFieldValue("code") ,
 
         };
+        query.phone=query.phone.replace(/\s/g,'')
         const url = $api.phone.bindPhone;
         $apiServer
           .post(url, { query })
-          .then(res => {})
+          .then(res => {
+            Toast.info(res.msg)
+          })
           .catch($commonErrorHandler.apply(this, [url]));
       }
     });
   };
   sendSms=async ()=>{
     const query = { phone: this.props.form.getFieldValue("phone") };
+    query.phone=query.phone.replace(/\s/g,'')
     const url = $api.phone.sendSms;
     $apiServer
       .get(url, { query })
@@ -60,7 +65,8 @@ class BindPhone extends React.Component {
             <InputItem
               {...getFieldProps("phone")}
               type="phone"
-              placeholder="手机号"
+              placeholder='输入手机号'
+              defaultValue={store.user.user&&store.user.user.phone?store.user.user.phone:null}
               clear
               moneyKeyboardAlign="left"
             />
@@ -86,6 +92,7 @@ class BindPhone extends React.Component {
                 className="am-button-borderfix"
                 disabled={isCodeBtnEnabled}
                 onClick={this.sendSms}
+                style={{color:'#fff'}}
               >
                 获取验证码
               </Button>

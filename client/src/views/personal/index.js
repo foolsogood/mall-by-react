@@ -78,6 +78,16 @@ import store from 'store'
 
 				</div>
 				</Link>
+				<Link to={`/collect`}>
+					<div className="flex-box flex-ju-c-bt h-80 pd-h-20 bg-fff bd-top">
+						<div className="flex-box">
+							<img className="icon-1" src={require('assets/img/collect.png')} alt="" />
+							<span>我的收藏</span>
+						</div>
+						<span className="iconfont icon-you" style={{ ...common, ...iconStyle }}></span>
+
+					</div>
+				</Link>
 				<div className="hr"></div>
 				<div className="flex-box flex-ju-c-bt h-80 pd-h-20 bg-fff">
 					<div className="flex-box">

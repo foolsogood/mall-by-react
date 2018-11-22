@@ -8,7 +8,7 @@ import store from "store";
 axios.interceptors.response.use(
   response => {
     const { status, data } = response;
-    if ([200,304].includes(status)) {
+    if (status >= 200 && status < 400) {
       //隐藏loading
       $hideLoading.call(null);
       return response.data;
@@ -16,7 +16,7 @@ axios.interceptors.response.use(
   },
   error => {
     const { status, data } = error.response;
-    if (status === 403) {
+    if ([403, 401].includes(status)) {
       // token失效
       console.error("token 失效");
       event.emit("showLogin", true);

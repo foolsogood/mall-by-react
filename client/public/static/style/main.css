@@ -397,6 +397,10 @@ width: 80%;
 .order-item + .order-item{
  border-top:1px solid #ddd;
 }
+.collect-item + .collect-item{
+	border-top:1px solid #ddd;
+
+}
 /*antd样式修改  */
 .good-detail .ant-tabs-ink-bar{
 	width: 50% !important;

@@ -15,7 +15,8 @@ module.exports = app => {
     app.router.put('/user/register',user.register)
     app.router.post('/user/login',user.login)
     app.router.post('/phone/bindPhone',userInterceptor,phone.bindPhone)
-    app.router.get('/phone/sendSms',phone.sendSms)
+    app.router.get('/phone/sendSms',userInterceptor,phone.sendSms)
+    app.router.get('/good/getCollectGood',userInterceptor,good.getCollectGood)
 
     app.router.post('/order/addOrder',userInterceptor,order.addOrder)
 

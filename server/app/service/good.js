@@ -72,6 +72,30 @@ class HomeService extends Service {
       });
     }
   }
+  async getCollectGood() {
+    const { ctx } = this;
+    const { token } = ctx.query;
+    const data = await ctx.service.token.verifyToken(token);
+    const { userid } = data;
+    const arr = await ctx.model.Collect.findAll({
+      raw: true,
+      where: { userid }
+    });
+    const assGood = async arr => {
+      let result = [];
+      for (let item of arr) {
+        const good = await ctx.model.Good.findOne({
+          raw: true,
+          where: { goodId: item.goodId }
+        });
+        item = Object.assign({}, good, item);
+        result.push(item);
+      }
+      return result
+    };
+
+    return assGood(arr);
+  }
   async getGoodComment() {
     const { ctx } = this;
     const { goodId } = ctx.params;

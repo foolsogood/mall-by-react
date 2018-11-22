@@ -42,6 +42,10 @@ const FeedBack=Loadable({
 	loader:()=>import('views/personal/feedback'),
 	loading: Loading,
 })
+const Collect=Loadable({
+	loader:()=>import('views/personal/collect'),
+	loading: Loading,
+})
 const Orders=Loadable({
 	loader:()=>import('views/orders'),
 	loading: Loading,
@@ -95,6 +99,7 @@ export default class App extends Component {
 						<Route path="/orders" component={Orders} />
 						<Route path="/orderDetail/:orderId" component={OrderDetail} />
 						<Route path="/bindPhone" component={BindPhone} />
+						<Route path="/collect" component={Collect} />
 
 						<Route path="/goodDetail/:goodId" component={GoodDetail} />
 					</Switch>

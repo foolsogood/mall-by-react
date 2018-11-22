@@ -15,7 +15,6 @@ class PhoneController extends BaseController {
   async sendSms(){
     const {ctx}=this
     let {phone}=ctx.request.query
-    phone=phone.replace(/\s/g,'')
     await ctx.service.phone.sendSms(phone)
     ctx.body=''
   }

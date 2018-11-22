@@ -40,7 +40,7 @@ module.exports = (options, app) => {
       //   return (ctx.body = result);
       // }
     } else {
-      ctx.status = 403;
+      ctx.status = 401;
       //前端参数无token
       return (ctx.body = {
         code: -2,
