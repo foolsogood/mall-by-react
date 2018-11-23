@@ -98,7 +98,7 @@ class GoodDetail extends PureComponent {
                 })}
               </TabPane>
               <TabPane tab="商品评论" key="2">
-                <Comments rateList={goodInfo.comments} />
+                <Comments goodInfo={goodInfo} rateList={goodInfo.comments} />
               </TabPane>
             </Tabs>
           </div>

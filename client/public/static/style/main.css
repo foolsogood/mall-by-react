@@ -24,6 +24,10 @@ top: .8rem;
     justify-content: start;
 	
 }
+.just-c-ed{
+    justify-content: flex-end;
+	
+}
 .flex-al-st{
 	align-items: flex-start;
 }
@@ -48,6 +52,9 @@ top: .8rem;
 }
 .bd-top{
 	border-top: 1px solid #e5e6e7;
+}
+.bd-bt{
+	border-bottom: 1px solid #e5e6e7;
 }
 .color-fff{
 	color: #fff;
@@ -416,3 +423,10 @@ width: 80%;
 .ant-rate{
 	font-size: 15px !important;
 }
+/* .avatar-page .am-flexbox{
+	overflow: visible !important;
+}
+.avatar-page .am-image-picker-list .am-image-picker-item .am-image-picker-item-content{
+	width: 300px;
+	height: 400px;
+} */

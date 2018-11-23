@@ -42,6 +42,21 @@ export default class ServerClinet {
     }
     return xhr.post(this.host + url, obj);
   }
+  async post_formdata(url, obj) {
+    if (!obj.option) {
+      obj.option = option_default;
+    } else {
+      obj.option = Object.assign({}, option_default, obj.option);
+    }
+    if (obj.option.ifLoadingShow) {
+      //显示loading
+      $showLoading.call(null);
+    }
+    if (!obj.formdata.token) {
+      obj.formdata.append("token", Cookies.get("token"));
+    }
+    return xhr.post_formdata(this.host + url, obj);
+  }
   put(url, obj = { query: {} }) {
     if (!obj.option) {
       obj.option = option_default;

@@ -46,6 +46,14 @@ const Collect=Loadable({
 	loader:()=>import('views/personal/collect'),
 	loading: Loading,
 })
+const Avatar=Loadable({
+	loader:()=>import('views/personal/avatar'),
+	loading: Loading,
+})
+const CommentPage=Loadable({
+	loader:()=>import('views/goodDetail/comment'),
+	loading: Loading,
+})
 const Orders=Loadable({
 	loader:()=>import('views/orders'),
 	loading: Loading,
@@ -100,6 +108,9 @@ export default class App extends Component {
 						<Route path="/orderDetail/:orderId" component={OrderDetail} />
 						<Route path="/bindPhone" component={BindPhone} />
 						<Route path="/collect" component={Collect} />
+						<Route path="/avatar" component={Avatar} />
+
+						<Route path="/comment/:goodId" component={CommentPage} />
 
 						<Route path="/goodDetail/:goodId" component={GoodDetail} />
 					</Switch>

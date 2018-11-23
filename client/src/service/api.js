@@ -21,6 +21,7 @@
     user: {
       login: "/user/login",
       signup: "/user/register",
+      uploadAvatar:"/user/uploadAvatar"
     },
     phone:{
       bindPhone: "/phone/bindPhone",
@@ -30,7 +31,8 @@
       getOrders: "/order/getOrder",
       addOrder: "/order/addOrder",
       getOrderDetail: "/order/getOrderDetail"
-    }
+    },
+    upload:"/upload"
   };
 
 

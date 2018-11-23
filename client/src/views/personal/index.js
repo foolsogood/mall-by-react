@@ -24,9 +24,11 @@ import store from 'store'
 					<div className="info ">
 						<Row className="flex-box">
 							<Col span={6} >
+							<Link to={`/avatar`}>
 								<div className="flex-box">
-									<img className="avatar " src={require('assets/img/avatar.jpg')} alt="" />
+									<img className="avatar " src={store.user.user&&store.user.user.avatar?store.user.user.avatar:require('assets/img/avatar.jpg')} alt="" />
 								</div>
+							</Link>
 							</Col>
 							<Col span={18}><span>{store.user.user&&store.user.user.username}</span></Col>
 						</Row>
