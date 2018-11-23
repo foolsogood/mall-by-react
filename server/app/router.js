@@ -22,6 +22,7 @@ module.exports = app => {
 
     app.router.get('/order/getOrder',userInterceptor,order.getOrder)
     app.router.get('/order/getOrderDetail/:orderId',userInterceptor,order.getOrderDetail)
+    app.router.post('/user/uploadAvatar',user.uploadAvatar)
 
 
 

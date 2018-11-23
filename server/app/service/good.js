@@ -77,10 +77,11 @@ class HomeService extends Service {
     const { token } = ctx.query;
     const data = await ctx.service.token.verifyToken(token);
     const { userid } = data;
-    const arr = await ctx.model.Collect.findAll({
+    let arr = await ctx.model.Collect.findAll({
       raw: true,
       where: { userid }
     });
+    arr=arr.filter(item=>item.isCollect)
     const assGood = async arr => {
       let result = [];
       for (let item of arr) {

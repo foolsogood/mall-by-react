@@ -16,3 +16,7 @@ exports.redis={
   enable:true,
   package:'egg-redis'
 }
+exports.oss={
+  enable:true,
+  package:'egg-oss'
+}

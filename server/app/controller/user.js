@@ -10,6 +10,14 @@ class UserController extends BaseController {
     const res = await this.service.user.login();
     this.ctx.body = res;
   }
-  
+  async uploadAvatar(){
+    const {ctx}=this
+    const res=await ctx.service.user.uploadAvatar()
+    if(res){
+        this.success(res)
+    }else{
+        this.fail(res)
+    }
+}
 }
 module.exports=UserController

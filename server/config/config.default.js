@@ -43,6 +43,14 @@ module.exports = appInfo => {
     database: "mall-server",
     username: "root"
   };
-
+config.oss={
+  client: {
+    accessKeyId: 'LTAImYw1P9qavGsM',
+    accessKeySecret: 'B8ueSfNLB2PRXMJTioUfL3aQ2cwa7Q',
+    bucket: 'mall-server-upload',
+    endpoint: 'oss-cn-shenzhen.aliyuncs.com',
+    timeout: '60s',
+},
+}
   return config;
 };

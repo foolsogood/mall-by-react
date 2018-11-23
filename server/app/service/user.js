@@ -17,7 +17,7 @@ class UserService extends Service {
           username
         }
       });
-      if(!isExistUser){
+      if (!isExistUser) {
         let res = await ctx.model.User.create({
           username,
           password: sha1(password)
@@ -26,17 +26,17 @@ class UserService extends Service {
           code: 1,
           data: res.dataValues
         };
-      }else{
+      } else {
         return {
-          code:-1,
-          data:'用户已存在'
-        }
+          code: -1,
+          data: "用户已存在"
+        };
       }
     } catch (err) {
       throw err;
     }
   }
-  async login(){
+  async login() {
     const { ctx } = this;
     const { username, password } = ctx.request.body;
     let isExistUser = await ctx.model.User.findOne({
@@ -44,31 +44,54 @@ class UserService extends Service {
         username
       }
     });
-    if(!isExistUser){
+    if (!isExistUser) {
       return {
-        code:-1,
-        data:'用户不存在'
-      }
-    }else{
-      const user=isExistUser.dataValues
+        code: -1,
+        data: "用户不存在"
+      };
+    } else {
+      const user = isExistUser.dataValues;
       //登录成功
-      if(sha1(password)===user.password){
-        const token=await ctx.service.token.genToken({userid:user.userid},3600*24)
+      if (sha1(password) === user.password) {
+        const token = await ctx.service.token.genToken(
+          { userid: user.userid },
+          3600 * 24
+        );
         // ctx.session.user
         return {
-          code:1,
-          data:user,
+          code: 1,
+          data: user,
           token
-        }
-      }else{
+        };
+      } else {
         return {
-          code:-1,
-          data:'密码不正确'
-        }
+          code: -1,
+          data: "密码不正确"
+        };
       }
     }
   }
-  
-  
+  async uploadAvatar() {
+    const { ctx } = this;
+    const res = await ctx.service.upload.upload();
+    if (res) {
+      await ctx.model.User.update(
+        {
+          avatar: res.url
+        },
+        {
+          where: { userid: res.userid }
+        }
+      );
+      return {
+        msg: "success",
+        url: res.url
+      };
+    } else {
+      return {
+        msg: "fail"
+      };
+    }
+  }
 }
 module.exports = UserService;
