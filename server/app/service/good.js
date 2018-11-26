@@ -81,7 +81,7 @@ class HomeService extends Service {
       raw: true,
       where: { userid }
     });
-    arr=arr.filter(item=>item.isCollect)
+    arr = arr.filter(item => item.isCollect);
     const assGood = async arr => {
       let result = [];
       for (let item of arr) {
@@ -92,7 +92,7 @@ class HomeService extends Service {
         item = Object.assign({}, good, item);
         result.push(item);
       }
-      return result
+      return result;
     };
 
     return assGood(arr);
@@ -100,11 +100,45 @@ class HomeService extends Service {
   async getGoodComment() {
     const { ctx } = this;
     const { goodId } = ctx.params;
-    return ctx.model.Comments.findAll({
+    const res = await ctx.model.Comments.findAll({
+      raw: true,
       where: {
-        goodId: goodId
+        goodId
       }
     });
+    return res;
+  }
+  async addGoodComment() {
+    const { ctx } = this;
+    const { goodId } = ctx.params;
+    const data=await ctx.service.upload.upload()
+    const { isAnonymous, urlList, comment, rate,userid } = data ;
+    console.log(data)
+    let res
+    if (isAnonymous-0) {
+    res=  await ctx.model.Comments.create({
+        goodId,
+        comment,
+        name: "火星用户",
+        imgList:JSON.stringify(urlList),
+        rateScore: rate
+      });
+    } else {
+      const { userid } = data;
+      const userInfo = await ctx.model.User.findOne({
+        raw: true,
+        where: { userid }
+      });
+     res= await ctx.model.Comments.create({
+        goodId,
+        comment,
+        imgList:JSON.stringify(urlList),
+        rateScore: rate,
+        name: userInfo.username,
+        avatar: userInfo.avatar
+      });
+    }
+    return res;
   }
   async getGoodByCateId() {
     const { ctx } = this;

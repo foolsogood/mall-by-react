@@ -42,6 +42,24 @@ class GoodController extends BaseController {
       this.fail(err);
     }
   }
+  async getGoodComment(){
+    const {ctx}=this
+    try{
+      const res=await ctx.service.good.getGoodComment()
+      this.success(res)
+    }catch(err){
+      this.fail(err);
+    }
+  }
+  async addGoodComment(){
+    const {ctx}=this
+    try{
+      const res=await ctx.service.good.addGoodComment()
+      this.success(res)
+    }catch(err){
+      this.fail(err);
+    }
+  }
   async searchGood() {
     try {
       const res = await this.ctx.service.good.searchGood();

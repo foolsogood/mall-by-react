@@ -2680,6 +2680,19 @@ egg-multipart@^2.0.0:
     stream-wormhole "^1.1.0"
     uuid "^3.3.2"
 
+egg-multipart@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/egg-multipart/-/egg-multipart-2.3.0.tgz#8ee2b6e73be1d6d3312bcdb624d59e696318a17a"
+  integrity sha512-+8OTfZA9k1aoFBj7KSPkHIekBE89KtQJ5iAd9MxRmCn/x2yZCPn9YazMdwhMd/V7vZooG6inMUzaZKhrlpk11w==
+  dependencies:
+    co-busboy "^1.4.0"
+    humanize-bytes "^1.0.1"
+    moment "^2.22.2"
+    mz "^2.7.0"
+    mz-modules "^2.1.0"
+    stream-wormhole "^1.1.0"
+    uuid "^3.3.2"
+
 egg-mysql@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/egg-mysql/-/egg-mysql-3.0.0.tgz#67d0a559cd909fab52682dc687d56a6595ccd699"

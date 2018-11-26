@@ -17,6 +17,8 @@ module.exports = app => {
     app.router.post('/phone/bindPhone',userInterceptor,phone.bindPhone)
     app.router.get('/phone/sendSms',userInterceptor,phone.sendSms)
     app.router.get('/good/getCollectGood',userInterceptor,good.getCollectGood)
+    app.router.get('/good/getGoodComment/:goodId',good.getGoodComment)
+    app.router.post('/good/addGoodComment/:goodId',good.addGoodComment)
 
     app.router.post('/order/addOrder',userInterceptor,order.addOrder)
 

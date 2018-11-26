@@ -74,10 +74,11 @@ class UserService extends Service {
   async uploadAvatar() {
     const { ctx } = this;
     const res = await ctx.service.upload.upload();
+    const url=res.urlList[0]
     if (res) {
       await ctx.model.User.update(
         {
-          avatar: res.url
+          avatar: url
         },
         {
           where: { userid: res.userid }
@@ -85,7 +86,7 @@ class UserService extends Service {
       );
       return {
         msg: "success",
-        url: res.url
+        url: url
       };
     } else {
       return {

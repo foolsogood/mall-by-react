@@ -4,22 +4,26 @@ const sendToWormhole = require("stream-wormhole");
 class UploadService extends Service {
   async upload() {
     const { ctx } = this;
-    const stream = await ctx.getFileStream();
-    const name = path.basename(stream.filename);
-    const { token } = stream.fields;
+    const { files } = ctx.request;
+    const uploadAll = () => {
+      let arr = [];
+      for (let _file of files) {
+        const { filename, filepath } = _file;
+        let result = ctx.oss.put(filename, filepath);
+        arr.push(result);
+      }
+      return Promise.all(arr);
+    };
+    const uploadRes = await uploadAll();
+    const urlList = uploadRes.map(item => item.url);
+    const { token, ...resArguments } = ctx.request.body;
     const data = await ctx.service.token.verifyToken(token);
     const { userid } = data;
-    try {
-      let result = await ctx.oss.put(name, stream);
-      return {
-        url: result.url,
-        userid
-      };
-    } catch (err) {
-      return null
-    } finally {
-      await sendToWormhole(stream);
-    }
+    return {
+      ...resArguments,
+      urlList,
+      userid
+    };
   }
 }
 module.exports = UploadService;

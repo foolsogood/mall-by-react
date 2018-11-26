@@ -39,8 +39,8 @@ function get(url, { params = [], query = {} }) {
 function post(url, { params = [], query = {} }) {
   return axios.post(finalUrl(url, params), qs.stringify(query));
 }
-function post_formdata(url, { formdata = {} }) {
-  return axios.post(url, formdata, {
+function post_formdata(url, { params = [], formdata = {} }) {
+  return axios.post(finalUrl(url, params), formdata, {
     headers: { "Content-Type": "multipart/form-data;boundary=%s" }
   });
 }

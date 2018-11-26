@@ -9,7 +9,10 @@
       getHotGoods: "/good/getHotGoods",
       searchGood: "/good/searchGood",
       collectGood: "/good/collectGood",
-      getCollectGood: "/good/getCollectGood"
+      getCollectGood: "/good/getCollectGood",
+      getGoodComment: "/good/getGoodComment",
+      addGoodComment: "/good/addGoodComment",
+
 
     },
     category: {

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { ImagePicker, WingBlank, Button } from "antd-mobile";
+import { ImagePicker, WingBlank, Button,Toast } from "antd-mobile";
 import WithHeader from "components/common-components/withHeader";
 //
 //引入mobx相关
@@ -12,7 +12,8 @@ class Avatar extends Component {
     super();
     this.state = {
       avatarList: [],
-      filesObj: {}
+      filesObj: {},
+      isShowBtn:false
     };
   }
   componentDidMount() {
@@ -30,7 +31,10 @@ class Avatar extends Component {
     await formdata.append("file", this.state.filesObj.file);
     $apiServer
       .post_formdata(url, { formdata })
-      .then(res => {})
+      .then(res => {
+        Toast.info("上传成功")
+        store.user.getUser(Object.assign({},store.user.user,{avatar:res.data.url}))
+      })
       .catch($commonErrorHandler.apply(this, [url]));
   };
   onChange = async (files, type, index) => {
@@ -39,7 +43,7 @@ class Avatar extends Component {
       remove: async () => {
         let _temp = this.state.avatarList;
         _temp.splice(index, 1);
-        this.setState({ avatarList: _temp });
+        this.setState({ avatarList: _temp ,isShowBtn:false});
       },
       add: async () => {
         this.setState({
@@ -47,17 +51,16 @@ class Avatar extends Component {
             {
               url: files[0].url
             }
-          ]
-        });
-        this.setState({
-          filesObj: files[0]
+          ],
+          filesObj: files[0],
+          isShowBtn:true
         });
       }
     };
     op[type]();
   };
   render() {
-    const { avatarList } = this.state;
+    const { avatarList ,isShowBtn} = this.state;
     const btn = (() => (
       <div
         style={{
@@ -87,7 +90,7 @@ class Avatar extends Component {
             selectable={!avatarList.length}
           />
         </WingBlank>
-        {avatarList.length ? btn : null}
+        {isShowBtn ? btn : null}
       </div>
     );
   }

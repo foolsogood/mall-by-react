@@ -50,8 +50,12 @@ const Avatar=Loadable({
 	loader:()=>import('views/personal/avatar'),
 	loading: Loading,
 })
-const CommentPage=Loadable({
-	loader:()=>import('views/goodDetail/comment'),
+const CommentList=Loadable({
+	loader:()=>import('views/goodDetail/commentList'),
+	loading: Loading,
+})
+const CommentForm=Loadable({
+	loader:()=>import('views/goodDetail/commentForm'),
 	loading: Loading,
 })
 const Orders=Loadable({
@@ -109,8 +113,9 @@ export default class App extends Component {
 						<Route path="/bindPhone" component={BindPhone} />
 						<Route path="/collect" component={Collect} />
 						<Route path="/avatar" component={Avatar} />
-
-						<Route path="/comment/:goodId" component={CommentPage} />
+						<Route path="/commentList/:goodId" component={CommentList} />
+						{/* <Route path="/commentForm" component={CommentForm} /> */}
+						<Route path="/commentForm/:goodId" component={CommentForm} />
 
 						<Route path="/goodDetail/:goodId" component={GoodDetail} />
 					</Switch>

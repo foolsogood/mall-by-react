@@ -7,12 +7,12 @@ module.exports = appInfo => {
   config.keys = appInfo.name + "_{{keys}}";
   config.security = {
     csrf: {
-        enable: false,
-        //TODO `app.config.security.csrf.ignoreJSON` is not safe now, please disable it. @fsg 2018.11.1
-          // ignoreJSON: true,
+      enable: false
+      //TODO `app.config.security.csrf.ignoreJSON` is not safe now, please disable it. @fsg 2018.11.1
+      // ignoreJSON: true,
     },
-    domainWhiteList: [],
-};
+    domainWhiteList: []
+  };
   // add your config here
   config.middleware = [];
   //添加cors处理
@@ -20,20 +20,20 @@ module.exports = appInfo => {
     origin: "*",
     credentials: true
   };
-  config.redis={
-    client:{
-      port:6379,
-      host:'127.0.0.1',
-      password:'',
-      db:0
+  config.redis = {
+    client: {
+      port: 6379,
+      host: "127.0.0.1",
+      password: "",
+      db: 0
     }
-  }
-  config.sessionRedis={
-    key:'EGG_SESSION',
-    maxAge:1000*3600*24,
-    httpOnly:true,
-    encrypt:false
-  }
+  };
+  config.sessionRedis = {
+    key: "EGG_SESSION",
+    maxAge: 1000 * 3600 * 24,
+    httpOnly: true,
+    encrypt: false
+  };
   // change to your own sequelize configurations
   config.sequelize = {
     dialect: "mysql",
@@ -43,14 +43,18 @@ module.exports = appInfo => {
     database: "mall-server",
     username: "root"
   };
-config.oss={
-  client: {
-    accessKeyId: 'LTAImYw1P9qavGsM',
-    accessKeySecret: 'B8ueSfNLB2PRXMJTioUfL3aQ2cwa7Q',
-    bucket: 'mall-server-upload',
-    endpoint: 'oss-cn-shenzhen.aliyuncs.com',
-    timeout: '60s',
-},
-}
+  config.multipart = {
+    fileSize: "50mb",
+    mode:'file'
+  };
+  config.oss = {
+    client: {
+      accessKeyId: "LTAImYw1P9qavGsM",
+      accessKeySecret: "B8ueSfNLB2PRXMJTioUfL3aQ2cwa7Q",
+      bucket: "mall-server-upload",
+      endpoint: "oss-cn-shenzhen.aliyuncs.com",
+      timeout: "60s"
+    }
+  };
   return config;
 };

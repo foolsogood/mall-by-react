@@ -1,7 +1,7 @@
 "use strict";
 const mock = require("../../database/mock");
 module.exports = app => {
-  const { INTEGER,UUID, STRING, TEXT, BOOLEAN, DATE } = app.Sequelize;
+  const { INTEGER, UUID, STRING, TEXT, BOOLEAN, DATE } = app.Sequelize;
   const _comment = app.model.define(
     "comment",
     {
@@ -17,9 +17,12 @@ module.exports = app => {
       },
       avatar: {
         type: STRING(500),
-        allowNull: false
+        allowNull: true
       },
-
+      imgList: {
+        type: STRING,
+        allowNull: true
+      },
       name: {
         type: STRING(20),
         allowNull: false
@@ -31,10 +34,6 @@ module.exports = app => {
       comment: {
         type: TEXT,
         allowNull: true
-      },
-      time: {
-        type: DATE,
-        allowNull: false
       }
     },
     {

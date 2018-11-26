@@ -20,3 +20,7 @@ exports.oss={
   enable:true,
   package:'egg-oss'
 }
+exports.multipart = {
+  enable:true,
+  package:'egg-multipart',
+};

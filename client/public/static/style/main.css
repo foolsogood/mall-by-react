@@ -59,6 +59,9 @@ top: .8rem;
 .color-fff{
 	color: #fff;
 }
+.color-org{
+	color: #ff5000;
+}
 .bg-fff{
 	background: #fff;
 }
@@ -423,6 +426,12 @@ width: 80%;
 .ant-rate{
 	font-size: 15px !important;
 }
+.comment-form .my-radio .am-radio {
+	padding: 2.5px;
+	border: 1px solid #ccc;
+	border-radius: 50%;
+	margin-right: 5px;
+  }
 /* .avatar-page .am-flexbox{
 	overflow: visible !important;
 }

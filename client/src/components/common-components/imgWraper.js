@@ -7,7 +7,7 @@ export default class ImgWrapper extends Component {
      */
     static propTypes = {
         'data-errorimgsrc': PropTypes.string.isRequired,
-        src: PropTypes.string.isRequired
+        src: PropTypes.string
     };
     constructor() {
         super()

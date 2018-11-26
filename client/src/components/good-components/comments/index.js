@@ -6,7 +6,7 @@ export default class Comments extends Component {
     const { rateList,goodInfo } = this.props;
     const haveComment = () => (
       <div>
-        <Link to={`/comment/${goodInfo.goodId}`}>
+        <Link to={`/commentList/${goodInfo.goodId}`}>
           <div className="flex-box just-c-ed pd-h-20 bd-bt">
             <span>
               更多
