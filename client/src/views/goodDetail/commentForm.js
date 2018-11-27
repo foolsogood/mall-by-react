@@ -19,16 +19,19 @@ export default class CommentForm extends Component {
       fileStreamList: []
     };
   }
+  //评分
   rateChangeHandler = rateNumber => {
     this.setState({
       rateNumber
     });
   };
+  //是否匿名
   checkHandler = e => {
     this.setState({
       isAnonymousChecked: e.target.checked
     });
   };
+  //图片选择change
   onImgChange = async (files, type, index) => {
     let _temp = this.state.files;
     let _tempStreamList = this.state.fileStreamList;
@@ -94,8 +97,7 @@ export default class CommentForm extends Component {
           </div>
           <div>
             <TextArea
-              rows={4}
-              autosize
+              rows={8}
               onChange={this.commentChangeHandler}
               placeholder="宝贝符合你的期待吗？说说你的感受吧"
             />

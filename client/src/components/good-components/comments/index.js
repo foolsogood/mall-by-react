@@ -7,7 +7,7 @@ export default class Comments extends Component {
     const haveComment = () => (
       <div>
         <Link to={`/commentList/${goodInfo.goodId}`}>
-          <div className="flex-box just-c-ed pd-h-20 bd-bt">
+          <div className="flex-box just-c-ed pd-20 bd-bt">
             <span>
               更多
               <span
@@ -25,13 +25,13 @@ export default class Comments extends Component {
     const haveNoComment = () => (
       <p className="flex-box">
         暂无评论
-        <Link to={`/comment/${goodInfo.goodId}`}>
+        <Link to={`/commentList/${goodInfo.goodId}`}>
           <span className="pd-lf-20 " style={{ color: "#1890ff" }}>
             我要评论
           </span>
         </Link>
       </p>
     );
-    return <div>{rateList.length ? haveComment() : haveNoComment()}</div>;
+    return <div>{rateList&&rateList.length ? haveComment() : haveNoComment()}</div>;
   }
 }

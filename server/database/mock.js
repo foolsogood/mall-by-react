@@ -201,6 +201,21 @@ const mock={
 		"name": "xray Dog",
 		"comment": "宝贝很不错，能够优惠就更完美了",
 		"time": "2017-07-28 12:15:02"
+	},
+	{
+		"goodId": "77651630-2621-4818-9a2e-b80810aee2fc",
+		"avatar": "http://cache.tuwenba.com/ZNjplTIgUKicdNZl7dKrBBGIs5TiaB3Ufp0cickOsEe0s6njXW3RveiaoVSNkqNMesg02Et8StictaYGaG9qwDia6dhw/0",
+		"rateScore": "4.5",
+		"name": "召唤师",
+		"comment": "超级好看 自拍无敌",
+		"time": "2017-07-28 13:55:02"
+	}, {
+		"goodId": "77651630-2621-4818-9a2e-b80810aee2fc",
+		"avatar": "https://tva4.sinaimg.cn/crop.0.0.698.698.180/9fcdce0dgw1ev957nvqwaj20jg0jgwh0.jpg",
+		"rateScore": "5",
+		"name": "黄永灿",
+		"comment": "很满意一次购物",
+		"time": "2017-07-28 12:15:02"
 	}]
 }
 module.exports =mock

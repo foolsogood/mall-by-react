@@ -36,7 +36,7 @@ class GoodController extends BaseController {
   async getGoodDetail() {
     try {
       const goodDetail = await this.ctx.service.good.getGoodDetail();
-      const goodComment = await this.ctx.service.good.getGoodComment();
+      const goodComment = await this.ctx.service.good.getGoodComment(3,1);
       this.success({ ...goodDetail, comments: goodComment });
     } catch (err) {
       this.fail(err);
@@ -44,8 +44,10 @@ class GoodController extends BaseController {
   }
   async getGoodComment(){
     const {ctx}=this
+    const {pageSize,pageNum}=ctx.request.query
+
     try{
-      const res=await ctx.service.good.getGoodComment()
+      const res=await ctx.service.good.getGoodComment(Number(pageSize),Number(pageNum))
       this.success(res)
     }catch(err){
       this.fail(err);

@@ -97,13 +97,16 @@ class HomeService extends Service {
 
     return assGood(arr);
   }
-  async getGoodComment() {
+  async getGoodComment(pageSize=5,pageNum=1) {
     const { ctx } = this;
     const { goodId } = ctx.params;
-    const res = await ctx.model.Comments.findAll({
+    const res = await ctx.model.Comments.findAndCountAll({
       raw: true,
+      limit:pageSize,
+      offset:(pageNum-1)*pageSize,
       where: {
-        goodId
+        goodId,
+       
       }
     });
     return res;

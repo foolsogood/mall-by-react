@@ -1,37 +1,46 @@
-import React from 'react'
-import { Form, Input, Button } from 'antd'
-import WithHeader from 'components/common-components/withHeader'
+import React from "react";
+import { Input } from "antd";
+import { Button } from "antd-mobile";
+import WithHeader from "components/common-components/withHeader";
 
-const { TextArea } = Input
-const FormItem = Form.Item
-@WithHeader({ titleText: '意见反馈' })
+const { TextArea } = Input;
+@WithHeader({ titleText: "意见反馈" })
 class feedback extends React.Component {
-
-    handleSubmit = (e) => {
-        e.preventDefault()
-        console.log(e)
-    };
-    styleBtnContainer = {
-        position: 'fixed',
-        bottom: '0',
-        left: '0',
-        right: '0',
-        width: '100%',
-        borderRadius: '0'
-    };
-    render() {
-        return (
-            <div>
-                <Form onSubmit={this.handleSubmit}>
-                    <FormItem>
-                        <TextArea rows={8} placeholder="有什么好的意见或建议?" />
-                    </FormItem>
-                    <FormItem>
-                        <Button type="primary" htmlType="submit" style={this.styleBtnContainer}>确认</Button>
-                    </FormItem>
-                </Form>
-            </div>
-        )
+    constructor(){
+        super()
+        this.state={
+            tips:''
+        }
     }
+  handleSubmit = e => {
+    e.preventDefault();
+    console.log(e);
+  };
+  onChangeHandler=e=>{
+      const {value}=e.target
+      this.setState({
+        tips:value
+      })
+  }
+  
+  render() {
+      const styleBtnContainer = {
+        position: "fixed",
+        bottom: "0",
+        left: "0",
+        right: "0",
+        width: "100%",
+        borderRadius: "0"
+      };
+    return (
+      <div>
+        <TextArea rows={8} onChange={this.onChangeHandler} placeholder="有什么好的意见或建议?" />
+
+        <Button type="primary" onClick={this.handleSubmit} style={styleBtnContainer}>
+          确认
+        </Button>
+      </div>
+    );
+  }
 }
-export default feedback
+export default feedback;

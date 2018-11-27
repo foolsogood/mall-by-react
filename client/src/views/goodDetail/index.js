@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
-import { Tabs } from "antd";
-import {Toast} from 'antd-mobile'
+// import { Tabs } from "antd";
+import { Toast, Tabs } from "antd-mobile";
 // 公共组件
 import WithHeader from "components/common-components/withHeader";
 
@@ -33,35 +33,36 @@ class GoodDetail extends PureComponent {
     const url = $api.good.getGoodById;
     $apiServer
       .get(url, { params })
-      
+
       .then(res => {
         this.setState({
           goodInfo: res.data,
           // 在jsx中直接传goodInfo.imgList在子组件中取不到
           imgList: JSON.parse(res.data.imgs),
           detailList: JSON.parse(res.data.detailImg),
-          isCollect:res.data.isCollect
+          isCollect: res.data.isCollect
         });
       })
       .catch($commonErrorHandler.apply(this, [url]));
   }
   //是否收藏商品
-  toggleLike= ()=> {
+  toggleLike = () => {
     const url = $api.good.collectGood;
     const { goodId } = this.props.match.params;
-    const params=[goodId]
-    const query={
+    const params = [goodId];
+    const query = {
       isCollect: !this.state.isCollect
-    }
+    };
     $apiServer
-      .post(url, { params,query })
+      .post(url, { params, query })
       .then(async res => {
-       await this.setState({isCollect:!this.state.isCollect})
-        Toast.success(this.state.isCollect?'收藏成功!':'取消收藏!')
+        await this.setState({ isCollect: !this.state.isCollect });
+        Toast.success(this.state.isCollect ? "收藏成功!" : "取消收藏!");
       })
       .catch($commonErrorHandler.apply(this, [url]));
-  }
+  };
   render() {
+    const tabs = [{ title: "商品详情" }, { title: "商品评论" }];
     const { goodInfo, imgList, detailList, isCollect } = this.state;
     return (
       <div>
@@ -75,7 +76,10 @@ class GoodDetail extends PureComponent {
               <span className="p-2 price">¥{goodInfo.price}</span>
               <span onClick={this.toggleLike}>
                 {isCollect ? (
-                  <span className="iconfont icon-aixin" style={{color:'#ff0000'}}/>
+                  <span
+                    className="iconfont icon-aixin"
+                    style={{ color: "#ff0000" }}
+                  />
                 ) : (
                   <span className="iconfont icon-aixin1" />
                 )}
@@ -84,8 +88,8 @@ class GoodDetail extends PureComponent {
           </div>
           <div className="hr" />
           <div className="bg-fff">
-            <Tabs defaultActiveKey="1">
-              <TabPane tab="商品详情" key="1">
+            <Tabs tabs={tabs} initialPage={0}>
+              <div>
                 {detailList.map((item, idx) => {
                   return (
                     <img
@@ -96,10 +100,13 @@ class GoodDetail extends PureComponent {
                     />
                   );
                 })}
-              </TabPane>
-              <TabPane tab="商品评论" key="2">
-                <Comments goodInfo={goodInfo} rateList={goodInfo.comments} />
-              </TabPane>
+              </div>
+              <div>
+                <Comments
+                  goodInfo={goodInfo}
+                  rateList={goodInfo.comments && goodInfo.comments.rows}
+                />
+              </div>
             </Tabs>
           </div>
           <GoodFooter goodInfo={goodInfo} />

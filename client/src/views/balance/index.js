@@ -1,5 +1,6 @@
 import React, { PureComponent } from "react";
 import { Row, Col } from "antd";
+import { Modal } from "antd-mobile";
 import { Link } from "react-router-dom";
 import WithHeader from "components/common-components/withHeader";
 
@@ -7,7 +8,7 @@ import WithHeader from "components/common-components/withHeader";
 import { observer } from "mobx-react";
 import store from "store";
 import event from "utils/event";
-
+const alert = Modal.alert;
 @observer
 @WithHeader({ titleText: "结算" })
 class Balance extends PureComponent {
@@ -25,8 +26,10 @@ class Balance extends PureComponent {
   }
 
   toPay = () => {
-    
-      this.addOrder();
+    alert("付款", "马上付款", [
+      { text: "取消", onPress: () => console.log(1) },
+      { text: "确定", onPress: () => this.addOrder() }
+    ]);
   };
   addOrder() {
     let goodList = Object.values(store.shopCart.cart)
@@ -43,9 +46,9 @@ class Balance extends PureComponent {
       goodList
     };
     const url = $api.order.addOrder;
+    const option={loadingText:'提交中……'}
     $apiServer
-      .post(url, { query })
-      
+      .post(url, { query,option })
       .then(res => {
         goodList.forEach(item => {
           store.shopCart.removeFromCart(item.goodId);

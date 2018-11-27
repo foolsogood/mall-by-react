@@ -1,20 +1,20 @@
 import React, { Component } from "react";
 import { Row, Col, Rate } from "antd";
 import ImgWraper from "components/common-components/imgWraper";
-
+import tool from "utils/tool";
 export default class CommentItem extends Component {
   render() {
     const rate = this.props.rate;
     const _hList = list => {
       return (
         <div>
-          {list.map((item,idx) => {
+          {list.map((item, idx) => {
             return (
               <img
-              key={idx}
+                key={idx}
                 src={item}
                 alt=""
-                style={{ width: "1rem", height: "1rem",paddingRight:'.1rem' }}
+                style={{ width: "1rem", height: "1rem", paddingRight: ".1rem" }}
               />
             );
           })}
@@ -36,7 +36,7 @@ export default class CommentItem extends Component {
               <span>{rate.name}</span>
               <Rate disabled defaultValue={parseFloat(rate.rateScore)} />
             </div>
-            <p>{rate.updated_at}</p>
+            <p>{tool.formatTime(rate.updated_at)}</p>
             <p>{rate.comment}</p>
             {rate.imgList ? _hList(JSON.parse(rate.imgList)) : null}
           </Col>
