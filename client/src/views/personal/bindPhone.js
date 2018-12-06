@@ -18,45 +18,45 @@ import store from "store";
 @observer
 @WithHeader({ titleText: "绑定手机" })
 class BindPhone extends React.Component {
-  constructor(){
-    super()
-    this.state={
-      isCodeBtnEnabled:false
-    }
+  constructor() {
+    super();
+    this.state = {
+      isCodeBtnEnabled: false
+    };
   }
   handleSubmit = e => {
     e.preventDefault();
-    this.props.form.validateFields((err, values) => {
+    this.props.form.validateFields(async(err, values) => {
       if (err) {
         console.log(e);
       } else {
-        const query = { 
-          phone: this.props.form.getFieldValue("phone") ,
-          code: this.props.form.getFieldValue("code") ,
-
+        const query = {
+          phone: this.props.form.getFieldValue("phone"),
+          code: this.props.form.getFieldValue("code")
         };
-        query.phone=query.phone.replace(/\s/g,'')
+        query.phone = query.phone.replace(/\s/g, "");
         const url = $api.phone.bindPhone;
-        $apiServer
-          .post(url, { query })
-          .then(res => {
-            Toast.info(res.msg)
-          })
-          .catch($commonErrorHandler.apply(this, [url]));
+        try {
+          const res = await $apiServer.post(url, { query });
+          Toast.info(res.msg);
+        } catch (err) {
+          $commonErrorHandler(url)(err);
+        }
       }
     });
   };
-  sendSms=async ()=>{
+  sendSms = async () => {
     const query = { phone: this.props.form.getFieldValue("phone") };
-    query.phone=query.phone.replace(/\s/g,'')
+    query.phone = query.phone.replace(/\s/g, "");
     const url = $api.phone.sendSms;
-    $apiServer
-      .get(url, { query })
-      .then(res => {})
-      .catch($commonErrorHandler.apply(this, [url]));
-  }
+    try {
+      await $apiServer.get(url, { query });
+    } catch (err) {
+      $commonErrorHandler(url)(err);
+    }
+  };
   render() {
-    const {isCodeBtnEnabled}=this.state
+    const { isCodeBtnEnabled } = this.state;
     const { getFieldProps } = this.props.form;
     return (
       <div style={{ paddingTop: ".2rem" }}>
@@ -65,8 +65,12 @@ class BindPhone extends React.Component {
             <InputItem
               {...getFieldProps("phone")}
               type="phone"
-              placeholder='输入手机号'
-              defaultValue={store.user.user&&store.user.user.phone?store.user.user.phone:null}
+              placeholder="输入手机号"
+              defaultValue={
+                store.user.user && store.user.user.phone
+                  ? store.user.user.phone
+                  : null
+              }
               clear
               moneyKeyboardAlign="left"
             />
@@ -92,7 +96,7 @@ class BindPhone extends React.Component {
                 className="am-button-borderfix"
                 disabled={isCodeBtnEnabled}
                 onClick={this.sendSms}
-                style={{color:'#fff'}}
+                style={{ color: "#fff" }}
               >
                 获取验证码
               </Button>

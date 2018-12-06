@@ -5,7 +5,7 @@ export default class classifyList extends Component {
    
     render() {
         const { list,cateId } = this.props
-        const anchor=`anchor-${cateId}`
+        const anchor=`#anchor-${cateId}`
         return (
             <div id={anchor}  >
                 <div className="bg-fff pd-h-20">

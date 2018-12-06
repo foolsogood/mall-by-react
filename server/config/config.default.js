@@ -20,6 +20,7 @@ module.exports = appInfo => {
     origin: "*",
     credentials: true
   };
+  
   config.redis = {
     client: {
       port: 6379,

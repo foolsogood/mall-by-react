@@ -31,7 +31,7 @@ class Balance extends PureComponent {
       { text: "确定", onPress: () => this.addOrder() }
     ]);
   };
-  addOrder() {
+  async addOrder() {
     let goodList = Object.values(store.shopCart.cart)
       .filter(item => item.isSelect)
       .map(item => {
@@ -46,15 +46,15 @@ class Balance extends PureComponent {
       goodList
     };
     const url = $api.order.addOrder;
-    const option={loadingText:'提交中……'}
-    $apiServer
-      .post(url, { query,option })
-      .then(res => {
-        goodList.forEach(item => {
-          store.shopCart.removeFromCart(item.goodId);
-        });
-      })
-      .catch($commonErrorHandler.apply(this, [url]));
+    const option = { loadingText: "提交中……" };
+    try {
+      const res =await $apiServer.post(url, { query, option });
+      goodList.forEach(item => {
+        store.shopCart.removeFromCart(item.goodId);
+      });
+    } catch (err) {
+      $commonErrorHandler(url)(err);
+    }
   }
   render() {
     const iconStyle = { fontSize: ".35rem" };

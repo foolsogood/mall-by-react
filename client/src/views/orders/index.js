@@ -19,16 +19,16 @@ class Orders extends Component {
   componentDidMount() {
     this.getOrders();
   }
-  getOrders() {
+  async getOrders() {
     const url = $api.order.getOrders;
-    $apiServer
-      .get(url)
-      .then(res => {
-        this.setState({
-          orderList: res.data
-        });
-      })
-      .catch($commonErrorHandler.apply(this, [url]));
+    try {
+      const res = await $apiServer.get(url);
+      this.setState({
+        orderList: res.data
+      });
+    } catch (err) {
+      $commonErrorHandler(url)(err);
+    }
   }
   render() {
     const { orderList } = this.state;
@@ -48,9 +48,16 @@ class Orders extends Component {
       <div>
         <Tabs tabs={tabs} initialPage={0}>
           <div>
-            {orderList.map((order,index) => {
+            {orderList.map((order, index) => {
               return (
-                <div key={index} style={{borderRadius:'.5rem',padding:' .15rem',boxSizing:'content-box'}}>
+                <div
+                  key={index}
+                  style={{
+                    borderRadius: ".5rem",
+                    padding: " .15rem",
+                    boxSizing: "content-box"
+                  }}
+                >
                   {order.map((item, idx) => {
                     return <OrderItem key={idx} order={item} />;
                   })}

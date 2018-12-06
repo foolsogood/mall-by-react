@@ -9,7 +9,6 @@ class TokenService extends Service {
   }
   //解密token (看是否过期或是否有效等)
   async verifyToken(token) {
-    // let res = "";
     const _verify = (token, cert) => {
       return new Promise((resolve,reject) => {
         jwt.verify(token, cert, function(err, decoded) {
@@ -24,17 +23,15 @@ class TokenService extends Service {
     try {
       let decoded = await _verify(token, cert);
       let { exp, iat, data } = decoded;
-      // console.log("token service", decoded);
+      console.log("token service", decoded);
       // let current = Math.floor(Date.now() / 1000);
       // if (current <= exp) {
       //   res = data;
       // }
       // console.log('hhhh',res)
-
       return data;
     } catch (err) {
       //如果过期或Token无效都走这里，所以try里无需做是否过期的校验
-        console.error(1111,err)
       return {
         name:err.name,
         message:err.message,

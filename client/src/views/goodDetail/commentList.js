@@ -27,7 +27,7 @@ class Comment extends Component {
     });
     this.getGoodComment();
   };
-  getGoodComment() {
+  async getGoodComment() {
     const { goodId } = this.props.match.params;
     const params = [goodId];
     const query = {
@@ -35,15 +35,15 @@ class Comment extends Component {
       pageNum: this.state.pageNum
     };
     const url = $api.good.getGoodComment;
-    $apiServer
-      .get(url, { query, params })
-      .then(async res => {
-        this.setState({
-          commentList: await this.state.commentList.concat(res.data.rows),
-          total: res.data.count
-        });
-      })
-      .catch($commonErrorHandler.apply(this, [url]));
+    try {
+      const res =await $apiServer.get(url, { query, params });
+      this.setState({
+        commentList: await this.state.commentList.concat(res.data.rows),
+        total: res.data.count
+      });
+    } catch (err) {
+      $commonErrorHandler(url)(err);
+    }
   }
   render() {
     const { commentList, total } = this.state;

@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Loadable from 'react-loadable';
-import Login from 'components/common-components/login'
-import Signup from 'components/common-components/signup'
 import SmallLoading from 'components/common-components/smallLoading'
 import Loading from 'components/common-components/loading'
 
 import event from 'utils/event'
 // 组件
-
+const Login=Loadable({
+	loader:()=>import('components/common-components/login'),
+	loading: Loading,
+})
+const Signup=Loadable({
+	loader:()=>import('components/common-components/signup'),
+	loading: Loading,
+})
 const Home=Loadable({
 	loader:()=>import('views/home'),
 	loading: Loading,
@@ -114,7 +119,6 @@ export default class App extends Component {
 						<Route path="/collect" component={Collect} />
 						<Route path="/avatar" component={Avatar} />
 						<Route path="/commentList/:goodId" component={CommentList} />
-						{/* <Route path="/commentForm" component={CommentForm} /> */}
 						<Route path="/commentForm/:goodId" component={CommentForm} />
 
 						<Route path="/goodDetail/:goodId" component={GoodDetail} />

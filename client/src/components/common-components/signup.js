@@ -1,43 +1,40 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 import { List, Button, WhiteSpace, WingBlank, InputItem } from "antd-mobile";
 import { createForm } from "rc-form";
 
-import event from 'utils/event'
-
-
+import event from "utils/event";
 
 class NormalLoginForm extends Component {
+  handleSubmit = e => {
+    console.log(111);
+    e.preventDefault();
+    this.props.form.validateFields(async (err, values) => {
+      if (!err) {
+        console.log("Received values of form: ", values);
+      }
+      const query = {
+        username: this.props.form.getFieldValue("username"),
+        password: this.props.form.getFieldValue("password"),
+        repeatPwd: this.props.form.getFieldValue("repeatPwd")
+      };
+      const url = $api.user.signup;
+      try {
+        const res = await $apiServer.put(url, { query });
+        event.emit("showSignup", false);
+        event.emit("showLogin", true);
+      } catch (err) {
+        $commonErrorHandler(url)(err);
+      }
+    });
+  };
 
+  render() {
+    const { getFieldProps } = this.props.form;
 
-    handleSubmit = (e) => {
-        console.log(111)
-        e.preventDefault();
-        this.props.form.validateFields((err, values) => {
-            if (!err) {
-                console.log('Received values of form: ', values);
-            }
-            const query = {
-                username: this.props.form.getFieldValue('username'),
-                password: this.props.form.getFieldValue('password'),
-                repeatPwd: this.props.form.getFieldValue('repeatPwd')
-            }
-            const url = $api.user.signup
-            $apiServer.put(url, { query })
-                
-                .then(res => {
-                    event.emit('showSignup', false);
-                    event.emit('showLogin', true)
-                }).catch($commonErrorHandler.apply(this, [url]))
-        });
-    }
-
-    render() {
-        const { getFieldProps } = this.props.form;
-
-        return (
-            <div className="login">
-                <div className="mask"></div>
-                <div className="login-form">
+    return (
+      <div className="login">
+        <div className="mask" />
+        <div className="login-form">
           <WingBlank>
             <p className="flex-box">注册</p>
             <List>
@@ -72,14 +69,20 @@ class NormalLoginForm extends Component {
             </List>
             <WhiteSpace />
             <List>
-              <Button onClick={this.handleSubmit} type="primary" style={{color:'#fff'}}>注册</Button>
+              <Button
+                onClick={this.handleSubmit}
+                type="primary"
+                style={{ color: "#fff" }}
+              >
+                注册
+              </Button>
             </List>
           </WingBlank>
         </div>
-            </div>
-        );
-    }
+      </div>
+    );
+  }
 }
 
 const signup = createForm()(NormalLoginForm);
-export default signup
+export default signup;

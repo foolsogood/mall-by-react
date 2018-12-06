@@ -18,7 +18,7 @@ axios.interceptors.response.use(
     const { status, data } = error.response;
     if ([403, 401].includes(status)) {
       // token失效
-      console.error("token 失效");
+      // console.error("token 失效");
       event.emit("showLogin", true);
       $hideLoading.call(null);
       return Promise.reject(error.response);

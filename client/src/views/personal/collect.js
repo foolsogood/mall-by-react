@@ -16,33 +16,34 @@ class Collect extends Component {
   componentDidMount() {
     this.getCollectGood();
   }
+  //获取用户收藏商品列表
   getCollectGood = async () => {
     const url = $api.good.getCollectGood;
-    $apiServer
-      .get(url)
-      .then(res => {
-        this.setState({
-          collectList: res.data
-        });
-      })
-      .catch($commonErrorHandler.apply(this, [url]));
+    try {
+      const res = await $apiServer.get(url);
+      this.setState({
+        collectList: res.data
+      });
+    } catch (err) {
+      $commonErrorHandler(url)(err);
+    }
   };
   //取消收藏商品
-  removeCollect = (goodId, idx) => {
+  removeCollect = async (goodId, idx) => {
     const url = $api.good.collectGood;
     const query = {
       isCollect: false
     };
     const params = [goodId];
     let _temp = this.state.collectList;
-    $apiServer
-      .post(url, { params, query })
-      .then(async res => {
-        await _temp.splice(idx, 1);
-        await this.setState({ collectList: _temp });
-        Toast.success("取消收藏!");
-      })
-      .catch($commonErrorHandler.apply(this, [url]));
+    try {
+      const res = await $apiServer.post(url, { params, query });
+      await _temp.splice(idx, 1);
+      await this.setState({ collectList: _temp });
+      Toast.success("取消收藏!");
+    } catch (err) {
+      $commonErrorHandler(url)(err);
+    }
   };
   render() {
     const { collectList } = this.state;
@@ -50,10 +51,7 @@ class Collect extends Component {
       <div>
         {collectList.map((item, idx) => {
           return (
-            <div
-              className="collect-item"
-              key={`${item.goodName}`}
-            >
+            <div className="collect-item" key={`${item.goodName}`}>
               <SwipeAction
                 style={{ backgroundColor: "gray" }}
                 autoClose

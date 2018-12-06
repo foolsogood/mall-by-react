@@ -66,20 +66,20 @@ export default class CommentForm extends Component {
       fileStreamList
     } = this.state;
     let formdata = new FormData();
-    formdata.append("isAnonymous", isAnonymousChecked?1:0);
+    formdata.append("isAnonymous", isAnonymousChecked ? 1 : 0);
     formdata.append("rate", rateNumber);
     formdata.append("comment", comment);
-    fileStreamList.forEach(item=>{
+    fileStreamList.forEach(item => {
       formdata.append("file", item);
-    })
+    });
 
     const params = [goodId];
     const url = $api.good.addGoodComment;
-
-    $apiServer
-      .post_formdata(url, { params, formdata })
-      .then(res => {})
-      .catch($commonErrorHandler.apply(this, [url]));
+    try {
+      await $apiServer.post_formdata(url, { params, formdata });
+    } catch (err) {
+      $commonErrorHandler(url)(err);
+    }
   };
   render() {
     const { files } = this.state;

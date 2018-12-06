@@ -12,24 +12,23 @@ import Cookies from "js-cookie";
 class Login extends Component {
   handleSubmit = e => {
     e.preventDefault();
-    this.props.form.validateFields((err, values) => {
+    this.props.form.validateFields(async (err, values) => {
       if (!err) {
         console.log("Received values of form: ", values);
         const query = {
           username: this.props.form.getFieldValue("username"),
           password: this.props.form.getFieldValue("password")
         };
-        const option={loadingTxt:'登录中……'}
+        const option = { loadingTxt: "登录中……" };
         const url = $api.user.login;
-        $apiServer
-          .post(url, { query,option })
-          
-          .then(res => {
-            store.user.getUser(res.data);
-            Cookies.set("token", res.token);
-            event.emit("showLogin", false);
-          })
-          .catch($commonErrorHandler.apply(this, [url]));
+        try {
+          const res = await $apiServer.post(url, { query, option });
+          store.user.getUser(res.data);
+          Cookies.set("token", res.token);
+          event.emit("showLogin", false);
+        } catch (err) {
+          $commonErrorHandler(url)(err);
+        }
       }
     });
   };
@@ -64,10 +63,25 @@ class Login extends Component {
             </List>
             <WhiteSpace />
             <List>
-              <Button onClick={this.handleSubmit} type="primary" style={{color:'#fff'}}>提交</Button>
+              <Button
+                onClick={this.handleSubmit}
+                type="primary"
+                style={{ color: "#fff" }}
+              >
+                提交
+              </Button>
             </List>
-            <p style={{paddingTop:'.3rem'}}>没有账号?
-            <span onClick={() => { event.emit('showSignup', true); event.emit('showLogin', false) }} style={{paddingLeft:'.2rem',color:'#ff0000'}}>去注册</span>
+            <p style={{ paddingTop: ".3rem" }}>
+              没有账号?
+              <span
+                onClick={() => {
+                  event.emit("showSignup", true);
+                  event.emit("showLogin", false);
+                }}
+                style={{ paddingLeft: ".2rem", color: "#ff0000" }}
+              >
+                去注册
+              </span>
             </p>
           </WingBlank>
         </div>

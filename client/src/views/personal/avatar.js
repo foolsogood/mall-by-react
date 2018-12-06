@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import { ImagePicker, WingBlank, Button,Toast } from "antd-mobile";
+import { ImagePicker, WingBlank, Button, Toast } from "antd-mobile";
 import WithHeader from "components/common-components/withHeader";
 //
 //引入mobx相关
-import { observer } from 'mobx-react'
-import store from 'store'
+import { observer } from "mobx-react";
+import store from "store";
 @observer
 @WithHeader({ titleText: "个人头像" })
 class Avatar extends Component {
@@ -13,14 +13,17 @@ class Avatar extends Component {
     this.state = {
       avatarList: [],
       filesObj: {},
-      isShowBtn:false
+      isShowBtn: false
     };
   }
   componentDidMount() {
     this.setState({
       avatarList: [
         {
-          url: store.user.user&&store.user.user.avatar?store.user.user.avatar:require('assets/img/avatar.jpg')
+          url:
+            store.user.user && store.user.user.avatar
+              ? store.user.user.avatar
+              : require("assets/img/avatar.jpg")
         }
       ]
     });
@@ -29,13 +32,15 @@ class Avatar extends Component {
     const url = $api.user.uploadAvatar;
     let formdata = new FormData();
     await formdata.append("file", this.state.filesObj.file);
-    $apiServer
-      .post_formdata(url, { formdata })
-      .then(res => {
-        Toast.info("上传成功")
-        store.user.getUser(Object.assign({},store.user.user,{avatar:res.data.url}))
-      })
-      .catch($commonErrorHandler.apply(this, [url]));
+    try {
+      const res = await $apiServer.post_formdata(url, { formdata });
+      Toast.info("上传成功");
+      store.user.getUser(
+        Object.assign({}, store.user.user, { avatar: res.data.url })
+      );
+    } catch (err) {
+      $commonErrorHandler(url)(err);
+    }
   };
   onChange = async (files, type, index) => {
     console.log(files, type, index);
@@ -43,7 +48,7 @@ class Avatar extends Component {
       remove: async () => {
         let _temp = this.state.avatarList;
         _temp.splice(index, 1);
-        this.setState({ avatarList: _temp ,isShowBtn:false});
+        this.setState({ avatarList: _temp, isShowBtn: false });
       },
       add: async () => {
         this.setState({
@@ -53,14 +58,14 @@ class Avatar extends Component {
             }
           ],
           filesObj: files[0],
-          isShowBtn:true
+          isShowBtn: true
         });
       }
     };
     op[type]();
   };
   render() {
-    const { avatarList ,isShowBtn} = this.state;
+    const { avatarList, isShowBtn } = this.state;
     const btn = (() => (
       <div
         style={{

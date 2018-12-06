@@ -19,7 +19,7 @@ Object.keys(middleware).forEach(item => {
 
 ReactDOM.render(<App store={store} />, document.getElementById("root"));
 console.log("process.env.NODE_ENV is", process.env.NODE_ENV);
-if (process.env.NODE_ENV !== "development") {
+if (process.env.NODE_ENV === "development") {
   document.write(
     '<script src="//cdn.bootcss.com/eruda/1.5.2/eruda.min.js"></script>'
   );

@@ -8,15 +8,11 @@ module.exports = (options, app) => {
     };
     let { token } = ctx.request[op[ctx.method]];
     //判空
-
     if (token) {
       let result = await ctx.service.token.verifyToken(token);
-      // console.log("拦截", result);
-      // try {
       let { userid } = result;
       if (userid) {
         let redis_token = await ctx.service.token.getToken(userid);
-        // console.log('redis_token equal token',token === redis_token)
         if (token === redis_token) {
           await next();
         } else {
@@ -34,11 +30,6 @@ module.exports = (options, app) => {
           ...result
         });
       }
-      // } catch (err) {
-      //   console.log(0000,err)
-      //   ctx.status = 403;
-      //   return (ctx.body = result);
-      // }
     } else {
       ctx.status = 401;
       //前端参数无token

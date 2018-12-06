@@ -28,38 +28,37 @@ class GoodDetail extends PureComponent {
     let { goodId } = this.props.match.params;
     this.getGoodInfo(goodId);
   }
-  getGoodInfo(goodId) {
+  async getGoodInfo(goodId) {
     const params = [goodId];
     const url = $api.good.getGoodById;
-    $apiServer
-      .get(url, { params })
-
-      .then(res => {
-        this.setState({
-          goodInfo: res.data,
-          // 在jsx中直接传goodInfo.imgList在子组件中取不到
-          imgList: JSON.parse(res.data.imgs),
-          detailList: JSON.parse(res.data.detailImg),
-          isCollect: res.data.isCollect
-        });
-      })
-      .catch($commonErrorHandler.apply(this, [url]));
+    try {
+      const res = await $apiServer.get(url, { params });
+      this.setState({
+        goodInfo: res.data,
+        // 在jsx中直接传goodInfo.imgList在子组件中取不到
+        imgList: JSON.parse(res.data.imgs),
+        detailList: JSON.parse(res.data.detailImg),
+        isCollect: res.data.isCollect
+      });
+    } catch (err) {
+      $commonErrorHandler(url)(err);
+    }
   }
   //是否收藏商品
-  toggleLike = () => {
+  toggleLike = async () => {
     const url = $api.good.collectGood;
     const { goodId } = this.props.match.params;
     const params = [goodId];
     const query = {
       isCollect: !this.state.isCollect
     };
-    $apiServer
-      .post(url, { params, query })
-      .then(async res => {
-        await this.setState({ isCollect: !this.state.isCollect });
-        Toast.success(this.state.isCollect ? "收藏成功!" : "取消收藏!");
-      })
-      .catch($commonErrorHandler.apply(this, [url]));
+    try {
+      const res = $apiServer.post(url, { params, query });
+      await this.setState({ isCollect: !this.state.isCollect });
+      Toast.success(this.state.isCollect ? "收藏成功!" : "取消收藏!");
+    } catch (err) {
+      $commonErrorHandler(url)(err);
+    }
   };
   render() {
     const tabs = [{ title: "商品详情" }, { title: "商品评论" }];
