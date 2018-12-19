@@ -1,6 +1,9 @@
 import serverClient from "./serverClient";
 let getApiServer = (function() {
-  const host = "http://127.0.0.1:7001";
+  let host = "http://127.0.0.1:7001";
+if (process.env.NODE_ENV === "production") {
+  host = "http://120.79.226.148:3000";
+}
   let _sc;
   return function() {
     if (!_sc) {
