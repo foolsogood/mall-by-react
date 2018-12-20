@@ -17,15 +17,15 @@ export default class searchBar extends Component {
   };
   //搜查商品
   serachGood = async keyword => {
-    const url = $api.good.searchGood;
+    const url = window.$api.good.searchGood;
     try {
-      const res = await $apiServer.get(url, { query: { keyword } });
+      const res = await window.$apiServer.get(url, { query: { keyword } });
       this.setState({
         list: res.data,
         isSerachHasData: Boolean(res.data && res.data.length)
       });
     } catch (err) {
-      $commonErrorHandler(url)(err);
+      window.$commonErrorHandler(url)(err);
     }
   };
   keywordChange = ev => {

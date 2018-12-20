@@ -8,7 +8,7 @@ const { TextArea } = Input;
 @WithHeader({
   titleText: "我要评论"
 })
-export default class CommentForm extends Component {
+ class CommentForm extends Component {
   constructor() {
     super();
     this.state = {
@@ -74,11 +74,11 @@ export default class CommentForm extends Component {
     });
 
     const params = [goodId];
-    const url = $api.good.addGoodComment;
+    const url = window.$api.good.addGoodComment;
     try {
-      await $apiServer.post_formdata(url, { params, formdata });
+      await window.$apiServer.post_formdata(url, { params, formdata });
     } catch (err) {
-      $commonErrorHandler(url)(err);
+      window.$commonErrorHandler(url)(err);
     }
   };
   render() {
@@ -119,3 +119,4 @@ export default class CommentForm extends Component {
     );
   }
 }
+export default CommentForm

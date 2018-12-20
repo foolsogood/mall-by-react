@@ -16,14 +16,14 @@ export default class RecomList extends Component {
     this.getRecomGoods();
   }
   async getRecomGoods() {
-    const url = $api.good.getNewGoods;
+    const url = window.$api.good.getNewGoods;
     try {
-      const res = await $apiServer.get(url);
+      const res = await window.$apiServer.get(url);
       this.setState({
         obj: res.data
       });
     } catch (err) {
-      $commonErrorHandler(url)(err);
+      window.$commonErrorHandler(url)(err);
     }
   }
   render() {

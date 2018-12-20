@@ -29,17 +29,17 @@ class Avatar extends Component {
     });
   }
   upload = async () => {
-    const url = $api.user.uploadAvatar;
+    const url = window.$api.user.uploadAvatar;
     let formdata = new FormData();
     await formdata.append("file", this.state.filesObj.file);
     try {
-      const res = await $apiServer.post_formdata(url, { formdata });
+      const res = await window.$apiServer.post_formdata(url, { formdata });
       Toast.info("上传成功");
       store.user.getUser(
         Object.assign({}, store.user.user, { avatar: res.data.url })
       );
     } catch (err) {
-      $commonErrorHandler(url)(err);
+      window.$commonErrorHandler(url)(err);
     }
   };
   onChange = async (files, type, index) => {

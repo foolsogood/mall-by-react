@@ -14,13 +14,13 @@ class OrderDetail extends Component {
     this.getOrderDetail();
   }
   async getOrderDetail() {
-    const url = $api.order.getOrderDetail;
+    const url = window.$api.order.getOrderDetail;
     const { orderId } = this.props.match.params;
     const params = [orderId];
     try {
-      const res = $apiServer.get(url, { params });
+      const res = window.$apiServer.get(url, { params });
     } catch (err) {
-      $commonErrorHandler(url)(err);
+      window.$commonErrorHandler(url)(err);
     }
   }
   render() {

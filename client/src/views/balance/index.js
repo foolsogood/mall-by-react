@@ -45,15 +45,15 @@ class Balance extends PureComponent {
     const query = {
       goodList
     };
-    const url = $api.order.addOrder;
+    const url = window.$api.order.addOrder;
     const option = { loadingText: "提交中……" };
     try {
-      const res =await $apiServer.post(url, { query, option });
+      const res =await window.$apiServer.post(url, { query, option });
       goodList.forEach(item => {
         store.shopCart.removeFromCart(item.goodId);
       });
     } catch (err) {
-      $commonErrorHandler(url)(err);
+      window.$commonErrorHandler(url)(err);
     }
   }
   render() {

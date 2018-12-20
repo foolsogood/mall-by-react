@@ -38,14 +38,14 @@ class Home extends PureComponent {
     });
   }
   async getHomeImgList() {
-    const url = $api.banner.getHomeBanner;
+    const url = window.$api.banner.getHomeBanner;
     try {
-      const res = await $apiServer.get(url);
+      const res = await window.$apiServer.get(url);
       this.setState({
         imgList: res.data
       });
     } catch (err) {
-      $commonErrorHandler(url)(err);
+      window.$commonErrorHandler(url)(err);
     }
   }
   changeSearchStyle(e) {
@@ -83,14 +83,14 @@ class Home extends PureComponent {
     tool.throttle(fn, 50)();
   }
   async getHotGoods() {
-    const url = $api.good.getHotGoods;
+    const url = window.$api.good.getHotGoods;
     try {
-      const res = await $apiServer.get(url);
+      const res = await window.$apiServer.get(url);
       this.setState({
         hotGoods: res.data
       });
     } catch (err) {
-      $commonErrorHandler(url)(err);
+      window.$commonErrorHandler(url)(err);
     }
   }
   render() {

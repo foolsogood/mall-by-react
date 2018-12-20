@@ -16,7 +16,7 @@ const middleware = {
     store.commonQuery.setLoading(true, txt);
     setTimeout(() => {
       //默认3秒消失
-      $hideLoading.call(null);
+      window.$hideLoading.call(null);
     }, 1000 * 3);
   },
   hideLoading() {

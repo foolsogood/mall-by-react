@@ -35,12 +35,12 @@ class BindPhone extends React.Component {
           code: this.props.form.getFieldValue("code")
         };
         query.phone = query.phone.replace(/\s/g, "");
-        const url = $api.phone.bindPhone;
+        const url = window.$api.phone.bindPhone;
         try {
-          const res = await $apiServer.post(url, { query });
+          const res = await window.$apiServer.post(url, { query });
           Toast.info(res.msg);
         } catch (err) {
-          $commonErrorHandler(url)(err);
+          window.$commonErrorHandler(url)(err);
         }
       }
     });
@@ -48,11 +48,11 @@ class BindPhone extends React.Component {
   sendSms = async () => {
     const query = { phone: this.props.form.getFieldValue("phone") };
     query.phone = query.phone.replace(/\s/g, "");
-    const url = $api.phone.sendSms;
+    const url = window.$api.phone.sendSms;
     try {
-      await $apiServer.get(url, { query });
+      await window.$apiServer.get(url, { query });
     } catch (err) {
-      $commonErrorHandler(url)(err);
+      window.$commonErrorHandler(url)(err);
     }
   };
   render() {

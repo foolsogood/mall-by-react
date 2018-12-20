@@ -30,9 +30,9 @@ class GoodDetail extends PureComponent {
   }
   async getGoodInfo(goodId) {
     const params = [goodId];
-    const url = $api.good.getGoodById;
+    const url = window.$api.good.getGoodById;
     try {
-      const res = await $apiServer.get(url, { params });
+      const res = await window.$apiServer.get(url, { params });
       this.setState({
         goodInfo: res.data,
         // 在jsx中直接传goodInfo.imgList在子组件中取不到
@@ -41,23 +41,23 @@ class GoodDetail extends PureComponent {
         isCollect: res.data.isCollect
       });
     } catch (err) {
-      $commonErrorHandler(url)(err);
+      window.$commonErrorHandler(url)(err);
     }
   }
   //是否收藏商品
   toggleLike = async () => {
-    const url = $api.good.collectGood;
+    const url = window.$api.good.collectGood;
     const { goodId } = this.props.match.params;
     const params = [goodId];
     const query = {
       isCollect: !this.state.isCollect
     };
     try {
-      const res = $apiServer.post(url, { params, query });
+      const res = window.$apiServer.post(url, { params, query });
       await this.setState({ isCollect: !this.state.isCollect });
       Toast.success(this.state.isCollect ? "收藏成功!" : "取消收藏!");
     } catch (err) {
-      $commonErrorHandler(url)(err);
+      window.$commonErrorHandler(url)(err);
     }
   };
   render() {

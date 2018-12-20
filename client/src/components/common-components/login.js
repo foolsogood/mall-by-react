@@ -20,14 +20,14 @@ class Login extends Component {
           password: this.props.form.getFieldValue("password")
         };
         const option = { loadingTxt: "登录中……" };
-        const url = $api.user.login;
+        const url = window.$api.user.login;
         try {
-          const res = await $apiServer.post(url, { query, option });
+          const res = await window.$apiServer.post(url, { query, option });
           store.user.getUser(res.data);
           Cookies.set("token", res.token);
           event.emit("showLogin", false);
         } catch (err) {
-          $commonErrorHandler(url)(err);
+          window.$commonErrorHandler(url)(err);
         }
       }
     });

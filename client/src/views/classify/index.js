@@ -22,9 +22,9 @@ class cateify extends PureComponent {
     this.getCates();
   }
   async getCates() {
-    const url = $api.category.getCates;
+    const url = window.$api.category.getCates;
     try {
-      const res =await $apiServer.get(url);
+      const res =await window.$apiServer.get(url);
       let arr = res.data.map(item => {
         return this.getGoodsList(item.cateId);
       });
@@ -32,12 +32,12 @@ class cateify extends PureComponent {
         list: await Promise.all(arr)
       });
     } catch (err) {
-      $commonErrorHandler(url)(err);
+      window.$commonErrorHandler(url)(err);
     }
   }
   getGoodsList(cateId) {
-    return $apiServer
-      .get($api.good.getGoodsByCate, { query: { cateId } })
+    return window.$apiServer
+      .get(window.$api.good.getGoodsByCate, { query: { cateId } })
       .then(res => {
         return res.data;
       });

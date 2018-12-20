@@ -17,13 +17,13 @@ class NormalLoginForm extends Component {
         password: this.props.form.getFieldValue("password"),
         repeatPwd: this.props.form.getFieldValue("repeatPwd")
       };
-      const url = $api.user.signup;
+      const url = window.$api.user.signup;
       try {
-        const res = await $apiServer.put(url, { query });
+        const res = await window.$apiServer.put(url, { query });
         event.emit("showSignup", false);
         event.emit("showLogin", true);
       } catch (err) {
-        $commonErrorHandler(url)(err);
+        window.$commonErrorHandler(url)(err);
       }
     });
   };

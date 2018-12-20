@@ -10,7 +10,7 @@ axios.interceptors.response.use(
     const { status, data } = response;
     if (status >= 200 && status < 400) {
       //隐藏loading
-      $hideLoading.call(null);
+      window.$hideLoading.call(null);
       return response.data;
     }
   },
@@ -20,7 +20,7 @@ axios.interceptors.response.use(
       // token失效
       // console.error("token 失效");
       event.emit("showLogin", true);
-      $hideLoading.call(null);
+      window.$hideLoading.call(null);
       return Promise.reject(error.response);
     } else {
       console.error("error", error);

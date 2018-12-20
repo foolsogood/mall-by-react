@@ -34,15 +34,15 @@ class Comment extends Component {
       pageSize: this.state.pageSize,
       pageNum: this.state.pageNum
     };
-    const url = $api.good.getGoodComment;
+    const url = window.$api.good.getGoodComment;
     try {
-      const res =await $apiServer.get(url, { query, params });
+      const res =await window.$apiServer.get(url, { query, params });
       this.setState({
         commentList: await this.state.commentList.concat(res.data.rows),
         total: res.data.count
       });
     } catch (err) {
-      $commonErrorHandler(url)(err);
+      window.$commonErrorHandler(url)(err);
     }
   }
   render() {

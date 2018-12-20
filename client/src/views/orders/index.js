@@ -20,14 +20,14 @@ class Orders extends Component {
     this.getOrders();
   }
   async getOrders() {
-    const url = $api.order.getOrders;
+    const url = window.$api.order.getOrders;
     try {
-      const res = await $apiServer.get(url);
+      const res = await window.$apiServer.get(url);
       this.setState({
         orderList: res.data
       });
     } catch (err) {
-      $commonErrorHandler(url)(err);
+      window.$commonErrorHandler(url)(err);
     }
   }
   render() {
