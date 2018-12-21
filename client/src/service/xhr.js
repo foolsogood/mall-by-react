@@ -2,16 +2,17 @@
 import axios from "axios";
 import qs from "qs";
 import event from "utils/event";
-import store from "store";
 
 // http response 拦截器
 axios.interceptors.response.use(
   response => {
     const { status, data } = response;
-    if (status >= 200 && status < 400) {
+    if (status >= 200 && status < 400 && data.code===1) {
       //隐藏loading
       window.$hideLoading.call(null);
-      return response.data;
+      return Promise.resolve(response.data);
+    }else{
+      return new Error(response.data)
     }
   },
   error => {
@@ -21,10 +22,10 @@ axios.interceptors.response.use(
       // console.error("token 失效");
       event.emit("showLogin", true);
       window.$hideLoading.call(null);
-      return Promise.reject(error.response);
+      return Promise.reject(data);
     } else {
       console.error("error", error);
-      return Promise.reject(error.response);
+      return Promise.reject(data);
     }
   }
 );

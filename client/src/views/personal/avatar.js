@@ -23,7 +23,7 @@ class Avatar extends Component {
           url:
             store.user.user && store.user.user.avatar
               ? store.user.user.avatar
-              : require("assets/img/avatar.jpg")
+              : require("assets/img/default-avatar.jpeg")
         }
       ]
     });

@@ -19,7 +19,7 @@ class NormalLoginForm extends Component {
       };
       const url = window.$api.user.signup;
       try {
-        const res = await window.$apiServer.put(url, { query });
+         await window.$apiServer.put(url, { query });
         event.emit("showSignup", false);
         event.emit("showLogin", true);
       } catch (err) {

@@ -26,7 +26,7 @@ import store from 'store'
 							<Col span={6} >
 							<Link to={`/avatar`}>
 								<div className="flex-box">
-									<img className="avatar " src={store.user.user&&store.user.user.avatar?store.user.user.avatar:require('assets/img/avatar.jpg')} alt="" />
+									<img className="avatar " src={store.user.user&&store.user.user.avatar?store.user.user.avatar:require('assets/img/default-avatar.jpeg')} alt="" />
 								</div>
 							</Link>
 							</Col>

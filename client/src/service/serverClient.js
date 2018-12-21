@@ -1,6 +1,4 @@
 import xhr from "./xhr";
-import event from "utils/event";
-import store from "store";
 import Cookies from "js-cookie";
 const option_default = {
   ifLoadingShow: true,

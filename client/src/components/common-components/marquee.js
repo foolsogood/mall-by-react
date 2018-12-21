@@ -44,10 +44,10 @@ class Marquee extends Component {
       <div>
         <div ref="wrap" style={hidden}>
           <div ref="content1" style={hidden}>
-            {this.props.content}
+            {content}
           </div>
           <div ref="content2" style={hidden}>
-            {this.props.content}
+            {content}
           </div>
         </div>
       </div>

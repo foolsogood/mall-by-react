@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import { WhiteSpace, WingBlank, InputItem, ImagePicker } from "antd-mobile";
+import {  WingBlank,  ImagePicker } from "antd-mobile";
 import { Input, Checkbox, Rate } from "antd";
-import { Link } from "react-router-dom";
 import WithHeader from "components/common-components/withHeader";
 const { TextArea } = Input;
 //组件

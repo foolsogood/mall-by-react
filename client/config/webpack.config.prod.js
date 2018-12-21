@@ -22,6 +22,7 @@ const ModuleNotFoundPlugin = require("react-dev-utils/ModuleNotFoundPlugin");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin-alt");
 const typescriptFormatter = require("react-dev-utils/typescriptFormatter");
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const WebpackBar = require('webpackbar');
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
@@ -562,6 +563,7 @@ module.exports = {
     // Otherwise React will be compiled in the very slow development mode.
     new webpack.DefinePlugin(env.stringified),
     new BundleAnalyzerPlugin(),
+    new WebpackBar(),
 
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output

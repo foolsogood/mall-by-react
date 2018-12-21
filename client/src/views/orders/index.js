@@ -1,13 +1,9 @@
 import React, { Component } from "react";
-import { Row, Col } from "antd";
-import { Modal, Tabs } from "antd-mobile";
-import { Link } from "react-router-dom";
+import {  Tabs } from "antd-mobile";
 import WithHeader from "components/common-components/withHeader";
 
 import OrderItem from "components/order-components/order-item";
 
-import event from "utils/event";
-const alert = Modal.alert;
 @WithHeader({ titleText: "我的订单" })
 class Orders extends Component {
   constructor() {

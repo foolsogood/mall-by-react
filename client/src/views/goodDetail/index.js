@@ -1,5 +1,4 @@
 import React, { PureComponent } from "react";
-// import { Tabs } from "antd";
 import { Toast, Tabs } from "antd-mobile";
 // 公共组件
 import WithHeader from "components/common-components/withHeader";
@@ -9,8 +8,6 @@ import Banner from "components/common-components/banner";
 import Comments from "components/good-components/comments";
 import GoodFooter from "components/good-components/goodFooter";
 import { observer } from "mobx-react";
-import store from "store";
-const TabPane = Tabs.TabPane;
 @observer
 @WithHeader({ titleText: "商品页" })
 class GoodDetail extends PureComponent {
@@ -53,7 +50,7 @@ class GoodDetail extends PureComponent {
       isCollect: !this.state.isCollect
     };
     try {
-      const res = window.$apiServer.post(url, { params, query });
+      await window.$apiServer.post(url, { params, query });
       await this.setState({ isCollect: !this.state.isCollect });
       Toast.success(this.state.isCollect ? "收藏成功!" : "取消收藏!");
     } catch (err) {

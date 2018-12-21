@@ -42,7 +42,7 @@ class tool {
         }
         return Object.keys(objA).every(item => {
           if (typeof objA[item] === "object") {
-            this.checkIfEual(objA[item], objB[item]);
+           return this.checkIfEual(objA[item], objB[item]);
           } else {
             return objA[item] === objB[item];
           }

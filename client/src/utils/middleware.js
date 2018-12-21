@@ -1,13 +1,11 @@
 import store from "store";
-import event from "utils/event";
 
 const middleware = {
-  
   //ajax错误处理
   commonErrorHandler(url) {
     return function(errorMsg) {
       console.error(`url:${url}`, errorMsg);
-
+      // Toast.fail(errorMsg);
       throw errorMsg;
     };
   },

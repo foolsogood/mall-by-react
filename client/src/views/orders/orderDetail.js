@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { Row, Col } from "antd";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import WithHeader from "components/common-components/withHeader";
 
 //
@@ -18,7 +17,7 @@ class OrderDetail extends Component {
     const { orderId } = this.props.match.params;
     const params = [orderId];
     try {
-      const res = window.$apiServer.get(url, { params });
+      const res =await window.$apiServer.get(url, { params });
     } catch (err) {
       window.$commonErrorHandler(url)(err);
     }

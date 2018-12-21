@@ -9,7 +9,7 @@ import Notice from "components/home-components/notice";
 import HostList from "components/home-components/hot/hotList";
 import RecomList from "components/home-components/recommend/recomList";
 import tool from "utils/tool";
-import { Map, is } from "immutable";
+// import { Map, is } from "immutable";
 @WithFooter
 class Home extends PureComponent {
   constructor() {
@@ -64,15 +64,15 @@ class Home extends PureComponent {
             top: "0",
             background: "transparent"
           };
-          const map1 = Map(_c);
-          const map2 = Map(this.state.searchStyle);
-          //用 immutable 比较两个对象值是否一致，比深度遍历高效
-          if (is(map1, map2)) {
-            return;
-          }
-          // if (tool.checkIfEual(this.state.searchStyle, _c)) {
-          // 	return
+          // const map1 = Map(_c);
+          // const map2 = Map(this.state.searchStyle);
+          // //用 immutable 比较两个对象值是否一致，比深度遍历高效
+          // if (is(map1, map2)) {
+          //   return;
           // }
+          if (tool.checkIfEual(this.state.searchStyle, _c)) {
+          	return
+          }
           this.setState({
             searchStyle: _c
           });

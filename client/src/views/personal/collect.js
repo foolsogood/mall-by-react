@@ -37,7 +37,7 @@ class Collect extends Component {
     const params = [goodId];
     let _temp = this.state.collectList;
     try {
-      const res = await window.$apiServer.post(url, { params, query });
+      await window.$apiServer.post(url, { params, query });
       await _temp.splice(idx, 1);
       await this.setState({ collectList: _temp });
       Toast.success("取消收藏!");
