@@ -36,7 +36,7 @@
     "node": ">=8.0.0"
   },
   "scripts": {
-    "start": "ENABLE_NODE_LOG=YES egg-scripts start --daemon --title=egg-server-egg-commerce --host=120.79.226.148  --port=3000",
+    "start": "ENABLE_NODE_LOG=YES egg-scripts start --daemon --title=egg-server-egg-commerce --host=120.79.226.148  --port=3000 --ignore-stderr",
     "stop": "egg-scripts stop --title=egg-server-egg-commerce",
     "dev": "egg-bin dev --port 7001",
     "autod": "autod",
