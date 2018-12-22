@@ -28,7 +28,7 @@ class Avatar extends Component {
     });
   }
   upload = async () => {
-    const {user,dispatch}=this.props.app
+    const {user,dispatch}=this.props
 
     const url = window.$api.user.uploadAvatar;
     let formdata = new FormData();
