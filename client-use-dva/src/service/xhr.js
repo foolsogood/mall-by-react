@@ -10,16 +10,16 @@ axios.interceptors.response.use(
     if (status >= 200 && status < 400 && data.code===1) {
       //隐藏loading
       window.$hideLoading.call(null);
-      return Promise.resolve(data);
+      return Promise.resolve(response.data);
     }else{
-      throw new Error(data)
+      return new Error(response.data)
     }
   },
   error => {
     const { status, data } = error.response;
     if ([403, 401].includes(status)) {
       // token失效
-      // console.error("token 失效");
+      console.error("token 失效");
       event.emit("showLogin", true);
       window.$hideLoading.call(null);
       return Promise.reject(data);

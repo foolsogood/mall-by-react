@@ -1,0 +1,113 @@
+/*reset代码块*/
+
+html { font-family:"Microsoft YaHei",Arial,Helvetica,sans-serif,"宋体"; font-size:14px; height: 100%;}
+body { margin: 0; font-size:12px; line-height: 1.5; color: #333333; background-color:#f5f5f5; height: 100%; overflow-x: hidden; -webkit-overflow-scrolling: touch; }
+
+article, aside, details, figcaption, figure, footer, header, main, nav, section, summary { display: block; }
+audio, canvas, progress, video { display: inline-block; vertical-align: baseline; }
+audio:not([controls]) { display: none; height: 0; }
+[hidden], template { display: none; }
+svg:not(:root) { overflow: hidden; }
+
+a { background: transparent; text-decoration: none; -webkit-tap-highlight-color: transparent; color: #000 !important; }
+a:active { outline: 0; }
+a:active { color: #006699; }
+a:hover { color: #f55858; }
+abbr[title] { border-bottom: 1px dotted; }
+b, strong { font-weight: bold; }
+dfn { font-style: italic; }
+mark { background: #ff0; color: #000; }
+small { font-size: 80%; }
+sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; }
+sup { top: -0.5em; }
+sub { bottom: -0.25em; }
+img { border: 0; vertical-align: middle;width:100%; }
+hr { -moz-box-sizing: content-box; box-sizing: content-box; height: 0; }
+pre { overflow: auto; white-space: pre; white-space: pre-wrap; word-wrap: break-word; }
+code, kbd, pre, samp { font-family: monospace, monospace; font-size: 1em; }
+
+button, input, optgroup, select, textarea { color: inherit; font: inherit; margin: 0;resize:none;outline: none; }
+button { overflow: visible; }
+button, select { text-transform: none; }
+button, html input[type="button"], input[type="reset"], input[type="submit"] { -webkit-appearance: button; cursor: pointer; }
+button[disabled], html input[disabled] { cursor: default; }
+button::-moz-focus-inner, input::-moz-focus-inner { border: 0; padding: 0; }
+input { line-height: normal; }
+input[type="checkbox"], input[type="radio"] { box-sizing: border-box; padding: 0; }
+input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button { height: auto; }
+input[type="search"] { -webkit-appearance: textfield; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webkit-search-decoration { -webkit-appearance: none; }
+fieldset { border: 1px solid #c0c0c0; margin: 0 2px; padding: 0.35em 0.625em 0.75em; }
+legend { border: 0; padding: 0; }
+textarea { overflow: auto; resize: vertical; }
+optgroup { font-weight: bold; }
+
+table { border-collapse: collapse; border-spacing: 0; }
+td, th { padding: 0; }
+h1, h2, h3, h4, h5, h6, p, figure, form, blockquote { margin: 0; }
+ul, ol, li, dl, dd { margin: 0; padding: 0; }
+ul, ol { list-style: none outside none; }
+h1, h2, h3 { line-height: 2; font-weight: normal; }
+h1 { font-size: 1.8rem; }
+h2 { font-size: 1.6rem; }
+h3 { font-size: 1.4rem; }
+input::-moz-placeholder, textarea::-moz-placeholder { color: #cccccc; }
+input:-ms-input-placeholder, textarea:-ms-input-placeholder { color: #cccccc; }
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder { color: #cccccc; }
+* { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+
+/*功能代码*/
+
+/*位置处理*/
+.g-mt20{margin-top: .2rem;}
+
+.g-p0_30{padding: 0 .3rem;}
+.g-p0_20{padding: 0 .2rem;}
+
+/*定位处理*/
+.p-re{position: relative;}
+.p-ab{position: absolute;}
+.p-fx{position: fixed;}
+
+
+
+/*浮动处理*/
+.f-fl{float: left}
+.f-fr{float: right}
+.clearfix:before,.clearfix:after{ display: table; content: ""; }
+.clearfix:after{ clear: both; }
+.clearfix{ *zoom: 1; }
+
+
+/*文字处理*/
+.t-tc{text-align: center}
+.t-tr{text-align: right}
+.t-tl{text-align: left}
+
+
+
+
+/*字体大小处理*/
+
+
+
+/*文字颜色以及背景颜色处理*/
+.over-clamp1{ display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 1; overflow: hidden; }
+
+.over-clamp2{ display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
+
+
+/*边框处理*/
+.border-t:before{content: "";position: absolute;top:0;left: 0;width: 200%;height:1px;background-color: #dedede;-webkit-transform: scale(0.5); -webkit-transform-origin: 0 0;}
+.border-b:after{content: "";position: absolute;bottom:0;left: 0;width: 200%;height:1px;background-color: #dedede;    -webkit-transform: scale(0.5); -webkit-transform-origin: 0 0;}
+
+
+/*  布局  */
+.g-layout{margin-top: .9rem;padding-bottom: 1.6rem;min-height: 100%;}
+
+/*皮肤*/
+.g-layout.s-top-20{margin-top: 2rem}
+.g-layout.s-top-18{margin-top: 1.8rem}
+.g-layout.s-top-15{margin-top: 1.5rem}
+.g-layout.s-top-11{margin-top: 1.1rem}
+.g-layout.s-top-0{margin-top: 0;}
