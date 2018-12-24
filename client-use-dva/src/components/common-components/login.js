@@ -9,6 +9,17 @@ import Cookies from "js-cookie";
   app
 }))
 class Login extends Component {
+  constructor() {
+    super();
+    this.state = {
+      isLoginShow: false
+    };
+  }
+  componentDidMount() {
+    event.on("showLogin", bool => {
+      this.setState({ isLoginShow: bool });
+    });
+  }
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFields(async (err, values) => {
@@ -35,7 +46,8 @@ class Login extends Component {
 
   render() {
     const { getFieldProps } = this.props.form;
-    return (
+    const { isLoginShow } = this.state;
+    const loginHtml = () => (
       <div className="login">
         <div className="mask" />
         <div className="login-form">
@@ -87,6 +99,7 @@ class Login extends Component {
         </div>
       </div>
     );
+    return <div>{isLoginShow ? loginHtml() : null}</div>;
   }
 }
 Login.propTypes = {

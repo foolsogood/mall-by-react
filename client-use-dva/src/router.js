@@ -2,18 +2,17 @@ import React from "react";
 import { Router, Route, Switch } from "dva/router";
 import Loadable from "react-loadable";
 import Loading from "components/common-components/loading";
-// import SmallLoading from 'components/common-components/smallLoading'
+import SmallLoading from 'components/common-components/smallLoading'
 
-// import event from 'utils/event'
 // // 组件
 const Login = Loadable({
   loader: () => import("components/common-components/login"),
   loading: Loading
 });
-// const Signup=Loadable({
-// 	loader:()=>import('components/common-components/signup'),
-// 	loading: Loading,
-// })
+const Signup=Loadable({
+	loader:()=>import('components/common-components/signup'),
+	loading: Loading,
+})
 const Home = Loadable({
   loader: () => import("routes/home"),
   loading: Loading
@@ -79,7 +78,9 @@ const BindPhone = Loadable({
 function RouterConfig({ history }) {
   return (
     <div>
-      {/* <Login/> */}
+      <Login/>
+      <Signup/>
+      <SmallLoading/>
       <Router history={history}>
         <Switch>
           <Route exact path="/" component={Home} />

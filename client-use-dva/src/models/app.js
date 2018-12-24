@@ -10,10 +10,7 @@ export default {
           userid: null,
           username: null
         },
-    loading: {
-      isLoadingShow: false,
-      loadingTxt: "加载中……"
-    }
+   
   },
 
   subscriptions: {},
@@ -22,9 +19,7 @@ export default {
     *changeUser({ payload }, { call, put }) {
       yield put({ type: "getUser", payload });
     },
-    *changeLoading({ payload }, { call, put }) {
-      yield put({ type: "getLoading", payload });
-    }
+    
   },
 
   reducers: {
@@ -36,12 +31,6 @@ export default {
         user
       };
     },
-    getLoading(state, { payload }) {
-      const loading = Object.assign({}, state.loading, payload);
-      return {
-        ...state,
-        loading
-      };
-    }
+   
   }
 };

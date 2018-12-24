@@ -5,6 +5,17 @@ import { createForm } from "rc-form";
 import event from "utils/event";
 
 class NormalLoginForm extends Component {
+  constructor() {
+    super();
+    this.state = {
+      isSignupShow: false
+    };
+  }
+  componentDidMount() {
+    event.on("showSignup", bool => {
+      this.setState({ isSignupShow: bool });
+    });
+  }
   handleSubmit = e => {
     console.log(111);
     e.preventDefault();
@@ -19,7 +30,7 @@ class NormalLoginForm extends Component {
       };
       const url = window.$api.user.signup;
       try {
-         await window.$apiServer.put(url, { query });
+        await window.$apiServer.put(url, { query });
         event.emit("showSignup", false);
         event.emit("showLogin", true);
       } catch (err) {
@@ -30,10 +41,10 @@ class NormalLoginForm extends Component {
 
   render() {
     const { getFieldProps } = this.props.form;
-
-    return (
+    const { isSignupShow } = this.state;
+    const signupHtml = () => (
       <div className="login">
-        <div className="mask" />
+        <div className="mask"  />
         <div className="login-form">
           <WingBlank>
             <p className="flex-box">注册</p>
@@ -81,6 +92,7 @@ class NormalLoginForm extends Component {
         </div>
       </div>
     );
+    return <div>{isSignupShow ? signupHtml() : null}</div>;
   }
 }
 

@@ -21,8 +21,10 @@ const getClientEnvironment = require("./env");
 const ModuleNotFoundPlugin = require("react-dev-utils/ModuleNotFoundPlugin");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin-alt");
 const typescriptFormatter = require("react-dev-utils/typescriptFormatter");
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const WebpackBar = require('webpackbar');
+const CleanWebpackPlugin = require("clean-webpack-plugin");
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
+  .BundleAnalyzerPlugin;
+const WebpackBar = require("webpackbar");
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
@@ -117,7 +119,9 @@ module.exports = {
   // You can exclude the *.map files from the build during deployment.
   devtool: shouldUseSourceMap ? "source-map" : false,
   // In production, we only want to load the app code.
-  entry: [paths.appIndexJs],
+  entry: {
+    app: paths.appIndexJs
+  },
   output: {
     // The build folder.
     path: paths.appBuild,
@@ -225,15 +229,15 @@ module.exports = {
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
       "react-native": "react-native-web",
-      'views':path.resolve(__dirname,'..','src/views'),
-      'components':path.resolve(__dirname,'..','src/components'),
-      'utils':path.resolve(__dirname,'..','src/utils'),
-      'store':path.resolve(__dirname,'..','src/store'),
-      'assets':path.resolve(__dirname,'..','src/assets'),
-      'service':path.resolve(__dirname,'..','src/service'),
-      'routes':path.resolve(__dirname,'..','src/routes'),
-      'services':path.resolve(__dirname,'..','src/services'),
-      'models':path.resolve(__dirname,'..','src/models'),
+      views: path.resolve(__dirname, "..", "src/views"),
+      components: path.resolve(__dirname, "..", "src/components"),
+      utils: path.resolve(__dirname, "..", "src/utils"),
+      store: path.resolve(__dirname, "..", "src/store"),
+      assets: path.resolve(__dirname, "..", "src/assets"),
+      service: path.resolve(__dirname, "..", "src/service"),
+      routes: path.resolve(__dirname, "..", "src/routes"),
+      services: path.resolve(__dirname, "..", "src/services"),
+      models: path.resolve(__dirname, "..", "src/models")
     },
     plugins: [
       // Adds support for installing with Plug'n'Play, leading to faster installs and adding
@@ -246,6 +250,11 @@ module.exports = {
       // Make sure your source files are compiled, as they will not be processed in any way.
       new ModuleScopePlugin(paths.appSrc, [paths.appPackageJson])
     ]
+  },
+  externals: {
+    react: "React",
+    "react-dom": "ReactDOM",
+    "react-router-dom":"ReactRouterDOM"
   },
   resolveLoader: {
     plugins: [
@@ -454,46 +463,6 @@ module.exports = {
             // See https://github.com/webpack/webpack/issues/6571
             sideEffects: true
           },
-          // {
-          //   test: cssRegex,
-          //   exclude: antdCSSRegex,
-          //   loader: getStyleLoaders({
-          //     importLoaders: 1,
-          //     sourceMap: false,
-          //     modules: true,
-          //     localIdentName: "[path][name]__[local]--[hash:base64:5]"
-          //   }),
-          //   sideEffects: true
-          // },
-          // {
-          //   test: cssRegex,
-          //   include: antdCSSRegex,
-          //   loader: getStyleLoaders({
-          //     importLoaders: 1,
-          //     sourceMap: false
-          //   }),
-          //   sideEffects: true
-          // },
-          // {
-          //   test: cssRegex,
-          //   exclude: antdMobileCSSRegex,
-          //   loader: getStyleLoaders({
-          //     importLoaders: 1,
-          //     sourceMap: false,
-          //     modules: true,
-          //     localIdentName: "[path][name]__[local]--[hash:base64:5]"
-          //   }),
-          //   sideEffects: true
-          // },
-          // {
-          //   test: cssRegex,
-          //   include: antdMobileCSSRegex,
-          //   loader: getStyleLoaders({
-          //     importLoaders: 1,
-          //     sourceMap: false
-          //   }),
-          //   sideEffects: true
-          // },
           // Adds support for CSS Modules, but using SASS
           // using the extension .module.scss or .module.sass
           {
@@ -567,7 +536,7 @@ module.exports = {
     new webpack.DefinePlugin(env.stringified),
     new BundleAnalyzerPlugin(),
     new WebpackBar(),
-
+    new CleanWebpackPlugin(["../build"], { allowExternal: true }),
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // both options are optional

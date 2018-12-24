@@ -9,7 +9,8 @@ export default class Loading extends Component {
             right: 0,
             bottom: 0,
             zIndex: 999,
-            background: 'rgba(255,255,255,.5)'
+            // background: 'rgba(255,255,255,.5)',
+            opacity:0
         }
         const iconstyle={fontSize:'.4rem',color:'#444'}
         return (
