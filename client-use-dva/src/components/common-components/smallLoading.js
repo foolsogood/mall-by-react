@@ -1,10 +1,6 @@
 import React, { Component } from "react";
 import { Icon } from "antd-mobile";
-import PropTypes from "prop-types";
-import { connect } from "dva";
 import event from "utils/event";
-import tool from "utils/tool";
-@connect(({ app }) => ({ app }))
 class SmallLoading extends Component {
   constructor() {
     super();
@@ -15,19 +11,16 @@ class SmallLoading extends Component {
   }
   componentDidMount() {
     event.on("showLoading", ({ isLoadingShow, loadingTxt = "加载中……" }) => {
-      const fn = () => {
-        if (
-          isLoadingShow === this.state.isLoadingShow &&
-          loadingTxt === this.state.loadingTxt
-        ) {
-          return;
-        }
-        this.setState({
-          isLoadingShow,
-          loadingTxt
-        });
-      };
-      tool.throttle(fn, 10)();
+      if (
+        isLoadingShow === this.state.isLoadingShow &&
+        loadingTxt === this.state.loadingTxt
+      ) {
+        return;
+      }
+      this.setState({
+        isLoadingShow,
+        loadingTxt
+      });
     });
   }
   render() {
@@ -55,8 +48,4 @@ class SmallLoading extends Component {
     );
   }
 }
-SmallLoading.propTypes = {
-  dispatch: PropTypes.func,
-  app: PropTypes.object
-};
 export default SmallLoading;
