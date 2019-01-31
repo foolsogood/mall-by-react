@@ -1,10 +1,10 @@
 const path = require("path");
 const Service = require("egg").Service;
-const sendToWormhole = require("stream-wormhole");
 class UploadService extends Service {
   async upload() {
     const { ctx } = this;
     const { files } = ctx.request;
+    console.log('files',files)
     const uploadAll = () => {
       let arr = [];
       for (let _file of files) {
