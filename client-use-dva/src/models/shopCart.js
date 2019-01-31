@@ -79,8 +79,10 @@ export default {
         cart[goodId].number += 1;
       } else {
         // console.log('购物车无该商品')
-        cart[goodId] = Object.assign({}, goodInfo, { isSelect: true });
-        cart[goodId].number = 1;
+        cart[goodId] = Object.assign({}, goodInfo, {
+          isSelect: true,
+          number: 1
+        });
       }
       localStorage.setItem("cart", JSON.stringify(cart));
       return {
@@ -98,7 +100,8 @@ export default {
         //执行购物车的 - 按钮操作
         cart[goodId].number -= 1;
         if (cart[goodId].number === 0) {
-          delete cart[goodId];
+          // delete cart[goodId];
+          Reflect.deleteProperty(cart, goodId);
         }
       }
       localStorage.setItem("cart", JSON.stringify(cart));
@@ -114,7 +117,8 @@ export default {
      */
     removeFromCartHandler(state, { payload }) {
       const cart = tool.deepCopy(state.cart);
-      delete cart[payload];
+      // delete cart[payload];
+      Reflect.deleteProperty(cart, payload);
       localStorage.setItem("cart", JSON.stringify(cart));
       return {
         ...state,

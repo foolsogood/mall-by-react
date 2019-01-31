@@ -51,7 +51,13 @@ class Home extends PureComponent {
   changeSearchStyle(e) {
     let fn = () => {
       if (!this.lock) {
-        let scroTop = document.documentElement.scrollTop;
+        let scroTop;
+        if (document.documentElement && document.documentElement.scrollTop) {
+          scroTop = document.documentElement.scrollTop;
+        } else if (document.body) {
+          scroTop = document.body.scrollTop;
+        }
+
         if (scroTop > 20) {
           this.setState({
             searchStyle: {
@@ -71,7 +77,7 @@ class Home extends PureComponent {
           //   return;
           // }
           if (tool.checkIfEual(this.state.searchStyle, _c)) {
-          	return
+            return;
           }
           this.setState({
             searchStyle: _c

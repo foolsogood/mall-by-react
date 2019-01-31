@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Row, Col } from "antd";
 import PropTypes from "prop-types";
 import { connect } from "dva";
-connect(({ shopCart }) => ({ shopCart }));
+@connect(({ shopCart }) => ({ shopCart }))
 class cartItem extends Component {
   constructor() {
     super();

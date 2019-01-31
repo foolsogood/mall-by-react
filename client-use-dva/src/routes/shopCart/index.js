@@ -10,12 +10,10 @@ import { connect } from "dva";
 class shopCart extends Component {
     render() {
         const {cart} = this.props.shopCart
-        const flag=cart && Object.values(cart).length
-        // console.log(Boolean(flag),flag)
         return (
             <div>
                 {
-                    flag
+                    cart && Object.values(cart).length
                         ? <CartList />
                         : <CartEmpty />
                 }
