@@ -9,11 +9,9 @@ import {
 } from "antd-mobile";
 import { createForm } from "rc-form";
 
-import WithHeader from "components/common-components/withHeader";
 import PropTypes from "prop-types";
 import { connect } from "dva";
 @connect(({ app }) => ({ app }))
-@WithHeader({ titleText: "绑定手机" })
 class BindPhone extends React.Component {
   constructor() {
     super();

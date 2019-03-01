@@ -10,7 +10,7 @@ import RecomList from 'components/home-components/recommend/recomList'
 
     render() {
         return (
-            <div>
+            <div style={{paddingBottom:'.6rem'}}>
 
                 <div className="flex-box">
                     <div className="empty-cart">

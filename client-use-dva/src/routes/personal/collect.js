@@ -3,9 +3,7 @@ import { SwipeAction, Toast } from "antd-mobile";
 import { Link } from "dva/router";
 
 //组件
-import WithHeader from "components/common-components/withHeader";
 
-@WithHeader({ titleText: "商品收藏" })
 class Collect extends Component {
   constructor() {
     super();

@@ -3,11 +3,8 @@ import { Link } from "dva/router";
 import CommentItem from "components/good-components/comments/commentItem";
 
 //组件
-import WithHeader from "components/common-components/withHeader";
 
-@WithHeader({
-  titleText: "商品评论"
-})
+
 class Comment extends Component {
   constructor() {
     super();

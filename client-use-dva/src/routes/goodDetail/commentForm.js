@@ -1,12 +1,8 @@
 import React, { Component } from "react";
 import {  WingBlank,  ImagePicker } from "antd-mobile";
 import { Input, Checkbox, Rate } from "antd";
-import WithHeader from "components/common-components/withHeader";
 const { TextArea } = Input;
 //组件
-@WithHeader({
-  titleText: "我要评论"
-})
  class CommentForm extends Component {
   constructor() {
     super();

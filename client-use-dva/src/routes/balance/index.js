@@ -2,14 +2,12 @@ import React, { PureComponent } from "react";
 import { Row, Col } from "antd";
 import { Modal } from "antd-mobile";
 import { Link } from "dva/router";
-import WithHeader from "components/common-components/withHeader";
 import PropTypes from "prop-types";
 import { connect } from "dva";
 
 import event from "utils/event";
 const alert = Modal.alert;
 @connect(({shopCart})=>({shopCart}))
-@WithHeader({ titleText: "结算" })
 class Balance extends PureComponent {
   constructor() {
     super();

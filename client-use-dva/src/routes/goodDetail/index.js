@@ -1,13 +1,11 @@
 import React, { PureComponent } from "react";
 import { Toast, Tabs } from "antd-mobile";
 // 公共组件
-import WithHeader from "components/common-components/withHeader";
 
 import Banner from "components/common-components/banner";
 // 组件
 import Comments from "components/good-components/comments";
 import GoodFooter from "components/good-components/goodFooter";
-@WithHeader({ titleText: "商品页" })
 class GoodDetail extends PureComponent {
   constructor() {
     super();

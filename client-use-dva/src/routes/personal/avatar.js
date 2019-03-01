@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import { ImagePicker, WingBlank, Button, Toast } from "antd-mobile";
-import WithHeader from "components/common-components/withHeader";
 import PropTypes from "prop-types";
 import { connect } from "dva";
 @connect(({ app }) => ({ app }))
-@WithHeader({ titleText: "个人头像" })
 class Avatar extends Component {
   constructor() {
     super();

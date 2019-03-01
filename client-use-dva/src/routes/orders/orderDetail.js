@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 // import { Link } from "dva/router";
-import WithHeader from "components/common-components/withHeader";
 
 //
-@WithHeader({ titleText: "订单详情" })
 class OrderDetail extends Component {
   constructor() {
     super();
