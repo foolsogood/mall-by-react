@@ -1,18 +1,18 @@
 # 客户端
 ### 部分页面预览
 <div>
-<img src="https://mall-server-upload.oss-cn-shenzhen.aliyuncs.com/home.jpeg" style="display:inline-block" width="200" alt="首页"/>
-<img src="https://mall-server-upload.oss-cn-shenzhen.aliyuncs.com/classify.jpeg" style="display:inline-block" width="200" alt="分类"/>
-<img src="https://mall-server-upload.oss-cn-shenzhen.aliyuncs.com/cart1.jpeg" style="display:inline-block" width="200" alt="购物车"/>
-<img src="https://mall-server-upload.oss-cn-shenzhen.aliyuncs.com/cart.jpeg" style="display:inline-block" width="200" alt="购物车"/>
-<img src="https://mall-server-upload.oss-cn-shenzhen.aliyuncs.com/detail.jpeg" style="display:inline-block" width="200" alt="详情"/>
-<img src="https://mall-server-upload.oss-cn-shenzhen.aliyuncs.com/comment.jpeg" style="display:inline-block" width="200" alt="评论"/>
+<img src="https://mall-server-upload.oss-cn-shenzhen.aliyuncs.com/home.jpeg" style="display:inline-block;padding:20px" width="200" alt="首页"/>
+<img src="https://mall-server-upload.oss-cn-shenzhen.aliyuncs.com/classify.jpeg" style="display:inline-block;padding:20px" width="200" alt="分类"/>
+<img src="https://mall-server-upload.oss-cn-shenzhen.aliyuncs.com/cart1.jpeg" style="display:inline-block;padding:20px" width="200" alt="购物车"/>
+<img src="https://mall-server-upload.oss-cn-shenzhen.aliyuncs.com/cart.jpeg" style="display:inline-block;padding:20px" width="200" alt="购物车"/>
+<img src="https://mall-server-upload.oss-cn-shenzhen.aliyuncs.com/detail.jpeg" style="display:inline-block;padding:20px" width="200" alt="详情"/>
+<img src="https://mall-server-upload.oss-cn-shenzhen.aliyuncs.com/comment.jpeg" style="display:inline-block;padding:20px" width="200" alt="评论"/>
 </div>
 
 ### tips 
 
-首先，这是一个react新手写的练手项目，有不对的地方请包涵(2017.08)。
-原来的客户端只有一个client文件夹，主要使用axios和mobx(2017.08)等；后来又用dva架构实现了另一个(2018.10)，所以存在两个客户端的代码
+首先，这是一个react新手写的练手项目，有不对的地方请包涵(2017.08)。<br/>
+原来的客户端只有一个client文件夹，主要使用axios和mobx(2017.08)等；后来又用dva架构实现了另一个(2018.10)，所以存在两个客户端的代码<br/>
 这是用react写的一个商城，比较简单。脚手架采用create-react-app。ui采用antd。
 技术栈:react,react-router v4,mobx,dva等。
 写这个过程中遇到的一些重难点(或者是踩过的坑比较贴切),只贴关键代码：<br/>
@@ -60,7 +60,7 @@ Object.keys(goodList).map((item)=>{
 ```
 而不是一定要拿到数组才能渲染,key的话最好不要用索引，而是用一些商品id,用户id之类<br/>
 ### 状态管理
- 1.client目录用的是mobx，这里面是用在购物车中，购物车还结合了localStorage,而结算是结合sessionStrage。<br/>
+ - 1.client目录用的是mobx，这里面是用在购物车中，购物车还结合了localStorage,而结算是结合sessionStrage。<br/>
  在对应的页面中引入react-mobx连接react和mobx ,当然状态本身也要引入,用装饰器@修饰observer即可观测数据变化<br/>
  ```
  import { observer } from 'mobx-react'
@@ -71,8 +71,8 @@ Object.keys(goodList).map((item)=>{
  }
  export default cartList
  ```
- 然后在这个页面中直接获取store中的数据
- 2.client-use-dva 使用dva 
+ 然后在这个页面中直接获取store中的数据<br/>
+ - 2.client-use-dva 使用dva 
 ### 路由按需加载
   使用react-loadable
   ```
