@@ -1,25 +1,30 @@
 # 客户端
 ### 部分页面预览
-<img src="https://mall-server-upload.oss-cn-shenzhen.aliyuncs.com/home.jpeg" width="200" alt="首页"/>
-<img src="https://mall-server-upload.oss-cn-shenzhen.aliyuncs.com/classify.jpeg" width="200" alt="分类"/>
-<img src="https://mall-server-upload.oss-cn-shenzhen.aliyuncs.com/cart1.jpeg" width="200" alt="购物车"/>
-<img src="https://mall-server-upload.oss-cn-shenzhen.aliyuncs.com/cart.jpeg" width="200" alt="购物车"/>
-<img src="https://mall-server-upload.oss-cn-shenzhen.aliyuncs.com/detail" width="200" alt="详情"/>
-<img src="https://mall-server-upload.oss-cn-shenzhen.aliyuncs.com/comment.jpeg" width="200" alt="评论"/>
+<div>
+<img src="https://mall-server-upload.oss-cn-shenzhen.aliyuncs.com/home.jpeg" style="display:inline-block" width="200" alt="首页"/>
+<img src="https://mall-server-upload.oss-cn-shenzhen.aliyuncs.com/classify.jpeg" style="display:inline-block" width="200" alt="分类"/>
+<img src="https://mall-server-upload.oss-cn-shenzhen.aliyuncs.com/cart1.jpeg" style="display:inline-block" width="200" alt="购物车"/>
+<img src="https://mall-server-upload.oss-cn-shenzhen.aliyuncs.com/cart.jpeg" style="display:inline-block" width="200" alt="购物车"/>
+<img src="https://mall-server-upload.oss-cn-shenzhen.aliyuncs.com/detail.jpeg" style="display:inline-block" width="200" alt="详情"/>
+<img src="https://mall-server-upload.oss-cn-shenzhen.aliyuncs.com/comment.jpeg" style="display:inline-block" width="200" alt="评论"/>
+</div>
+
+### tips 
 
 首先，这是一个react新手写的练手项目，有不对的地方请包涵(2017.08)。
+原来的客户端只有一个client文件夹，主要使用axios和mobx(2017.08)等；后来又用dva架构实现了另一个(2018.10)，所以存在两个客户端的代码
 这是用react写的一个商城，比较简单。脚手架采用create-react-app。ui采用antd。
-技术栈:react,react-router v4,mobx等。
+技术栈:react,react-router v4,mobx,dva等。
 写这个过程中遇到的一些重难点(或者是踩过的坑比较贴切),只贴关键代码：<br/>
 ### reacr-router v4。
 - 1.路由传值<br/>
 在路由配置中注入 history,然后把参数写在Route组件中
 ```
- <Route path="/goodDetail/:cateId/:goodId" component={GoodDetail} />
+ <Route path="/goodDetail/:goodId" component={GoodDetail} />
  ```
  在页面中用<Link>组件传值：<br/>
  ```
-    <Link to={`/goodDetail/${good.cateId}/${good.goodId}`}>
+    <Link to={`/goodDetail/${good.goodId}`}>
  ``` 
  在事件中传值<br/>
  ```
@@ -47,15 +52,15 @@ window.location.pathname<br/>
 ### 循环渲染
 如果我要渲染的是一个集合goodList，可以这样 <br/>
 ```
-Object.keys(goodList).map((item)=>{<br/>
-  return (<br/>
+Object.keys(goodList).map((item)=>{
+  return (
     <div key={goodList[item].goodId}>.....</div>
   )<br/>
 })
 ```
 而不是一定要拿到数组才能渲染,key的话最好不要用索引，而是用一些商品id,用户id之类<br/>
 ### 状态管理
- 我用的是mobx，这里面是用在购物车中，购物车还结合了localStorage,而结算是结合sessionStrage。<br/>
+ 1.client目录用的是mobx，这里面是用在购物车中，购物车还结合了localStorage,而结算是结合sessionStrage。<br/>
  在对应的页面中引入react-mobx连接react和mobx ,当然状态本身也要引入,用装饰器@修饰observer即可观测数据变化<br/>
  ```
  import { observer } from 'mobx-react'
@@ -67,6 +72,7 @@ Object.keys(goodList).map((item)=>{<br/>
  export default cartList
  ```
  然后在这个页面中直接获取store中的数据
+ 2.client-use-dva 使用dva 
 ### 路由按需加载
   使用react-loadable
   ```
@@ -80,6 +86,13 @@ Object.keys(goodList).map((item)=>{<br/>
   ```
 	<Route exact path="/" component={Home} />
   ```
+### 高阶组件
+项目中使用装饰器连接高阶组件更优雅 如dva和mobx中的connect以及页面布局使用的公共组件WithFooter WithHeader等
+```
+@connect
+@WithFooter
+class Home extends Component {}
+```
 ### 组件通信
   使用node 的event模块的EventEmitter类可满足一般的父子组件或兄弟组件通信
 

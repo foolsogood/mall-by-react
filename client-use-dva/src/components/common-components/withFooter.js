@@ -14,7 +14,7 @@ export default  (WrapedComponent) => {
                 <div>
 
                     <WrapedComponent {...this.props}/>
-                    <Footer/>
+                    <Footer {...this.props}/>
                 </div>
             )
         }
