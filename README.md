@@ -1,4 +1,12 @@
 # 客户端
+### 部分页面预览
+![avatar](https://mall-server-upload.oss-cn-shenzhen.aliyuncs.com/home.jpeg)
+![avatar](https://mall-server-upload.oss-cn-shenzhen.aliyuncs.com/classify.jpeg)
+![avatar](https://mall-server-upload.oss-cn-shenzhen.aliyuncs.com/cart1.jpeg)
+![avatar](https://mall-server-upload.oss-cn-shenzhen.aliyuncs.com/cart.jpeg)
+![avatar](https://mall-server-upload.oss-cn-shenzhen.aliyuncs.com/detail)
+![avatar](https://mall-server-upload.oss-cn-shenzhen.aliyuncs.com/comment.jpeg)
+
 首先，这是一个react新手写的练手项目，有不对的地方请包涵(2017.08)。
 这是用react写的一个商城，比较简单。脚手架采用create-react-app。ui采用antd。
 技术栈:react,react-router v4,mobx等。
