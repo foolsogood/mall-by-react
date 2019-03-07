@@ -12,15 +12,18 @@ module.exports = app => {
     userid: {
       type: UUID,
       defaultValue:UUIDV4,
-      allowNull: false
+      allowNull: false,
+      comment:'用户id'
     },
     goodId: {
       type: UUID,
-      allowNull: false
+      allowNull: false,
+      comment:'商品id'
     },
     isCollect: {
       type: BOOLEAN,
-      allowNull: false
+      allowNull: false,
+      comment:'收藏商品标识'
     },
   },{
     freezeTableName:true

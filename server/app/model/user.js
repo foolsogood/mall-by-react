@@ -10,7 +10,8 @@ module.exports = app => {
     },
     username: {
       type: STRING(50),
-      allowNull: false
+      allowNull: false,
+      comment:'用户名'
     },
     userid: {
       type: UUID,
@@ -23,11 +24,13 @@ module.exports = app => {
     },
     avatar: {
       type: STRING(100),
-      allowNull: true
+      allowNull: true,
+      comment:'头像'
     },
     phone: {
       type: STRING(20),
-      allowNull: true
+      allowNull: true,
+      comment:'手机'
     }
   },{
     freezeTableName:true

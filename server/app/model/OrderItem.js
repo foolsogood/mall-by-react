@@ -16,15 +16,18 @@ module.exports = app => {
       },
       goodId: {
         type: UUID,
-        allowNull: false
+        allowNull: false,
+        comment:'商品id'
       },
       price: {
         type: TEXT,
-        allowNull: false
+        allowNull: false,
+        comment:'商品价格'
       },
       number: {
         type: INTEGER,
-        allowNull: false
+        allowNull: false,
+        comment:'商品数量'
       },
       
     },

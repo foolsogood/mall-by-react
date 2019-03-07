@@ -13,11 +13,13 @@ module.exports = app => {
       },
       cateId: {
         type: UUID,
-        allowNull: false
+        allowNull: false,
+        comment:'商品分类id'
       },
       cate: {
         type: STRING(20),
-        allowNull: false
+        allowNull: false,
+        comment:'商品分类名'
       },
       goodId: {
         type: UUID,
@@ -26,33 +28,40 @@ module.exports = app => {
       },
       goodName: {
         type: STRING(50),
-        allowNull: false
+        allowNull: false,
+        comment:'商品名'
       },
       imgs: {
-        type: STRING(500),
-        allowNull: false
+        type: STRING(1000),
+        allowNull: false,
+        comment:'商品图片 用于banner'
       },
       desction: {
         type: TEXT,
-        allowNull: true
+        allowNull: true,
+        comment:'描述'
       },
       price: {
         type: TEXT,
-        allowNull: false
+        allowNull: false,
+        comment:'价格'
       },
       isHot: {
         type: BOOLEAN,
         defaultValue:false,
-        allowNull: true
+        allowNull: true,
+        comment:'是否热门商品'
       },
       isNew: {
         type: BOOLEAN,
         defaultValue:false,
-        allowNull: true
+        allowNull: true,
+        comment:'是否新品'
       },
       detailImg: {
         type: STRING(500),
-        allowNull: false
+        allowNull: false,
+        comment:'商品详情图片'
       },
     },
     {

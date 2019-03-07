@@ -17,23 +17,28 @@ module.exports = app => {
       },
       avatar: {
         type: STRING(500),
-        allowNull: true
+        allowNull: true,
+        comment:'头像'
       },
       imgList: {
         type: JSON,
-        allowNull: true
+        allowNull: true,
+        comment:'评论图片'
       },
       name: {
         type: STRING(20),
-        allowNull: false
+        allowNull: false,
+        comment:'评论人姓名'
       },
       rateScore: {
         type: TEXT,
-        allowNull: false
+        allowNull: false,
+        comment:'评分'
       },
       comment: {
         type: TEXT,
-        allowNull: true
+        allowNull: true,
+        comment:'评语'
       }
     },
     {

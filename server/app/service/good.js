@@ -2,19 +2,31 @@ const { Service } = require("egg");
 class HomeService extends Service {
   async getHotGoods() {
     const { ctx } = this;
-    return ctx.model.Good.findAll({
+    const good=await ctx.model.Good.findAll({
+      raw: true,
       where: {
         isHot: 1
       }
     });
+    good.forEach(item=>{
+      item.detailImg=JSON.parse(item.detailImg)
+      item.imgs=JSON.parse(item.imgs)
+    })
+    return good
   }
   async getNewGoods() {
     const { ctx } = this;
-    return ctx.model.Good.findAll({
+    const good=await ctx.model.Good.findAll({
+      raw: true,
       where: {
         isNew: 1
       }
     });
+    good.forEach(item=>{
+      item.detailImg=JSON.parse(item.detailImg)
+      item.imgs=JSON.parse(item.imgs)
+    })
+    return good
   }
   async getGoodDetail() {
     const { ctx } = this;
@@ -26,6 +38,9 @@ class HomeService extends Service {
         goodId: goodId
       }
     });
+    good.detailImg=JSON.parse(good.detailImg)
+    good.imgs=JSON.parse(good.imgs)
+
     let result = await ctx.service.token.verifyToken(token);
     if (result) {
       let { userid } = result;
@@ -100,7 +115,7 @@ class HomeService extends Service {
   async getGoodComment(pageSize=5,pageNum=1) {
     const { ctx } = this;
     const { goodId } = ctx.params;
-    const res = await ctx.model.Comments.findAndCountAll({
+    const res = await ctx.model.Comments.findAll({
       raw: true,
       limit:pageSize,
       offset:(pageNum-1)*pageSize,
@@ -116,7 +131,6 @@ class HomeService extends Service {
     const { goodId } = ctx.params;
     const data=await ctx.service.upload.upload()
     const { isAnonymous, urlList, comment, rate,userid } = data ;
-    console.log(data)
     let res
     if (isAnonymous-0) {
     res=  await ctx.model.Comments.create({
@@ -146,16 +160,23 @@ class HomeService extends Service {
   async getGoodByCateId() {
     const { ctx } = this;
     const { cateId } = ctx.query;
-    return ctx.model.Good.findAll({
+    const good=await ctx.model.Good.findAll({
+      raw:true,
       where: {
         cateId: cateId
       }
     });
+    good.forEach(item=>{
+      item.detailImg=JSON.parse(item.detailImg)
+      item.imgs=JSON.parse(item.imgs)
+    })
+    return good
   }
   async searchGood() {
     const { ctx } = this;
     const { keyword } = ctx.query;
-    return ctx.model.Good.findAll({
+    const good=await ctx.model.Good.findAll({
+      raw:true,
       where: {
         $or: {
           cate: {
@@ -167,6 +188,11 @@ class HomeService extends Service {
         }
       }
     });
+    good.forEach(item=>{
+      item.detailImg=JSON.parse(item.detailImg)
+      item.imgs=JSON.parse(item.imgs)
+    })
+    return good
   }
   // async getAllGoods() {
   //   try {

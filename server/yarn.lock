@@ -666,6 +666,11 @@ ast-types@0.x.x:
   resolved "https://registry.yarnpkg.com/ast-types/-/ast-types-0.11.6.tgz#4e2266c2658829aef3b40cc33ad599c4e9eb89ef"
   integrity sha512-nHiuV14upVGl7MWwFUYbzJ6YlfwWS084CU9EA8HajfYQjMSli5TQi3UTRygGF58LFWVkXxS1rbgRhROEqlQkXg==
 
+async@^1.5.0:
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/async/-/async-1.5.2.tgz#ec6a61ae56480c0c3cb241c95618e20892f9672a"
+  integrity sha1-7GphrlZIDAw8skHJVhjiCJL5Zyo=
+
 async@^2.5.0:
   version "2.6.1"
   resolved "https://registry.yarnpkg.com/async/-/async-2.6.1.tgz#b245a23ca71930044ec53fa46aa00a3e87c6a610"
@@ -2487,6 +2492,13 @@ ecdsa-sig-formatter@1.0.10:
   dependencies:
     safe-buffer "^5.0.1"
 
+ecdsa-sig-formatter@1.0.11:
+  version "1.0.11"
+  resolved "https://registry.yarnpkg.com/ecdsa-sig-formatter/-/ecdsa-sig-formatter-1.0.11.tgz#ae0f0fa2d85045ef14a817daa3ce9acd0489e5bf"
+  integrity sha512-nagl3RYrbNv6kQkeJIpt6NJZy8twLB/2vtz6yN9Z4vRKHN4/QZJIEbqohALSgwKdnksuY3k5Addp5lg8sVoVcQ==
+  dependencies:
+    safe-buffer "^5.0.1"
+
 editorconfig@^0.15.0:
   version "0.15.2"
   resolved "https://registry.yarnpkg.com/editorconfig/-/editorconfig-0.15.2.tgz#047be983abb9ab3c2eefe5199cb2b7c5689f0702"
@@ -2619,6 +2631,14 @@ egg-jsonp@^2.0.0:
     is-type-of "^1.2.0"
     jsonp-body "^1.0.0"
 
+egg-jwt@^3.1.6:
+  version "3.1.6"
+  resolved "https://registry.yarnpkg.com/egg-jwt/-/egg-jwt-3.1.6.tgz#7d75021f5eee22624b471ce0fa21035e60e9642e"
+  integrity sha512-qXcGHqBB3TJAR5i521qhrzx57GrG/LWCubq7H3iPDR7Ugqh5LbOdYCd1W33WB2VhLEdHZWsrMLBxqpUYprsL1A==
+  dependencies:
+    jsonwebtoken "^8.3.0"
+    koa-jwt2 "^1.0.3"
+
 egg-logger@^1.6.1, egg-logger@^1.6.2, egg-logger@^1.7.1:
   version "1.7.1"
   resolved "https://registry.yarnpkg.com/egg-logger/-/egg-logger-1.7.1.tgz#1536acf185eeaf1d5211241ca5bdcaaabe2ab228"
@@ -2730,6 +2750,13 @@ egg-redis@^2.0.0:
   integrity sha512-WO83edmUtuoUSHhO9CFM/xxQuRRAdpE155HLjsqemxDtr7o8KgWnzWxrxXW6KjzMXkZs4FBHbIsuvmD3tIfw/g==
   dependencies:
     ioredis "^3.2.2"
+
+egg-router-plus@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/egg-router-plus/-/egg-router-plus-1.3.0.tgz#94f73447141e75ce82620d04d4dc8e500ea8b27c"
+  integrity sha512-Y8aZ5/8cn52Hxa1c6uhASwxAzFHaihsyIOCjkKnjV/n6Z4GX9RSUK3jaxclQecei1dp0HDwEuhYwBqCBDtSaoQ==
+  dependencies:
+    is-type-of "^1.2.0"
 
 egg-schedule@^3.3.0:
   version "3.4.0"
@@ -4535,6 +4562,22 @@ jsonp-body@^1.0.0:
   resolved "https://registry.yarnpkg.com/jsonp-body/-/jsonp-body-1.0.0.tgz#e610fb6fcea79cf0cc9f27baa7b56377d4b0bb36"
   integrity sha1-5hD7b86nnPDMnye6p7Vjd9SwuzY=
 
+jsonwebtoken@^8.1.0:
+  version "8.5.0"
+  resolved "https://registry.yarnpkg.com/jsonwebtoken/-/jsonwebtoken-8.5.0.tgz#ebd0ca2a69797816e1c5af65b6c759787252947e"
+  integrity sha512-IqEycp0znWHNA11TpYi77bVgyBO/pGESDh7Ajhas+u0ttkGkKYIIAjniL4Bw5+oVejVF+SYkaI7XKfwCCyeTuA==
+  dependencies:
+    jws "^3.2.1"
+    lodash.includes "^4.3.0"
+    lodash.isboolean "^3.0.3"
+    lodash.isinteger "^4.0.4"
+    lodash.isnumber "^3.0.3"
+    lodash.isplainobject "^4.0.6"
+    lodash.isstring "^4.0.1"
+    lodash.once "^4.0.0"
+    ms "^2.1.1"
+    semver "^5.6.0"
+
 jsonwebtoken@^8.3.0:
   version "8.3.0"
   resolved "https://registry.yarnpkg.com/jsonwebtoken/-/jsonwebtoken-8.3.0.tgz#056c90eee9a65ed6e6c72ddb0a1d325109aaf643"
@@ -4571,12 +4614,29 @@ jwa@^1.1.5:
     ecdsa-sig-formatter "1.0.10"
     safe-buffer "^5.0.1"
 
+jwa@^1.2.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/jwa/-/jwa-1.4.0.tgz#8f61dc799acf0309f2d4b22a91ce73d6d2bb206c"
+  integrity sha512-mt6IHaq0ZZWDBspg0Pheu3r9sVNMEZn+GJe1zcdYyhFcDSclp3J8xEdO4PjZolZ2i8xlaVU1LetHM0nJejYsEw==
+  dependencies:
+    buffer-equal-constant-time "1.0.1"
+    ecdsa-sig-formatter "1.0.11"
+    safe-buffer "^5.0.1"
+
 jws@^3.1.5:
   version "3.1.5"
   resolved "https://registry.yarnpkg.com/jws/-/jws-3.1.5.tgz#80d12d05b293d1e841e7cb8b4e69e561adcf834f"
   integrity sha512-GsCSexFADNQUr8T5HPJvayTjvPIfoyJPtLQBwn5a4WZQchcrPMPMAWcC1AzJVRDKyD6ZPROPAxgv6rfHViO4uQ==
   dependencies:
     jwa "^1.1.5"
+    safe-buffer "^5.0.1"
+
+jws@^3.2.1:
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/jws/-/jws-3.2.1.tgz#d79d4216a62c9afa0a3d5e8b5356d75abdeb2be5"
+  integrity sha512-bGA2omSrFUkd72dhh05bIAN832znP4wOU3lfuXtRBuGTbsmNmDXMQg28f0Vsxaxgk4myF5YkKQpz6qeRpMgX9g==
+  dependencies:
+    jwa "^1.2.0"
     safe-buffer "^5.0.1"
 
 keygrip@~1.0.3:
@@ -4653,6 +4713,17 @@ koa-is-json@^1.0.0:
   resolved "https://registry.yarnpkg.com/koa-is-json/-/koa-is-json-1.0.0.tgz#273c07edcdcb8df6a2c1ab7d59ee76491451ec14"
   integrity sha1-JzwH7c3Ljfaiwat9We52SRRR7BQ=
 
+koa-jwt2@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/koa-jwt2/-/koa-jwt2-1.0.3.tgz#a80309800d0bb2c0f957b8b2cecc2cae0444f219"
+  integrity sha512-ACW/sQ21vlkR/HBXnGvJfM2yDkKnv1GZe6/1nro+Mt4+bWhJq007esu2h9oZcj2+nce47PXcan2rXVaKmX295w==
+  dependencies:
+    async "^1.5.0"
+    jsonwebtoken "^8.1.0"
+    koa-unless "^1.0.7"
+    lodash.isfunction "^3.0.9"
+    lodash.set "^4.0.0"
+
 koa-locales@^1.7.0:
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/koa-locales/-/koa-locales-1.8.0.tgz#e8762e937007a0baf9092ea24c44fab860e394bd"
@@ -4718,6 +4789,11 @@ koa-static-cache@^5.1.1:
     fs-readdir-recursive "^1.0.0"
     mime-types "^2.1.8"
     mz "^2.7.0"
+
+koa-unless@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/koa-unless/-/koa-unless-1.0.7.tgz#b9df375e2b4da3043918d48622520c2c0b79f032"
+  integrity sha1-ud83XitNowQ5GNSGIlIMLAt58DI=
 
 koa@^2.5.2:
   version "2.6.1"
@@ -4878,6 +4954,11 @@ lodash.isempty@^4.4.0:
   resolved "https://registry.yarnpkg.com/lodash.isempty/-/lodash.isempty-4.4.0.tgz#6f86cbedd8be4ec987be9aaf33c9684db1b31e7e"
   integrity sha1-b4bL7di+TsmHvpqvM8loTbGzHn4=
 
+lodash.isfunction@^3.0.9:
+  version "3.0.9"
+  resolved "https://registry.yarnpkg.com/lodash.isfunction/-/lodash.isfunction-3.0.9.tgz#06de25df4db327ac931981d1bdb067e5af68d051"
+  integrity sha512-AirXNj15uRIMMPihnkInB4i3NHeb4iBtNg9WRWuK2o31S+ePwwNmDPaTL3o7dTJ+VXNZim7rFs4rxN4YU1oUJw==
+
 lodash.isinteger@^4.0.4:
   version "4.0.4"
   resolved "https://registry.yarnpkg.com/lodash.isinteger/-/lodash.isinteger-4.0.4.tgz#619c0af3d03f8b04c31f5882840b77b11cd68343"
@@ -4927,6 +5008,11 @@ lodash.sample@^4.2.1:
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/lodash.sample/-/lodash.sample-4.2.1.tgz#5e4291b0c753fa1abeb0aab8fb29df1b66f07f6d"
   integrity sha1-XkKRsMdT+hq+sKq4+ynfG2bwf20=
+
+lodash.set@^4.0.0:
+  version "4.3.2"
+  resolved "https://registry.yarnpkg.com/lodash.set/-/lodash.set-4.3.2.tgz#d8757b1da807dde24816b0d6a84bea1a76230b23"
+  integrity sha1-2HV7HagH3eJIFrDWqEvqGnYjCyM=
 
 lodash.shuffle@^4.2.0:
   version "4.2.0"

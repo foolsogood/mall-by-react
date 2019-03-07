@@ -12,7 +12,8 @@ module.exports = app => {
       },
       orderId: {
         type: BIGINT,
-        allowNull: false
+        allowNull: false,
+        comment:'订单id'
       },
       userid: {
         type: UUID,
@@ -22,7 +23,8 @@ module.exports = app => {
       status: {
         type: INTEGER,
         defaultValue:0,
-        allowNull: false
+        allowNull: false,
+        comment:'订单状态'
       },
       
     },

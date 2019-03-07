@@ -30,6 +30,8 @@ class OrderService extends Service {
           raw: true,
           where: { goodId: good.goodId }
         });
+        targetGood.imgs=JSON.parse(targetGood.imgs)
+        targetGood.detailImg=JSON.parse(targetGood.detailImg)
         targetGood = Object.assign({}, targetGood, good);
         result.push(targetGood);
       }
