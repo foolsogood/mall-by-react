@@ -48,7 +48,7 @@ export default class searchBar extends Component {
             >
               <img
                 alt=""
-                src={item.imgs && JSON.parse(item.imgs)[0]}
+                src={item.imgs && item.imgs[0]}
                 style={{ width: ".5rem", height: ".5rem" }}
               />
               <span style={{ paddingRight: ".2rem" }}>{item.goodName}</span>

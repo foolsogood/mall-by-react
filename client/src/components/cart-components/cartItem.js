@@ -74,7 +74,7 @@ class cartItem extends Component {
                     <Col span={16}>
                         <div>
                             <Row className="flex-box">
-                                <Col span={5} className="flex-box"><img className="good-img" src={JSON.parse(cartItem.imgs)[0]} alt="" /></Col>
+                                <Col span={5} className="flex-box"><img className="good-img" src={cartItem.imgs[0]} alt="" /></Col>
                                 <Col span={19} className="flex-box flex-ver-box flex-al-st">
                                     <p>{cartItem.name}</p>
                                     <p>售价:{cartItem.price}元 合计：{cartItem.price * cartItem.number}元</p>

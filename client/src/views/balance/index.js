@@ -116,7 +116,7 @@ class Balance extends PureComponent {
               <div key={idx} className="pd-20">
                 <Row>
                   <Col span={5}>
-                    <img src={JSON.parse(item.imgs)[0]} alt="" />
+                    <img src={item.imgs[0]} alt="" />
                   </Col>
                   <Col span={19} className="pd-lf-20">
                     <p>{item.goodName}</p>

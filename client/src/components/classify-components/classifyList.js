@@ -18,7 +18,7 @@ export default class classifyList extends Component {
                                 <div key={item.goodId} className="classify-block ">
                                     <Link to={`/goodDetail/${item.goodId}`}>
                                         <div className="flex-box flex-ver-box">
-                                             <img className="classify-good-img" src={JSON.parse(item.imgs)[0]} alt="" /> 
+                                             <img className="classify-good-img" src={item.imgs[0]} alt="" /> 
                                             <p>{item.goodName}</p>
                                         </div>
                                     </Link>

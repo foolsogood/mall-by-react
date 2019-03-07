@@ -27,7 +27,7 @@ export default class HotItem extends Component {
                     <div className="flex-box flex-ver-box">
                         
                     
-                        <ImgWraper className="good-item-img" data-errorimgsrc={require('assets/img/default-good.jpg')} src={JSON.parse(good.imgs)[0]} />
+                        <ImgWraper className="good-item-img" data-errorimgsrc={require('assets/img/default-good.jpg')} src={good.imgs[0]} />
                         <div className="flex-box flex-ver-box flex-al-st good-item-text">
 
                             <p className="good-itm-p-1  ">{good.goodName}</p>
