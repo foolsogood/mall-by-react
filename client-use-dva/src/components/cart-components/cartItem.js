@@ -110,7 +110,7 @@ class cartItem extends Component {
                 <Col span={5} className="flex-box">
                   <img
                     className="good-img"
-                    src={JSON.parse(cartItem.imgs)[0]}
+                    src={cartItem.imgs[0]}
                     alt=""
                   />
                 </Col>

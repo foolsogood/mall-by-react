@@ -1,8 +1,6 @@
 
  const api = {
     good: {
-      addGood: "",
-      getAllGoods: "",
       getGoodsByCate: "/good/getGoodByCateId",
       getGoodById: "/good/getGoodDetail",
       getNewGoods: "/good/getNewGoods",
@@ -37,6 +35,8 @@
     },
     upload:"/upload"
   };
-
+if(process.env.NODE_ENV ==='mock'){
+  
+}
 
 export default api;

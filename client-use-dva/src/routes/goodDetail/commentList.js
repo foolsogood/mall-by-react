@@ -35,8 +35,8 @@ class Comment extends Component {
     try {
       const res =await window.$apiServer.get(url, { query, params });
       this.setState({
-        commentList: await this.state.commentList.concat(res.data.rows),
-        total: res.data.count
+        commentList: await this.state.commentList.concat(res.data),
+        total: res.data.length
       });
     } catch (err) {
       window.$commonErrorHandler(url)(err);
@@ -57,7 +57,7 @@ class Comment extends Component {
             </div>
           </Link>
           {commentList.map((item, idx) => (
-            <CommentItem key={idx} rate={item} />
+            <CommentItem key={idx} comment={item} />
           ))}
         </div>
       );

@@ -4,7 +4,7 @@ import ImgWraper from "components/common-components/imgWraper";
 import tool from "utils/tool";
 export default class CommentItem extends Component {
   render() {
-    const rate = this.props.rate;
+    const {comment} = this.props;
     const _hList = list => {
       return (
         <div>
@@ -28,17 +28,17 @@ export default class CommentItem extends Component {
             <ImgWraper
               className="avatar-com"
               data-errorimgsrc={require("assets/img/default-avatar.jpeg")}
-              src={rate.avatar}
+              src={comment.avatar}
             />
           </Col>
           <Col span={20}>
             <div className="flex-box flex-ju-c-bt">
-              <span>{rate.name}</span>
-              <Rate disabled defaultValue={parseFloat(rate.rateScore)} />
+              <span>{comment.name}</span>
+              <Rate disabled defaultValue={parseFloat(comment.rateScore)} />
             </div>
-            <p>{tool.formatTime(rate.updated_at)}</p>
-            <p>{rate.comment}</p>
-            {rate.imgList ? _hList(JSON.parse(rate.imgList)) : null}
+            <p>{tool.formatTime(comment.updated_at)}</p>
+            <p>{comment.comment}</p>
+            {comment.imgList ? _hList(JSON.parse(comment.imgList)) : null}
           </Col>
         </Row>
       </div>

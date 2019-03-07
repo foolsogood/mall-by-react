@@ -18,7 +18,7 @@ export default class Comments extends Component {
           </div>
         </Link>
         {rateList.map((item, idx) => {
-          return <CommentItem key={idx} rate={item} />;
+          return <CommentItem key={idx} comment={item} />;
         })}
       </div>
     );

@@ -88,7 +88,7 @@ class cateify extends PureComponent {
                             <div className="flex-box flex-ver-box">
                               <img
                                 className="classify-good-img"
-                                src={JSON.parse(item.imgs)[0]}
+                                src={item.imgs[0]}
                                 alt=""
                               />
                               <p>{item.goodName}</p>

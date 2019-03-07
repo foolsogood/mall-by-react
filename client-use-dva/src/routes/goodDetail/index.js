@@ -29,8 +29,8 @@ class GoodDetail extends PureComponent {
       this.setState({
         goodInfo: res.data,
         // 在jsx中直接传goodInfo.imgList在子组件中取不到
-        imgList: JSON.parse(res.data.imgs),
-        detailList: JSON.parse(res.data.detailImg),
+        imgList: res.data.imgs,
+        detailList: res.data.detailImg,
         isCollect: res.data.isCollect
       });
     } catch (err) {
@@ -96,7 +96,7 @@ class GoodDetail extends PureComponent {
               <div>
                 <Comments
                   goodInfo={goodInfo}
-                  rateList={goodInfo.comments && goodInfo.comments.rows}
+                  rateList={goodInfo.comments }
                 />
               </div>
             </Tabs>

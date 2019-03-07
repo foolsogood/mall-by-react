@@ -17,7 +17,7 @@ export default class OrderItem extends Component {
                 <Link to={`/orderDetail/${order.orderId}`}>
                     <Row>
                         <Col span={7}>
-                            <img style={{ width: '1.5rem', height: '1.5rem' }} src={JSON.parse(order.imgs)[0]} alt="商品" />
+                            <img style={{ width: '1.5rem', height: '1.5rem' }} src={order.imgs[0]} alt="商品" />
                         </Col>
                         <Col span={12} >
                             <div >

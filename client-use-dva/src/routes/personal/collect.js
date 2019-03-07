@@ -71,7 +71,7 @@ class Collect extends Component {
                     <img
                       style={{ width: "1.2rem", height: "1.2rem" }}
                       alt={item.goodName}
-                      src={JSON.parse(item.imgs)[0]}
+                      src={item.imgs[0]}
                     />
                     <div className="pd-lf-20">
                       <p>{item.goodName}</p>

@@ -87,7 +87,7 @@ Object.keys(goodList).map((item)=>{
 	<Route exact path="/" component={Home} />
   ```
 ### 高阶组件
-项目中使用装饰器连接高阶组件更优雅 如dva和mobx中的connect以及页面布局使用的公共组件WithFooter WithHeader等
+项目中使用装饰器连接高阶组件更优雅 如dva的connect和mobx中的observer以及页面布局使用的公共组件WithFooter WithHeader等
 ```
 @connect
 @WithFooter

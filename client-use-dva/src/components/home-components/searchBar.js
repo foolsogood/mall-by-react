@@ -29,12 +29,11 @@ export default class searchBar extends Component {
     }
   };
   keywordChange = ev => {
-    console.log(ev);
-    // if(!keyword){
-    //     this.setState({
-    //         list: []
-    //     })
-    // }
+    if(!ev.currentTarget.value){
+        this.setState({
+          isSerachHasData: null
+        })
+    }
   };
   render() {
     const { list, isSerachHasData } = this.state;
@@ -48,7 +47,7 @@ export default class searchBar extends Component {
             >
               <img
                 alt=""
-                src={item.imgs && JSON.parse(item.imgs)[0]}
+                src={item.imgs && item.imgs[0]}
                 style={{ width: ".5rem", height: ".5rem" }}
               />
               <span style={{ paddingRight: ".2rem" }}>{item.goodName}</span>
@@ -68,6 +67,7 @@ export default class searchBar extends Component {
         <Search
           placeholder="搜索商品"
           onSearch={keyword => this.serachGood(keyword)}
+          onChange={this.keywordChange}
           style={this.inputStyle}
         />
         <div className="bg-fff" style={this.inputStyle}>
