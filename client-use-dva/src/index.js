@@ -2,10 +2,10 @@ import dva from "dva";
 import { createBrowserHistory as createHistory } from "history";
 import createLoading from "dva-loading";
 import middleware from "utils/middleware";
-import apiServer from "service/apiServer";
 import api from "service/api";
-window.window.$apiServer = apiServer;
-window.window.$api = api;
+import * as http from 'service/xhr'
+window.$http=http
+window.$api = api;
 Object.keys(middleware).forEach(item => {
   window[`$${item}`] = middleware[item];
 });

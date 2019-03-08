@@ -19,7 +19,7 @@ export default class searchBar extends Component {
   serachGood = async keyword => {
     const url = window.$api.good.searchGood;
     try {
-      const res = await window.$apiServer.get(url, { query: { keyword } });
+      const res = await window.$http.get(url, { query: { keyword } });
       this.setState({
         list: res.data,
         isSerachHasData: Boolean(res.data && res.data.length)

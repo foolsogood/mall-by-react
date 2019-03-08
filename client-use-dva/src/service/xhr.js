@@ -1,61 +1,90 @@
-/*对接口请求返回的数据进行统一处理*/
-import axios from "axios";
-import qs from "qs";
-import event from "utils/event";
+import { request } from "./request";
+import { stringify } from "qs";
+import Cookies from "js-cookie";
 
-// http response 拦截器
-axios.interceptors.response.use(
-  response => {
-    const { status, data } = response;
-    if (status >= 200 && status < 400 && data.code===1) {
-      //隐藏loading
-      window.$hideLoading.call(null);
-      return Promise.resolve(response.data);
-    }else{
-      return new Error(response.data)
-    }
-  },
-  error => {
-    const { status, data } = error.response;
-    if ([403, 401].includes(status)) {
-      // token失效
-      console.error("token 失效");
-      event.emit("showLogin", true);
-      window.$hideLoading.call(null);
-      return Promise.reject(data);
-    } else {
-      console.error("error", error);
-      return Promise.reject(data);
-    }
+//拼成  xxx/1/3
+const finalPath = (url, params) => {
+  if (!params) return url;
+  Object.keys(params).forEach(item => {
+    url = url.replace(":" + item, params[item]);
+  });
+  return url;
+};
+// const preHandler = (url, payload) => {
+//   const default_data = { query: null, params: {}, loading: null };
+//   const data = Object.assign({}, default_data, payload);
+//   let { query, params, loading } = data;
+//   const finalUrl = finalPath(url, params);
+//   const _token = Cookies.get("token");
+//   if (_token) {
+//     query = {};
+//     query.token = _token;
+//   }
+//   return request(query ? `${finalUrl}?${stringify(query)}` : finalUrl, data);
+// };
+export function get(url, payload) {
+  const default_data = { query: null, params: {}, loading: null };
+  const data = Object.assign({}, default_data, payload);
+  let { query, params, loading } = data;
+  const finalUrl = finalPath(url, params);
+  const _token = Cookies.get("token");
+  if (_token) {
+    query = {};
+    query.token = _token;
   }
-);
-function finalUrl(url, params) {
-  return [url].concat(params).join("/");
-}
-
-//默认地址获取
-function get(url, { params = [], query = {} }) {
-  return axios.get(finalUrl(url, params), { params: query });
-}
-function post(url, { params = [], query = {} }) {
-  return axios.post(finalUrl(url, params), qs.stringify(query));
-}
-function post_formdata(url, { params = [], formdata = {} }) {
-  return axios.post(finalUrl(url, params), formdata, {
-    headers: { "Content-Type": "multipart/form-data;boundary=%s" }
+  return request(query ? `${finalUrl}?${stringify(query)}` : finalUrl,{
+    loading
   });
 }
-function put(url, { params = [], query = {} }) {
-  return axios.put(finalUrl(url, params), qs.stringify(query));
+export function post(url, payload) {
+  const default_data = { query: {}, params: {}, loading: null };
+  const data = Object.assign({}, default_data, payload);
+  let { query, params, loading } = data;
+  const finalUrl = finalPath(url, params);
+  const _token = Cookies.get("token");
+  if (_token) {
+    query.token = _token;
+  }
+  return request( finalUrl, {
+    method: "POST",
+    body: JSON.stringify(query),
+    loading
+  });
 }
-function del(url, { params = [], query = {} }) {
-  return axios.del(finalUrl(url, params), qs.stringify(query));
+export function post_formdata(url, payload) {
+  const default_data = { formdata: {}, params: {}, loading: null };
+  const data = Object.assign({}, default_data, payload);
+  let { formdata, params, loading } = data;
+  const finalUrl = finalPath(url, params);
+  const _token = Cookies.get("token");
+  if (_token) {
+    formdata.token = _token;
+  }
+  return request(finalUrl, {
+    method: "POST",
+    body: JSON.stringify(formdata),
+    headers: { "Content-Type": "multipart/form-data;boundary=%s" },
+    loading
+  });
 }
-
+export function put(url, payload) {
+  const default_data = { query: {}, params: {}, loading: null };
+  const data = Object.assign({}, default_data, payload);
+  let { query, params, loading } = data;
+  const finalUrl = finalPath(url, params);
+  const _token = Cookies.get("token");
+  if (_token) {
+    query.token = _token;
+  }
+  return request( finalUrl, {
+    method: "PUT",
+    body: JSON.stringify(payload.query),
+    loading
+  });
+}
 export default {
   get,
   post,
   put,
-  del,
   post_formdata
 };

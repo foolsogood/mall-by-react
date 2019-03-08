@@ -16,7 +16,8 @@ class Orders extends Component {
   async getOrders() {
     const url = window.$api.order.getOrders;
     try {
-      const res = await window.$apiServer.get(url);
+      const res = await window.$http.get(url);
+      console.log('res',res)
       this.setState({
         orderList: res.data
       });

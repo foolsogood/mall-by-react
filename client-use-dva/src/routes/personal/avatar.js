@@ -32,7 +32,7 @@ class Avatar extends Component {
     let formdata = new FormData();
     await formdata.append("file", this.state.filesObj.file);
     try {
-      const res = await window.$apiServer.post_formdata(url, { formdata });
+      const res = await window.$http.post_formdata(url, { formdata });
       Toast.info("上传成功");
       dispatch({type:'app/changeUser',payload:Object.assign({}, user, { avatar: res.data.url })})
     } catch (err) {

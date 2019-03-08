@@ -18,7 +18,7 @@ class Collect extends Component {
   getCollectGood = async () => {
     const url = window.$api.good.getCollectGood;
     try {
-      const res = await window.$apiServer.get(url);
+      const res = await window.$http.get(url);
       this.setState({
         collectList: res.data
       });
@@ -35,7 +35,7 @@ class Collect extends Component {
     const params = [goodId];
     let _temp = this.state.collectList;
     try {
-      await window.$apiServer.post(url, { params, query });
+      await window.$http.post(url, { params, query });
       await _temp.splice(idx, 1);
       await this.setState({ collectList: _temp });
       Toast.success("取消收藏!");

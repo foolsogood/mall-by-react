@@ -17,6 +17,7 @@ class Login extends Component {
   }
   componentDidMount() {
     event.on("showLogin", bool => {
+      console.log(111111)
       this.setState({ isLoginShow: bool });
     });
   }
@@ -32,7 +33,7 @@ class Login extends Component {
         const option = { loadingTxt: "登录中……" };
         const url = window.$api.user.login;
         try {
-          const res = await window.$apiServer.post(url, { query, option });
+          const res = await window.$http.post(url, { query, option });
           this.props.dispatch({ type: "app/changeUser", payload: res.data });
           console.log("111");
           Cookies.set("token", res.token);

@@ -9,6 +9,7 @@ import Notice from "components/home-components/notice";
 import HostList from "components/home-components/hot/hotList";
 import RecomList from "components/home-components/recommend/recomList";
 import tool from "utils/tool";
+
 // import { Map, is } from "immutable";
 @WithFooter
 class Home extends PureComponent {
@@ -40,7 +41,7 @@ class Home extends PureComponent {
   async getHomeImgList() {
     const url = window.$api.banner.getHomeBanner;
     try {
-      const res = await window.$apiServer.get(url);
+      const res = await window.$http.get(url);
       this.setState({
         imgList: res.data
       });
@@ -71,7 +72,7 @@ class Home extends PureComponent {
           //   return;
           // }
           if (tool.checkIfEual(this.state.searchStyle, _c)) {
-          	return
+            return;
           }
           this.setState({
             searchStyle: _c
@@ -85,7 +86,7 @@ class Home extends PureComponent {
   async getHotGoods() {
     const url = window.$api.good.getHotGoods;
     try {
-      const res = await window.$apiServer.get(url);
+      const res = await window.$http.get(url);
       this.setState({
         hotGoods: res.data
       });

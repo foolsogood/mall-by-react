@@ -17,7 +17,7 @@ class cateify extends PureComponent {
   async getCates() {
     const url = window.$api.category.getCates;
     try {
-      const res = await window.$apiServer.get(url);
+      const res = await window.$http.get(url);
       let arr = res.data.map(item => {
         return this.getGoodsList(item.cateId);
       });
@@ -29,7 +29,7 @@ class cateify extends PureComponent {
     }
   }
   getGoodsList(cateId) {
-    return window.$apiServer
+    return window.$http
       .get(window.$api.good.getGoodsByCate, { query: { cateId } })
       .then(res => {
         return res.data;

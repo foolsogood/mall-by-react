@@ -18,7 +18,7 @@ export default class RecomList extends Component {
   async getRecomGoods() {
     const url = window.$api.good.getNewGoods;
     try {
-      const res = await window.$apiServer.get(url);
+      const res = await window.$http.get(url);
       this.setState({
         obj: res.data
       });

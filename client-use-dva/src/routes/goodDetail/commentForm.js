@@ -71,7 +71,7 @@ const { TextArea } = Input;
     const params = [goodId];
     const url = window.$api.good.addGoodComment;
     try {
-      await window.$apiServer.post_formdata(url, { params, formdata });
+      await window.$http.post_formdata(url, { params, formdata });
     } catch (err) {
       window.$commonErrorHandler(url)(err);
     }

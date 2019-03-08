@@ -2,13 +2,13 @@
  const api = {
     good: {
       getGoodsByCate: "/good/getGoodByCateId",
-      getGoodById: "/good/getGoodDetail",
+      getGoodById: "/good/getGoodDetail/:goodId",
       getNewGoods: "/good/getNewGoods",
       getHotGoods: "/good/getHotGoods",
       searchGood: "/good/searchGood",
-      collectGood: "/good/collectGood",
+      collectGood: "/good/collectGood/:goodId",
       getCollectGood: "/good/getCollectGood",
-      getGoodComment: "/good/getGoodComment",
+      getGoodComment: "/good/getGoodComment/:goodId",
       addGoodComment: "/good/addGoodComment",
 
 

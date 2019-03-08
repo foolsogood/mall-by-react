@@ -26,14 +26,14 @@ class Comment extends Component {
   };
   async getGoodComment() {
     const { goodId } = this.props.match.params;
-    const params = [goodId];
+    const params = {goodId};
     const query = {
       pageSize: this.state.pageSize,
       pageNum: this.state.pageNum
     };
     const url = window.$api.good.getGoodComment;
     try {
-      const res =await window.$apiServer.get(url, { query, params });
+      const res =await window.$http.get(url, { query, params });
       this.setState({
         commentList: await this.state.commentList.concat(res.data),
         total: res.data.length

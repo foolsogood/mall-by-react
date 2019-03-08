@@ -22,10 +22,10 @@ class GoodDetail extends PureComponent {
     this.getGoodInfo(goodId);
   }
   async getGoodInfo(goodId) {
-    const params = [goodId];
+    const params = {goodId};
     const url = window.$api.good.getGoodById;
     try {
-      const res = await window.$apiServer.get(url, { params });
+      const res = await window.$http.get(url, { params });
       this.setState({
         goodInfo: res.data,
         // 在jsx中直接传goodInfo.imgList在子组件中取不到
@@ -41,12 +41,12 @@ class GoodDetail extends PureComponent {
   toggleLike = async () => {
     const url = window.$api.good.collectGood;
     const { goodId } = this.props.match.params;
-    const params = [goodId];
+    const params = {goodId};
     const query = {
       isCollect: !this.state.isCollect
     };
     try {
-      await window.$apiServer.post(url, { params, query });
+      await window.$http.post(url, { params, query });
       await this.setState({ isCollect: !this.state.isCollect });
       Toast.success(this.state.isCollect ? "收藏成功!" : "取消收藏!");
     } catch (err) {

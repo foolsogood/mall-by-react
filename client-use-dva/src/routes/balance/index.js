@@ -46,7 +46,7 @@ class Balance extends PureComponent {
     const url = window.$api.order.addOrder;
     const option = { loadingText: "提交中……" };
     try {
-      await window.$apiServer.post(url, { query, option });
+      await window.$http.post(url, { query, option });
       goodList.forEach(item => {
         dispatch({ type: "shopCart/removeFromCart", payload: item.goodId });
       });

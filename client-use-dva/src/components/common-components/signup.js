@@ -30,7 +30,7 @@ class NormalLoginForm extends Component {
       };
       const url = window.$api.user.signup;
       try {
-        await window.$apiServer.put(url, { query });
+        await window.$http.put(url, { query });
         event.emit("showSignup", false);
         event.emit("showLogin", true);
       } catch (err) {

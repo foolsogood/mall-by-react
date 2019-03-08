@@ -32,7 +32,7 @@ class BindPhone extends React.Component {
         query.phone = query.phone.replace(/\s/g, "");
         const url = window.$api.phone.bindPhone;
         try {
-          const res = await window.$apiServer.post(url, { query });
+          const res = await window.$http.post(url, { query });
           Toast.info(res.msg);
         } catch (err) {
           window.$commonErrorHandler(url)(err);
@@ -45,7 +45,7 @@ class BindPhone extends React.Component {
     query.phone = query.phone.replace(/\s/g, "");
     const url = window.$api.phone.sendSms;
     try {
-      await window.$apiServer.get(url, { query });
+      await window.$http.get(url, { query });
     } catch (err) {
       window.$commonErrorHandler(url)(err);
     }
