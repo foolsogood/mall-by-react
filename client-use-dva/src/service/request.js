@@ -1,7 +1,7 @@
 import fetch from "dva/fetch";
 import event from "utils/event";
 import Cookies from "js-cookie";
-import { server } from "./config";
+import  {server } from "./config";
 const checkStatus = response => {
   const { status } = response;
   // console.log(status)
