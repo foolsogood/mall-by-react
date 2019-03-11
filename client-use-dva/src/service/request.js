@@ -22,7 +22,7 @@ const loading_option_default = {
   loadingText: "加载中……"
 };
 export const request = (url, options = null) => {
-  console.log('op',options)
+  // console.log('op',options)
   const defaultOption = {
     headers: {
       "Content-Type": "application/json",

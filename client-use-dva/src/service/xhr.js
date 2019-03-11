@@ -29,7 +29,9 @@ export function get(url, payload) {
   const finalUrl = finalPath(url, params);
   const _token = Cookies.get("token");
   if (_token) {
-    query = {};
+    if(!query){
+      query={}
+    }
     query.token = _token;
   }
   return request(query ? `${finalUrl}?${stringify(query)}` : finalUrl,{
@@ -43,6 +45,9 @@ export function post(url, payload) {
   const finalUrl = finalPath(url, params);
   const _token = Cookies.get("token");
   if (_token) {
+    if(!query){
+      query={}
+    }
     query.token = _token;
   }
   return request( finalUrl, {
@@ -58,6 +63,9 @@ export function post_formdata(url, payload) {
   const finalUrl = finalPath(url, params);
   const _token = Cookies.get("token");
   if (_token) {
+    if(!formdata){
+      formdata={}
+    }
     formdata.token = _token;
   }
   return request(finalUrl, {
@@ -74,11 +82,14 @@ export function put(url, payload) {
   const finalUrl = finalPath(url, params);
   const _token = Cookies.get("token");
   if (_token) {
+    if(!query){
+      query={}
+    }
     query.token = _token;
   }
   return request( finalUrl, {
     method: "PUT",
-    body: JSON.stringify(payload.query),
+    body: JSON.stringify(query),
     loading
   });
 }

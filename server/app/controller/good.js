@@ -42,23 +42,23 @@ class GoodController extends BaseController {
       this.fail(err);
     }
   }
-  async getGoodComment(){
-    const {ctx}=this
-    const {pageSize,pageNum}=ctx.request.query
+  async getGoodComment() {
+    const { ctx } = this;
+    const { pageSize, pageNum } = ctx.request.query;
 
-    try{
-      const res=await ctx.service.good.getGoodComment(Number(pageSize),Number(pageNum))
-      this.success(res)
-    }catch(err){
+    try {
+      const res = await ctx.service.good.getGoodComment(Number(pageSize), Number(pageNum));
+      this.success(res);
+    } catch (err) {
       this.fail(err);
     }
   }
-  async addGoodComment(){
-    const {ctx}=this
-    try{
-      const res=await ctx.service.good.addGoodComment()
-      this.success(res)
-    }catch(err){
+  async addGoodComment() {
+    const { ctx } = this;
+    try {
+      const res = await ctx.service.good.addGoodComment();
+      this.success(res);
+    } catch (err) {
       this.fail(err);
     }
   }
