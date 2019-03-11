@@ -1,3 +1,5 @@
+
+'use strict';
 const {Service} = require('egg');
 class HomeService extends Service{
    async getHomeBanner(){

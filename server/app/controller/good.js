@@ -1,5 +1,5 @@
-"use strict";
-const BaseController = require("./BaseController");
+'use strict';
+const BaseController = require('./BaseController');
 class GoodController extends BaseController {
   async getHotGoods() {
     try {

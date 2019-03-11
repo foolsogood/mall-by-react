@@ -1,5 +1,5 @@
-"use strict";
-const BaseController = require("./BaseController");
+'use strict';
+const BaseController = require('./BaseController');
 
 class OrderController extends BaseController {
   async getOrder() {
@@ -8,16 +8,16 @@ class OrderController extends BaseController {
 
       this.success(res);
     } catch (err) {
-      this.fail({ msg: "fail" });
+      this.fail({ msg: 'fail' });
     }
   }
   async addOrder() {
     try {
       await this.service.order.addOrder();
 
-      this.success({ msg: "success" });
+      this.success({ msg: 'success' });
     } catch (err) {
-      this.fail({ msg: "fail" });
+      this.fail({ msg: 'fail' });
     }
   }
   async getOrderDetail() {
@@ -26,7 +26,7 @@ class OrderController extends BaseController {
 
       this.success(res);
     } catch (err) {
-      this.fail({ msg: "fail" });
+      this.fail({ msg: 'fail' });
     }
   }
 }

@@ -1,7 +1,7 @@
 'use strict';
 module.exports = app => {
   const { INTEGER,  UUID, UUIDV4,BOOLEAN } = app.Sequelize;
-  return  app.model.define("collect", {
+  return  app.model.define('collect', {
     id: {
       type: INTEGER,
       allowNull: false,

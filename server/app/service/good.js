@@ -1,4 +1,5 @@
-const { Service } = require("egg");
+'use strict';
+const { Service } = require('egg');
 class HomeService extends Service {
   async getHotGoods() {
     const { ctx } = this;
@@ -136,7 +137,7 @@ class HomeService extends Service {
     res=  await ctx.model.Comments.create({
         goodId,
         comment,
-        name: "火星用户",
+        name: '火星用户',
         imgList:JSON.stringify(urlList),
         rateScore: rate
       });

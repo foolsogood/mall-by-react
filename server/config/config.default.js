@@ -1,10 +1,10 @@
-"use strict";
+'use strict';
 
 module.exports = appInfo => {
   const config = (exports = {});
 
   // use for cookie sign key, should change to your own and keep security
-  config.keys = appInfo.name + "_{{keys}}";
+  config.keys = appInfo.name + '_{{keys}}';
   config.security = {
     csrf: {
       enable: false
@@ -17,44 +17,44 @@ module.exports = appInfo => {
   config.middleware = [];
   //添加cors处理
   config.cors = {
-    origin: "*",
+    origin: '*',
     credentials: true
   };
   
   config.redis = {
     client: {
       port: 6379,
-      host: "127.0.0.1",
-      password: "",
+      host: '127.0.0.1',
+      password: '',
       db: 0
     }
   };
   config.sessionRedis = {
-    key: "EGG_SESSION",
+    key: 'EGG_SESSION',
     maxAge: 1000 * 3600 * 24,
     httpOnly: true,
     encrypt: false
   };
   // change to your own sequelize configurations
   config.sequelize = {
-    dialect: "mysql",
-    hostname: "127.0.0.1",
+    dialect: 'mysql',
+    hostname: '127.0.0.1',
     port: 3306,
-    password: "FSG851024125",
-    database: "mall-server",
-    username: "root"
+    password: 'FSG851024125',
+    database: 'mall-server',
+    username: 'root'
   };
   config.multipart = {
-    fileSize: "50mb",
+    fileSize: '50mb',
     mode:'file'
   };
   config.oss = {
     client: {
-      accessKeyId: "LTAImYw1P9qavGsM",
-      accessKeySecret: "B8ueSfNLB2PRXMJTioUfL3aQ2cwa7Q",
-      bucket: "mall-server-upload",
-      endpoint: "oss-cn-shenzhen.aliyuncs.com",
-      timeout: "60s"
+      accessKeyId: 'LTAImYw1P9qavGsM',
+      accessKeySecret: 'B8ueSfNLB2PRXMJTioUfL3aQ2cwa7Q',
+      bucket: 'mall-server-upload',
+      endpoint: 'oss-cn-shenzhen.aliyuncs.com',
+      timeout: '60s'
     }
   };
   return config;

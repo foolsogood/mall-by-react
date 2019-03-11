@@ -1,8 +1,8 @@
-"use strict";
+'use strict';
 module.exports = app => {
   const { INTEGER, STRING, UUID,TEXT,  BIGINT} = app.Sequelize;
   return app.model.define(
-    "order_item",
+    'order_item',
     {
       id: {
         type: INTEGER,

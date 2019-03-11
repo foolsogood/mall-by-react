@@ -15,7 +15,7 @@ exports.alinode = {
 exports.aliyunApiGateway = {
     appKey: '',
     appSecret: '',
-    baseUrl: "http://"
+    baseUrl: 'http://'
 };
 
 exports.oss = {

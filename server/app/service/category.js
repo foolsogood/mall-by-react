@@ -1,3 +1,4 @@
+'use strict';
 const {Service} = require('egg');
 class CategoryService extends Service{
    async getAllCategory(){

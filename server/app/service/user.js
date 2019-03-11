@@ -1,6 +1,7 @@
-const Service = require("egg").Service;
-const sha512 = require("js-sha512");
-const sha1 = require("sha1");
+'use strict';
+const Service = require('egg').Service;
+const sha512 = require('js-sha512');
+const sha1 = require('sha1');
 class UserService extends Service {
   async register() {
     const { ctx } = this;
@@ -9,7 +10,7 @@ class UserService extends Service {
       if (password !== repeatPwd) {
         return {
           code: -1,
-          data: "两次密码不一致"
+          data: '两次密码不一致'
         };
       }
       let isExistUser = await ctx.model.User.findOne({
@@ -29,7 +30,7 @@ class UserService extends Service {
       } else {
         return {
           code: -1,
-          data: "用户已存在"
+          data: '用户已存在'
         };
       }
     } catch (err) {
@@ -48,7 +49,7 @@ class UserService extends Service {
     if (!user) {
       return {
         code: -1,
-        data: "用户不存在"
+        data: '用户不存在'
       };
     } else {
       //登录成功
@@ -66,7 +67,7 @@ class UserService extends Service {
       } else {
         return {
           code: -1,
-          data: "密码不正确"
+          data: '密码不正确'
         };
       }
     }
@@ -86,12 +87,12 @@ class UserService extends Service {
         }
       );
       return {
-        msg: "success",
+        msg: 'success',
         url: url
       };
     } else {
       return {
-        msg: "fail"
+        msg: 'fail'
       };
     }
   }

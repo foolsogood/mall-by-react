@@ -1,8 +1,8 @@
 'use strict';
-const mock = require("../../database/mock");
+const mock = require('../../database/mock');
 module.exports = app => {
   const { INTEGER, STRING,  UUID, UUIDV4 } = app.Sequelize;
-  const _category=  app.model.define("category", {
+  const _category=  app.model.define('category', {
     id: {
       type: INTEGER,
       allowNull: false,

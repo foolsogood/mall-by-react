@@ -1,7 +1,5 @@
 import { request } from "./request";
 import { stringify } from "qs";
-import Cookies from "js-cookie";
-
 //拼成  xxx/1/3
 const finalPath = (url, params) => {
   if (!params) return url;
@@ -27,13 +25,6 @@ export function get(url, payload) {
   const data = Object.assign({}, default_data, payload);
   let { query, params, loading } = data;
   const finalUrl = finalPath(url, params);
-  const _token = Cookies.get("token");
-  if (_token) {
-    if(!query){
-      query={}
-    }
-    query.token = _token;
-  }
   return request(query ? `${finalUrl}?${stringify(query)}` : finalUrl,{
     loading
   });
@@ -43,13 +34,6 @@ export function post(url, payload) {
   const data = Object.assign({}, default_data, payload);
   let { query, params, loading } = data;
   const finalUrl = finalPath(url, params);
-  const _token = Cookies.get("token");
-  if (_token) {
-    if(!query){
-      query={}
-    }
-    query.token = _token;
-  }
   return request( finalUrl, {
     method: "POST",
     body: JSON.stringify(query),
@@ -61,13 +45,6 @@ export function post_formdata(url, payload) {
   const data = Object.assign({}, default_data, payload);
   let { formdata, params, loading } = data;
   const finalUrl = finalPath(url, params);
-  const _token = Cookies.get("token");
-  if (_token) {
-    if(!formdata){
-      formdata={}
-    }
-    formdata.token = _token;
-  }
   return request(finalUrl, {
     method: "POST",
     body: JSON.stringify(formdata),
@@ -80,13 +57,6 @@ export function put(url, payload) {
   const data = Object.assign({}, default_data, payload);
   let { query, params, loading } = data;
   const finalUrl = finalPath(url, params);
-  const _token = Cookies.get("token");
-  if (_token) {
-    if(!query){
-      query={}
-    }
-    query.token = _token;
-  }
   return request( finalUrl, {
     method: "PUT",
     body: JSON.stringify(query),

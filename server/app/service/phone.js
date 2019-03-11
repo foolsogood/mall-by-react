@@ -1,5 +1,6 @@
-const Service = require("egg").Service;
-const aliSms = require("aliyun-sms-sdk");
+'use strict';
+const Service = require('egg').Service;
+const aliSms = require('aliyun-sms-sdk');
 
 class PhoneService extends Service {
   async bindPhone() {
@@ -9,7 +10,7 @@ class PhoneService extends Service {
     if (validateRes !== true) {
       return validateRes;
     }
-    console.log("validateRes", validateRes);
+    console.log('validateRes', validateRes);
     const data = await ctx.service.token.verifyToken(token);
     const { userid } = data;
     const res = await ctx.model.User.update(
@@ -23,12 +24,12 @@ class PhoneService extends Service {
     if (res) {
       return {
         code: 1,
-        msg: "成功"
+        msg: '成功'
       };
     } else {
       return {
         code: -1,
-        msg: "失败"
+        msg: '失败'
       };
     }
   }
@@ -39,14 +40,14 @@ class PhoneService extends Service {
         .substr(2, 6);
     })();
     const { ctx, app } = this;
-    const templateCode = "SMS_150183914";
+    const templateCode = 'SMS_150183914';
     //缓存验证码  保证key的唯一性
-   await app.redis.set(`${templateCode}_TEL_${phoneNumber}`, code, "EX", 100);
+   await app.redis.set(`${templateCode}_TEL_${phoneNumber}`, code, 'EX', 100);
     const confSend = {
-      accessKeyId: "LTAImYw1P9qavGsM",
-      secretAccessKey: "B8ueSfNLB2PRXMJTioUfL3aQ2cwa7Q",
+      accessKeyId: 'LTAImYw1P9qavGsM',
+      secretAccessKey: 'B8ueSfNLB2PRXMJTioUfL3aQ2cwa7Q',
       recNum: phoneNumber,
-      signName: "火烈鸟商家管理系统",
+      signName: '火烈鸟商家管理系统',
       templateCode,
       param: { code }
     };
@@ -55,26 +56,26 @@ class PhoneService extends Service {
   //验证手机和验证码是否匹配
   async validateCode(phoneNumber, code) {
     const { ctx, app } = this;
-    const templateCode = "SMS_150183914";
+    const templateCode = 'SMS_150183914';
     try {
       //redis缓存中手机号对应的验证码
       const cacheCode = await app.redis.get(
         `${templateCode}_TEL_${phoneNumber}`
       );
-      console.log("cacheCode", cacheCode,code,code === cacheCode);
+      console.log('cacheCode', cacheCode,code,code === cacheCode);
       if (cacheCode) {
         if (code === cacheCode) {
           return true;
         } else {
           return {
             code: -1,
-            msg: "验证码错误"
+            msg: '验证码错误'
           };
         }
       } else {
         return {
           code: -1,
-          msg: "验证码失效"
+          msg: '验证码失效'
         };
       }
     } catch (err) {

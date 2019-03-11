@@ -1,5 +1,6 @@
-const { Service } = require("egg");
-const tools = require("../util/tools");
+'use strict';
+const { Service } = require('egg');
+const tools = require('../util/tools');
 class OrderService extends Service {
   async getOrder() {
     const { ctx } = this;

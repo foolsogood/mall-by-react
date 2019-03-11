@@ -1,9 +1,9 @@
-"use strict";
-const mock = require("../../database/mock");
+'use strict';
+const mock = require('../../database/mock');
 module.exports = app => {
   const { INTEGER, STRING, UUID, UUIDV4 } = app.Sequelize;
   const _banner = app.model.define(
-    "banner",
+    'banner',
     {
       id: {
         type: INTEGER,

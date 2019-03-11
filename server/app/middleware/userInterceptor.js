@@ -1,41 +1,37 @@
-const jwt = require("jsonwebtoken");
-module.exports = (options, app) => {
+'use strict';
+module.exports = () => {
   return async function userInterceptor(ctx, next) {
-    const op = {
-      GET: "query",
-      POST: "body",
-      PUT: "body"
-    };
-    let { token } = ctx.request[op[ctx.method]];
-    //判空
+    const token = ctx.request.headers.authorization;
+    // console.log('token',token);
+    // 判空
     if (token) {
-      let result = await ctx.service.token.verifyToken(token);
-      let { userid } = result;
+      const result = await ctx.service.token.verifyToken(token);
+      const { userid } = result;
       if (userid) {
-        let redis_token = await ctx.service.token.getToken(userid);
+        const redis_token = await ctx.service.token.getToken(userid);
         if (token === redis_token) {
           await next();
         } else {
           ctx.status = 403;
-          //token失效
+          // token失效
           return (ctx.body = {
             code: -2,
-            message: "请登录,token失效"
+            message: '请登录,token失效',
           });
         }
       } else {
         ctx.status = 403;
         return (ctx.body = {
           code: -2,
-          ...result
+          ...result,
         });
       }
     } else {
       ctx.status = 401;
-      //前端参数无token
+      // 前端参数无token
       return (ctx.body = {
         code: -2,
-        message: "请登录获取token"
+        message: '请登录获取token',
       });
     }
   };
