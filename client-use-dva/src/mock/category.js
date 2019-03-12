@@ -1,4 +1,4 @@
-[{
+module.exports=[{
     "cate": "手机",
     "cateId": "0059f4ca-fbf6-40ce-aee9-2a2c0a123a9c"
 }, {

@@ -21,7 +21,7 @@ class cateify extends PureComponent {
       let arr = res.data.map(item => {
         return this.getGoodsList(item.cateId);
       });
-      this.setState({
+      await this.setState({
         list: await Promise.all(arr)
       });
     } catch (err) {
@@ -30,7 +30,7 @@ class cateify extends PureComponent {
   }
   getGoodsList(cateId) {
     return window.$http
-      .get(window.$api.good.getGoodsByCate, { query: { cateId } })
+      .get(window.$api.good.getGoodsByCate, { params: { cateId } })
       .then(res => {
         return res.data;
       });

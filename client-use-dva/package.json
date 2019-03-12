@@ -18,6 +18,7 @@
     "babel-preset-react-app": "^6.1.0",
     "bfj": "6.1.1",
     "case-sensitive-paths-webpack-plugin": "2.1.2",
+    "concurrently": "^4.1.0",
     "cross-fetch": "^3.0.0",
     "css-loader": "1.0.0",
     "dotenv": "6.0.0",
@@ -90,7 +91,7 @@
   },
   "scripts": {
     "start": "node scripts/start.js",
-    "mock": "node scripts/mock.js",
+    "mock": "concurrently  \"node scripts/mock.js\"  ",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js"
   },

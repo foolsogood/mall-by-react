@@ -26,7 +26,8 @@ export function get(url, payload) {
   let { query, params, loading } = data;
   const finalUrl = finalPath(url, params);
   return request(query ? `${finalUrl}?${stringify(query)}` : finalUrl,{
-    loading
+    loading,
+    originUrl:url
   });
 }
 export function post(url, payload) {

@@ -1,7 +1,7 @@
 
  const api = {
     good: {
-      getGoodsByCate: "/good/getGoodByCateId",
+      getGoodsByCate: "/good/getGoodByCateId/:cateId",
       getGoodById: "/good/getGoodDetail/:goodId",
       getNewGoods: "/good/getNewGoods",
       getHotGoods: "/good/getHotGoods",
@@ -10,8 +10,6 @@
       getCollectGood: "/good/getCollectGood",
       getGoodComment: "/good/getGoodComment/:goodId",
       addGoodComment: "/good/addGoodComment",
-
-
     },
     category: {
       getCates: "/category/getAllCategory"
@@ -35,8 +33,4 @@
     },
     upload:"/upload"
   };
-if(process.env.NODE_ENV ==='mock'){
-  
-}
-
-export default api;
+  module.exports=  api;

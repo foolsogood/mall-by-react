@@ -1,4 +1,4 @@
-[
+module.exports= [
   {
     "imgId": "4a70537c-6cd1-495e-8b13-70548da91bf5",
     "url": "https://img12.360buyimg.com/da/jfs/t5797/279/6185168007/119076/6e369e95/59787d0aN3fbecf7f.jpg"

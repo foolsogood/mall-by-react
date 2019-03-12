@@ -19,8 +19,8 @@ const ModuleNotFoundPlugin = require("react-dev-utils/ModuleNotFoundPlugin");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin-alt");
 const typescriptFormatter = require("react-dev-utils/typescriptFormatter");
 const pxtorem = require("postcss-pxtorem");
-const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
-  .BundleAnalyzerPlugin;
+// const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
+  // .BundleAnalyzerPlugin;
   const WebpackBar = require('webpackbar');
 
 // Webpack uses `publicPath` to determine where the app is being served from.
@@ -425,7 +425,7 @@ module.exports = {
     // a plugin that prints an error when you attempt to do this.
     // See https://github.com/facebook/create-react-app/issues/240
     new CaseSensitivePathsPlugin(),
-    new BundleAnalyzerPlugin(),
+    // new BundleAnalyzerPlugin(),
     new WebpackBar(),
 
     // If you require a missing module and then `npm install` it, you still have

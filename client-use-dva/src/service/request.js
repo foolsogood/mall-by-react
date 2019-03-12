@@ -1,7 +1,9 @@
 import fetch from "dva/fetch";
 import event from "utils/event";
 import Cookies from "js-cookie";
-import  {server } from "./config";
+import { server } from "./config";
+import { mockRequest } from "../mock/request";
+
 const checkStatus = response => {
   const { status } = response;
   // console.log(status)
@@ -11,7 +13,7 @@ const checkStatus = response => {
   } else {
     if ([403, 401].includes(status)) {
       // token失效
-      console.log('token 失效')
+      console.log("token 失效");
       event.emit("showLogin", true);
     }
     return Promise.reject(response);
@@ -21,24 +23,28 @@ const loading_option_default = {
   ifLoadingShow: true,
   loadingText: "加载中……"
 };
-export const request = (url, options = null) => {
-  console.log('op',options)
+export const request = async (url, options = null) => {
+  // 如果是mock环境 直接使用本地mock数据
+  // console.log("op", options);
+  if (process.env.NODE_ENV === "mock") {
+    return await mockRequest({url,originUrl:options.originUrl});
+  }
   const defaultOption = {
     headers: {
-      "Authorization": Cookies.get("token"),
+      Authorization: Cookies.get("token")
     }
   };
-  if(['POST','PUT','DELETE'].includes (options.method)){
-    defaultOption.headers["Content-Type"]="application/json"
+  if (["POST", "PUT", "DELETE"].includes(options.method)) {
+    defaultOption.headers["Content-Type"] = "application/json";
   }
   let newOption = {};
   if (options) {
-    if(!options.loading){
-      options.loading=loading_option_default
+    if (!options.loading) {
+      options.loading = loading_option_default;
     }
-    if(options.loading.ifLoadingShow){
-        //显示loading
-        window.$showLoading.call(null);
+    if (options.loading.ifLoadingShow) {
+      //显示loading
+      window.$showLoading.call(null);
     }
     newOption = Object.assign({}, defaultOption, options);
   } else {
@@ -54,10 +60,9 @@ export const request = (url, options = null) => {
       return res.json();
     })
     .catch(err => {
-      console.error('111',err);
+      console.error("111", err);
     });
 };
-
 
 export default {
   request
