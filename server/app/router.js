@@ -8,7 +8,7 @@ module.exports = app => {
     app.router.get('/good/getHotGoods',good.getHotGoods)
     app.router.get('/good/getNewGoods',good.getNewGoods)
     app.router.get('/good/getGoodDetail/:goodId',good.getGoodDetail)
-    app.router.get('/good/getGoodByCateId',good.getGoodByCateId)
+    app.router.get('/good/getGoodByCateId/:cateId',good.getGoodByCateId)
     app.router.get('/good/searchGood',good.searchGood)
     app.router.post('/good/collectGood/:goodId',userInterceptor,good.collectGood)
     app.router.get('/category/getAllCategory',category.getAllCategory)

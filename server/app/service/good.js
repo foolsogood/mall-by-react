@@ -160,7 +160,7 @@ class HomeService extends Service {
   }
   async getGoodByCateId() {
     const { ctx } = this;
-    const { cateId } = ctx.query;
+    const { cateId } = ctx.params;
     const good=await ctx.model.Good.findAll({
       raw:true,
       where: {
