@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Icon } from "antd-mobile";
+import { Spin } from 'antd';
+
 import event from "utils/event";
 class SmallLoading extends Component {
   constructor() {
@@ -33,17 +34,14 @@ class SmallLoading extends Component {
       zIndex: 999,
       width: "2rem",
       height: "2rem",
-      background: "rgba(0,0,0,.5)",
+      background: "rgba(0,0,0,.1)",
       borderRadius: "5%"
     };
     const isShow = { opacity: isLoadingShow ? 1 : 0 };
 
     return (
       <div className="flex-box flex-ver-box" style={{ ...style, ...isShow }}>
-        <Icon type="loading" style={{ fontSize: ".4rem", color: "#444" }} />
-        <span className="color-fff" style={{ lineHeight: ".7rem" }}>
-          {loadingTxt}
-        </span>
+      <Spin tip={loadingTxt} />
       </div>
     );
   }
