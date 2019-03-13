@@ -1,9 +1,7 @@
 import React, { PureComponent } from "react";
 //公共组件
 import WithFooter from "components/common-components/withFooter";
-import { Element  } from "react-scroll";
-import { Link } from "dva/router";
-
+import { Element ,  Link } from "react-scroll";
 @WithFooter
 class cateify extends PureComponent {
   constructor() {
@@ -28,6 +26,11 @@ class cateify extends PureComponent {
     } catch (err) {
       window.$commonErrorHandler(url)(err);
     }
+  }
+  toGooddetail =(goodId)=>{
+    this.props.history.push({
+      pathname:`/goodDetail/${goodId}`
+    })
   }
   getGoodsList(cateId) {
     return window.$http
@@ -84,9 +87,9 @@ class cateify extends PureComponent {
                     </div>
                     {cate_item.map(item => {
                       return (
-                        <div key={item.goodId} className="classify-block ">
-                          <Link to={`/goodDetail/${item.goodId}`}>
-                            <div className="flex-box flex-ver-box">
+                        <div onClick={()=>this.toGooddetail(item.goodId)} key={item.goodId} className="classify-block ">
+                          {/* <Link to={`/goodDetail/${item.goodId}`}> */}
+                            <div  className="flex-box flex-ver-box">
                               <img
                                 className="classify-good-img"
                                 src={item.imgs[0]}
@@ -94,7 +97,7 @@ class cateify extends PureComponent {
                               />
                               <p>{item.goodName}</p>
                             </div>
-                          </Link>
+                          {/* </Link> */}
                         </div>
                       );
                     })}

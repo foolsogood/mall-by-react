@@ -11,7 +11,7 @@ export const mockRequest = obj => {
   // 此接口在mockApi中找不到
   if (!mockApi.hasOwnProperty([url]) && !mockApi.hasOwnProperty([originUrl])) {
     unable();
-    return true
+    return 
   }
   if (url === originUrl) {
     return {
