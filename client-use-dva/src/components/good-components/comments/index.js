@@ -23,7 +23,7 @@ export default class Comments extends Component {
       </div>
     );
     const haveNoComment = () => (
-      <p className="flex-box">
+      <p className="flex-box" style={{minHeight:'3.5rem'}}>
         暂无评论
         <Link to={`/commentList/${goodInfo.goodId}`}>
           <span className="pd-lf-20 " style={{ color: "#1890ff" }}>

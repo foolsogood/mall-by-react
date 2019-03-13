@@ -67,7 +67,7 @@ class Comment extends Component {
         <div className="flex-box" style={{ height: "100vh" }}>
           暂无评论
           <Link to={`/commentForm/${goodId}`}>
-            <span className="color-org pd-20">我要评论</span>
+            <span className="color-org " style={{padding:'.3rem'}}>我要评论</span>
           </Link>
         </div>
       );

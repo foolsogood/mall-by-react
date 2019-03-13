@@ -19,6 +19,7 @@ class Collect extends Component {
     const url = window.$api.good.getCollectGood;
     try {
       const res = await window.$http.get(url);
+      if(!res)return
       this.setState({
         collectList: res.data
       });

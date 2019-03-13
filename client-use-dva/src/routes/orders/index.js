@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import {  Tabs } from "antd-mobile";
 
 import OrderItem from "components/order-components/order-item";
-
+import ErrorBoundary from 'components/common-components/errorBoundary'
+// @ErrorBoundary
 class Orders extends Component {
   constructor() {
     super();
@@ -18,6 +19,7 @@ class Orders extends Component {
     try {
       const res = await window.$http.get(url);
       console.log('res',res)
+      if(!res)return
       this.setState({
         orderList: res.data
       });
@@ -41,6 +43,7 @@ class Orders extends Component {
     };
     return (
       <div>
+        <ErrorBoundary>
         <Tabs tabs={tabs} initialPage={0}>
           <div>
             {orderList.map((order, index) => {
@@ -64,6 +67,7 @@ class Orders extends Component {
           <div style={divStyle}>Content of second tab</div>
           <div style={divStyle}>Content of third tab</div>
         </Tabs>
+        </ErrorBoundary>
       </div>
     );
   }

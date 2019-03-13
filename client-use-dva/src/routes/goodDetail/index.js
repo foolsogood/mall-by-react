@@ -45,8 +45,12 @@ class GoodDetail extends PureComponent {
     const query = {
       isCollect: !this.state.isCollect
     };
+    const loading={
+      loadingText:'正在收藏'
+    }
     try {
-      await window.$http.post(url, { params, query });
+      const res = await window.$http.post(url, { params, query,loading });
+      if(!res) return
       await this.setState({ isCollect: !this.state.isCollect });
       Toast.success(this.state.isCollect ? "收藏成功!" : "取消收藏!");
     } catch (err) {

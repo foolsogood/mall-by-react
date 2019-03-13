@@ -44,7 +44,7 @@ class NormalLoginForm extends Component {
     const { isSignupShow } = this.state;
     const signupHtml = () => (
       <div className="login">
-        <div className="mask"  />
+        <div onClick={()=>this.setState({isSignupShow:false})} className="mask"  />
         <div className="login-form">
           <WingBlank>
             <p className="flex-box">注册</p>

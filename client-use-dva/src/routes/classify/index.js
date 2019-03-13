@@ -1,7 +1,8 @@
 import React, { PureComponent } from "react";
 //公共组件
 import WithFooter from "components/common-components/withFooter";
-import { Element, Link } from "react-scroll";
+import { Element  } from "react-scroll";
+import { Link } from "dva/router";
 
 @WithFooter
 class cateify extends PureComponent {

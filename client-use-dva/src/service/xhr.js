@@ -25,9 +25,14 @@ export function get(url, payload) {
   const data = Object.assign({}, default_data, payload);
   let { query, params, loading } = data;
   const finalUrl = finalPath(url, params);
-  return request(query ? `${finalUrl}?${stringify(query)}` : finalUrl,{
-    loading,
-    originUrl:url
+  if (process.env.NODE_ENV === "mock") {
+    return request(query ? `${finalUrl}?${stringify(query)}` : finalUrl, {
+      loading,
+      originUrl: url
+    });
+  }
+  return request(query ? `${finalUrl}?${stringify(query)}` : finalUrl, {
+    loading
   });
 }
 export function post(url, payload) {
@@ -35,7 +40,7 @@ export function post(url, payload) {
   const data = Object.assign({}, default_data, payload);
   let { query, params, loading } = data;
   const finalUrl = finalPath(url, params);
-  return request( finalUrl, {
+  return request(finalUrl, {
     method: "POST",
     body: JSON.stringify(query),
     loading
@@ -58,7 +63,7 @@ export function put(url, payload) {
   const data = Object.assign({}, default_data, payload);
   let { query, params, loading } = data;
   const finalUrl = finalPath(url, params);
-  return request( finalUrl, {
+  return request(finalUrl, {
     method: "PUT",
     body: JSON.stringify(query),
     loading

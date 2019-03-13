@@ -50,7 +50,7 @@ class Login extends Component {
     const { isLoginShow } = this.state;
     const loginHtml = () => (
       <div className="login">
-        <div className="mask" />
+        <div onClick={()=>this.setState({isLoginShow:false})} className="mask" />
         <div className="login-form">
           <WingBlank>
             <p className="flex-box">登录</p>

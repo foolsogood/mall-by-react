@@ -27,7 +27,7 @@ export const request = async (url, options = null) => {
   // 如果是mock环境 直接使用本地mock数据
   // console.log("op", options);
   if (process.env.NODE_ENV === "mock") {
-    return await mockRequest({url,originUrl:options.originUrl});
+    return await mockRequest({ url, originUrl: options.originUrl });
   }
   const defaultOption = {
     headers: {
@@ -39,14 +39,17 @@ export const request = async (url, options = null) => {
   }
   let newOption = {};
   if (options) {
-    if (!options.loading) {
-      options.loading = loading_option_default;
-    }
+    options.loading = Object.assign(
+      {},
+      loading_option_default,
+      options.loading
+    );
     if (options.loading.ifLoadingShow) {
       //显示loading
-      window.$showLoading.call(null);
+      window.$showLoading(options.loading.loadingText);
     }
     newOption = Object.assign({}, defaultOption, options);
+    // console.log("newOption", newOption);
   } else {
     newOption = defaultOption;
   }

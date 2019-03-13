@@ -10,11 +10,11 @@
 </div>
 
 ### usage
-- 1. 如果不需要egg服务端，可使用前端mock命令提供数据，只支持get
+- 1.如果不需要egg服务端，可使用前端mock命令提供数据，只支持get
   ```
    yarn mock  or npm run mock
   ```
-- 2. 使用egg做服务端
+- 2.使用egg做服务端
    将config/config.default.js 中 redis，sequelize等修改为自己本地配置, yarn dev 即可
 
 ### tips 
