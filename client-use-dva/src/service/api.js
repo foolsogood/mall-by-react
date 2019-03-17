@@ -32,4 +32,4 @@ const api = {
   },
   upload: "/upload"
 };
-export default api;
+module.exports= api;
