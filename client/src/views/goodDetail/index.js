@@ -26,7 +26,7 @@ class GoodDetail extends PureComponent {
     this.getGoodInfo(goodId);
   }
   async getGoodInfo(goodId) {
-    const params = [goodId];
+    const params = {goodId};
     const url = window.$api.good.getGoodById;
     try {
       const res = await window.$apiServer.get(url, { params });
@@ -45,7 +45,7 @@ class GoodDetail extends PureComponent {
   toggleLike = async () => {
     const url = window.$api.good.collectGood;
     const { goodId } = this.props.match.params;
-    const params = [goodId];
+    const params = {goodId};
     const query = {
       isCollect: !this.state.isCollect
     };

@@ -2,7 +2,18 @@
 import axios from "axios";
 import qs from "qs";
 import event from "utils/event";
+import Cookies from "js-cookie";
 
+// http request 拦截器，请求时拦截
+axios.interceptors.request.use(
+  config => {
+    // config.headers['Content-Type'] = 'application/json'
+    config.headers.Authorization = Cookies.get("token");
+    return config;
+  },
+  err => {
+    return Promise.reject(err);
+  });
 // http response 拦截器
 axios.interceptors.response.use(
   response => {
@@ -30,25 +41,29 @@ axios.interceptors.response.use(
   }
 );
 function finalUrl(url, params) {
-  return [url].concat(params).join("/");
+  if (!params) return url;
+  Object.keys(params).forEach(item => {
+    url = url.replace(":" + item, params[item]);
+  });
+  return url;
 }
 
 //默认地址获取
-function get(url, { params = [], query = {} }) {
+function get(url, { params = null, query = {} }) {
   return axios.get(finalUrl(url, params), { params: query });
 }
-function post(url, { params = [], query = {} }) {
+function post(url, { params = null, query = {} }) {
   return axios.post(finalUrl(url, params), qs.stringify(query));
 }
-function post_formdata(url, { params = [], formdata = {} }) {
+function post_formdata(url, { params = null, formdata = {} }) {
   return axios.post(finalUrl(url, params), formdata, {
     headers: { "Content-Type": "multipart/form-data;boundary=%s" }
   });
 }
-function put(url, { params = [], query = {} }) {
+function put(url, { params = null, query = {} }) {
   return axios.put(finalUrl(url, params), qs.stringify(query));
 }
-function del(url, { params = [], query = {} }) {
+function del(url, { params = null, query = {} }) {
   return axios.del(finalUrl(url, params), qs.stringify(query));
 }
 

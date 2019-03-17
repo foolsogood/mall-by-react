@@ -15,7 +15,7 @@ class OrderDetail extends Component {
   async getOrderDetail() {
     const url = window.$api.order.getOrderDetail;
     const { orderId } = this.props.match.params;
-    const params = [orderId];
+    const params = {orderId};
     try {
       const res =await window.$apiServer.get(url, { params });
     } catch (err) {

@@ -34,7 +34,7 @@ class Collect extends Component {
     const query = {
       isCollect: false
     };
-    const params = [goodId];
+    const params = {goodId};
     let _temp = this.state.collectList;
     try {
       await window.$apiServer.post(url, { params, query });

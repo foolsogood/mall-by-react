@@ -27,10 +27,6 @@ app.router(require("./router").default);
 // 5. Start
 app.start("#root");
 console.log("process.env.NODE_ENV is", process.env.NODE_ENV);
-if(process.env.NODE_ENV==='mock'){
-  (()=>import('./mock/index.js'))()
-}
-
 if (process.env.NODE_ENV === "production") {
   document.write(
     '<script src="https://cdn.bootcss.com/react/16.7.0-alpha.2/cjs/react.production.min.js"></script>'

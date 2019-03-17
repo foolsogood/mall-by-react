@@ -72,7 +72,7 @@ const { TextArea } = Input;
       formdata.append("file", item);
     });
 
-    const params = [goodId];
+    const params = {goodId};
     const url = window.$api.good.addGoodComment;
     try {
       await window.$apiServer.post_formdata(url, { params, formdata });

@@ -36,7 +36,7 @@ class cateify extends PureComponent {
   }
   getGoodsList(cateId) {
     return window.$apiServer
-      .get(window.$api.good.getGoodsByCate, { query: { cateId } })
+      .get(window.$api.good.getGoodsByCate, { params: { cateId } })
       .then(res => {
         return res.data;
       });

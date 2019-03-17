@@ -10,7 +10,7 @@ export default class ServerClinet {
     this.host = host;
   }
   get(url, obj = {}) {
-    obj = Object.assign({ params: [], query: {} }, obj);
+    obj = Object.assign({ params: {}, query: {} }, obj);
     if (!obj.option) {
       obj.option = option_default;
     } else {
@@ -20,9 +20,9 @@ export default class ServerClinet {
       //显示loading
       window.$showLoading.call(null);
     }
-    if (!obj.query.token) {
-      obj.query.token = Cookies.get("token");
-    }
+    // if (!obj.query.token) {
+    //   obj.query.token = Cookies.get("token");
+    // }
     return xhr.get(this.host + url, obj);
   }
   post(url, obj) {
@@ -35,9 +35,9 @@ export default class ServerClinet {
       //显示loading
       window.$showLoading.call(null);
     }
-    if (!obj.query.token) {
-      obj.query.token = Cookies.get("token");
-    }
+    // if (!obj.query.token) {
+    //   obj.query.token = Cookies.get("token");
+    // }
     return xhr.post(this.host + url, obj);
   }
   async post_formdata(url, obj) {
@@ -50,9 +50,9 @@ export default class ServerClinet {
       //显示loading
       window.$showLoading.call(null);
     }
-    if (!obj.formdata.token) {
-      obj.formdata.append("token", Cookies.get("token"));
-    }
+    // if (!obj.formdata.token) {
+    //   obj.formdata.append("token", Cookies.get("token"));
+    // }
     return xhr.post_formdata(this.host + url, obj);
   }
   put(url, obj = { query: {} }) {
@@ -65,9 +65,9 @@ export default class ServerClinet {
       //显示loading
       window.$showLoading.call(null);
     }
-    if (!obj.query.token) {
-      obj.query.token = Cookies.get("token");
-    }
+    // if (!obj.query.token) {
+    //   obj.query.token = Cookies.get("token");
+    // }
     return xhr.put(this.host + url, obj);
   }
 }
