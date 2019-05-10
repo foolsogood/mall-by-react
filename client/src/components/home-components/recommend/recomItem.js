@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import ImgWraper from 'components/common-components/imgWraper'
+import ImgWraper from 'components/common/imgWraper'
 import PropTypes from 'prop-types'
 import Loadable from 'react-loadable';
-import Loading from 'components/common-components/loading'
+import Loading from 'components/common/loading'
 
 export default class RecomItem extends Component {
     static propTypes={

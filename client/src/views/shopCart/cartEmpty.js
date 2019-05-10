@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Row, Col } from 'antd'
 import { Link } from 'react-router-dom'
 //公共组件
-import WithFooter from 'components/common-components/withFooter'
+import WithFooter from 'components/common/withFooter'
 
 import RecomList from 'components/home-components/recommend/recomList'
 @WithFooter

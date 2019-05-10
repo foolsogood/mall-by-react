@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Loadable from 'react-loadable';
-import SmallLoading from 'components/common-components/smallLoading'
-import Loading from 'components/common-components/loading'
+import SmallLoading from 'components/common/smallLoading'
+import Loading from 'components/common/loading'
 
 import event from 'utils/event'
 // 组件
 const Login=Loadable({
-	loader:()=>import('components/common-components/login'),
+	loader:()=>import('components/common/login'),
 	loading: Loading,
 })
 const Signup=Loadable({
-	loader:()=>import('components/common-components/signup'),
+	loader:()=>import('components/common/signup'),
 	loading: Loading,
 })
 const Home=Loadable({

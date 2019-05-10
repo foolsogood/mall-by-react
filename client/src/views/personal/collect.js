@@ -3,7 +3,7 @@ import { SwipeAction, Toast } from "antd-mobile";
 import { Link } from "react-router-dom";
 
 //组件
-import WithHeader from "components/common-components/withHeader";
+import WithHeader from "components/common/withHeader";
 
 @WithHeader({ titleText: "商品收藏" })
 class Collect extends Component {

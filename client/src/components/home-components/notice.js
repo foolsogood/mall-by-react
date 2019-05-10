@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Row, Col } from 'antd'
-import Marquee from 'components/common-components/marquee'
+import Marquee from 'components/common/marquee'
 
 export default class Notice extends Component {
     render() {

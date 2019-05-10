@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import CartEmpty from './cartEmpty'
 import CartList from './cartList'
 //公共组件
-import WithHeader from 'components/common-components/withHeader'
+import WithHeader from 'components/common/withHeader'
 
 //引入mobx相关
 import { observer } from 'mobx-react'

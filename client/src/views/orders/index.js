@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import {  Tabs } from "antd-mobile";
-import WithHeader from "components/common-components/withHeader";
+import WithHeader from "components/common/withHeader";
 
 import OrderItem from "components/order-components/order-item";
 

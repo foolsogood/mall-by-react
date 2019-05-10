@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import WithHeader from 'components/common-components/withHeader'
+import WithHeader from 'components/common/withHeader'
 import { Radio } from 'antd'
 //引入event
 import event from 'utils/event'

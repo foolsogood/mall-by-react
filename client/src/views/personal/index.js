@@ -3,8 +3,8 @@ import { Row, Col } from 'antd'
 import { Link } from 'react-router-dom'
 
 //组件
-import WithHeader from 'components/common-components/withHeader'
-import WithFooter from 'components/common-components/withFooter'
+import WithHeader from 'components/common/withHeader'
+import WithFooter from 'components/common/withFooter'
 
 //引入mobx相关
 import { observer } from 'mobx-react'

@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 //公共组件
-import WithHeader from "components/common-components/withHeader";
-import WithFooter from "components/common-components/withFooter";
+import WithHeader from "components/common/withHeader";
+import WithFooter from "components/common/withFooter";
 
 import ClassifyList from "components/classify-components/classifyList";
 

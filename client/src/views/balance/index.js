@@ -2,7 +2,7 @@ import React, { PureComponent } from "react";
 import { Row, Col } from "antd";
 import { Modal } from "antd-mobile";
 import { Link } from "react-router-dom";
-import WithHeader from "components/common-components/withHeader";
+import WithHeader from "components/common/withHeader";
 
 //引入mobx相关
 import { observer } from "mobx-react";

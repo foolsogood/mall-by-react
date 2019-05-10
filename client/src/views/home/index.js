@@ -1,10 +1,10 @@
 import React, { PureComponent } from "react";
 //公共组件
-import WithFooter from "components/common-components/withFooter";
+import WithFooter from "components/common/withFooter";
 
 // 首页组件
 import SearchBar from "components/home-components/searchBar";
-import Banner from "components/common-components/banner";
+import Banner from "components/common/banner";
 import Notice from "components/home-components/notice";
 import HostList from "components/home-components/hot/hotList";
 import RecomList from "components/home-components/recommend/recomList";

@@ -69,6 +69,10 @@
   "devDependencies": {
     "@babel/core": "^7.1.0",
     "@babel/plugin-transform-runtime": "^7.2.0",
+    "@types/hoist-non-react-statics": "^3.3.1",
+    "@types/node": "^12.0.0",
+    "@types/react": "^16.8.17",
+    "@types/react-dom": "^16.8.4",
     "autod": "^3.0.1",
     "autod-egg": "^1.0.0",
     "babel-loader": "^8.0.4",
@@ -84,10 +88,17 @@
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.11.1",
+    "hoist-non-react-statics": "^3.3.0",
     "resolve": "^1.8.1",
+    "tslint": "^5.16.0",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.4.5",
     "webpack-bundle-analyzer": "^3.0.3",
     "webpackbar": "^3.1.4",
     "webstorm-disable-index": "^1.2.0"
+  },
+  "resolutions": {
+    "@types/react": "^16.8.17"
   },
   "scripts": {
     "start": "node scripts/start.js",

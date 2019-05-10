@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import {  WingBlank,  ImagePicker } from "antd-mobile";
 import { Input, Checkbox, Rate } from "antd";
-import WithHeader from "components/common-components/withHeader";
+import WithHeader from "components/common/withHeader";
 const { TextArea } = Input;
 //组件
 @WithHeader({

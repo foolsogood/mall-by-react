@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import CommentItem from "components/good-components/comments/commentItem";
 
 //组件
-import WithHeader from "components/common-components/withHeader";
+import WithHeader from "components/common/withHeader";
 
 @WithHeader({
   titleText: "商品评论"

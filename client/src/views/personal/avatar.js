@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { ImagePicker, WingBlank, Button, Toast } from "antd-mobile";
-import WithHeader from "components/common-components/withHeader";
+import WithHeader from "components/common/withHeader";
 //
 //引入mobx相关
 import { observer } from "mobx-react";

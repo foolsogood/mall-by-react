@@ -9,7 +9,7 @@ import {
 } from "antd-mobile";
 import { createForm } from "rc-form";
 
-import WithHeader from "components/common-components/withHeader";
+import WithHeader from "components/common/withHeader";
 
 //引入mobx相关
 import { observer } from "mobx-react";

@@ -1,9 +1,9 @@
 import React, { PureComponent } from "react";
 import { Toast, Tabs } from "antd-mobile";
 // 公共组件
-import WithHeader from "components/common-components/withHeader";
+import WithHeader from "components/common/withHeader";
 
-import Banner from "components/common-components/banner";
+import Banner from "components/common/banner";
 // 组件
 import Comments from "components/good-components/comments";
 import GoodFooter from "components/good-components/goodFooter";

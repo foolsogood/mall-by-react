@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Row, Col, Rate } from "antd";
-import ImgWraper from "components/common-components/imgWraper";
+import ImgWraper from "components/common/imgWraper";
 import tool from "utils/tool";
 export default class CommentItem extends Component {
   render() {

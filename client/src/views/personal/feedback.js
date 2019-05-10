@@ -1,7 +1,7 @@
 import React from "react";
 import { Input } from "antd";
 import { Button } from "antd-mobile";
-import WithHeader from "components/common-components/withHeader";
+import WithHeader from "components/common/withHeader";
 
 const { TextArea } = Input;
 @WithHeader({ titleText: "意见反馈" })

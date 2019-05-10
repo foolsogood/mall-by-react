@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 // import { Link } from "react-router-dom";
-import WithHeader from "components/common-components/withHeader";
+import WithHeader from "components/common/withHeader";
 
 //
 @WithHeader({ titleText: "订单详情" })

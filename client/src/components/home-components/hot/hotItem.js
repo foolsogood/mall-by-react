@@ -1,8 +1,8 @@
 
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import ImgWraper from 'components/common-components/imgWraper'
-import Loading from 'components/common-components/loading'
+import ImgWraper from 'components/common/imgWraper'
+import Loading from 'components/common/loading'
 
 import PropTypes from 'prop-types'
 import Loadable from 'react-loadable';
