@@ -11,7 +11,7 @@ class HomeController extends BaseController {
       ctx.set({
         'Cache-Control': 'max-age=30,no-cache',
         'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
-        ETag: _ETAG
+        ETag: _ETAG,
       });
       if (ifNoneMatch === _ETAG) {
         ctx.status = 304;

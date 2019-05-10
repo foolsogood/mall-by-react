@@ -4,7 +4,7 @@ const BaseController = require('./BaseController');
 class OrderController extends BaseController {
   async getOrder() {
     try {
-      let res = await this.service.order.getOrder();
+      const res = await this.service.order.getOrder();
 
       this.success(res);
     } catch (err) {
@@ -22,7 +22,7 @@ class OrderController extends BaseController {
   }
   async getOrderDetail() {
     try {
-     let res= await this.service.order.getOrderDetail();
+      const res = await this.service.order.getOrderDetail();
 
       this.success(res);
     } catch (err) {

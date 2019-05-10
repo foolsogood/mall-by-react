@@ -25,7 +25,7 @@ module.exports = app => {
       freezeTableName: true
     }
   );
-  //初始化时候插入mock数据
+  // 初始化时候插入mock数据
   mock.banner.forEach(item => {
     _banner.sync({ force: true }).then(() => _banner.create(item));
   });

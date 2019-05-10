@@ -2,21 +2,21 @@
 const BaseController = require('./BaseController');
 
 class PhoneController extends BaseController {
- /**
-  * 绑定手机
-  */
-  async bindPhone(){
+  /**
+   * 绑定手机
+   */
+  async bindPhone() {
     const res = await this.service.phone.bindPhone();
     this.ctx.body = res;
   }
   /**
    * 发送短信验证码
    */
-  async sendSms(){
-    const {ctx}=this
-    let {phone}=ctx.request.query
-    await ctx.service.phone.sendSms(phone)
-    ctx.body=''
+  async sendSms() {
+    const { ctx } = this;
+    const { phone } = ctx.request.query;
+    await ctx.service.phone.sendSms(phone);
+    ctx.body = '';
   }
 }
-module.exports=PhoneController
+module.exports = PhoneController;

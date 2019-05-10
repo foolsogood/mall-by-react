@@ -21,6 +21,7 @@
 
 首先，这是一个react新手写的练手项目，有不对的地方请包涵(2017.08)。<br/>
 原来的客户端只有一个client文件夹，主要使用axios和mobx(2017.08)等；后来又用dva架构实现了另一个(2018.10)，所以存在两个客户端的代码<br/>
+现client-use-dva已用typescript重构(2019.5)<br/>
 这是用react写的一个商城，比较简单。脚手架采用create-react-app。ui采用antd。
 技术栈:react,react-router v4,mobx,dva等。
 写这个过程中遇到的一些重难点(或者是踩过的坑比较贴切),只贴关键代码：<br/>
@@ -110,6 +111,3 @@ class Home extends Component {}
 框架采用egg,数据库 mysql,orm用egg-sequelize,后端缓存用 redis<br/>
 主要实现如下接口：登录注册、获取各分类商品、商品查询、商品评论、商品收藏、提交订单和订单查询、上传头像或图片、绑定手机、发送短信验证码等
 
-# TODO
-接口健壮性更好<br/>
-前后端加入TS的使用(@now 2018.11)
