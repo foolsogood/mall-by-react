@@ -1,31 +1,19 @@
-import { request } from "./request";
-import { stringify } from "qs";
+import { request } from './request';
+import { stringify } from 'qs';
 //拼成  xxx/1/3
 const finalPath = (url, params) => {
   if (!params) return url;
   Object.keys(params).forEach(item => {
-    url = url.replace(":" + item, params[item]);
+    url = url.replace(':' + item, params[item]);
   });
   return url;
 };
-// const preHandler = (url, payload) => {
-//   const default_data = { query: null, params: {}, loading: null };
-//   const data = Object.assign({}, default_data, payload);
-//   let { query, params, loading } = data;
-//   const finalUrl = finalPath(url, params);
-//   const _token = Cookies.get("token");
-//   if (_token) {
-//     query = {};
-//     query.token = _token;
-//   }
-//   return request(query ? `${finalUrl}?${stringify(query)}` : finalUrl, data);
-// };
-export function get(url, payload) {
+export function get<T>(url, payload): Promise<T> {
   const default_data = { query: null, params: {}, loading: null };
   const data = Object.assign({}, default_data, payload);
-  let { query, params, loading } = data;
+  const { query, params, loading } = data;
   const finalUrl = finalPath(url, params);
-  if (process.env.NODE_ENV === "mock") {
+  if (process.env.NODE_ENV === 'mock') {
     return request(query ? `${finalUrl}?${stringify(query)}` : finalUrl, {
       loading,
       originUrl: url
@@ -35,36 +23,36 @@ export function get(url, payload) {
     loading
   });
 }
-export function post(url, payload) {
+export function post<T>(url, payload): Promise<T> {
   const default_data = { query: {}, params: {}, loading: null };
   const data = Object.assign({}, default_data, payload);
-  let { query, params, loading } = data;
+  const { query, params, loading } = data;
   const finalUrl = finalPath(url, params);
   return request(finalUrl, {
-    method: "POST",
+    method: 'POST',
     body: JSON.stringify(query),
     loading
   });
 }
-export function post_formdata(url, payload) {
+export function post_formdata<T>(url, payload): Promise<T> {
   const default_data = { formdata: {}, params: {}, loading: null };
   const data = Object.assign({}, default_data, payload);
-  let { formdata, params, loading } = data;
+  const { formdata, params, loading } = data;
   const finalUrl = finalPath(url, params);
   return request(finalUrl, {
-    method: "POST",
+    method: 'POST',
     body: JSON.stringify(formdata),
-    headers: { "Content-Type": "multipart/form-data;boundary=%s" },
+    headers: { 'Content-Type': 'multipart/form-data;boundary=%s' },
     loading
   });
 }
-export function put(url, payload) {
+export function put<T>(url, payload): Promise<T> {
   const default_data = { query: {}, params: {}, loading: null };
   const data = Object.assign({}, default_data, payload);
-  let { query, params, loading } = data;
+  const { query, params, loading } = data;
   const finalUrl = finalPath(url, params);
   return request(finalUrl, {
-    method: "PUT",
+    method: 'PUT',
     body: JSON.stringify(query),
     loading
   });

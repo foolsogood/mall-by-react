@@ -29,7 +29,7 @@ class Comment extends Component {
   };
   async getGoodComment() {
     const { goodId } = this.props.match.params;
-    const params = [goodId];
+    const params = {goodId};
     const query = {
       pageSize: this.state.pageSize,
       pageNum: this.state.pageNum
