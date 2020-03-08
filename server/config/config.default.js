@@ -25,7 +25,7 @@ module.exports = appInfo => {
     client: {
       port: 6379,
       host: '127.0.0.1',
-      password: '',
+      password: 'FSG851024125',
       db: 0,
     },
   };
@@ -41,7 +41,7 @@ module.exports = appInfo => {
     hostname: '127.0.0.1',
     port: 3306,
     password: 'FSG851024125',
-    database: 'mall-server',
+    database: 'mall_server_db',
     username: 'root',
   };
   config.multipart = {

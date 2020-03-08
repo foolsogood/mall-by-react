@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "FSG851024125",
-    "database": "mall-server",
+    "database": "mall_server_db",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
