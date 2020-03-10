@@ -1,6 +1,12 @@
 import { provide, scope, ScopeEnum } from "midway";
 import { Sequelize } from "sequelize-typescript";
 import { BannerModel } from './banner'
+import { CategoryModel } from './category'
+import { GoodModel } from './good'
+import { CommentModel } from './comment'
+
+
+
 import { mock } from '../../../database/data'
 
 // interface ISequelizeCon{
@@ -30,11 +36,55 @@ export class DB {
                 logging: false,
                 operatorsAliases: false
             });
-        await DB.sequelize.addModels([BannerModel]);
+        await DB.sequelize.addModels([BannerModel, CategoryModel, GoodModel, CommentModel]);
         // 初始化时候插入mock数据
         mock.banner.forEach(item => {
-            BannerModel.sync({ force: true }).then(() => {
-                BannerModel.create(item)
+            BannerModel.sync({ force: false }).then(async () => {
+                const flag = await BannerModel.findOne({
+                    where: {
+                        url: item.url
+                    }
+                })
+                if (!flag) {
+                    BannerModel.create(item)
+                }
+            })
+        })
+        mock.category.forEach(item => {
+            CategoryModel.sync({ force: false }).then(async () => {
+                const flag = await CategoryModel.findOne({
+                    where: {
+                        cateId: item.cateId
+                    }
+                })
+                if (!flag) {
+                    CategoryModel.create(item)
+                }
+            })
+        })
+        mock.goods.forEach(item => {
+            GoodModel.sync({ force: true }).then(async () => {
+                const flag = await GoodModel.findOne({
+                    where: {
+                        goodId: item.goodId
+                    }
+                })
+                if (!flag) {
+                    GoodModel.create(item)
+                }
+            })
+        })
+
+        mock.comments.forEach(item => {
+            CommentModel.sync({ force: false }).then(async () => {
+                const flag = await CommentModel.findOne({
+                    where: {
+                        commentId: item.commentId
+                    }
+                })
+                if (!flag) {
+                    CommentModel.create(item)
+                }
             })
         })
 

@@ -1,5 +1,3 @@
-export interface IqueryBannerList{
-    id:string,
-    imgId:string,
+export interface IInsertBanner{
     url:string
 }

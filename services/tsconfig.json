@@ -20,8 +20,8 @@
       "@extend/*": ["app/extend/*"],
       "@public/*": ["app/public/*"],
       "@config/*": ["config/*"],
-      "@model/*": ["lib/model/*"],
-      "@service/*": ["lib/service/*"]
+      "@models/*": ["lib/models/*"],
+      "@services/*": ["lib/services/*"]
     }
   },
   "include": ["src/**/*.ts"],

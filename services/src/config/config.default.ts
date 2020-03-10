@@ -8,6 +8,13 @@ export default (appInfo: EggAppInfo) => {
 
   // use for cookie sign key, should change to your own and keep security
   config.keys = appInfo.name + '_1583639171353_2548';
+  config.security = {
+    csrf: {
+      enable: false,
+      // ignoreJSON: true,
+    },
+    domainWhiteList: [],
+  };
   config.sequelize = {
     host: 'localhost',
     port: '3306',
