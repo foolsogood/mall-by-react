@@ -4,6 +4,10 @@ import { BannerModel } from './banner'
 import { CategoryModel } from './category'
 import { GoodModel } from './good'
 import { CommentModel } from './comment'
+import { UserModel } from './user'
+import { CollectModel } from './collect'
+
+
 
 
 
@@ -36,7 +40,7 @@ export class DB {
                 logging: false,
                 operatorsAliases: false
             });
-        await DB.sequelize.addModels([BannerModel, CategoryModel, GoodModel, CommentModel]);
+        await DB.sequelize.addModels([BannerModel, CategoryModel, GoodModel, CommentModel, UserModel, CollectModel]);
         // 初始化时候插入mock数据
         mock.banner.forEach(item => {
             BannerModel.sync({ force: false }).then(async () => {
@@ -86,6 +90,16 @@ export class DB {
                     CommentModel.create(item)
                 }
             })
+        })
+        UserModel.sync({ force: false }).then(async () => {
+            console.log('table user create success')
+        }).catch(err => {
+            console.log('table user create fail')
+        })
+        CollectModel.sync({ force: false }).then(async () => {
+            console.log('table collect create success')
+        }).catch(err => {
+            console.log('table collect create fail')
         })
 
         try {
