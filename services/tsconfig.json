@@ -21,7 +21,8 @@
       "@public/*": ["app/public/*"],
       "@config/*": ["config/*"],
       "@models/*": ["lib/models/*"],
-      "@services/*": ["lib/services/*"]
+      "@services/*": ["lib/services/*"],
+      "@utils/*": ["lib/utils/*"]
     }
   },
   "include": ["src/**/*.ts"],

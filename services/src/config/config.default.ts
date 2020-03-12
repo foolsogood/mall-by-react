@@ -33,7 +33,7 @@ export default (appInfo: EggAppInfo) => {
   }
   config.jwtConf = {
     secret: 'TEST_SECRET',
-    expiresIn: 3500,
+    expiresIn: 35000,
   }
   // add your config here
   config.middleware = []

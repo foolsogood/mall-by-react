@@ -20,7 +20,7 @@ export class JwtMiddleware implements WebMiddleware {
                 return
             }
             try {
-                const _token=token.replace('Bearer ', '')
+                const _token=token.replace('Bearer', '').trim()
                 const result = await this.tokenService.verifyToken(_token)
                 if (!result) {
                     return
@@ -29,6 +29,8 @@ export class JwtMiddleware implements WebMiddleware {
                 const { userId, exp } = result as any
                 const store_token = await this.redis.hget('userId_token_table', userId)
                 if (_token === store_token && exp) {
+                    ctx.userId=userId
+                    console.log('ctx.userId',ctx.userId)
                     await next()
                 } else {
                     ctx.status = 401
