@@ -21,7 +21,7 @@ export default class RecomList extends Component<Props, State> {
     try {
       const res = await window.$http.get(url);
       this.setState({
-        obj: res.data
+        obj: res.data.rows
       });
     } catch (err) {
       window.$commonErrorHandler(url)(err);

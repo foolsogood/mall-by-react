@@ -9,7 +9,7 @@ export default {
       : {
           avatar: null,
           phone: null,
-          userid: null,
+          userId: null,
           username: null
         },
    

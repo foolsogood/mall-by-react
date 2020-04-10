@@ -1,26 +1,26 @@
-import { Context, controller, provide,  post, del, inject } from 'midway'
-import { IUserService } from '@services/user/index'
+import { Context, controller, provide, post, del, inject } from "midway";
+import { IUserService } from "@services/user/index";
 @provide()
-@controller('/user')
+@controller("/user")
 export class UserController {
-    constructor() { }
-    @inject()
-    userService: IUserService
+  constructor() {}
+  @inject()
+  userService: IUserService;
 
-    @post('/login')
-    async  index(ctx: Context) {
-        const {body}=ctx.request
-        ctx.body = await this.userService.login(body)
-    }
-    @post('/register')
-    async  register(ctx: Context) {
-        const { body } = ctx.request
-        ctx.body = await this.userService.register(body)
-    }
-    @del('/:userId')
-    async  del(ctx: Context) {
-        const { params } = ctx
-        const {userId}=params
-        ctx.body = await this.userService.del(userId)
-    }
+  @post("/login")
+  async index(ctx: Context) {
+    const { body } = ctx.request;
+    ctx.successHandler(await this.userService.login(body));
+  }
+  @post("/register")
+  async register(ctx: Context) {
+    const { body } = ctx.request;
+    ctx.successHandler(await this.userService.register(body));
+  }
+  @del("/:userId")
+  async del(ctx: Context) {
+    const { params } = ctx;
+    const { userId } = params;
+    ctx.successHandler(await this.userService.del(userId));
+  }
 }

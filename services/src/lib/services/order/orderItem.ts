@@ -1,15 +1,15 @@
 import { inject, provide } from 'midway'
-import { IOrderModel } from '@models/order'
+import { IOrderItemModel } from '@models/orderItem'
 import { IInsertOrderItem } from './interface'
 export interface IOrderItemService extends OrderItemService { }
 
 @provide()
 export class OrderItemService {
     @inject()
-    private OrderItemModel!: IOrderModel
+    private OrderItemModel!: IOrderItemModel
 
     async list(orderId: number) {
-        return await this.OrderItemModel.findAndCountAll({
+        return await this.OrderItemModel.findAll({
             raw:true,
             where: {
                 orderId: orderId

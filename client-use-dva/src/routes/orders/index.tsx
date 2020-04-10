@@ -11,7 +11,7 @@ class Orders extends Component<{}, State> {
   constructor(props) {
     super(props);
     this.state = {
-      orderList: []
+      orderList: null
     };
   }
   componentDidMount() {
@@ -21,10 +21,10 @@ class Orders extends Component<{}, State> {
     const url = window.$api.order.getOrders;
     try {
       const res = await window.$http.get(url);
-      console.log('res', res);
+      // console.log('res', res);
       if (!res) return;
       this.setState({
-        orderList: res.data
+        orderList: res.data.orderList
       });
     } catch (err) {
       window.$commonErrorHandler(url)(err);
@@ -32,6 +32,9 @@ class Orders extends Component<{}, State> {
   }
   render() {
     const { orderList } = this.state;
+    if(!orderList){
+      return null
+    }
     const tabs = [
       { title: '未发货' },
       { title: '已发货' },
@@ -59,7 +62,7 @@ class Orders extends Component<{}, State> {
                       boxSizing: 'content-box'
                     }}
                   >
-                    {order.map((item, idx) => {
+                    {order.list.map((item, idx) => {
                       return <OrderItem key={idx} order={item} />;
                     })}
                   </div>

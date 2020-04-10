@@ -9,3 +9,8 @@ export interface IInsertGood{
     imgs:string
     detailImg?:string
 }
+export interface ISearchGood{
+    keyword:string
+    // pageSize?:string
+    // pageNum?:string
+}

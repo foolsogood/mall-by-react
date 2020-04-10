@@ -94,7 +94,7 @@ class Home extends PureComponent<{}, State> {
     try {
       const res = await window.$http.get(url);
       this.setState({
-        hotGoods: res.data
+        hotGoods: res.data.rows
       });
     } catch (err) {
       window.$commonErrorHandler(url)(err);

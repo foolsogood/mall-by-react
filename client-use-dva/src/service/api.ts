@@ -1,35 +1,37 @@
 export const api:any = {
   good: {
-    getGoodsByCate: "/good/getGoodByCateId/:cateId",
-    getGoodById: "/good/getGoodDetail/:goodId",
-    getNewGoods: "/good/getNewGoods",
-    getHotGoods: "/good/getHotGoods",
+    getGoodsByCate: "/good/cate/:cateId",
+    getGoodById: "/good/:goodId",
+    getNewGoods: "/good/new",
+    getHotGoods: "/good/hot",
     searchGood: "/good/searchGood",
-    collectGood: "/good/collectGood/:goodId",
-    getCollectGood: "/good/getCollectGood",
-    getGoodComment: "/good/getGoodComment/:goodId",
-    addGoodComment: "/good/addGoodComment"
+    collectGood: "/collect/collectGood/:goodId",
+    getCollectGood: "/collect/list",
+    getGoodComment: "/comment/list/:goodId",
+    addGoodComment: "/comment/add"
   },
   category: {
-    getCates: "/category/getAllCategory"
+    getCates: "/category/list"
   },
   banner: {
-    getHomeBanner: "/home/getBanner"
+    getHomeBanner: "/banner/list"
   },
   user: {
     login: "/user/login",
     signup: "/user/register",
-    uploadAvatar: "/user/uploadAvatar"
+    // uploadAvatar: "/user/uploadAvatar"
+    uploadAvatar: "/oss/upload"
+
   },
   phone: {
     bindPhone: "/phone/bindPhone",
     sendSms: "/phone/sendSms"
   },
   order: {
-    getOrders: "/order/getOrder",
-    addOrder: "/order/addOrder",
-    getOrderDetail: "/order/getOrderDetail"
+    getOrders: "/order/list",
+    addOrder: "/order/add",
+    getOrderDetail: "/order/detail/:orderId"
   },
-  upload: "/upload"
+  upload: "/oss/upload"
 };
 export default api;

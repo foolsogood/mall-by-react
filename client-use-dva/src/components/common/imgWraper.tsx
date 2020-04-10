@@ -1,13 +1,14 @@
-import React, { Component } from 'react'
+import * as React from 'react'
 interface Props{
-    src?:string,
-    'data-errorimgsrc':string,
-    [propName:string]:string
+    src?:string
+    style?:React.CSSProperties
+    'data-errorimgsrc':string
+    [propName:string]:any
 }
 interface State{
     imgSrc:string,
 }
-export default class ImgWrapper extends Component<Props,State> {
+export default class ImgWrapper extends React.Component<Props,State> {
     /**
      * 该组件作用：图片onerror 替换成默认图片
      */
@@ -31,7 +32,7 @@ export default class ImgWrapper extends Component<Props,State> {
         const props = this.props
         const { imgSrc } = this.state
         return (
-            <img {...props} onError={this.imgErrorHandler} src={imgSrc} alt="" />
+            <img {...props} onError={this.imgErrorHandler} src={imgSrc} />
         )
     }
 }

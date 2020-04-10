@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Row, Col } from 'antd';
 import { Link } from 'dva/router';
+import ImgWraper from 'components/common/imgWraper'
 interface Props {
   order: any;
 }
@@ -16,10 +17,11 @@ export default class OrderItem extends Component<Props> {
         <Link to={`/orderDetail/${order.orderId}`}>
           <Row>
             <Col span={7}>
-              <img
+              <ImgWraper
                 style={{ width: '1.5rem', height: '1.5rem' }}
                 src={order.imgs[0]}
-                alt="商品"
+                alt={'商品'}
+                data-errorimgsrc={require('assets/img/default-good.jpg')}
               />
             </Col>
             <Col span={12}>

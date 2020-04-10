@@ -25,9 +25,10 @@ export default class searchBar extends Component<{},State> {
     const url = window.$api.good.searchGood;
     try {
       const res = await window.$http.get(url, { query: { keyword } });
+      const result=res.data.rows
       this.setState({
-        list: res.data,
-        isSerachHasData: Boolean(res.data && res.data.length)
+        list: result,
+        isSerachHasData: Boolean(result && result.length)
       });
     } catch (err) {
       window.$commonErrorHandler(url)(err);

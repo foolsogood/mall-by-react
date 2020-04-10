@@ -8,6 +8,10 @@ export default (appInfo: EggAppInfo) => {
 
   // use for cookie sign key, should change to your own and keep security
   config.keys = appInfo.name + '_1583639171353_2548';
+  config.cors = {
+    origin: "*",
+    credentials: true
+  };
   config.security = {
     csrf: {
       enable: false,
@@ -35,6 +39,21 @@ export default (appInfo: EggAppInfo) => {
     secret: 'TEST_SECRET',
     expiresIn: 35000,
   }
+  config.multipart = {
+    fileSize: '50mb',
+    // mode: 'file',
+    whitelist: [ '.jpg', '.jpeg', '.png', '.gif', '.bmp' ],
+
+  };
+  config.oss = {
+    // client: {
+      accessKeyId: 'LTAI4FdcQ58tbjcBVNqQNhUW',
+      accessKeySecret: 'qO0rVkQl2m7z84VYt9rFGWxQEiUTpt',
+      bucket: 'mall-upload-server',
+      endpoint: 'oss-cn-shenzhen.aliyuncs.com',
+      timeout: '60s',
+    // },
+  };
   // add your config here
   config.middleware = []
 

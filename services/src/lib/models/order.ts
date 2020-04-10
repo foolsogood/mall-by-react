@@ -1,5 +1,6 @@
 import { providerWrapper } from 'midway'
 import { Column, CreatedAt, UpdatedAt, DataType, Model, Scopes, Table } from 'sequelize-typescript'
+// import {OrderItemModel} from './orderItem'
 const { INTEGER,  BIGINT, TINYINT } = DataType;
 export const factory = () => OrderModel
 providerWrapper([
@@ -27,6 +28,7 @@ export class OrderModel extends Model<OrderModel>{
     })
     id!: number;
 
+    // @ForeignKey(()=>OrderItemModel)
     @Column({
         type: BIGINT,
         allowNull: false,

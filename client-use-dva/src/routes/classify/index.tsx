@@ -13,7 +13,7 @@ class cateify extends PureComponent <Props,State> {
   constructor(props) {
     super(props);
     this.state = {
-      list: [],
+      list: null,
     };
   }
   componentDidMount() {
@@ -47,6 +47,10 @@ class cateify extends PureComponent <Props,State> {
   }
   render() {
     const {list}=this.state
+    console.log(list)
+    if(!list){
+      return null
+    }
     return (
       <div className="classify">
         <div
@@ -60,17 +64,20 @@ class cateify extends PureComponent <Props,State> {
         >
           <div className="classify-title">
               {list.map((item, idx) => {
+                if(Array.isArray(item.rows)&&!item.rows.length){
+                  return null
+                }
                 return (
                   <div className="item" key={idx}>
                     <Link
-                      to={`anchor-` + item[0].cateId}
+                      to={`anchor-` + item.rows[0].cateId}
                       spy={true}
                       smooth={true}
                       duration={500}
                       offset={-50}
                       activeClass="active"
                     >
-                      <span >{item[0].cate}</span>
+                      <span >{item.rows[0].cate}</span>
                     </Link>
                   </div>
                 );
@@ -84,14 +91,17 @@ class cateify extends PureComponent <Props,State> {
           }}
         >
           {list.map((cate_item, idx) => {
+            if(Array.isArray(cate_item.rows)&&!cate_item.rows.length){
+              return null
+            }
             return (
-              <Element key={idx} name={`anchor-${cate_item[0].cateId}`}>
+              <Element key={idx} name={`anchor-${cate_item.rows[0].cateId}`}>
                 <div>
                   <div className="bg-fff pd-h-20">
                     <div className="flex-box h-80 bg-fff title">
-                      {cate_item[0].cate}
+                      {cate_item.rows[0].cate}
                     </div>
-                    {cate_item.map(item => {
+                    {cate_item.rows.map(item => {
                       return (
                         <div onClick={()=>this.toGooddetail(item.goodId)} key={item.goodId} className="classify-block ">
                           {/* <Link to={`/goodDetail/${item.goodId}`}> */}

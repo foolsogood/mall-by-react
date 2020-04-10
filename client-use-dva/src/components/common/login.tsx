@@ -24,7 +24,6 @@ class Login extends Component<Props,State> {
   }
   componentDidMount() {
     event.on("showLogin", bool => {
-      console.log(111111)
       this.setState({ isLoginShow: bool });
     });
   }
@@ -38,7 +37,7 @@ class Login extends Component<Props,State> {
       if (!err) {
         console.log("Received values of form: ", values);
         const query = {
-          username: getFieldValue("username"),
+          phone: getFieldValue("username"),
           password: getFieldValue("password")
         };
         const option = { loadingTxt: "登录中……" };
@@ -46,9 +45,11 @@ class Login extends Component<Props,State> {
         try {
           const res = await window.$http.post(url, { query, option });
           dispatch({ type: "app/changeUser", payload: res.data });
-          console.log("111");
-          Cookies.set("token", res.token);
+          Cookies.set("token", res.data.token);
           event.emit("showLogin", false);
+          setTimeout(()=>{
+            window.location.reload()
+          },0)
         } catch (err) {
           window.$commonErrorHandler(url)(err);
         }

@@ -13,10 +13,7 @@ export class JwtMiddleware implements WebMiddleware {
             const token = ctx.request.headers.authorization;
             console.log('token', token)
             if (!token) {
-                ctx.status = 401
-                ctx.body = {
-                    msg: 'no auth',
-                }
+                ctx.errorHandler('no token',401)
                 return
             }
             try {
@@ -33,18 +30,14 @@ export class JwtMiddleware implements WebMiddleware {
                     console.log('ctx.userId',ctx.userId)
                     await next()
                 } else {
-                    ctx.status = 401
-                    ctx.body = {
-                        msg: 'token not match',
-                    }
+                    ctx.errorHandler('token not match',401)
                 }
             } catch (err) {
                 console.log('ppp', err.name, err.message)
-                ctx.status = 401;
-                ctx.body = {
+                ctx.errorHandler({
                     msg: err.message,
                     name: err.name
-                }
+                },401)
             }
         }
     }

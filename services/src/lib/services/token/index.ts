@@ -34,7 +34,7 @@ export class TokenService {
         try {
             const decoded = await _verify(token, this.jwtConf.secret);
             // const { exp, iat, data } = decoded;
-            console.log('token service', decoded);
+            // console.log('token service', decoded);
             return decoded
         } catch (err) {
             console.log(err)

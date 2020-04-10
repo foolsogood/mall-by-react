@@ -21,7 +21,7 @@ class GoodDetail extends PureComponent<Props, State> {
     this.state = {
       imgList: [''],
       detailList: [''],
-      goodInfo: {},
+      goodInfo: null,
       isCollect: false
     };
   }
@@ -69,6 +69,9 @@ class GoodDetail extends PureComponent<Props, State> {
   render() {
     const tabs = [{ title: '商品详情' }, { title: '商品评论' }];
     const { goodInfo, imgList, detailList, isCollect } = this.state;
+    if(!goodInfo){
+      return null
+    }
     return (
       <div>
         <div className="good-detail">
@@ -107,7 +110,7 @@ class GoodDetail extends PureComponent<Props, State> {
                 })}
               </div>
               <div>
-                <Comments goodInfo={goodInfo} rateList={goodInfo.comments} />
+                <Comments goodInfo={goodInfo} rateList={goodInfo.comments&&goodInfo.comments.rows} />
               </div>
             </Tabs>
           </div>

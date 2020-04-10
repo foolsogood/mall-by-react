@@ -9,18 +9,18 @@ export class CommentController {
 
     @get('/list')
     async  index(ctx: Context) {
-        const {goodId}=ctx.query
-        ctx.body = await this.commentService.list(goodId)
+        const {goodId}=ctx.params
+        ctx.successHandler(await this.commentService.list(goodId))
     }
     @post('/add')
     async  add(ctx: Context) {
         const { body } = ctx.request
-        ctx.body = await this.commentService.add(body)
+        ctx.successHandler(await this.commentService.add(body))
     }
     @del('/:commentId')
     async  del(ctx: Context) {
         const { params } = ctx
         const {commentId}=params
-        ctx.body = await this.commentService.del(commentId)
+        ctx.successHandler(await this.commentService.del(commentId))
     }
 }

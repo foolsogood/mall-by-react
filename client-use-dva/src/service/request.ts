@@ -6,7 +6,6 @@ import { mockRequest } from "../mock/request";
 
 const checkStatus = response => {
   const { status } = response;
-  // console.log(status)
   if (status >= 200 && status < 300) {
     window.$hideLoading.call(null);
     return Promise.resolve(response);
@@ -14,7 +13,11 @@ const checkStatus = response => {
     if ([403, 401].includes(status)) {
       // token失效
       console.log("token 失效");
+      console.log(response);
       event.emit("showLogin", true);
+      // TODO 将当前url缓存，登录后重新请求
+      // const { url } = response;
+      // sessionStorage.setItem('re_request_url')
     }
     return Promise.reject(response);
   }

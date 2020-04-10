@@ -9,23 +9,23 @@ export class CollectController {
 
     @get('/list',{middleware:['jwtMiddleware']})
     async  index(ctx: Context) {
-        const {userId}=ctx.query
-        ctx.body = await this.collectService.list(userId)
+        const {userId}=ctx
+        ctx.successHandler(await this.collectService.list(userId))
     }
     @get('/isCollect')
     async  isCollect(ctx: Context) {
         const {query}=ctx
-        ctx.body = await this.collectService.isCollect(query)
+        ctx.successHandler(await this.collectService.isCollect(query))
     }
     @post('/toggle')
     async  toggle(ctx: Context) {
         const { body } = ctx.request
-        ctx.body = await this.collectService.toggle(body)
+        ctx.successHandler(await this.collectService.toggle(body))
     }
     @del('/:id')
     async  del(ctx: Context) {
         const { params } = ctx
         const {id}=params
-        ctx.body = await this.collectService.del(id)
+        ctx.successHandler(await this.collectService.del(id))
     }
 }

@@ -43,11 +43,11 @@ class Avatar extends Component<Props, State> {
     await formdata.append('file', this.state.filesObj.file);
     try {
       const res = await window.$http.post_formdata(url, { formdata });
-      Toast.info('上传成功');
-      dispatch({
-        type: 'app/changeUser',
-        payload: Object.assign({}, user, { avatar: res.data.url })
-      });
+      // Toast.info('上传成功');
+      // dispatch({
+      //   type: 'app/changeUser',
+      //   payload: Object.assign({}, user, { avatar: res.data.url })
+      // });
     } catch (err) {
       window.$commonErrorHandler(url)(err);
     }
