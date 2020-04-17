@@ -9,27 +9,27 @@ class UserService extends Service {
       if (password !== repeatPwd) {
         return {
           code: -1,
-          data: '两次密码不一致'
+          data: '两次密码不一致',
         };
       }
       const isExistUser = await ctx.model.User.findOne({
         where: {
-          username
-        }
+          username,
+        },
       });
       if (!isExistUser) {
         const res = await ctx.model.User.create({
           username,
-          password: sha1(password)
+          password: sha1(password),
         });
         return {
           code: 1,
-          data: res.dataValues
+          data: res.dataValues,
         };
       }
       return {
         code: -1,
-        data: '用户已存在'
+        data: '用户已存在',
       };
     } catch (err) {
       throw err;
@@ -41,13 +41,13 @@ class UserService extends Service {
     const user = await ctx.model.User.findOne({
       raw: true,
       where: {
-        username
-      }
+        username,
+      },
     });
     if (!user) {
       return {
         code: -1,
-        data: '用户不存在'
+        data: '用户不存在',
       };
     }
     // 登录成功
@@ -60,35 +60,35 @@ class UserService extends Service {
       return {
         code: 1,
         data: user,
-        token
+        token,
       };
     }
     return {
       code: -1,
-      data: '密码不正确'
+      data: '密码不正确',
     };
   }
   // 上传头像
   async uploadAvatar() {
     const { ctx } = this;
     const res = await ctx.service.upload.upload();
-    const url = res.urlList[0];
+    const { url } = res;
     if (res) {
       await ctx.model.User.update(
         {
-          avatar: url
+          avatar: url,
         },
         {
-          where: { userid: res.userid }
+          where: { userid: res.userid },
         }
       );
       return {
         msg: 'success',
-        url: url
+        url,
       };
     }
     return {
-      msg: 'fail'
+      msg: 'fail',
     };
   }
 }

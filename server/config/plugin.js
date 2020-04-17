@@ -2,25 +2,25 @@
 
 exports.sequelize = {
   enable: true,
-  package: 'egg-sequelize'
+  package: 'egg-sequelize',
 };
 exports.cors = {
   enable: true,
-  package: 'egg-cors'
+  package: 'egg-cors',
 };
 exports.sessionRedis = {
   enable: true,
-  package: 'egg-session-redis'
+  package: 'egg-session-redis',
 };
 exports.redis = {
   enable: true,
-  package: 'egg-redis'
+  package: 'egg-redis',
 };
 exports.oss = {
   enable: true,
-  package: 'egg-oss'
+  package: 'egg-oss',
 };
-exports.multipart = {
-  enable: true,
-  package: 'egg-multipart'
-};
+// exports.multipart = {
+//   enable: true,
+//   package: 'egg-multipart'
+// };

@@ -46,10 +46,16 @@ module.exports = appInfo => {
   };
   config.multipart = {
     fileSize: '50mb',
-    mode: 'file',
+    // mode: 'file',
+    whitelist: [ '.jpg', '.jpeg', '.png', '.gif', '.bmp' ],
   };
   config.oss = {
     client: {
+      // accessKeyId: 'LTAI4FdcQ58tbjcBVNqQNhUW',
+      // accessKeySecret: 'qO0rVkQl2m7z84VYt9rFGWxQEiUTpt',
+      // bucket: 'mall-upload-server',
+      // endpoint: 'oss-cn-shenzhen.aliyuncs.com',
+      // timeout: '60s',
       accessKeyId: 'LTAImYw1P9qavGsM',
       accessKeySecret: 'B8ueSfNLB2PRXMJTioUfL3aQ2cwa7Q',
       bucket: 'mall-server-upload',

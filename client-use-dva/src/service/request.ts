@@ -2,9 +2,9 @@ import fetch from "dva/fetch";
 import event from "utils/event";
 import Cookies from "js-cookie";
 import { server } from "./config";
+import _ from 'lodash'
 import { mockRequest } from "../mock/request";
-
-const checkStatus = response => {
+export const checkStatus = response => {
   const { status } = response;
   if (status >= 200 && status < 300) {
     window.$hideLoading.call(null);
@@ -37,9 +37,6 @@ export const request = async (url, options = null) => {
       Authorization: Cookies.get("token")
     }
   };
-  if (["POST", "PUT", "DELETE"].includes(options.method)) {
-    defaultOption.headers["Content-Type"] = "application/json";
-  }
   let newOption = {};
   if (options) {
     options.loading = Object.assign(
@@ -51,8 +48,7 @@ export const request = async (url, options = null) => {
       //显示loading
       window.$showLoading(options.loading.loadingText);
     }
-    newOption = Object.assign({}, defaultOption, options);
-    // console.log("newOption", newOption);
+    newOption = _.merge({}, defaultOption, options);
   } else {
     newOption = defaultOption;
   }

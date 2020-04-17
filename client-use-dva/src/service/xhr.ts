@@ -30,19 +30,19 @@ export function post<T>(url, payload): Promise<T> {
   const finalUrl = finalPath(url, params);
   return request(finalUrl, {
     method: 'POST',
-    body: JSON.stringify(query),
+    body:JSON.stringify(query),
+    headers: { 'Content-Type': 'application/json;charset=UTF-8' },
     loading
   });
 }
-export function post_formdata<T>(url, payload): Promise<T> {
+export function post_upload<T>(url, payload): Promise<T> {
   const default_data = { formdata: {}, params: {}, loading: null };
   const data = Object.assign({}, default_data, payload);
   const { formdata, params, loading } = data;
   const finalUrl = finalPath(url, params);
   return request(finalUrl, {
     method: 'POST',
-    body: JSON.stringify(formdata),
-    headers: { 'Content-Type': 'multipart/form-data;boundary=%s' },
+    body: formdata,
     loading
   });
 }
@@ -54,6 +54,7 @@ export function put<T>(url, payload): Promise<T> {
   return request(finalUrl, {
     method: 'PUT',
     body: JSON.stringify(query),
+    headers: { 'Content-Type': 'application/json' },
     loading
   });
 }
@@ -61,5 +62,5 @@ export default {
   get,
   post,
   put,
-  post_formdata
+  // post_formdata
 };

@@ -8,7 +8,7 @@ export const api:any = {
     collectGood: "/collect/collectGood/:goodId",
     getCollectGood: "/collect/list",
     getGoodComment: "/comment/list/:goodId",
-    addGoodComment: "/comment/add"
+    addGoodComment: "/comment/add/:goodId"
   },
   category: {
     getCates: "/category/list"
@@ -19,13 +19,12 @@ export const api:any = {
   user: {
     login: "/user/login",
     signup: "/user/register",
-    // uploadAvatar: "/user/uploadAvatar"
-    uploadAvatar: "/oss/upload"
+    uploadAvatar: "/user/uploadAvatar"
 
   },
   phone: {
-    bindPhone: "/phone/bindPhone",
-    sendSms: "/phone/sendSms"
+    bindPhone: "/sms/bindPhone",
+    sendSms: "/sms/sendSms"
   },
   order: {
     getOrders: "/order/list",

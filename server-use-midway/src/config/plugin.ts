@@ -7,10 +7,10 @@ export const redis = {
   enable: true,
   package: 'egg-redis',
 }
-// export const oss = {
-//   enable: true,
-//   package: 'egg-oss',
-// }
+export const oss = {
+  enable: true,
+  package: 'egg-oss',
+}
 // export const multipart = {
 //   enable: true,
 //   package: 'egg-multipart',

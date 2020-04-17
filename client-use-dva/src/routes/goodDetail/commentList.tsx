@@ -42,9 +42,10 @@ class Comment extends Component<Props, State> {
     const url = window.$api.good.getGoodComment;
     try {
       const res = await window.$http.get(url, { query, params });
+      const {count,rows}=res.data
       this.setState({
-        commentList: await this.state.commentList.concat(res.data),
-        total: res.data.length
+        commentList: await this.state.commentList.concat(rows),
+        total: count
       });
     } catch (err) {
       window.$commonErrorHandler(url)(err);

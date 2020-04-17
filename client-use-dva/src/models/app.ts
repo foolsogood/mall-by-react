@@ -4,8 +4,8 @@ export default {
   namespace: "app",
 
   state: {
-    user: localStorage.getItem("user")
-      ? JSON.parse(localStorage.getItem("user"))
+    user: sessionStorage.getItem("user")
+      ? JSON.parse(sessionStorage.getItem("user"))
       : {
           avatar: null,
           phone: null,
@@ -27,7 +27,7 @@ export default {
   reducers: {
     getUser(state, { payload }) {
       const user = Object.assign({}, state.user, payload);
-      localStorage.setItem("user", JSON.stringify(user));
+      sessionStorage.setItem("user", JSON.stringify(user));
       return {
         ...state,
         user

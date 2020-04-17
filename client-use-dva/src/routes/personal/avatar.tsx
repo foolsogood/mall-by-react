@@ -40,14 +40,16 @@ class Avatar extends Component<Props, State> {
 
     const url = window.$api.user.uploadAvatar;
     const formdata = new FormData();
-    await formdata.append('file', this.state.filesObj.file);
+
+    formdata.append('file', this.state.filesObj.file);
     try {
-      const res = await window.$http.post_formdata(url, { formdata });
-      // Toast.info('上传成功');
-      // dispatch({
-      //   type: 'app/changeUser',
-      //   payload: Object.assign({}, user, { avatar: res.data.url })
-      // });
+      const res = await window.$http.post_upload(url, { formdata });
+      if(!res)return
+      Toast.info('上传成功');
+      dispatch({
+        type: 'app/changeUser',
+        payload: Object.assign({}, user, { avatar: res.data.urlList[0].url })
+      });
     } catch (err) {
       window.$commonErrorHandler(url)(err);
     }

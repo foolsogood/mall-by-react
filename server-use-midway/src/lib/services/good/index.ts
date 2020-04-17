@@ -1,8 +1,8 @@
 import { inject, provide } from "midway";
 import { IGoodModel } from "../../models/good";
 import { IInsertGood } from "./interface";
-// const Sequelize = require('sequelize');
-// const Op = Sequelize.Op
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op
 
 
 export interface IGoodService extends GoodService {}
@@ -43,9 +43,9 @@ export class GoodService {
   async searchGood(keyword:string) {
     return await this.GoodModel.findAndCountAll({
       where: {
-        // goodName:{
-        //   [Op.like]:`%${keyword}%`
-        // }
+        goodName:{
+          [Op.like]:`%${keyword}%`
+        }
       },
       limit: 6,
       offset: 0

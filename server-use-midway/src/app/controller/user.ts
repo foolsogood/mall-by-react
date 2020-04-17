@@ -17,7 +17,11 @@ export class UserController {
     const { body } = ctx.request;
     ctx.successHandler(await this.userService.register(body));
   }
-  @del("/:userId")
+  @post("/uploadAvatar",{ middleware: ["jwtMiddleware"] })
+  async uploadAvatar(ctx: Context) {
+    ctx.successHandler(await this.userService.uploadAvatar());
+  }
+  @del("/:userId",{ middleware: ["jwtMiddleware"] })
   async del(ctx: Context) {
     const { params } = ctx;
     const { userId } = params;

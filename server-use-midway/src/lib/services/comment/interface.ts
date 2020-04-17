@@ -1,8 +1,8 @@
 export interface IInsertComment{
-    goodId:string
-    avatar:string
+    avatar?:string
     name:string
     rateScore:number
-    imgList:string
+    imgList?:string
     comment:string
+    isAnonymous:number
 }

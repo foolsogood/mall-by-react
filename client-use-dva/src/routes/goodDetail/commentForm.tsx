@@ -7,8 +7,8 @@ interface Props {
   match?: any;
 }
 interface State {
-  rateNumber:  number | Blob;
-  isAnonymousChecked:  string | Blob;
+  rateNumber: number | Blob;
+  isAnonymousChecked: string | Blob;
   files: any[];
   comment: string;
   fileStreamList: any[];
@@ -25,7 +25,7 @@ class CommentForm extends Component<Props, State> {
     };
   }
   //评分
-  rateChangeHandler = (rateNumber:number) => {
+  rateChangeHandler = (rateNumber: number) => {
     this.setState({
       rateNumber
     });
@@ -56,7 +56,7 @@ class CommentForm extends Component<Props, State> {
     };
     op[type]();
   };
-  commentChangeHandler = (e:React.ChangeEvent<HTMLTextAreaElement>) => {
+  commentChangeHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const { value } = e.target;
     this.setState({
       comment: value
@@ -70,18 +70,23 @@ class CommentForm extends Component<Props, State> {
       comment,
       fileStreamList
     } = this.state;
+    const upload_url = window.$api.upload;
     const formdata = new FormData();
-    formdata.append('isAnonymous', isAnonymousChecked ? '1' : '0');
-    formdata.append('rate', rateNumber+'');
-    formdata.append('comment', comment);
-    fileStreamList.forEach(item => {
+    for (const item of fileStreamList) {
       formdata.append('file', item);
-    });
-
-    const params = {goodId};
+    }
+    const arr =await window.$http.post_upload(upload_url, { formdata }).then(res=>res.data);
+    console.log('arr',arr)
+    const query={
+      isAnonymous:isAnonymousChecked ? 1 : 0,
+      rateScore:rateNumber,
+      comment,
+      imgList:JSON.stringify(arr.map(item=>item.url))
+    }
+    const params = { goodId };
     const url = window.$api.good.addGoodComment;
     try {
-      await window.$http.post_formdata(url, { params, formdata });
+      await window.$http.post(url, { params, query });
     } catch (err) {
       window.$commonErrorHandler(url)(err);
     }
