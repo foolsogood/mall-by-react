@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import CommentItem from "./commentItem";
+import Iconfont from 'components/iconfont/index'
+
 import { Link } from 'dva/router'
 interface Props{
   goodInfo:any,
@@ -12,12 +14,9 @@ export default class Comments extends Component<Props> {
       <div>
         <Link to={`/commentList/${goodInfo.goodId}`}>
           <div className="flex-box just-c-ed pd-20 bd-bt">
-            <span>
+            <span className="flex-box">
               更多
-              <span
-                className="iconfont icon-you"
-                style={{ color: "#8a8a8a", fontSize: ".35rem" }}
-              />
+              <Iconfont name="you" color="#8a8a8a" style={{  fontSize: ".35rem" }}/>
             </span>
           </div>
         </Link>

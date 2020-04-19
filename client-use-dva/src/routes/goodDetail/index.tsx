@@ -6,6 +6,8 @@ import Banner from 'components/common/banner';
 // 组件
 import Comments from './components/comments';
 import GoodFooter from './components/goodFooter';
+import Iconfont from 'components/iconfont/index'
+
 interface Props {
   match?: any;
 }
@@ -69,7 +71,7 @@ class GoodDetail extends PureComponent<Props, State> {
   render() {
     const tabs = [{ title: '商品详情' }, { title: '商品评论' }];
     const { goodInfo, imgList, detailList, isCollect } = this.state;
-    if(!goodInfo){
+    if (!goodInfo) {
       return null
     }
     return (
@@ -84,13 +86,13 @@ class GoodDetail extends PureComponent<Props, State> {
               <span className="p-2 price">¥{goodInfo.price}</span>
               <span onClick={this.toggleLike}>
                 {isCollect ? (
-                  <span
-                    className="iconfont icon-aixin"
-                    style={{ color: '#ff0000' }}
-                  />
+                  <Iconfont name="aixin" color="#ff0000" />
+
+
                 ) : (
-                  <span className="iconfont icon-aixin1" />
-                )}
+                    <Iconfont name="aixin1" />
+
+                  )}
               </span>
             </p>
           </div>
@@ -110,7 +112,7 @@ class GoodDetail extends PureComponent<Props, State> {
                 })}
               </div>
               <div>
-                <Comments goodInfo={goodInfo} rateList={goodInfo.comments&&goodInfo.comments.rows} />
+                <Comments goodInfo={goodInfo} rateList={goodInfo.comments && goodInfo.comments.rows} />
               </div>
             </Tabs>
           </div>

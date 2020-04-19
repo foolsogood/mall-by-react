@@ -4,6 +4,11 @@ import middleware from 'utils/middleware';
 import api from 'service/api';
 import * as http from 'service/xhr';
 import { createBrowserHistory as createHistory } from "history";
+import 'assets/style/public.css'
+import 'assets/style/main.css'
+import 'assets/js/reset.js'
+
+
 
 window.$http = http;
 window.$api = api;

@@ -1,0 +1,35 @@
+/* tslint:disable */
+/* eslint-disable */
+
+import React, { CSSProperties, DOMAttributes, FunctionComponent } from 'react';
+import { getIconColor } from './helper';
+
+interface Props extends DOMAttributes<SVGElement> {
+  size?: number;
+  color?: string | string[];
+  style?: CSSProperties;
+  className?: string;
+}
+
+const DEFAULT_STYLE: CSSProperties = {
+  display: 'block',
+};
+
+const IconFenleitianchong: FunctionComponent<Props> = ({ size, color, style: _style, ...rest }) => {
+  const style = _style ? { ...DEFAULT_STYLE, ..._style } : DEFAULT_STYLE;
+
+  return (
+    <svg viewBox="0 0 1024 1024" width={size + 'px'} height={size + 'px'} style={style} {...rest}>
+      <path
+        d="M643.340466 483.071882h258.758477c57.148671 0 103.668489-46.519818 103.66849-103.70438V103.70438C1005.752051 46.519818 959.247615 0 902.098943 0h-258.758477c-57.16918 0-103.709508 46.519818-103.709507 103.70438v275.668249c0 57.184562 46.5352 103.699253 103.709507 103.699253zM371.040841 0H112.287491C55.108056 0 8.583111 46.519818 8.583111 103.70438v275.668249c0 57.184562 46.524945 103.70438 103.70438 103.70438h258.758477c57.153798 0 103.663362-46.519818 103.663362-103.70438V103.70438C474.704203 46.519818 428.194639 0 371.040841 0zM371.040841 540.917863H112.287491c-57.174308 0-103.70438 46.514691-103.70438 103.699253v275.678504c0 57.174308 46.524945 103.70438 103.70438 103.70438h258.758477c57.153798 0 103.663362-46.514691 103.663362-103.70438v-275.678504c-0.005127-57.184562-46.514691-103.699253-103.668489-103.699253zM782.956321 538.272187c-128.176891 0-232.470909 104.28889-232.470909 232.470908s104.294018 232.465781 232.470909 232.465782c128.171764 0 232.460654-104.283763 232.460654-232.465782s-104.28889-232.470909-232.460654-232.470908zM693.059708 914.486411v0.661419l-1.025456-0.661419h1.025456z"
+        fill={getIconColor(color, 0, '#333333')}
+      />
+    </svg>
+  );
+};
+
+IconFenleitianchong.defaultProps = {
+  size: 18,
+};
+
+export default IconFenleitianchong;

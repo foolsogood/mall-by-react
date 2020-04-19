@@ -3,8 +3,9 @@ import { Row, Col } from "antd";
 import { Link } from "dva/router";
 
 //组件
-import WithFooter from "components/common/withFooter";
+import WithFooter from "components/hocs/withFooter";
 import { connect } from "dva";
+import Iconfont from 'components/iconfont/index'
 interface Props{
   app?:any,
 }
@@ -53,10 +54,7 @@ class Personal extends PureComponent<Props> {
               <span>我的订单</span>
               <div className="flex-box">
                 <span>全部订单</span>
-                <span
-                  className="iconfont icon-you"
-                  style={{ ...common, ...iconStyle }}
-                />
+                <Iconfont name="you" style={{ ...common, ...iconStyle }}/>
               </div>
             </div>
           </Link>
@@ -114,10 +112,7 @@ class Personal extends PureComponent<Props> {
               />
               <span>绑定手机</span>
             </div>
-            <span
-              className="iconfont icon-you"
-              style={{ ...common, ...iconStyle }}
-            />
+            <Iconfont name="you" style={{ ...common, ...iconStyle }}/>
           </div>
         </Link>
         <Link to={`/collect`}>
@@ -130,10 +125,9 @@ class Personal extends PureComponent<Props> {
               />
               <span>我的收藏</span>
             </div>
-            <span
-              className="iconfont icon-you"
-              style={{ ...common, ...iconStyle }}
-            />
+            <Iconfont name="you" style={{ ...common, ...iconStyle }}/>
+
+
           </div>
         </Link>
         <div className="hr" />
@@ -146,10 +140,9 @@ class Personal extends PureComponent<Props> {
             />
             <span>购物帮助</span>
           </div>
-          <span
-            className="iconfont icon-you"
-            style={{ ...common, ...iconStyle }}
-          />
+          <Iconfont name="you" style={{ ...common, ...iconStyle }}/>
+
+
         </div>
         <Link to={`/feedback`}>
           <div className="flex-box flex-ju-c-bt h-80 pd-h-20 bg-fff bd-top">
@@ -161,10 +154,9 @@ class Personal extends PureComponent<Props> {
               />
               <span>意见反馈</span>
             </div>
-            <span
-              className="iconfont icon-you"
-              style={{ ...common, ...iconStyle }}
-            />
+          <Iconfont name="you" style={{ ...common, ...iconStyle }}/>
+
+
           </div>
         </Link>
       </div>

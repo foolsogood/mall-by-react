@@ -5,6 +5,8 @@ import { Row, Col } from "antd";
 import { Link } from "dva/router";
 //
 import { connect } from "dva";
+import Iconfont from 'components/iconfont/index'
+
 interface Props{
   goodInfo:any,
   dispatch?:(args)=>void,
@@ -45,21 +47,13 @@ class GoodFooter extends Component<Props> {
         <Row>
           <Col span={5}>
             <Link to={`/`} className="flex-box flex-ver-box btn-1">
-              <span
-                className="iconfont icon-weibiaoti1"
-                style={{ ...iconStyle, ...common }}
-              />
-
+              <Iconfont name="weibiaoti1" {...common} size={20} />
               <span>主页</span>
             </Link>
           </Col>
           <Col span={5}>
             <Link to={`/classify`} className="flex-box flex-ver-box btn-1">
-              <span
-                className="iconfont icon-fenleitianchong"
-                style={{ ...iconStyle, ...common }}
-              />
-
+              <Iconfont name="fenleitianchong"  {...common} size={20} />
               <span>分类</span>
             </Link>
           </Col>

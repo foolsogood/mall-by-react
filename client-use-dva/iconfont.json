@@ -1,0 +1,8 @@
+{
+    "symbol_url": "https://at.alicdn.com/t/font_748389_zoww88skkk.js",
+    "use_typescript": true,
+    "save_dir": "./src/components/iconfont",
+    "trim_icon_prefix": "icon",
+    "unit": "px",
+    "default_icon_size": 18
+}

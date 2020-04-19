@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 //公共组件
-import WithFooter from "components/common/withFooter";
+import WithFooter from "components/hocs/withFooter";
 import { Element ,  Link } from "react-scroll";
 interface Props{
   history?:any,

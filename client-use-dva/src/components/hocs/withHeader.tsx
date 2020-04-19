@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import TitleBar from './titleBar'
+import TitleBar from '../common/titleBar'
 const getDisplayName=component=>(
     component.displayName||component.name||'component'
 )

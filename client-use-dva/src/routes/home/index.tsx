@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 //公共组件
-import WithFooter from 'components/common/withFooter';
+import WithFooter from 'components/hocs/withFooter';
 
 // 首页组件
 import SearchBar from './components/searchBar';

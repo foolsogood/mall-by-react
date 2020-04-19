@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Footer from './footer'
+import Footer from '../common/footer'
 const getDisplayName=component=>(
     component.displayName||component.name||'component'
 )

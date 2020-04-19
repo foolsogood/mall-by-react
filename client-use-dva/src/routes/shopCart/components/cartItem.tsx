@@ -1,15 +1,17 @@
 import React, { Component } from "react";
 import { Row, Col } from "antd";
 import { connect } from "dva";
-interface Props{
-  cartItem:any,
-  dispatch?:(args)=>void,
+import Iconfont from 'components/iconfont/index'
+
+interface Props {
+  cartItem: any,
+  dispatch?: (args) => void,
 }
-interface State{
-  ifChecked:boolean
+interface State {
+  ifChecked: boolean
 }
 @connect(({ shopCart }) => ({ shopCart }))
-class cartItem extends Component<Props,State> {
+class cartItem extends Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
@@ -98,16 +100,13 @@ class cartItem extends Component<Props,State> {
           >
             <div className="flex-box">
               {this.state.ifChecked ? (
-                <span
-                  className="iconfont icon-selected"
-                  style={{ ...iconStyle, ...active }}
-                />
+                <Iconfont name="selected" {...active} style={{ ...iconStyle, }} />
+
               ) : (
-                <span
-                  className="iconfont icon-yuancircle46"
-                  style={{ ...iconStyle, ...common }}
-                />
-              )}
+                  <Iconfont name="yuancircle46" {...common} style={{ ...iconStyle, }} />
+
+
+                )}
             </div>
           </Col>
           <Col span={16}>
@@ -151,11 +150,7 @@ class cartItem extends Component<Props,State> {
           </Col>
           <Col span={4}>
             <div className="flex-box">
-              <span
-                className="iconfont icon-shanchu"
-                style={{ ...iconStyle, ...common }}
-                onClick={() => this.removeThisGood(cartItem.goodId)}
-              />
+            <Iconfont name="shanchu" {...common} style={{ ...iconStyle, }} onClick={() => this.removeThisGood(cartItem.goodId)} />
             </div>
           </Col>
         </Row>

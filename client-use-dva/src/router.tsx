@@ -3,7 +3,7 @@ import { Router, Route, Switch } from "dva/router";
 import ErrorBoundary from 'components/common/errorBoundary'
 import SmallLoading from 'components/common/smallLoading'
 
-import WithLoadable from "components/common/WithLoadable";
+import WithLoadable from "components/hocs/WithLoadable";
 
 // // 组件
 const Login = WithLoadable({

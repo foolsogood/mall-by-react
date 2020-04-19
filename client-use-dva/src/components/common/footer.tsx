@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Row, Col } from "antd";
 import { Link } from "dva/router";
+import Iconfont from 'components/iconfont/index'
+
 interface Props{
   path?:string,
 }
@@ -34,18 +36,12 @@ export default class footer extends Component<Props,State> {
             >
               {this.getPathname() === `/` ? (
                 <div className="flex-box flex-ver-box">
-                  <span
-                    className="iconfont icon-weibiaoti1"
-                    style={{ ...iconStyle, ...active }}
-                  />
+                  <Iconfont name="weibiaoti1" {...active} size={20}/>
                   <span style={active}>主页</span>
                 </div>
               ) : (
                 <div className="flex-box flex-ver-box">
-                  <span
-                    className="iconfont icon-weibiaoti1"
-                    style={{ ...iconStyle, ...common }}
-                  />
+                  <Iconfont name="weibiaoti1" {...common} size={20}/>
                   <span style={common}>主页</span>
                 </div>
               )}
@@ -59,18 +55,16 @@ export default class footer extends Component<Props,State> {
             >
               {this.getPathname() === `/classify` ? (
                 <div className="flex-box flex-ver-box">
-                  <span
-                    className="iconfont icon-fenleitianchong"
-                    style={{ ...iconStyle, ...active }}
-                  />
+                  <Iconfont name="fenleitianchong"  {...active} size={20}/>
+
+
                   <span style={active}>分类</span>
                 </div>
               ) : (
                 <div className="flex-box flex-ver-box">
-                  <span
-                    className="iconfont icon-fenleitianchong"
-                    style={{ ...iconStyle, ...common }}
-                  />
+
+                  <Iconfont name="fenleitianchong" {...common} size={20}/>
+
                   <span style={common}>分类</span>
                 </div>
               )}
@@ -84,18 +78,16 @@ export default class footer extends Component<Props,State> {
             >
               {this.getPathname() === `/shopCart` ? (
                 <div className="flex-box flex-ver-box">
-                  <span
-                    className="iconfont icon-gouwuche"
-                    style={{ ...iconStyle, ...active }}
-                  />
+
+                  <Iconfont name="gouwuche"  {...active} size={20}/>
+
                   <span style={active}>购物车</span>
                 </div>
               ) : (
                 <div className="flex-box flex-ver-box">
-                  <span
-                    className="iconfont icon-gouwuche"
-                    style={{ ...iconStyle, ...common }}
-                  />
+
+                  <Iconfont name="gouwuche" {...common} size={20}/>
+
                   <span style={common}>购物车</span>
                 </div>
               )}
@@ -109,18 +101,16 @@ export default class footer extends Component<Props,State> {
             >
               {this.getPathname() === `/personal` ? (
                 <div className="flex-box flex-ver-box">
-                  <span
-                    className="iconfont icon-yonghu"
-                    style={{ ...iconStyle, ...active }}
-                  />
+                  
+                  <Iconfont name="yonghu"  {...active} size={20}/>
+
                   <span style={active}>我的</span>
                 </div>
               ) : (
                 <div className="flex-box flex-ver-box">
-                  <span
-                    className="iconfont icon-yonghu"
-                    style={{ ...iconStyle, ...common }}
-                  />
+
+                  <Iconfont name="yonghu" {...common} size={20}/>
+
                   <span style={common}>我的</span>
                 </div>
               )}

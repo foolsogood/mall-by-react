@@ -5,6 +5,8 @@ import { Link } from 'dva/router';
 import { connect } from 'dva';
 
 import event from 'utils/event';
+import Iconfont from 'components/iconfont/index'
+
 const alert = Modal.alert;
 interface Props {
   shopCart?: any;
@@ -75,10 +77,7 @@ class Balance extends PureComponent<Props, State> {
         <div className="hr-40" />
         <div className="flex-box flex-ju-c-bt h-100 bg-fff pd-h-20 ">
           <span>请选择地址</span>
-          <span
-            className="iconfont icon-you"
-            style={{ ...common, ...iconStyle }}
-          />
+          <Iconfont name="you" { ...common} size={20} />
         </div>
 
         <Row className=" h-100 bg-fff pd-h-20 bd-top">
@@ -97,10 +96,9 @@ class Balance extends PureComponent<Props, State> {
           <span>发票类型</span>
           <div className="flex-box">
             <span>不需要发票</span>
-            <span
-              className="iconfont icon-you"
-              style={{ ...common, ...iconStyle }}
-            />
+          <Iconfont name="you" { ...common} size={20} />
+
+
           </div>
         </div>
         <Link to={`/sendTime`}>
@@ -108,10 +106,9 @@ class Balance extends PureComponent<Props, State> {
             <span>送货时间</span>
             <div className="flex-box">
               <span>{this.state.sendTime}</span>
-              <span
-                className="iconfont icon-you"
-                style={{ ...common, ...iconStyle }}
-              />
+          <Iconfont name="you" { ...common} size={20} />
+
+
             </div>
           </div>
         </Link>

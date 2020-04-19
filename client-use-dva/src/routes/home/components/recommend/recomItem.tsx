@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'dva/router';
 import ImgWraper from 'components/common/imgWraper';
-import WithLoadable from 'components/common/WithLoadable';
+import WithLoadable from 'components/hocs/WithLoadable';
 
 interface Props {
   good: any;

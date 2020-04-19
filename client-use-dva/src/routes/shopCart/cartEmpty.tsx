@@ -2,21 +2,24 @@ import React, { Component } from 'react'
 import { Row, Col } from 'antd'
 import { Link } from 'dva/router'
 //公共组件
-import WithFooter from 'components/common/withFooter'
+import WithFooter from 'components/hocs/withFooter'
 
 import RecomList from '../home/components/recommend/recomList'
+import Iconfont from 'components/iconfont/index'
+
 @WithFooter
- class CartEmpty extends Component {
+class CartEmpty extends Component {
 
     render() {
         return (
-            <div style={{paddingBottom:'.6rem'}}>
+            <div style={{ paddingBottom: '.6rem' }}>
 
                 <div className="flex-box">
                     <div className="empty-cart">
                         <Row>
                             <Col span={6}>
-                            <span className="iconfont icon-gouwuche" style={{color:'#8a8a8a',fontSize:'.6rem'}}></span>
+                                <Iconfont name="gouwuche" color="#8a8a8a" size={30} />
+
                             </Col>
                             <Col span={11} >
                                 <span >购物车还是空的</span>
