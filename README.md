@@ -14,16 +14,15 @@
   ```
    yarn mock  or npm run mock
   ```
-- 2.使用egg做服务端
-   将config/config.default.js 中 redis，sequelize等修改为自己本地配置, yarn dev 即可
+- 2.使用midway做服务端
+   将config/config.default.ts 中 redis，sequelize等修改为自己本地配置, yarn dev 即可
 
 ### tips 
 
 首先，这是一个react新手写的练手项目，有不对的地方请包涵(2017.08)。<br/>
-原来的客户端只有一个client文件夹，主要使用axios和mobx(2017.08)等；后来又用dva架构实现了另一个(2018.10)，所以存在两个客户端的代码<br/>
 现client-use-dva已用typescript重构(2019.5)<br/>
 这是用react写的一个商城，比较简单。脚手架采用create-react-app。ui采用antd。
-技术栈:react,react-router v4,mobx,dva等。
+技术栈:react,react-router v4,dva等。
 写这个过程中遇到的一些重难点(或者是踩过的坑比较贴切),只贴关键代码：<br/>
 ### reacr-router v4。
 - 1.路由传值<br/>
@@ -69,19 +68,7 @@ Object.keys(goodList).map((item)=>{
 ```
 而不是一定要拿到数组才能渲染,key的话最好不要用索引，而是用一些商品id,用户id之类<br/>
 ### 状态管理
- - 1.client目录用的是mobx，这里面是用在购物车中，购物车还结合了localStorage,而结算是结合sessionStrage。<br/>
- 在对应的页面中引入react-mobx连接react和mobx ,当然状态本身也要引入,用装饰器@修饰observer即可观测数据变化<br/>
- ```
- import { observer } from 'mobx-react'
- import store from '../../store'
- @observer
-   class cartList extends Component {
-   ......
- }
- export default cartList
- ```
- 然后在这个页面中直接获取store中的数据<br/>
- - 2.client-use-dva 使用dva 
+ - 1. 使用dva 
 ### 路由按需加载
   使用react-loadable
   ```
@@ -105,9 +92,11 @@ class Home extends Component {}
 ### 组件通信
   使用node 的event模块的EventEmitter类可满足一般的父子组件或兄弟组件通信
 
+## TODO hook重写
+
 ***
 
 # 服务端
-框架采用egg,数据库 mysql,orm用egg-sequelize,后端缓存用 redis<br/>
+框架采用midway,数据库 mysql,orm用sequelize-typescript,后端缓存用 redis<br/>
 主要实现如下接口：登录注册、获取各分类商品、商品查询、商品评论、商品收藏、提交订单和订单查询、上传头像或图片、绑定手机、发送短信验证码等
 
