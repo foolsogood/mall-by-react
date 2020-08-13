@@ -1,14 +1,14 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent } from "react";
 //公共组件
-import WithFooter from 'components/hocs/withFooter';
+import WithFooter from "components/hocs/withFooter";
 
 // 首页组件
-import SearchBar from './components/searchBar';
-import Banner from 'components/common/banner';
-import Notice from './components/notice';
-import HostList from './components/hot/hotList';
-import RecomList from './components/recommend/recomList';
-import tool from 'utils/tool';
+import SearchBar from "./components/searchBar";
+import Banner from "components/common/banner";
+import Notice from "./components/notice";
+import HostList from "./components/hot/hotList";
+import RecomList from "./components/recommend/recomList";
+import tool from "utils/tool";
 
 // import { Map, is } from "immutable";
 interface State {
@@ -16,15 +16,17 @@ interface State {
   hotGoods: any[];
   searchStyle: any;
 }
+type ReadonlyState = Readonly<State>;
+
 //虽然在componentWillUnmount中清除事件监听,但setState没有立刻停止，该变量可用于做每次setState的前提条件
 let lock = false;
 @WithFooter
-class Home extends PureComponent<{}, State> {
+class Home extends PureComponent<{}, ReadonlyState> {
   // static lock
   constructor(props) {
     super(props);
     this.state = {
-      imgList: [''],
+      imgList: [""],
       hotGoods: [],
       searchStyle: {}
     };
@@ -33,14 +35,14 @@ class Home extends PureComponent<{}, State> {
   componentDidMount() {
     this.getHomeImgList();
     this.getHotGoods();
-    window.addEventListener('scroll', e => {
+    window.addEventListener("scroll", e => {
       this.changeSearchStyle(e);
     });
   }
 
   async componentWillUnmount() {
     lock = true;
-    window.removeEventListener('scroll', e => {
+    window.removeEventListener("scroll", e => {
       this.changeSearchStyle(e);
     });
   }
@@ -62,14 +64,14 @@ class Home extends PureComponent<{}, State> {
         if (scroTop > 20) {
           this.setState({
             searchStyle: {
-              background: 'rgba(72,173,252,' + (1 * scroTop) / 200 + ')',
-              lineHeight: '1rem'
+              background: "rgba(72,173,252," + (1 * scroTop) / 200 + ")",
+              lineHeight: "1rem"
             }
           });
         } else {
           const _c = {
-            top: '0',
-            background: 'transparent'
+            top: "0",
+            background: "transparent"
           };
           // const map1 = Map(_c);
           // const map2 = Map(this.state.searchStyle);
@@ -102,8 +104,8 @@ class Home extends PureComponent<{}, State> {
   }
   render() {
     const styleObj1 = {
-      position: 'relative',
-      top: '-.8rem'
+      position: "relative",
+      top: "-.8rem"
     };
     const { searchStyle, imgList, hotGoods } = this.state;
     return (

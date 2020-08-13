@@ -1,12 +1,14 @@
 import React, { Component } from "react";
-import { Spin } from 'antd';
+import { Spin } from "antd";
 
 import event from "utils/event";
-interface State{
-  isLoadingShow: boolean,
-  loadingTxt: string
+interface State {
+  isLoadingShow: boolean;
+  loadingTxt: string;
 }
-class SmallLoading extends Component<{},State> {
+type ReadonlyState = Readonly<State>;
+
+class SmallLoading extends Component<{}, ReadonlyState> {
   constructor(props) {
     super(props);
     this.state = {
@@ -44,8 +46,10 @@ class SmallLoading extends Component<{},State> {
     const isShow = { opacity: isLoadingShow ? 1 : 0 };
 
     return (
-      <div className="flex-box flex-ver-box" style={{ ...style, ...isShow } as React.CSSProperties}>
-      <Spin tip={loadingTxt} />
+      <div
+        className="flex-box flex-ver-box"
+        style={{ ...style, ...isShow } as React.CSSProperties}>
+        <Spin tip={loadingTxt} />
       </div>
     );
   }

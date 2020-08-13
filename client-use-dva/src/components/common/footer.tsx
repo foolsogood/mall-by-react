@@ -1,23 +1,26 @@
 import React, { Component } from "react";
 import { Row, Col } from "antd";
 import { Link } from "dva/router";
-import Iconfont from 'components/iconfont/index'
+import Iconfont from "components/iconfont/index";
 
-interface Props{
-  path?:string,
+interface Props {
+  path?: string;
 }
-interface State{
-  pathname:string,
+interface State {
+  pathname: string;
 }
-export default class footer extends Component<Props,State> {
+
+type ReadonlyState = Readonly<State>;
+
+export default class footer extends Component<Props, ReadonlyState> {
   constructor(props) {
     super(props);
     this.state = {
       pathname: ""
     };
   }
-  getPathname():string {
-	  //确保在WithFooter传入 props,否则使用window.location.pathname
+  getPathname(): string {
+    //确保在WithFooter传入 props,否则使用window.location.pathname
     return this.props.path ? this.props.path : window.location.pathname;
   }
 
@@ -32,16 +35,15 @@ export default class footer extends Component<Props,State> {
             <Link
               to={`/`}
               className="flex-box flex-ver-box"
-              style={{ cursor: "pointer" }}
-            >
+              style={{ cursor: "pointer" }}>
               {this.getPathname() === `/` ? (
                 <div className="flex-box flex-ver-box">
-                  <Iconfont name="weibiaoti1" {...active} size={20}/>
+                  <Iconfont name="weibiaoti1" {...active} size={20} />
                   <span style={active}>主页</span>
                 </div>
               ) : (
                 <div className="flex-box flex-ver-box">
-                  <Iconfont name="weibiaoti1" {...common} size={20}/>
+                  <Iconfont name="weibiaoti1" {...common} size={20} />
                   <span style={common}>主页</span>
                 </div>
               )}
@@ -51,19 +53,16 @@ export default class footer extends Component<Props,State> {
             <Link
               to={`/classify`}
               className="flex-box flex-ver-box"
-              style={{ cursor: "pointer" }}
-            >
+              style={{ cursor: "pointer" }}>
               {this.getPathname() === `/classify` ? (
                 <div className="flex-box flex-ver-box">
-                  <Iconfont name="fenleitianchong"  {...active} size={20}/>
-
+                  <Iconfont name="fenleitianchong" {...active} size={20} />
 
                   <span style={active}>分类</span>
                 </div>
               ) : (
                 <div className="flex-box flex-ver-box">
-
-                  <Iconfont name="fenleitianchong" {...common} size={20}/>
+                  <Iconfont name="fenleitianchong" {...common} size={20} />
 
                   <span style={common}>分类</span>
                 </div>
@@ -74,19 +73,16 @@ export default class footer extends Component<Props,State> {
             <Link
               to={`/shopCart`}
               className="flex-box flex-ver-box"
-              style={{ cursor: "pointer" }}
-            >
+              style={{ cursor: "pointer" }}>
               {this.getPathname() === `/shopCart` ? (
                 <div className="flex-box flex-ver-box">
-
-                  <Iconfont name="gouwuche"  {...active} size={20}/>
+                  <Iconfont name="gouwuche" {...active} size={20} />
 
                   <span style={active}>购物车</span>
                 </div>
               ) : (
                 <div className="flex-box flex-ver-box">
-
-                  <Iconfont name="gouwuche" {...common} size={20}/>
+                  <Iconfont name="gouwuche" {...common} size={20} />
 
                   <span style={common}>购物车</span>
                 </div>
@@ -97,19 +93,16 @@ export default class footer extends Component<Props,State> {
             <Link
               to={`/personal`}
               className="flex-box flex-ver-box"
-              style={{ cursor: "pointer" }}
-            >
+              style={{ cursor: "pointer" }}>
               {this.getPathname() === `/personal` ? (
                 <div className="flex-box flex-ver-box">
-                  
-                  <Iconfont name="yonghu"  {...active} size={20}/>
+                  <Iconfont name="yonghu" {...active} size={20} />
 
                   <span style={active}>我的</span>
                 </div>
               ) : (
                 <div className="flex-box flex-ver-box">
-
-                  <Iconfont name="yonghu" {...common} size={20}/>
+                  <Iconfont name="yonghu" {...common} size={20} />
 
                   <span style={common}>我的</span>
                 </div>

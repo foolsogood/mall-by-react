@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { Link } from 'dva/router';
-import CommentItem from './components/comments/commentItem';
+import React, { Component } from "react";
+import { Link } from "dva/router";
+import CommentItem from "./components/comments/commentItem";
 
 //组件
 interface Props {
@@ -12,8 +12,9 @@ interface State {
   pageNum: number;
   total: number;
 }
+type ReadonlyState = Readonly<State>;
 
-class Comment extends Component<Props, State> {
+class Comment extends Component<Props, ReadonlyState> {
   constructor(props) {
     super(props);
     this.state = {
@@ -42,7 +43,7 @@ class Comment extends Component<Props, State> {
     const url = window.$api.good.getGoodComment;
     try {
       const res = await window.$http.get(url, { query, params });
-      const {count,rows}=res.data
+      const { count, rows } = res.data;
       this.setState({
         commentList: await this.state.commentList.concat(rows),
         total: count
@@ -60,8 +61,7 @@ class Comment extends Component<Props, State> {
           <Link to={`/commentForm/${goodId}`}>
             <div
               className="flex-box just-c-ed pd-h-20"
-              style={{ lineHeight: '.7rem' }}
-            >
+              style={{ lineHeight: ".7rem" }}>
               我要评论
             </div>
           </Link>
@@ -73,10 +73,10 @@ class Comment extends Component<Props, State> {
     };
     const noComment = () => {
       return (
-        <div className="flex-box" style={{ height: '100vh' }}>
+        <div className="flex-box" style={{ height: "100vh" }}>
           暂无评论
           <Link to={`/commentForm/${goodId}`}>
-            <span className="color-org " style={{ padding: '.3rem' }}>
+            <span className="color-org " style={{ padding: ".3rem" }}>
               我要评论
             </span>
           </Link>
@@ -90,8 +90,7 @@ class Comment extends Component<Props, State> {
           <p
             onClick={this.getMore}
             className="flex-box"
-            style={{ lineHeight: '1rem' }}
-          >
+            style={{ lineHeight: "1rem" }}>
             下拉更多
           </p>
         ) : null}

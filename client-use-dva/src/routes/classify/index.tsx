@@ -1,19 +1,21 @@
 import React, { PureComponent } from "react";
 //公共组件
 import WithFooter from "components/hocs/withFooter";
-import { Element ,  Link } from "react-scroll";
-interface Props{
-  history?:any,
+import { Element, Link } from "react-scroll";
+interface Props {
+  history?: any;
 }
-interface State{
-  list: any[],
+interface State {
+  list: any[];
 }
+type ReadonlyState = Readonly<State>;
+
 @WithFooter
-class cateify extends PureComponent <Props,State> {
+class cateify extends PureComponent<Props, ReadonlyState> {
   constructor(props) {
     super(props);
     this.state = {
-      list: null,
+      list: null
     };
   }
   componentDidMount() {
@@ -33,12 +35,12 @@ class cateify extends PureComponent <Props,State> {
       window.$commonErrorHandler(url)(err);
     }
   }
-  toGooddetail =(goodId:string)=>{
+  toGooddetail = (goodId: string) => {
     this.props.history.push({
-      pathname:`/goodDetail/${goodId}`
-    })
-  }
-  getGoodsList(cateId:string):any[] {
+      pathname: `/goodDetail/${goodId}`
+    });
+  };
+  getGoodsList(cateId: string): any[] {
     return window.$http
       .get(window.$api.good.getGoodsByCate, { params: { cateId } })
       .then(res => {
@@ -46,10 +48,10 @@ class cateify extends PureComponent <Props,State> {
       });
   }
   render() {
-    const {list}=this.state
-    console.log(list)
-    if(!list){
-      return null
+    const { list } = this.state;
+    console.log(list);
+    if (!list) {
+      return null;
     }
     return (
       <div className="classify">
@@ -60,39 +62,36 @@ class cateify extends PureComponent <Props,State> {
             left: "0",
             right: "0",
             zIndex: 99
-          }}
-        >
+          }}>
           <div className="classify-title">
-              {list.map((item, idx) => {
-                if(Array.isArray(item.rows)&&!item.rows.length){
-                  return null
-                }
-                return (
-                  <div className="item" key={idx}>
-                    <Link
-                      to={`anchor-` + item.rows[0].cateId}
-                      spy={true}
-                      smooth={true}
-                      duration={500}
-                      offset={-50}
-                      activeClass="active"
-                    >
-                      <span >{item.rows[0].cate}</span>
-                    </Link>
-                  </div>
-                );
-              })}
+            {list.map((item, idx) => {
+              if (Array.isArray(item.rows) && !item.rows.length) {
+                return null;
+              }
+              return (
+                <div className="item" key={idx}>
+                  <Link
+                    to={`anchor-` + item.rows[0].cateId}
+                    spy={true}
+                    smooth={true}
+                    duration={500}
+                    offset={-50}
+                    activeClass="active">
+                    <span>{item.rows[0].cate}</span>
+                  </Link>
+                </div>
+              );
+            })}
           </div>
         </div>
         <div
           style={{
             position: "relative",
             top: ".8rem"
-          }}
-        >
+          }}>
           {list.map((cate_item, idx) => {
-            if(Array.isArray(cate_item.rows)&&!cate_item.rows.length){
-              return null
+            if (Array.isArray(cate_item.rows) && !cate_item.rows.length) {
+              return null;
             }
             return (
               <Element key={idx} name={`anchor-${cate_item.rows[0].cateId}`}>
@@ -103,16 +102,19 @@ class cateify extends PureComponent <Props,State> {
                     </div>
                     {cate_item.rows.map(item => {
                       return (
-                        <div onClick={()=>this.toGooddetail(item.goodId)} key={item.goodId} className="classify-block ">
+                        <div
+                          onClick={() => this.toGooddetail(item.goodId)}
+                          key={item.goodId}
+                          className="classify-block ">
                           {/* <Link to={`/goodDetail/${item.goodId}`}> */}
-                            <div  className="flex-box flex-ver-box">
-                              <img
-                                className="classify-good-img"
-                                src={item.imgs[0]}
-                                alt=""
-                              />
-                              <p>{item.goodName}</p>
-                            </div>
+                          <div className="flex-box flex-ver-box">
+                            <img
+                              className="classify-good-img"
+                              src={item.imgs[0]}
+                              alt=""
+                            />
+                            <p>{item.goodName}</p>
+                          </div>
                           {/* </Link> */}
                         </div>
                       );
@@ -121,7 +123,6 @@ class cateify extends PureComponent <Props,State> {
                   <div className="hr" />
                 </div>
               </Element>
-             
             );
           })}
         </div>

@@ -1,13 +1,15 @@
-import React, { Component } from 'react';
-import { Tabs } from 'antd-mobile';
+import React, { Component } from "react";
+import { Tabs } from "antd-mobile";
 
-import OrderItem from './components/order-item';
-import ErrorBoundary from 'components/common/errorBoundary';
+import OrderItem from "./components/order-item";
+import ErrorBoundary from "components/common/errorBoundary";
 // @ErrorBoundary
 interface State {
   orderList: any[];
 }
-class Orders extends Component<{}, State> {
+type ReadonlyState = Readonly<State>;
+
+class Orders extends Component<{}, ReadonlyState> {
   constructor(props) {
     super(props);
     this.state = {
@@ -32,20 +34,20 @@ class Orders extends Component<{}, State> {
   }
   render() {
     const { orderList } = this.state;
-    if(!orderList){
-      return null
+    if (!orderList) {
+      return null;
     }
     const tabs = [
-      { title: '未发货' },
-      { title: '已发货' },
-      { title: '已评价' }
+      { title: "未发货" },
+      { title: "已发货" },
+      { title: "已评价" }
     ];
     const divStyle = {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      height: '150px',
-      backgroundColor: '#fff'
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      height: "150px",
+      backgroundColor: "#fff"
     };
     return (
       <div>
@@ -57,11 +59,10 @@ class Orders extends Component<{}, State> {
                   <div
                     key={index}
                     style={{
-                      borderRadius: '.5rem',
-                      padding: ' .15rem',
-                      boxSizing: 'content-box'
-                    }}
-                  >
+                      borderRadius: ".5rem",
+                      padding: " .15rem",
+                      boxSizing: "content-box"
+                    }}>
                     {order.list.map((item, idx) => {
                       return <OrderItem key={idx} order={item} />;
                     })}

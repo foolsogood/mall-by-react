@@ -1,17 +1,19 @@
 import React, { Component } from "react";
 import { Row, Col } from "antd";
 import { connect } from "dva";
-import Iconfont from 'components/iconfont/index'
+import Iconfont from "components/iconfont/index";
 
 interface Props {
-  cartItem: any,
-  dispatch?: (args) => void,
+  cartItem: any;
+  dispatch?: (args) => void;
 }
 interface State {
-  ifChecked: boolean
+  ifChecked: boolean;
 }
+type ReadonlyState = Readonly<State>;
+
 @connect(({ shopCart }) => ({ shopCart }))
-class cartItem extends Component<Props, State> {
+class cartItem extends Component<Props, ReadonlyState> {
   constructor(props) {
     super(props);
     this.state = {
@@ -96,28 +98,28 @@ class cartItem extends Component<Props, State> {
             span={4}
             onClick={() => {
               this.toggleCheck(cartItem.goodId);
-            }}
-          >
+            }}>
             <div className="flex-box">
               {this.state.ifChecked ? (
-                <Iconfont name="selected" {...active} style={{ ...iconStyle, }} />
-
+                <Iconfont
+                  name="selected"
+                  {...active}
+                  style={{ ...iconStyle }}
+                />
               ) : (
-                  <Iconfont name="yuancircle46" {...common} style={{ ...iconStyle, }} />
-
-
-                )}
+                <Iconfont
+                  name="yuancircle46"
+                  {...common}
+                  style={{ ...iconStyle }}
+                />
+              )}
             </div>
           </Col>
           <Col span={16}>
             <div>
               <Row className="flex-box">
                 <Col span={5} className="flex-box">
-                  <img
-                    className="good-img"
-                    src={cartItem.imgs[0]}
-                    alt=""
-                  />
+                  <img className="good-img" src={cartItem.imgs[0]} alt="" />
                 </Col>
                 <Col span={19} className="flex-box flex-ver-box flex-al-st">
                   <p>{cartItem.name}</p>
@@ -130,8 +132,7 @@ class cartItem extends Component<Props, State> {
                       className="desc t-tc"
                       onClick={() =>
                         this.changeNum(cartItem.number, cartItem.goodId, -1)
-                      }
-                    >
+                      }>
                       -
                     </div>
                     <div className="num t-tc">{cartItem.number}</div>
@@ -139,8 +140,7 @@ class cartItem extends Component<Props, State> {
                       className="plus t-tc"
                       onClick={() =>
                         this.changeNum(cartItem.number, cartItem.goodId, 1)
-                      }
-                    >
+                      }>
                       +
                     </div>
                   </div>
@@ -150,7 +150,12 @@ class cartItem extends Component<Props, State> {
           </Col>
           <Col span={4}>
             <div className="flex-box">
-            <Iconfont name="shanchu" {...common} style={{ ...iconStyle, }} onClick={() => this.removeThisGood(cartItem.goodId)} />
+              <Iconfont
+                name="shanchu"
+                {...common}
+                style={{ ...iconStyle }}
+                onClick={() => this.removeThisGood(cartItem.goodId)}
+              />
             </div>
           </Col>
         </Row>

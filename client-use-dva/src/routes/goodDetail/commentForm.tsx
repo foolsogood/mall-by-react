@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { WingBlank, ImagePicker } from 'antd-mobile';
-import { Input, Checkbox, Rate } from 'antd';
+import React, { Component } from "react";
+import { WingBlank, ImagePicker } from "antd-mobile";
+import { Input, Checkbox, Rate } from "antd";
 const { TextArea } = Input;
 //组件
 interface Props {
@@ -13,14 +13,16 @@ interface State {
   comment: string;
   fileStreamList: any[];
 }
-class CommentForm extends Component<Props, State> {
+type ReadonlyState = Readonly<State>;
+
+class CommentForm extends Component<Props, ReadonlyState> {
   constructor(props) {
     super(props);
     this.state = {
       rateNumber: 0,
-      isAnonymousChecked: '',
+      isAnonymousChecked: "",
       files: [],
-      comment: '',
+      comment: "",
       fileStreamList: []
     };
   }
@@ -31,7 +33,7 @@ class CommentForm extends Component<Props, State> {
     });
   };
   //是否匿名
-  checkHandler = (e) => {
+  checkHandler = e => {
     this.setState({
       isAnonymousChecked: e.target.checked
     });
@@ -73,16 +75,18 @@ class CommentForm extends Component<Props, State> {
     const upload_url = window.$api.upload;
     const formdata = new FormData();
     for (const item of fileStreamList) {
-      formdata.append('file', item);
+      formdata.append("file", item);
     }
-    const arr =await window.$http.post_upload(upload_url, { formdata }).then(res=>res.data);
-    console.log('arr',arr)
-    const query={
-      isAnonymous:isAnonymousChecked ? 1 : 0,
-      rateScore:rateNumber,
+    const arr = await window.$http
+      .post_upload(upload_url, { formdata })
+      .then(res => res.data);
+    console.log("arr", arr);
+    const query = {
+      isAnonymous: isAnonymousChecked ? 1 : 0,
+      rateScore: rateNumber,
       comment,
-      imgList:JSON.stringify(arr.map(item=>item.url))
-    }
+      imgList: JSON.stringify(arr.map(item => item.url))
+    };
     const params = { goodId };
     const url = window.$api.good.addGoodComment;
     try {
@@ -94,7 +98,7 @@ class CommentForm extends Component<Props, State> {
   render() {
     const { files } = this.state;
     return (
-      <div className="comment-form" style={{ lineHeight: '.7rem' }}>
+      <div className="comment-form" style={{ lineHeight: ".7rem" }}>
         <WingBlank>
           <div className="flex-box just-c-ed">
             <span className="color-org" onClick={this.submit}>

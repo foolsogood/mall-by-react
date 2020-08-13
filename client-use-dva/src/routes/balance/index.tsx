@@ -1,11 +1,11 @@
-import React, { PureComponent } from 'react';
-import { Row, Col } from 'antd';
-import { Modal } from 'antd-mobile';
-import { Link } from 'dva/router';
-import { connect } from 'dva';
+import React, { PureComponent } from "react";
+import { Row, Col } from "antd";
+import { Modal } from "antd-mobile";
+import { Link } from "dva/router";
+import { connect } from "dva";
 
-import event from 'utils/event';
-import Iconfont from 'components/iconfont/index'
+import event from "utils/event";
+import Iconfont from "components/iconfont/index";
 
 const alert = Modal.alert;
 interface Props {
@@ -15,25 +15,27 @@ interface Props {
 interface State {
   sendTime: string;
 }
+type ReadonlyState = Readonly<State>;
+
 @connect(({ shopCart }) => ({ shopCart }))
-class Balance extends PureComponent<Props, State> {
+class Balance extends PureComponent<Props, ReadonlyState> {
   constructor(props) {
     super(props);
     this.state = {
-      sendTime: '尽快'
+      sendTime: "尽快"
     };
   }
   componentDidMount() {
-    event.on('sure-send-time', time => {
+    event.on("sure-send-time", time => {
       console.log(time);
       this.setState({ sendTime: time });
     });
   }
 
   toPay = () => {
-    alert('付款', '马上付款', [
-      { text: '取消', onPress: () => console.log(1) },
-      { text: '确定', onPress: () => this.addOrder() }
+    alert("付款", "马上付款", [
+      { text: "取消", onPress: () => console.log(1) },
+      { text: "确定", onPress: () => this.addOrder() }
     ]);
   };
   async addOrder() {
@@ -52,19 +54,19 @@ class Balance extends PureComponent<Props, State> {
       goodList
     };
     const url = window.$api.order.addOrder;
-    const option = { loadingText: '提交中……' };
+    const option = { loadingText: "提交中……" };
     try {
       await window.$http.post(url, { query, option });
       goodList.forEach(item => {
-        dispatch({ type: 'shopCart/removeFromCart', payload: item.goodId });
+        dispatch({ type: "shopCart/removeFromCart", payload: item.goodId });
       });
     } catch (err) {
       window.$commonErrorHandler(url)(err);
     }
   }
   render() {
-    const iconStyle = { fontSize: '.35rem' };
-    const common = { color: '#8a8a8a' };
+    const iconStyle = { fontSize: ".35rem" };
+    const common = { color: "#8a8a8a" };
     const { shopCart } = this.props;
     const _cart = shopCart.cart;
 
@@ -73,18 +75,18 @@ class Balance extends PureComponent<Props, State> {
         ? Object.values(_cart).filter((item: any) => item.isSelect)
         : [];
     return (
-      <div className="balance" style={{ position: 'relative' }}>
+      <div className="balance" style={{ position: "relative" }}>
         <div className="hr-40" />
         <div className="flex-box flex-ju-c-bt h-100 bg-fff pd-h-20 ">
           <span>请选择地址</span>
-          <Iconfont name="you" { ...common} size={20} />
+          <Iconfont name="you" {...common} size={20} />
         </div>
 
         <Row className=" h-100 bg-fff pd-h-20 bd-top">
           <Col span={4}>
             <img
               className=" icon-2 "
-              src={require('assets/img/ic-wx-pay.png')}
+              src={require("assets/img/ic-wx-pay.png")}
               alt=""
             />
           </Col>
@@ -96,9 +98,7 @@ class Balance extends PureComponent<Props, State> {
           <span>发票类型</span>
           <div className="flex-box">
             <span>不需要发票</span>
-          <Iconfont name="you" { ...common} size={20} />
-
-
+            <Iconfont name="you" {...common} size={20} />
           </div>
         </div>
         <Link to={`/sendTime`}>
@@ -106,9 +106,7 @@ class Balance extends PureComponent<Props, State> {
             <span>送货时间</span>
             <div className="flex-box">
               <span>{this.state.sendTime}</span>
-          <Iconfont name="you" { ...common} size={20} />
-
-
+              <Iconfont name="you" {...common} size={20} />
             </div>
           </div>
         </Link>

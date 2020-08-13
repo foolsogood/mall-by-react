@@ -4,18 +4,20 @@ import { createForm } from "rc-form";
 import event from "utils/event";
 import { connect } from "dva";
 import Cookies from "js-cookie";
-interface Props{
-  form?:any,
-  dispatch?:(args)=>void
+interface Props {
+  form?: any;
+  dispatch?: (args) => void;
 }
-interface State{
-  isLoginShow: boolean,
+interface State {
+  isLoginShow: boolean;
 }
+type ReadonlyState = Readonly<State>;
+
 @connect(({ app }) => ({
   app
 }))
 @createForm()
-class Login extends Component<Props,State> {
+class Login extends Component<Props, ReadonlyState> {
   constructor(props) {
     super(props);
     this.state = {
@@ -47,9 +49,9 @@ class Login extends Component<Props,State> {
           dispatch({ type: "app/changeUser", payload: res.data });
           Cookies.set("token", res.data.token);
           event.emit("showLogin", false);
-          setTimeout(()=>{
-            window.location.reload()
-          },0)
+          setTimeout(() => {
+            window.location.reload();
+          }, 0);
         } catch (err) {
           window.$commonErrorHandler(url)(err);
         }
@@ -62,7 +64,10 @@ class Login extends Component<Props,State> {
     const { isLoginShow } = this.state;
     const loginHtml = () => (
       <div className="login">
-        <div onClick={()=>this.setState({isLoginShow:false})} className="mask" />
+        <div
+          onClick={() => this.setState({ isLoginShow: false })}
+          className="mask"
+        />
         <div className="login-form">
           <WingBlank>
             <p className="flex-box">登录</p>
@@ -91,8 +96,7 @@ class Login extends Component<Props,State> {
               <Button
                 onClick={this.handleSubmit}
                 type="primary"
-                style={{ color: "#fff" }}
-              >
+                style={{ color: "#fff" }}>
                 提交
               </Button>
             </List>
@@ -103,8 +107,7 @@ class Login extends Component<Props,State> {
                   event.emit("showSignup", true);
                   event.emit("showLogin", false);
                 }}
-                style={{ paddingLeft: ".2rem", color: "#ff0000" }}
-              >
+                style={{ paddingLeft: ".2rem", color: "#ff0000" }}>
                 去注册
               </span>
             </p>
@@ -116,5 +119,4 @@ class Login extends Component<Props,State> {
   }
 }
 
-
-export default (Login);
+export default Login;

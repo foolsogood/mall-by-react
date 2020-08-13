@@ -1,16 +1,18 @@
-import React, { Component } from 'react';
-import { List, Button, WhiteSpace, WingBlank, InputItem } from 'antd-mobile';
-import { createForm } from 'rc-form';
+import React, { Component } from "react";
+import { List, Button, WhiteSpace, WingBlank, InputItem } from "antd-mobile";
+import { createForm } from "rc-form";
 
-import event from 'utils/event';
+import event from "utils/event";
 interface Props {
   form?: any;
 }
 interface State {
   isSignupShow: boolean;
 }
+type ReadonlyState = Readonly<State>;
+
 @createForm()
-class Signup extends Component<Props, State> {
+class Signup extends Component<Props, ReadonlyState> {
   constructor(props) {
     super(props);
     this.state = {
@@ -18,7 +20,7 @@ class Signup extends Component<Props, State> {
     };
   }
   componentDidMount() {
-    event.on('showSignup', bool => {
+    event.on("showSignup", bool => {
       this.setState({ isSignupShow: bool });
     });
   }
@@ -29,17 +31,17 @@ class Signup extends Component<Props, State> {
     e.preventDefault();
     validateFields(async (err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
+        console.log("Received values of form: ", values);
         const query = {
-          username: getFieldValue('username'),
-          password: getFieldValue('password'),
-          repeatPwd: getFieldValue('repeatPwd')
+          username: getFieldValue("username"),
+          password: getFieldValue("password"),
+          repeatPwd: getFieldValue("repeatPwd")
         };
         const url = window.$api.user.signup;
         try {
           await window.$http.put(url, { query });
-          event.emit('showSignup', false);
-          event.emit('showLogin', true);
+          event.emit("showSignup", false);
+          event.emit("showLogin", true);
         } catch (err) {
           window.$commonErrorHandler(url)(err);
         }
@@ -61,7 +63,7 @@ class Signup extends Component<Props, State> {
             <p className="flex-box">注册</p>
             <List>
               <InputItem
-                {...getFieldProps('username')}
+                {...getFieldProps("username")}
                 type="text"
                 placeholder="用户名"
                 clear
@@ -72,7 +74,7 @@ class Signup extends Component<Props, State> {
             <WhiteSpace />
             <List>
               <InputItem
-                {...getFieldProps('password')}
+                {...getFieldProps("password")}
                 type="password"
                 placeholder="密码"
                 clear
@@ -82,7 +84,7 @@ class Signup extends Component<Props, State> {
             <WhiteSpace />
             <List>
               <InputItem
-                {...getFieldProps('repeatPwd')}
+                {...getFieldProps("repeatPwd")}
                 type="password"
                 placeholder="确认密码"
                 clear
@@ -94,8 +96,7 @@ class Signup extends Component<Props, State> {
               <Button
                 onClick={this.handleSubmit}
                 type="primary"
-                style={{ color: '#fff' }}
-              >
+                style={{ color: "#fff" }}>
                 注册
               </Button>
             </List>

@@ -1,25 +1,25 @@
-import tool from 'utils/tool';
-import { routerRedux } from 'dva/router';
+import tool from "utils/tool";
+import { routerRedux } from "dva/router";
 import { Model } from "dva";
 
 export default {
-  namespace: 'shopCart',
+  namespace: "shopCart",
 
   state: {
-    cart: localStorage.getItem('cart')
-      ? JSON.parse(localStorage.getItem('cart'))
+    cart: localStorage.getItem("cart")
+      ? JSON.parse(localStorage.getItem("cart"))
       : {},
-    cartTotalPrice: localStorage.getItem('cartTotalPrice') || 0,
-    cartTotalNum: localStorage.getItem('cartTotalNum') || 0
+    cartTotalPrice: localStorage.getItem("cartTotalPrice") || 0,
+    cartTotalNum: localStorage.getItem("cartTotalNum") || 0
   },
 
   subscriptions: {},
 
   effects: {
     *addToCart({ payload }, { put }) {
-      yield put({ type: 'addToCartHandler', payload });
-      yield put({ type: 'calcTotalNumHandler' });
-      yield put({ type: 'calcTotalPriceHandler' });
+      yield put({ type: "addToCartHandler", payload });
+      yield put({ type: "calcTotalNumHandler" });
+      yield put({ type: "calcTotalPriceHandler" });
       yield put(
         routerRedux.push({
           pathname: payload.toPath
@@ -27,31 +27,31 @@ export default {
       );
     },
     *changeNum({ payload }, { put }) {
-      yield put({ type: 'changeNumHandler', payload });
-      yield put({ type: 'calcTotalNumHandler' });
-      yield put({ type: 'calcTotalPriceHandler' });
+      yield put({ type: "changeNumHandler", payload });
+      yield put({ type: "calcTotalNumHandler" });
+      yield put({ type: "calcTotalPriceHandler" });
     },
     *removeFromCart({ payload }, { put }) {
-      yield put({ type: 'removeFromCartHandler', payload });
-      yield put({ type: 'calcTotalNumHandler' });
-      yield put({ type: 'calcTotalPriceHandler' });
+      yield put({ type: "removeFromCartHandler", payload });
+      yield put({ type: "calcTotalNumHandler" });
+      yield put({ type: "calcTotalPriceHandler" });
     },
     *popThisFromBalance({ payload }, { put }) {
-      yield put({ type: 'popThisFromBalanceHandler', payload });
-      yield put({ type: 'calcTotalNumHandler' });
-      yield put({ type: 'calcTotalPriceHandler' });
+      yield put({ type: "popThisFromBalanceHandler", payload });
+      yield put({ type: "calcTotalNumHandler" });
+      yield put({ type: "calcTotalPriceHandler" });
     }
   },
 
   reducers: {
     //商品总数
     calcTotalNumHandler(state) {
-      const cartTotalNum = Object.values(state.cart)
+      const cartTotalNum: number = Object.values(state.cart)
         .filter((item: any) => item.isSelect)
         .reduce((prevTotalNum, cur: any) => {
           return prevTotalNum + cur.number;
         }, 0);
-      localStorage.setItem('cartTotalNum', cartTotalNum);
+      localStorage.setItem("cartTotalNum", "" + cartTotalNum);
       return {
         ...state,
         cartTotalNum
@@ -59,12 +59,12 @@ export default {
     },
     //商品总价
     calcTotalPriceHandler(state) {
-      const cartTotalPrice = Object.values(state.cart)
+      const cartTotalPrice: number = Object.values(state.cart)
         .filter((item: any) => item.isSelect)
         .reduce((prevTotalPrice: any, cur: any) => {
           return prevTotalPrice + cur.number * cur.price;
         }, 0);
-      localStorage.setItem('cartTotalPrice', cartTotalPrice);
+      localStorage.setItem("cartTotalPrice", "" + cartTotalPrice);
       return {
         ...state,
         cartTotalPrice
@@ -86,7 +86,7 @@ export default {
           number: 1
         });
       }
-      localStorage.setItem('cart', JSON.stringify(cart));
+      localStorage.setItem("cart", JSON.stringify(cart));
       return {
         ...state,
         cart
@@ -106,7 +106,7 @@ export default {
           Reflect.deleteProperty(cart, goodId);
         }
       }
-      localStorage.setItem('cart', JSON.stringify(cart));
+      localStorage.setItem("cart", JSON.stringify(cart));
       return {
         ...state,
         cart
@@ -121,7 +121,7 @@ export default {
       const cart = tool.deepCopy(state.cart);
       // delete cart[payload];
       Reflect.deleteProperty(cart, payload);
-      localStorage.setItem('cart', JSON.stringify(cart));
+      localStorage.setItem("cart", JSON.stringify(cart));
       return {
         ...state,
         cart
@@ -131,7 +131,7 @@ export default {
       const cart = tool.deepCopy(state.cart);
       const { goodId, bool } = payload;
       cart[goodId].isSelect = !bool;
-      localStorage.setItem('cart', JSON.stringify(cart));
+      localStorage.setItem("cart", JSON.stringify(cart));
       return {
         ...state,
         cart

@@ -3,12 +3,14 @@ import { Input } from "antd";
 import { Link } from "dva/router";
 
 const Search = Input.Search;
-interface State{
-  list: any[],
-  keyword: string,
-  isSerachHasData: null|boolean
+interface State {
+  list: any[];
+  keyword: string;
+  isSerachHasData: null | boolean;
 }
-export default class searchBar extends Component<{},State> {
+type ReadonlyState = Readonly<State>;
+
+export default class searchBar extends Component<{}, ReadonlyState> {
   constructor(props) {
     super(props);
     this.state = {
@@ -21,11 +23,11 @@ export default class searchBar extends Component<{},State> {
     width: "90%"
   };
   //搜查商品
-  serachGood = async (keyword:string) => {
+  serachGood = async (keyword: string) => {
     const url = window.$api.good.searchGood;
     try {
       const res = await window.$http.get(url, { query: { keyword } });
-      const result=res.data.rows
+      const result = res.data.rows;
       this.setState({
         list: result,
         isSerachHasData: Boolean(result && result.length)
@@ -34,11 +36,11 @@ export default class searchBar extends Component<{},State> {
       window.$commonErrorHandler(url)(err);
     }
   };
-  keywordChange = (ev:React.ChangeEvent<HTMLInputElement>) => {
-    if(!ev.currentTarget.value){
-        this.setState({
-          isSerachHasData: null
-        })
+  keywordChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
+    if (!ev.currentTarget.value) {
+      this.setState({
+        isSerachHasData: null
+      });
     }
   };
   render() {
@@ -49,8 +51,7 @@ export default class searchBar extends Component<{},State> {
           <Link key={item.goodId} to={`/goodDetail/${item.goodId}`}>
             <div
               className="pd-h-20 flex-box just-c-st"
-              style={{ width: "100%", lineHeight: "0.8rem" }}
-            >
+              style={{ width: "100%", lineHeight: "0.8rem" }}>
               <img
                 alt=""
                 src={item.imgs && item.imgs[0]}
@@ -68,8 +69,7 @@ export default class searchBar extends Component<{},State> {
     return (
       <div
         className="flex-box flex-ver-box search-bar "
-        style={{ padding: ".1rem 0" }}
-      >
+        style={{ padding: ".1rem 0" }}>
         <Search
           placeholder="搜索商品"
           onSearch={keyword => this.serachGood(keyword)}
