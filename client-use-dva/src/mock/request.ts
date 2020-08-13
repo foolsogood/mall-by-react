@@ -3,7 +3,7 @@ import { Modal } from "antd-mobile";
 const alert = Modal.alert;
 
 const unable = () => {
-    console.log("当前为mock环境");
+  alert("warning", "当前为mock环境");
 };
 export const mockRequest = obj => {
   const { url, originUrl } = obj;
@@ -11,7 +11,7 @@ export const mockRequest = obj => {
   // 此接口在mockApi中找不到
   if (!mockApi.hasOwnProperty(url) && !mockApi.hasOwnProperty(originUrl)) {
     unable();
-    return 
+    return;
   }
   if (url === originUrl) {
     return {
@@ -20,7 +20,7 @@ export const mockRequest = obj => {
     };
   }
   return {
-    code: 1,
+    code: 10,
     data: mockApi[originUrl](url)
   };
 };
